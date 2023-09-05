@@ -11,6 +11,21 @@ export const getAllPosts = async () => {
   });
 
   const allPosts = posts.results;
+  //   return allPosts;
+  return allPosts.map((post) => {
+    return getPageMetaData(post);
+  });
+};
 
-  return allPosts;
+/*
+
+*/
+const getPageMetaData = (post) => {
+  return {
+    id: post.id,
+    title: post.properties.name.title[0].plain_text,
+    description: post.properties.description.rich_text[0].plain_text,
+    date: post.properties.date.date.start,
+    slug: post.properties.slug.rich_text[0].plain_text,
+  };
 };
