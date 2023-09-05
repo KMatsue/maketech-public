@@ -21,11 +21,20 @@ export const getAllPosts = async () => {
 
 */
 const getPageMetaData = (post) => {
+  const getTags = (tags) => {
+    const allTags = tags.map((tag) => {
+      return tag.name;
+    });
+
+    return allTags;
+  };
+
   return {
     id: post.id,
     title: post.properties.name.title[0].plain_text,
     description: post.properties.description.rich_text[0].plain_text,
     date: post.properties.date.date.start,
     slug: post.properties.slug.rich_text[0].plain_text,
+    tags: getTags(post.properties.tags.multi_select),
   };
 };
