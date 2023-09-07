@@ -1,7 +1,26 @@
 import Link from "next/link";
 import React from "react";
+import { getAllPosts, getSinglePost } from "../../../lib/notionAPI";
 
-const Post = () => {
+export const getStaticPaths = async () => {
+  const allPosts = await getAllPosts();
+  const paths = allPosts.map(({ slug }) => ({ params: { slug } }));
+  return {
+    paths,
+    fallback: "blocking",
+  };
+};
+
+export const getStaticProps = async ({ params }) => {
+  const post = await getSinglePost(params.slug);
+  return {
+    props: { post },
+    revalidate: 60,
+  };
+};
+
+const Post = ({ post }) => {
+  console.log(post);
   return (
     <section className="container lg:px-2 px-5 h-screen lg:w-2/5 mx-auto mt-20">
       <h2 className="w-full text-2xl font-medium">ここに記事のタイトル</h2>
@@ -10,7 +29,7 @@ const Post = () => {
       <br />
 
       <p className="text-white bg-sky-900 rounded-xl font-medium mt-2 px-2 inline-block mr-2">
-        <Link href={`/posts/tag/page/1`}>タグ</Link>
+        <Link href={`/posts/tag/page/1`}>tags</Link>
       </p>
 
       <div className="mt-10 font-medium">
