@@ -126,7 +126,7 @@ export const getAllTags = async () => {
   const allTagsDuplicationLists = allPosts.flatMap((post) => post.tags);
   const set = new Set(allTagsDuplicationLists);
   const allTagsList = Array.from(set);
-  console.log(allTagsList);
+  // console.log(allTagsList);
 
   return allTagsList;
 };

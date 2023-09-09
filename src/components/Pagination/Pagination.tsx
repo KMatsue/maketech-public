@@ -8,6 +8,7 @@ interface Props {
 
 const Pagination = (props: Props) => {
   const { numberOfPage, tag } = props;
+  console.log(tag);
 
   let pages: number[] = [];
   for (let i = 1; i <= numberOfPage; i++) {
@@ -20,7 +21,9 @@ const Pagination = (props: Props) => {
         {pages.map((page) => (
           <li className="bg-sky-900 rounded-lg w-6 h-8 relative" key={page}>
             <Link
-              href={`/posts/page/${page}`}
+              href={
+                tag ? `/posts/tag/${tag}/page/${page}` : `/posts/page/${page}`
+              }
               className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 text-gray-100"
             >
               {page}
