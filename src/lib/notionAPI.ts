@@ -1,5 +1,6 @@
 import { NUMBER_OF_POSTS_PER_PAGE } from "@/constants/constants";
 import { Client } from "@notionhq/client";
+import exp from "constants";
 import { NotionToMarkdown } from "notion-to-md";
 
 const notion = new Client({
@@ -117,4 +118,15 @@ export const getNumberOfPagesByTag = async (tagName: string) => {
     Math.floor(posts.length / NUMBER_OF_POSTS_PER_PAGE) +
     (posts.length % NUMBER_OF_POSTS_PER_PAGE > 0 ? 1 : 0)
   );
+};
+
+export const getAllTags = async () => {
+  const allPosts = await getAllPosts();
+
+  const allTagsDuplicationLists = allPosts.flatMap((post) => post.tags);
+  const set = new Set(allTagsDuplicationLists);
+  const allTagsList = Array.from(set);
+  console.log(allTagsList);
+
+  return allTagsList;
 };

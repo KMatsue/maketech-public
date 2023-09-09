@@ -1,5 +1,6 @@
 import Head from "next/head";
 import {
+  getAllTags,
   getNumberOfPages,
   getNumberOfPagesByTag,
   getPostsByPage,
@@ -10,8 +11,22 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import Pagination from "@/components/Pagination/Pagination";
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const allTags = await getAllTags();
+  let params = [];
+
+  await Promise.all(
+    allTags.map((tag: string) => {
+      return getNumberOfPagesByTag(tag).then((totalPageSizeByTag: number) => {
+        for (let i = 1; i <= totalPageSizeByTag; i++) {
+          params.push({ params: { tag: tag, page: i.toString() } });
+        }
+      });
+    })
+  );
+  console.log(params);
+
   return {
-    paths: [{ params: { tag: "blog", page: "1" } }],
+    paths: [{ params: { tag: "Blog", page: "1" } }],
     fallback: "blocking",
   };
 };
@@ -19,15 +34,21 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const currentPage = context.params?.page.toString();
   const currentTag = context.params?.tag.toString();
-  const posts = await getPostsByTagAndPage(currentTag, parseInt(currentPage));
-  const totalPageSize = await getNumberOfPagesByTag(currentTag);
+  const upperCaseCurrentTag =
+    currentTag.charAt(0).toUpperCase() + currentTag.slice(1);
+
+  const posts = await getPostsByTagAndPage(
+    upperCaseCurrentTag,
+    parseInt(currentPage)
+  );
+  const totalPageSizeByTag = await getNumberOfPagesByTag(upperCaseCurrentTag);
   return {
-    props: { posts, totalPageSize },
+    props: { posts, totalPageSizeByTag },
     revalidate: 60,
   };
 };
 
-const BlogTagPageList = ({ posts, totalPageSize }) => {
+const BlogTagPageList = ({ posts, totalPageSizeByTag }) => {
   // console.log(allPosts);
 
   return (
@@ -55,7 +76,7 @@ const BlogTagPageList = ({ posts, totalPageSize }) => {
             </div>
           ))}
         </section>
-        <Pagination numberOfPage={totalPageSize} tag="" />
+        <Pagination numberOfPage={totalPageSizeByTag} tag="" />
       </main>
     </div>
   );
