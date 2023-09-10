@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { getAllPosts, getPostsForTopPage } from "../lib/notionAPI";
+import { getAllPosts, getAllTags, getPostsForTopPage } from "../lib/notionAPI";
 import SinglePost from "../components/Post/SinglePost";
 import { GetStaticProps } from "next";
 import Link from "next/link";
@@ -7,13 +7,14 @@ import Tag from "@/components/Tag/Tag";
 
 export const getStaticProps: GetStaticProps = async () => {
   const fourPosts = await getPostsForTopPage(4);
+  const allTags = await getAllTags();
   return {
-    props: { fourPosts },
+    props: { fourPosts, allTags },
     revalidate: 60,
   };
 };
 
-export default function Home({ fourPosts }) {
+export default function Home({ fourPosts, allTags }) {
   // console.log(allPosts);
 
   return (
@@ -47,7 +48,7 @@ export default function Home({ fourPosts }) {
             ....もっと見る
           </Link>
         </h4>
-        <Tag />
+        <Tag tags={allTags} />
       </main>
     </div>
   );
