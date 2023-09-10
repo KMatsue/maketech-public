@@ -1,6 +1,5 @@
 import { NUMBER_OF_POSTS_PER_PAGE } from "@/constants/constants";
 import { Client } from "@notionhq/client";
-import exp from "constants";
 import { NotionToMarkdown } from "notion-to-md";
 
 const notion = new Client({
@@ -12,6 +11,7 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
 export const getAllPosts = async () => {
   const posts = await notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID || "",
+    filter: { property: "published", checkbox: { equals: true } },
     page_size: 100,
     sorts: [
       {
