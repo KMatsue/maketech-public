@@ -25,9 +25,9 @@ export default function Home({ fourPosts, allTags }) {
       </Head>
 
       <main className="container w-full mt-16">
-        <h1 className="text-5xl font-medium text-center mb-16">
+        {/* <h1 className="text-5xl font-medium text-center mb-16">
           Notion Blog🚀
-        </h1>
+        </h1> */}
         {fourPosts.map((post, index: number) => (
           <div key={index} className="mx-4">
             <SinglePost
