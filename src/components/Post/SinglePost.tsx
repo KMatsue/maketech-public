@@ -19,11 +19,13 @@ const SinglePost = (props: Props) => {
     <>
       {isPaginationPage ? (
         <section className=" bg-sky-900 mb-8 mx-auto rounded-md p-5 shadow-2xl hover:shadow-none hover:translate-y-1 translate-all duration-300">
-          <div className="xl:flex items-center ">
+          <div className="lg:flex items-center gap-3">
             <h2 className="text-gray-100 lg:text-2xl font-medium mb-2">
               <Link href={`/posts/${slug}`}>{title}</Link>
             </h2>
             <div className="text-gray-400 mr-2">{date}</div>
+          </div>
+          <div className=" flex flex-wrap gap-2">
             {tags.map((tag: string, index: number) => (
               <Link href={`/posts/tag/${tag}/page/1`} key={index}>
                 <span
@@ -35,6 +37,7 @@ const SinglePost = (props: Props) => {
               </Link>
             ))}
           </div>
+
           <p className=" text-gray-100">{description}</p>
         </section>
       ) : (
@@ -44,6 +47,8 @@ const SinglePost = (props: Props) => {
               <Link href={`/posts/${slug}`}>{title}</Link>
             </h2>
             <div className="text-gray-100">{date}</div>
+          </div>
+          <div className=" flex flex-wrap gap-2">
             {tags.map((tag: string, index: number) => (
               <Link href={`/posts/tag/${tag}/page/1`} key={index}>
                 <span
@@ -55,6 +60,7 @@ const SinglePost = (props: Props) => {
               </Link>
             ))}
           </div>
+
           <p className=" text-gray-100">{description}</p>
         </section>
       )}
