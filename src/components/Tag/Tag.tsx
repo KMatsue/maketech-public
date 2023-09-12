@@ -9,13 +9,14 @@ const Tag = (props: Props) => {
   const { tags } = props;
   console.log(tags);
   return (
-    <div className=" mx-4">
-      <section className="mb-8 mx-auto bg-orange-200 rounded-md p-5 shadow-2xl hover:shadow-none hover:translate-y-0.5 translate-all duration-300">
-        <div className="font-medium mb-4">タグ検索</div>
+    <div className=" mx-2">
+      {/* <section className="mb-8 mx-auto bg-orange-200 rounded-md p-5 shadow-2xl hover:shadow-none hover:translate-y-0.5 translate-all duration-300"> */}
+      <section className="border-l border-r border-gray-500 mb-8 mx-auto  p-5 ">
+        {/* <div className="font-medium mb-4">タグ検索</div> */}
         <div className="flex flex-wrap gap-4">
           {tags.map((tag: string, index: number) => (
             <Link href={`/posts/tag/${tag}/page/1`} key={index}>
-              <span className=" cursor-pointer px-2 font-medium pb-1 rounded-xl bg-gray-400 inline-block">
+              <span className="border cursor-pointer px-2 font-medium pb-1 rounded-xl inline-block">
                 {tag}
               </span>
             </Link>

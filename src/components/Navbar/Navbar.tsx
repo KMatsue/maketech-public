@@ -3,7 +3,7 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <nav className="container mx-auto lg:px-2 px-5 lg:w-3/5">
+    <nav className="container mx-auto lg:px-2 px-4 lg:w-8/12">
       <div className="container flex items-center justify-between mx-auto">
         <Link href="/" className="text-2xl font-medium">
           MaKe Lab 🚀
@@ -37,7 +37,7 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-      <div className="flex-1 border-b border-gray-500"></div>
+      <div className="border-b border-gray-400"></div>
     </nav>
   );
 };

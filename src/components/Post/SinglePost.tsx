@@ -18,9 +18,9 @@ const SinglePost = (props: Props) => {
   return (
     <>
       {isPaginationPage ? (
-        <section className=" bg-sky-900 mb-8 mx-auto rounded-md p-5 shadow-2xl hover:shadow-none hover:translate-y-1 translate-all duration-300">
+        <section className="border border-gray-500 mb-7 mx-auto rounded-lg p-5">
           <div className="lg:flex items-center gap-3">
-            <h2 className="text-gray-100 lg:text-2xl font-medium mb-2 hover:underline">
+            <h2 className="text-gray-600 lg:text-2xl font-medium mb-2 hover:underline">
               <Link href={`/posts/${slug}`}>{title}</Link>
             </h2>
           </div>
@@ -30,7 +30,7 @@ const SinglePost = (props: Props) => {
               <Link href={`/posts/tag/${tag}/page/1`} key={index}>
                 <span
                   key={index}
-                  className="text-white bg-gray-500 rounded-xl px-2 mr-2"
+                  className="text-white bg-gray-500 rounded-xl px-2 hover:px-4 hover:py-1  translate-all duration-300"
                 >
                   {tag}
                 </span>
@@ -41,19 +41,20 @@ const SinglePost = (props: Props) => {
           {/* <p className=" text-gray-100">{description}</p> */}
         </section>
       ) : (
-        <section className=" bg-sky-900 mb-8 mx-auto rounded-md p-5 shadow-2xl hover:shadow-none hover:translate-y-0.5 translate-all duration-300">
+        // <section className=" border-2 mb-8 mx-auto rounded-lg p-5 shadow-2xl hover:shadow-none hover:translate-y-0.5 translate-all duration-300">
+        <section className=" border border-gray-500 mb-7 mx-auto rounded-lg p-5 ">
           <div className="flex items-center gap-3">
-            <h2 className="text-gray-100 lg:text-2xl font-medium mb-2 hover:underline">
+            <h2 className="text-gray-600 lg:text-2xl font-medium mb-2 hover:underline">
               <Link href={`/posts/${slug}`}>{title}</Link>
             </h2>
           </div>
-          <div className="text-gray-100 mb-2">{date}</div>
+          <div className="text-gray-500 mb-2">{date}</div>
           <div className=" flex flex-wrap gap-2">
             {tags.map((tag: string, index: number) => (
               <Link href={`/posts/tag/${tag}/page/1`} key={index}>
                 <span
                   key={index}
-                  className="text-white bg bg-gray-500 rounded-xl px-2"
+                  className="text-white bg-gray-500 rounded-xl px-2 hover:px-4 hover:py-1 translate-all duration-300"
                 >
                   {tag}
                 </span>

@@ -35,14 +35,15 @@ const BlogPageList = ({ postsByPage, totalPageSize }) => {
   return (
     <div className="container h-full w-full mx-auto">
       <Head>
-        <title>Next.js-Notion-Blog</title>
+        <title>Blog</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className="container w-full mt-16">
-        <h1 className="text-5xl font-medium text-center mb-16">
+        {/* <h1 className="text-5xl font-medium text-center mb-16">
           Notion Blog🚀
-        </h1>
+        </h1> */}
+
         <section className="md:grid grid-cols-2 w-5/6 gap-3 mx-auto">
           {postsByPage.map((post, index: number) => (
             <div key={index}>

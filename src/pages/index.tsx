@@ -24,9 +24,9 @@ export default function Home({ fourPosts, allTags }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="container mx-auto w-full mt-16 lg:flex lg:w-8/12">
+      <main className="container mx-auto w-full mt-14 lg:flex lg:w-8/12">
         <div className=" flex-1 lg:flex-auto lg:w-9/12">
-          {" "}
+          <h2 className="border-b-2 border-gray-500 mb-4 mx-4">Recent Posts</h2>
           {fourPosts.map((post, index: number) => (
             <div key={index} className="mx-4">
               <SinglePost
@@ -49,6 +49,7 @@ export default function Home({ fourPosts, allTags }) {
           </h4>
         </div>
         <div className="flex-1 lg:flex-auto lg:w-4/12">
+          <h2 className="border-b-2 border-gray-500 mb-4 mx-4">Tags</h2>
           <Tag tags={allTags} />
         </div>
       </main>
