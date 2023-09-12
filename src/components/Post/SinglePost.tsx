@@ -20,11 +20,11 @@ const SinglePost = (props: Props) => {
       {isPaginationPage ? (
         <section className=" bg-sky-900 mb-8 mx-auto rounded-md p-5 shadow-2xl hover:shadow-none hover:translate-y-1 translate-all duration-300">
           <div className="lg:flex items-center gap-3">
-            <h2 className="text-gray-100 lg:text-2xl font-medium mb-2">
+            <h2 className="text-gray-100 lg:text-2xl font-medium mb-2 hover:underline">
               <Link href={`/posts/${slug}`}>{title}</Link>
             </h2>
-            <div className="text-gray-400 mr-2">{date}</div>
           </div>
+          <div className="text-gray-400 mb-2">{date}</div>
           <div className=" flex flex-wrap gap-2">
             {tags.map((tag: string, index: number) => (
               <Link href={`/posts/tag/${tag}/page/1`} key={index}>
@@ -38,16 +38,16 @@ const SinglePost = (props: Props) => {
             ))}
           </div>
 
-          <p className=" text-gray-100">{description}</p>
+          {/* <p className=" text-gray-100">{description}</p> */}
         </section>
       ) : (
-        <section className="lg:w-2/3 bg-sky-900 mb-8 mx-auto rounded-md p-5 shadow-2xl hover:shadow-none hover:translate-y-1 translate-all duration-300">
+        <section className=" bg-sky-900 mb-8 mx-auto rounded-md p-5 shadow-2xl hover:shadow-none hover:translate-y-0.5 translate-all duration-300">
           <div className="flex items-center gap-3">
-            <h2 className="text-gray-100 lg:text-2xl font-medium mb-2">
+            <h2 className="text-gray-100 lg:text-2xl font-medium mb-2 hover:underline">
               <Link href={`/posts/${slug}`}>{title}</Link>
             </h2>
-            <div className="text-gray-100">{date}</div>
           </div>
+          <div className="text-gray-100 mb-2">{date}</div>
           <div className=" flex flex-wrap gap-2">
             {tags.map((tag: string, index: number) => (
               <Link href={`/posts/tag/${tag}/page/1`} key={index}>
@@ -61,7 +61,7 @@ const SinglePost = (props: Props) => {
             ))}
           </div>
 
-          <p className=" text-gray-100">{description}</p>
+          {/* <p className=" text-gray-100">{description}</p> */}
         </section>
       )}
     </>
