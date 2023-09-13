@@ -5,7 +5,7 @@ type Props = {
   tags: string[];
 };
 
-const Tag = (props: Props) => {
+function Tags(props: Props) {
   const { tags } = props;
   console.log(tags);
   return (
@@ -25,6 +25,6 @@ const Tag = (props: Props) => {
       </section>
     </div>
   );
-};
+}
 
-export default Tag;
+export default Tags;

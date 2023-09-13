@@ -3,7 +3,7 @@ import { getAllPosts, getAllTags, getPostsForTopPage } from "../lib/notionAPI";
 import SinglePost from "../components/Post/SinglePost";
 import { GetStaticProps } from "next";
 import Link from "next/link";
-import Tag from "@/components/Tag/Tag";
+import Tag from "@/components/Tags/Tags";
 
 export const getStaticProps: GetStaticProps = async () => {
   const fourPosts = await getPostsForTopPage(4);
