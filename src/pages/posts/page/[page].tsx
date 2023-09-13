@@ -40,9 +40,9 @@ const BlogPageList = ({ postsByPage, totalPageSize }) => {
       </Head>
 
       <main className="container w-full mt-16">
-        {/* <h1 className="text-5xl font-medium text-center mb-16">
-          Notion Blog🚀
-        </h1> */}
+        <h2 className="border-b-2 border-gray-500 mx-auto mb-4 w-5/6">
+          {`All Posts`}
+        </h2>
 
         <section className="md:grid grid-cols-2 w-5/6 gap-3 mx-auto">
           {postsByPage.map((post, index: number) => (
