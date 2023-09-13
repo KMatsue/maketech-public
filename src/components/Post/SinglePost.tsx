@@ -24,13 +24,14 @@ const SinglePost = (props: Props) => {
               <Link href={`/posts/${slug}`}>{title}</Link>
             </h2>
           </div>
+
           <div className="text-gray-400 mb-2">{date}</div>
           <div className=" flex flex-wrap gap-2">
             {tags.map((tag: string, index: number) => (
               <Link href={`/posts/tag/${tag}/page/1`} key={index}>
                 <span
                   key={index}
-                  className="text-white bg-gray-500 rounded-xl px-2 hover:px-4 hover:py-1  translate-all duration-300"
+                  className="text-white bg-gray-500 rounded-xl px-2 py-0.5 hover:bg-opacity-70  translate-all duration-300"
                 >
                   {tag}
                 </span>
@@ -52,9 +53,10 @@ const SinglePost = (props: Props) => {
           <div className=" flex flex-wrap gap-2">
             {tags.map((tag: string, index: number) => (
               <Link href={`/posts/tag/${tag}/page/1`} key={index}>
+                {/* <span key={index} className="text-white bg-gray-500 rounded-xl px-2 hover:px-4 hover:py-1 translate-all duration-300"> */}
                 <span
                   key={index}
-                  className="text-white bg-gray-500 rounded-xl px-2 hover:px-4 hover:py-1 translate-all duration-300"
+                  className="text-white bg-gray-500 rounded-xl px-2 py-0.5 hover:bg-opacity-70  translate-all duration-300"
                 >
                   {tag}
                 </span>

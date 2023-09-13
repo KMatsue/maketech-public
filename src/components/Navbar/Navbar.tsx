@@ -28,10 +28,10 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                href="/"
+                href="/contact"
                 className="block font-medium px-4 py-2 hover:text-sky-900"
               >
-                Product
+                Contact
               </Link>
             </li>
           </ul>
