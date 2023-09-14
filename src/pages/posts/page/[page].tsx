@@ -1,8 +1,8 @@
 import Head from "next/head";
 import { getNumberOfPages, getPostsByPage } from "../../../lib/notionAPI";
-import SinglePost from "../../../components/Post/SinglePost";
+import SinglePost from "../../../components/post/SinglePost";
 import { GetStaticPaths, GetStaticProps } from "next";
-import Pagination from "@/components/Pagination/Pagination";
+import Pagination from "@/components/pagination/Pagination";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const totalPageSize = await getNumberOfPages();
