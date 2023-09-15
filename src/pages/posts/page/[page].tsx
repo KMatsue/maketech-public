@@ -33,20 +33,18 @@ const BlogPageList = ({ postsByPage, totalPageSize }) => {
   // console.log(allPosts);
 
   return (
-    <div className="container h-full w-full mx-auto">
+    <div>
       <Head>
         <title>Blog</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="container w-full mt-16">
-        <h2 className="border-b-2 border-gray-500 mx-auto mb-4 w-5/6">
-          {`All Posts`}
-        </h2>
+      <main className="container mx-auto w-full mt-14 lg:w-8/12">
+        <h2 className="border-b-2 border-gray-500 mb-4 mx-4">All Posts</h2>
 
-        <section className="md:grid grid-cols-2 w-5/6 gap-3 mx-auto">
+        <section className="md:grid grid-cols-2 gap-3 mx-auto ">
           {postsByPage.map((post, index: number) => (
-            <div key={index}>
+            <div key={index} className="mx-4">
               <SinglePost
                 title={post.title}
                 description={post.description}
