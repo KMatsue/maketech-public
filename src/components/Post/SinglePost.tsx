@@ -20,7 +20,7 @@ const SinglePost = (props: Props) => {
       {isPaginationPage ? (
         <section className="border border-gray-500 mb-7 mx-auto rounded-lg p-5">
           <div className="lg:flex items-center gap-3">
-            <h2 className="text-gray-600 lg:text-2xl font-medium mb-2 hover:underline">
+            <h2 className="text-gray-600 dark:text-white lg:text-2xl font-medium mb-2 hover:underline">
               <Link href={`/posts/${slug}`}>{title}</Link>
             </h2>
           </div>
@@ -45,7 +45,7 @@ const SinglePost = (props: Props) => {
         // <section className=" border-2 mb-8 mx-auto rounded-lg p-5 shadow-2xl hover:shadow-none hover:translate-y-0.5 translate-all duration-300">
         <section className=" border border-gray-500 mb-7 mx-auto rounded-lg p-5 ">
           <div className="flex items-center gap-3">
-            <h2 className="text-gray-600 lg:text-2xl font-medium mb-2 hover:underline">
+            <h2 className="text-gray-600 dark:text-white lg:text-2xl font-medium mb-2 hover:underline">
               <Link href={`/posts/${slug}`}>{title}</Link>
             </h2>
           </div>
@@ -56,7 +56,7 @@ const SinglePost = (props: Props) => {
                 {/* <span key={index} className="text-white bg-gray-500 rounded-xl px-2 hover:px-4 hover:py-1 translate-all duration-300"> */}
                 <span
                   key={index}
-                  className="text-white bg-gray-500 rounded-xl px-2 py-0.5 hover:bg-opacity-70  translate-all duration-300"
+                  className="text-white  bg-gray-500 rounded-xl px-2 py-0.5 hover:bg-opacity-70  translate-all duration-300"
                 >
                   {tag}
                 </span>

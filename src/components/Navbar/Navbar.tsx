@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { ThemeSwitch } from "../ThemeSwitch";
 
 const Navbar = () => {
   return (
@@ -33,6 +34,9 @@ const Navbar = () => {
               >
                 Contact
               </Link>
+            </li>
+            <li>
+              <ThemeSwitch />
             </li>
           </ul>
         </div>
