@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
-import { SunIcon } from "@heroicons/react/20/solid";
-import { MoonIcon } from "@heroicons/react/20/solid";
+import { SunIcon } from "@heroicons/react/24/outline";
+import { MoonIcon } from "@heroicons/react/24/outline";
 
 export const ThemeSwitch = () => {
   const [mounted, setMounted] = useState(false);
@@ -23,14 +23,11 @@ export const ThemeSwitch = () => {
 
   return (
     <div>
-      <button
-        className="block p-1 bg-black dark:bg-white rounded-full"
-        onClick={handleSetTheme}
-      >
+      <button className="block p-1 rounded-full" onClick={handleSetTheme}>
         {theme === "light" ? (
-          <MoonIcon className="w-4 h-4 text-white" />
+          <MoonIcon className="w-6 h-6 text-black" />
         ) : (
-          <SunIcon className="w-4 h-4 text-black" />
+          <SunIcon className="w-6 h-6 text-white" />
         )}
       </button>
     </div>
