@@ -3,11 +3,11 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="container flex justify-center mx-auto mb-4">
+    <div className="container flex justify-center mx-auto pb-4 ">
       <p>
-        Copyright
-        <Link href="/" className="mx-1">
-          &copy;MAKE Lab
+        Copyright &copy;
+        <Link href="/" className="mx-1 hover:underline">
+          MAKE Lab
         </Link>{" "}
         2023
       </p>
