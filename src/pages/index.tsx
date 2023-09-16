@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { getAllTags, getPostsForTopPage } from "@/lib/notionAPI";
-import SinglePost from "../components/post/SinglePost";
+import SinglePost from "@/components/post/SinglePost";
 import { GetStaticProps } from "next";
 import Link from "next/link";
 import Tag from "@/components/tags/Tags";

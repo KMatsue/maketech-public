@@ -1,9 +1,9 @@
 import Link from "next/link";
 import React from "react";
-import { getAllPosts, getSinglePost } from "../../lib/notionAPI";
+import { getAllPosts, getSinglePost } from "@/lib/notionAPI";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vsDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 export const getStaticPaths = async () => {
   const allPosts = await getAllPosts();
@@ -46,7 +46,7 @@ const Post = ({ post }) => {
               return !inline && match ? (
                 <SyntaxHighlighter
                   {...props}
-                  style={vsDarkPlus}
+                  style={vscDarkPlus}
                   language={match[1]}
                   PreTag="div"
                 >
