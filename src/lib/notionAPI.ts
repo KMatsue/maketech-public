@@ -52,7 +52,7 @@ const getPageMetaData = (post) => {
 
 export const getSinglePost = async (slug: string) => {
   const response = await notion.databases.query({
-    database_id: process.env.NOTION_DATABASE_ID,
+    database_id: process.env.NOTION_DATABASE_ID || "",
     filter: {
       property: "slug",
       formula: {

@@ -10,7 +10,16 @@ import Pagination from "@/components/Pagination/Pagination";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const allTags = await getAllTags();
-  let params = [];
+  let params: tagsObject[] = [];
+
+  type TagAndPageParam = {
+    tag: string;
+    page: string;
+  };
+
+  type tagsObject = {
+    params: TagAndPageParam;
+  };
 
   await Promise.all(
     allTags.map(async (tag: string) => {
@@ -31,8 +40,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const currentPage = context.params?.page.toString();
-  const currentTag = context.params?.tag.toString();
+  const currentPage = context.params?.page
+    ? context.params.page.toString()
+    : "";
+  const currentTag = context.params?.tag ? context.params.tag.toString() : "";
   const upperCaseCurrentTag =
     currentTag.charAt(0).toUpperCase() + currentTag.slice(1);
 
