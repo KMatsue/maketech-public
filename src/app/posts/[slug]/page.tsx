@@ -1,28 +1,41 @@
+"use client";
+
 import Link from "next/link";
-import React from "react";
 import { getAllPosts, getSinglePost } from "@/lib/notionAPI";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
-export const getStaticPaths = async () => {
+// export const getStaticPaths = async () => {
+//   const allPosts = await getAllPosts();
+//   const paths = allPosts.map(({ slug }) => ({ params: { slug } }));
+//   return {
+//     paths,
+//     fallback: "blocking",
+//   };
+// };
+
+// export const getStaticProps = async ({ params }) => {
+//   const post = await getSinglePost(params.slug);
+//   return {
+//     props: { post },
+//     revalidate: 60,
+//   };
+// };
+
+export const generateStaticParams = async () => {
   const allPosts = await getAllPosts();
-  const paths = allPosts.map(({ slug }) => ({ params: { slug } }));
-  return {
-    paths,
-    fallback: "blocking",
-  };
+  const paths = allPosts.map(({ slug }) => {
+    slug;
+  });
+  console.log(`paths:${paths}`);
+  return paths;
 };
+// getStaticPropsを廃止してコンポーネント内で値を取得使用としたが、
+// use clientだと非同期での値が取得できない。正しい方法がわからないので後で調べる。一旦無理やり非同期
 
-export const getStaticProps = async ({ params }) => {
+const Post = async ({ params }) => {
   const post = await getSinglePost(params.slug);
-  return {
-    props: { post },
-    revalidate: 60,
-  };
-};
-
-const Post = ({ post }) => {
   return (
     <section className="container lg:px-2 px-5 lg:w-3/5 mx-auto mt-20">
       <h2 className="w-full text-2xl font-medium">{post.metadata.title}</h2>
