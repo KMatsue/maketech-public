@@ -4,34 +4,48 @@ import SinglePost from "@/components/Post/SinglePost";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Pagination from "@/components/Pagination/Pagination";
 
-export const getStaticPaths: GetStaticPaths = async () => {
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   const totalPageSize = await getNumberOfPages();
+//   let params = [];
+//   for (let i = 1; i <= totalPageSize; i++) {
+//     params.push({ params: { page: i.toString() } });
+//   }
+
+//   return {
+//     paths: params,
+//     fallback: "blocking",
+//   };
+// };
+
+export const generateStaticParams = async () => {
   const totalPageSize = await getNumberOfPages();
   let params = [];
   for (let i = 1; i <= totalPageSize; i++) {
-    params.push({ params: { page: i.toString() } });
+    params.push({ page: i.toString() });
   }
 
-  return {
-    paths: params,
-    fallback: "blocking",
-  };
+  return params;
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const currentPage = context.params?.page;
+// export const getStaticProps: GetStaticProps = async (context) => {
+//   const currentPage = context.params?.page;
+//   const postsByPage = await getPostsByPage(
+//     parseInt(currentPage.toString(), 10)
+//   );
+//   const totalPageSize = await getNumberOfPages();
+//   return {
+//     props: { postsByPage, totalPageSize },
+//     revalidate: 60,
+//   };
+// };
+
+const BlogPageList = async ({ params }) => {
+  // console.log(allPosts);
+  const currentPage = params.page;
   const postsByPage = await getPostsByPage(
     parseInt(currentPage.toString(), 10)
   );
   const totalPageSize = await getNumberOfPages();
-  return {
-    props: { postsByPage, totalPageSize },
-    revalidate: 60,
-  };
-};
-
-const BlogPageList = ({ postsByPage, totalPageSize }) => {
-  // console.log(allPosts);
-
   return (
     <div>
       <Head>
