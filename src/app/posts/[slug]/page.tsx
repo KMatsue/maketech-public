@@ -1,28 +1,6 @@
-"use client";
-
 import Link from "next/link";
 import { getAllPosts, getSinglePost } from "@/lib/notionAPI";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import MarkdownField from "@/components/MarkdownField";
-
-// export const getStaticPaths = async () => {
-//   const allPosts = await getAllPosts();
-//   const paths = allPosts.map(({ slug }) => ({ params: { slug } }));
-//   return {
-//     paths,
-//     fallback: "blocking",
-//   };
-// };
-
-// export const getStaticProps = async ({ params }) => {
-//   const post = await getSinglePost(params.slug);
-//   return {
-//     props: { post },
-//     revalidate: 60,
-//   };
-// };
 
 export const generateStaticParams = async () => {
   const allPosts = await getAllPosts();
@@ -32,8 +10,6 @@ export const generateStaticParams = async () => {
   console.log(`paths:${paths}`);
   return paths;
 };
-// getStaticPropsを廃止してコンポーネント内で値を取得使用としたが、
-// use clientだと非同期での値が取得できない。正しい方法がわからないので後で調べる。一旦無理やり非同期
 
 const Post = async ({ params }) => {
   const post = await getSinglePost(params.slug);
@@ -53,29 +29,6 @@ const Post = async ({ params }) => {
       ))}
 
       <div className="mt-10 font-medium">
-        <ReactMarkdown
-          components={{
-            code({ node, inline, className, children, ...props }) {
-              const match = /language-(\w+)/.exec(className || "");
-              return !inline && match ? (
-                <SyntaxHighlighter
-                  {...props}
-                  style={vscDarkPlus}
-                  language={match[1]}
-                  PreTag="div"
-                >
-                  {String(children).replace(/\n$/, "")}
-                </SyntaxHighlighter>
-              ) : (
-                <code {...props} className={className}>
-                  {children}
-                </code>
-              );
-            },
-          }}
-        >
-          {post.markdown}
-        </ReactMarkdown>
         <MarkdownField post={post} />
       </div>
 
