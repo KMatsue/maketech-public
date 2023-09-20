@@ -5,6 +5,7 @@ import { getAllPosts, getSinglePost } from "@/lib/notionAPI";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import MarkdownField from "@/components/MarkdownField";
 
 // export const getStaticPaths = async () => {
 //   const allPosts = await getAllPosts();
@@ -75,6 +76,7 @@ const Post = async ({ params }) => {
         >
           {post.markdown}
         </ReactMarkdown>
+        <MarkdownField post={post} />
       </div>
 
       <div className="mt-10 font-medium">

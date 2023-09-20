@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
+import Providers from "@/components/Providers";
 
 export const metadata = {
   title: { default: "Make Lab Blog", template: "%s | Make Lab Blog" },
@@ -8,10 +9,12 @@ export const metadata = {
 const RootLayout = ({ children }) => {
   return (
     <html lang="ja">
-      <body>
-        <Navbar />
-        {children}
-        <Footer />
+      <body className="dark:bg-black">
+        <Providers>
+          <Navbar />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
