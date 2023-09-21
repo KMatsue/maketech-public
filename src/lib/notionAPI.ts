@@ -1,5 +1,6 @@
 import { NUMBER_OF_POSTS_PER_PAGE } from "@/constants/constants";
 import { Client } from "@notionhq/client";
+import { QueryDatabaseResponse } from "@notionhq/client/build/src/api-endpoints";
 import { NotionToMarkdown } from "notion-to-md";
 
 const notion = new Client({
@@ -9,7 +10,7 @@ const notion = new Client({
 const n2m = new NotionToMarkdown({ notionClient: notion });
 
 export const getAllPosts = async () => {
-  const posts = await notion.databases.query({
+  const posts: QueryDatabaseResponse = await notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID || "",
     filter: { property: "published", checkbox: { equals: true } },
     page_size: 100,
@@ -28,18 +29,14 @@ export const getAllPosts = async () => {
   });
 };
 
-/*
-
-*/
-const getPageMetaData = (post) => {
-  const getTags = (tags) => {
+const getPageMetaData = (post: any) => {
+  const getTags = (tags: { name: string }[]) => {
     const allTags = tags.map((tag) => {
       return tag.name;
     });
 
     return allTags;
   };
-
   return {
     id: post.id,
     title: post.properties.name.title[0].plain_text,
@@ -52,7 +49,7 @@ const getPageMetaData = (post) => {
 
 export const getSinglePost = async (slug: string) => {
   const response = await notion.databases.query({
-    database_id: process.env.NOTION_DATABASE_ID,
+    database_id: process.env.NOTION_DATABASE_ID || "",
     filter: {
       property: "slug",
       formula: {
@@ -67,7 +64,7 @@ export const getSinglePost = async (slug: string) => {
   // console.log(metadata);
   const mdBlocks = await n2m.pageToMarkdown(page.id);
   const mdString = n2m.toMarkdownString(mdBlocks);
-  console.log(mdString.parent);
+  // console.log(mdString.parent);
 
   return {
     metadata,
@@ -79,7 +76,7 @@ export const getSinglePost = async (slug: string) => {
 export const getPostsForTopPage = async (pageSize: number) => {
   const allPosts = await getAllPosts();
   const fourPosts = allPosts.slice(0, pageSize);
-  console.log(fourPosts);
+  // console.log(fourPosts);
   return fourPosts;
 };
 
