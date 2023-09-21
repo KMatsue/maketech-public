@@ -82,7 +82,11 @@ export const generateStaticParams = async () => {
 //   };
 // };
 
-const BlogTagPageList = async ({ params }) => {
+const BlogTagPageList = async ({
+  params,
+}: {
+  params: { tag: string; page: string };
+}) => {
   // console.log(allPosts);
   const currentPage = params?.page ? params.page.toString() : "";
   const currentTag = params?.tag ? params.tag.toString() : "";

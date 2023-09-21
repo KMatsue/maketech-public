@@ -11,7 +11,7 @@ export const generateStaticParams = async () => {
   return paths;
 };
 
-const Post = async ({ params }) => {
+const Post = async ({ params }: { params: { slug: string } }) => {
   const post = await getSinglePost(params.slug);
   return (
     <section className="container lg:px-2 px-5 lg:w-3/5 mx-auto mt-20">

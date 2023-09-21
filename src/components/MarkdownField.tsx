@@ -5,8 +5,8 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
-const MarkdownField = ({ post }) => {
-  console.log(post);
+const MarkdownField = ({ post }: { post: { markdown: string } }) => {
+  // console.log(post);
   return (
     <ReactMarkdown
       components={{

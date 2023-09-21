@@ -6,7 +6,7 @@ import Providers from "@/components/Providers";
 export const metadata = {
   title: { default: "Make Lab Blog", template: "%s | Make Lab Blog" },
 };
-const RootLayout = ({ children }) => {
+const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="ja">
       <body className="dark:bg-black">

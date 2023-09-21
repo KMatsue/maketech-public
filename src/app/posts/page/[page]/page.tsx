@@ -17,9 +17,13 @@ import Pagination from "@/components/Pagination/Pagination";
 //   };
 // };
 
+type PageParam = {
+  page: string;
+};
+
 export const generateStaticParams = async () => {
   const totalPageSize = await getNumberOfPages();
-  let params = [];
+  let params: PageParam[] = [];
   for (let i = 1; i <= totalPageSize; i++) {
     params.push({ page: i.toString() });
   }
@@ -39,7 +43,13 @@ export const generateStaticParams = async () => {
 //   };
 // };
 
-const BlogPageList = async ({ params }) => {
+type postParam = {
+  title: string;
+  date: string;
+  page: string;
+};
+
+const BlogPageList = async ({ params }: { params: postParam }) => {
   // console.log(allPosts);
   const currentPage = params.page;
   const postsByPage = await getPostsByPage(
