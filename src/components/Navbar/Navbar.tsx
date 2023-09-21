@@ -3,6 +3,17 @@ import React from "react";
 import { ThemeSwitch } from "@/components/ThemeSwitch";
 
 const Navbar = () => {
+  const menuList = [
+    { name: "Home", link: "/" },
+    {
+      name: "Blog",
+      link: "/posts/page/1",
+    },
+    {
+      name: "Contact",
+      link: "/contact",
+    },
+  ];
   return (
     <nav className="container mx-auto lg:px-2 px-4 lg:w-8/12">
       <div className="flex items-center justify-between border-b border-gray-400 ">
@@ -11,7 +22,17 @@ const Navbar = () => {
         </Link>
         <div>
           <ul className="flex items-center py-2 text-md ">
-            <li>
+            {menuList.map((menu, index) => (
+              <li key={index}>
+                <Link
+                  href={menu.link}
+                  className="block font-medium px-4 py-2 hover:text-gray-400 hover:underline"
+                >
+                  {menu.name}
+                </Link>
+              </li>
+            ))}
+            {/* <li>
               <Link
                 href="/"
                 className="block font-medium px-4 py-2 hover:text-gray-400 hover:underline"
@@ -34,7 +55,7 @@ const Navbar = () => {
               >
                 Contact
               </Link>
-            </li>
+            </li> */}
             <li>
               <ThemeSwitch />
             </li>
