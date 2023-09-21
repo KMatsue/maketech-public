@@ -29,9 +29,6 @@ export const getAllPosts = async () => {
   });
 };
 
-/*
-
-*/
 const getPageMetaData = (post: any) => {
   const getTags = (tags: { name: string }[]) => {
     const allTags = tags.map((tag) => {

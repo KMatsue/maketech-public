@@ -1,21 +1,7 @@
 import Head from "next/head";
 import { getNumberOfPages, getPostsByPage } from "@/lib/notionAPI";
 import SinglePost from "@/components/Post/SinglePost";
-import { GetStaticPaths, GetStaticProps } from "next";
 import Pagination from "@/components/Pagination/Pagination";
-
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   const totalPageSize = await getNumberOfPages();
-//   let params = [];
-//   for (let i = 1; i <= totalPageSize; i++) {
-//     params.push({ params: { page: i.toString() } });
-//   }
-
-//   return {
-//     paths: params,
-//     fallback: "blocking",
-//   };
-// };
 
 type PageParam = {
   page: string;
@@ -31,18 +17,6 @@ export const generateStaticParams = async () => {
   return params;
 };
 
-// export const getStaticProps: GetStaticProps = async (context) => {
-//   const currentPage = context.params?.page;
-//   const postsByPage = await getPostsByPage(
-//     parseInt(currentPage.toString(), 10)
-//   );
-//   const totalPageSize = await getNumberOfPages();
-//   return {
-//     props: { postsByPage, totalPageSize },
-//     revalidate: 60,
-//   };
-// };
-
 type postParam = {
   title: string;
   date: string;
@@ -50,7 +24,6 @@ type postParam = {
 };
 
 const BlogPageList = async ({ params }: { params: postParam }) => {
-  // console.log(allPosts);
   const currentPage = params.page;
   const postsByPage = await getPostsByPage(
     parseInt(currentPage.toString(), 10)
