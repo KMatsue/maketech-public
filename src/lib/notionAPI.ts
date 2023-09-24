@@ -47,6 +47,11 @@ const getPageMetaData = (post: any) => {
   };
 };
 
+/**
+ * 投稿内容の取得
+ * @param slug
+ * @returns
+ */
 export const getSinglePost = async (slug: string) => {
   const response = await notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID || "",
@@ -62,17 +67,47 @@ export const getSinglePost = async (slug: string) => {
   const page = response.results[0];
   const metadata = getPageMetaData(page);
   // console.log(metadata);
-  const mdBlocks = await n2m.pageToMarkdown(page.id);
-  const mdString = n2m.toMarkdownString(mdBlocks);
+  // const mdBlocks = await n2m.pageToMarkdown(page.id);
+  const mdBlocks = await getBlocks(page.id);
+
+  console.log(`あいう${JSON.stringify(mdBlocks)}`);
+  // const mdString = n2m.toMarkdownString(mdBlocks);
   // console.log(mdString.parent);
 
   return {
     metadata,
-    markdown: mdString.parent,
+    markdown: mdBlocks,
   };
 };
 
-// Topページ用
+export const getPage = async (pageId: string) => {
+  const response = await notion.pages.retrieve({ page_id: pageId });
+  console.log(response);
+  return response;
+};
+
+export const getBlocks = async (blockId: string) => {
+  const blocks = [];
+  let cursor;
+  while (true) {
+    const { results, next_cursor } = await notion.blocks.children.list({
+      start_cursor: cursor,
+      block_id: blockId,
+    });
+    blocks.push(...results);
+    if (!next_cursor) {
+      break;
+    }
+    cursor = next_cursor;
+  }
+  return blocks;
+};
+
+/**
+ * Topページ用
+ * @param pageSize
+ * @returns
+ */
 export const getPostsForTopPage = async (pageSize: number) => {
   const allPosts = await getAllPosts();
   const fourPosts = allPosts.slice(0, pageSize);
@@ -80,7 +115,11 @@ export const getPostsForTopPage = async (pageSize: number) => {
   return fourPosts;
 };
 
-// ページ番号に応じた記事取得
+/**
+ * ページ番号に応じた記事取得
+ * @param page
+ * @returns
+ */
 export const getPostsByPage = async (page: number) => {
   const allPosts = await getAllPosts();
 
@@ -99,6 +138,12 @@ export const getNumberOfPages = async () => {
   );
 };
 
+/**
+ *
+ * @param tagName
+ * @param page
+ * @returns
+ */
 export const getPostsByTagAndPage = async (tagName: string, page: number) => {
   const allPosts = await getAllPosts();
   const posts = allPosts.filter((post) =>
@@ -111,6 +156,11 @@ export const getPostsByTagAndPage = async (tagName: string, page: number) => {
   return posts.slice(startIndex, endIndex);
 };
 
+/**
+ * 選択したタグが使われている投稿の件数に応じた、ページ数を返します。
+ * @param tagName
+ * @returns ページ数を返す
+ */
 export const getNumberOfPagesByTag = async (tagName: string) => {
   const allPosts = await getAllPosts();
   const posts = allPosts.filter((post) =>
@@ -123,6 +173,10 @@ export const getNumberOfPagesByTag = async (tagName: string) => {
   );
 };
 
+/**
+ * 全投稿で使われているタグの種類を抽出して返す
+ * @returns タグの種類を[]で返す
+ */
 export const getAllTags = async () => {
   const allPosts = await getAllPosts();
 
