@@ -108,7 +108,7 @@ const renderBlock = (block: any) => {
             width="0"
             height="0"
             sizes="100vw"
-            className="w-full h-auto"
+            className="object-contain w-full h-96 bg-black"
           />
           {caption && <figcaption>{caption}</figcaption>}
         </figure>

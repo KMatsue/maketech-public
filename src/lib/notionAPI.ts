@@ -92,12 +92,11 @@ export const getSinglePost = async (slug: string) => {
   };
 };
 
-// export const getPage = async (pageId: string) => {
-//   const response = await notion.pages.retrieve({ page_id: pageId });
-//   console.log(response);
-//   return response;
-// };
-
+/**
+ * 投稿内容(ブロック)を取得する
+ * @param blockId
+ * @returns
+ */
 export const getBlocks = async (blockId: string): Promise<BlockObject[]> => {
   blockId = blockId.replaceAll("-", "");
 
@@ -106,14 +105,14 @@ export const getBlocks = async (blockId: string): Promise<BlockObject[]> => {
     page_size: 100,
   });
 
-  // Fetches all child blocks recursively - be mindful of rate limits if you have large amounts of nested blocks
-  // See https://developers.notion.com/docs/working-with-page-content#reading-nested-blocks
   const childBlocks: any = results.map(async (block) => {
-    if (block.has_children) {
-      const children = await getBlocks(block.id);
-      return { ...block, children };
+    if ("type" in block) {
+      if (block.has_children) {
+        const children = await getBlocks(block.id);
+        return { ...block, children };
+      }
+      return block;
     }
-    return block;
   });
 
   return await Promise.all(childBlocks).then((blocks) => {
@@ -150,22 +149,6 @@ const getRandomInt = (min: number, max: number) => {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
-// export const getBlocks = async (blockId: string) => {
-//   const blocks = [];
-//   let cursor;
-//   while (true) {
-//     const { results, next_cursor } = await notion.blocks.children.list({
-//       start_cursor: cursor,
-//       block_id: blockId,
-//     });
-//     blocks.push(...results);
-//     if (!next_cursor) {
-//       break;
-//     }
-//     cursor = next_cursor;
-//   }
-//   return blocks;
-// };
 
 /**
  * Topページ用
