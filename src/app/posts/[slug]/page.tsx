@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getAllPosts, getSinglePost } from "@/lib/notionAPI";
 import styles from "./post.module.css";
 import Image from "next/image";
+import { Text } from "./Text";
 
 export const generateStaticParams = async () => {
   const allPosts = await getAllPosts();
@@ -10,33 +11,6 @@ export const generateStaticParams = async () => {
   });
   console.log(`paths:${paths}`);
   return paths;
-};
-
-export const Text = ({ text }: any) => {
-  if (!text) {
-    return null;
-  }
-  return text.map((value: any) => {
-    const {
-      annotations: { bold, code, color, italic, strikethrough, underline },
-      text,
-    } = value;
-    return (
-      <span
-        className={[
-          bold ? styles.bold : "",
-          code ? styles.code : "",
-          italic ? styles.italic : "",
-          strikethrough ? styles.strikethrough : "",
-          underline ? styles.underline : "",
-        ].join(" ")}
-        style={color !== "default" ? { color } : {}}
-        key={text.content}
-      >
-        {text.link ? <a href={text.link.url}>{text.content}</a> : text.content}
-      </span>
-    );
-  });
 };
 
 const renderNestedList = (block: any) => {
