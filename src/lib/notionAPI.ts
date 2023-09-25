@@ -3,6 +3,18 @@ import { Client } from "@notionhq/client";
 import { QueryDatabaseResponse } from "@notionhq/client/build/src/api-endpoints";
 import { NotionToMarkdown } from "notion-to-md";
 
+declare type ElementType<T> = T extends (infer U)[] ? U : never;
+
+declare type MatchType<T, U, V = never> = T extends U ? T : V;
+
+export type BlockObject = MatchType<
+  ElementType<
+    Awaited<ReturnType<Client["blocks"]["children"]["list"]>>["results"]
+  >,
+  {
+    type: unknown;
+  }
+>;
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 });
@@ -47,6 +59,11 @@ const getPageMetaData = (post: any) => {
   };
 };
 
+/**
+ * 投稿内容の取得
+ * @param slug
+ * @returns
+ */
 export const getSinglePost = async (slug: string) => {
   const response = await notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID || "",
@@ -62,17 +79,99 @@ export const getSinglePost = async (slug: string) => {
   const page = response.results[0];
   const metadata = getPageMetaData(page);
   // console.log(metadata);
-  const mdBlocks = await n2m.pageToMarkdown(page.id);
-  const mdString = n2m.toMarkdownString(mdBlocks);
+  // const mdBlocks = await n2m.pageToMarkdown(page.id);
+  const mdBlocks = await getBlocks(page.id);
+
+  console.log(`あいう${JSON.stringify(mdBlocks)}`);
+  // const mdString = n2m.toMarkdownString(mdBlocks);
   // console.log(mdString.parent);
 
   return {
     metadata,
-    markdown: mdString.parent,
+    markdown: mdBlocks,
   };
 };
 
-// Topページ用
+// export const getPage = async (pageId: string) => {
+//   const response = await notion.pages.retrieve({ page_id: pageId });
+//   console.log(response);
+//   return response;
+// };
+
+export const getBlocks = async (blockId: string): Promise<BlockObject[]> => {
+  blockId = blockId.replaceAll("-", "");
+
+  const { results } = await notion.blocks.children.list({
+    block_id: blockId,
+    page_size: 100,
+  });
+
+  // Fetches all child blocks recursively - be mindful of rate limits if you have large amounts of nested blocks
+  // See https://developers.notion.com/docs/working-with-page-content#reading-nested-blocks
+  const childBlocks: any = results.map(async (block) => {
+    if (block.has_children) {
+      const children = await getBlocks(block.id);
+      return { ...block, children };
+    }
+    return block;
+  });
+
+  return await Promise.all(childBlocks).then((blocks) => {
+    return blocks.reduce((acc, curr) => {
+      if (curr.type === "bulleted_list_item") {
+        if (acc[acc.length - 1]?.type === "bulleted_list") {
+          acc[acc.length - 1][acc[acc.length - 1].type].children?.push(curr);
+        } else {
+          acc.push({
+            id: getRandomInt(10 ** 99, 10 ** 100).toString(),
+            type: "bulleted_list",
+            bulleted_list: { children: [curr] },
+          });
+        }
+      } else if (curr.type === "numbered_list_item") {
+        if (acc[acc.length - 1]?.type === "numbered_list") {
+          acc[acc.length - 1][acc[acc.length - 1].type].children?.push(curr);
+        } else {
+          acc.push({
+            id: getRandomInt(10 ** 99, 10 ** 100).toString(),
+            type: "numbered_list",
+            numbered_list: { children: [curr] },
+          });
+        }
+      } else {
+        acc.push(curr);
+      }
+      return acc;
+    }, []);
+  });
+};
+const getRandomInt = (min: number, max: number) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+// export const getBlocks = async (blockId: string) => {
+//   const blocks = [];
+//   let cursor;
+//   while (true) {
+//     const { results, next_cursor } = await notion.blocks.children.list({
+//       start_cursor: cursor,
+//       block_id: blockId,
+//     });
+//     blocks.push(...results);
+//     if (!next_cursor) {
+//       break;
+//     }
+//     cursor = next_cursor;
+//   }
+//   return blocks;
+// };
+
+/**
+ * Topページ用
+ * @param pageSize
+ * @returns
+ */
 export const getPostsForTopPage = async (pageSize: number) => {
   const allPosts = await getAllPosts();
   const fourPosts = allPosts.slice(0, pageSize);
@@ -80,7 +179,11 @@ export const getPostsForTopPage = async (pageSize: number) => {
   return fourPosts;
 };
 
-// ページ番号に応じた記事取得
+/**
+ * ページ番号に応じた記事取得
+ * @param page
+ * @returns
+ */
 export const getPostsByPage = async (page: number) => {
   const allPosts = await getAllPosts();
 
@@ -90,6 +193,10 @@ export const getPostsByPage = async (page: number) => {
   return allPosts.slice(startIndex, endIndex);
 };
 
+/**
+ * 記事の取得数に応じてページ数を算出し取得する
+ * @returns ページ数
+ */
 export const getNumberOfPages = async () => {
   const allPosts = await getAllPosts();
 
@@ -99,6 +206,12 @@ export const getNumberOfPages = async () => {
   );
 };
 
+/**
+ *
+ * @param tagName
+ * @param page
+ * @returns
+ */
 export const getPostsByTagAndPage = async (tagName: string, page: number) => {
   const allPosts = await getAllPosts();
   const posts = allPosts.filter((post) =>
@@ -111,6 +224,11 @@ export const getPostsByTagAndPage = async (tagName: string, page: number) => {
   return posts.slice(startIndex, endIndex);
 };
 
+/**
+ * 選択したタグが使われている投稿の件数に応じた、ページ数を返します。
+ * @param tagName
+ * @returns ページ数を返す
+ */
 export const getNumberOfPagesByTag = async (tagName: string) => {
   const allPosts = await getAllPosts();
   const posts = allPosts.filter((post) =>
@@ -123,6 +241,10 @@ export const getNumberOfPagesByTag = async (tagName: string) => {
   );
 };
 
+/**
+ * 全投稿で使われているタグの種類を抽出して返す
+ * @returns タグの種類を[]で返す
+ */
 export const getAllTags = async () => {
   const allPosts = await getAllPosts();
 
