@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { getAllPosts, getSinglePost } from "@/lib/notionAPI";
-import MarkdownField from "@/components/MarkdownField";
 import styles from "./post.module.css";
-import { Fragment } from "react";
+import Image from "next/image";
 
 export const generateStaticParams = async () => {
   const allPosts = await getAllPosts();
@@ -13,11 +12,11 @@ export const generateStaticParams = async () => {
   return paths;
 };
 
-export const Text = ({ text }) => {
+export const Text = ({ text }: any) => {
   if (!text) {
     return null;
   }
-  return text.map((value) => {
+  return text.map((value: any) => {
     const {
       annotations: { bold, code, color, italic, strikethrough, underline },
       text,
@@ -40,7 +39,7 @@ export const Text = ({ text }) => {
   });
 };
 
-const renderNestedList = (block) => {
+const renderNestedList = (block: any) => {
   const { type } = block;
   const value = block[type];
   if (!value) return null;
@@ -48,12 +47,12 @@ const renderNestedList = (block) => {
   const isNumberedList = value.children[0].type === "numbered_list_item";
 
   if (isNumberedList) {
-    return <ol>{value.children.map((block) => renderBlock(block))}</ol>;
+    return <ol>{value.children.map((block: any) => renderBlock(block))}</ol>;
   }
-  return <ul>{value.children.map((block) => renderBlock(block))}</ul>;
+  return <ul>{value.children.map((block: any) => renderBlock(block))}</ul>;
 };
 
-const renderBlock = (block: PartialBlockObjectResponse) => {
+const renderBlock = (block: any) => {
   const { type, id } = block;
   const value = block[type];
 
@@ -83,10 +82,10 @@ const renderBlock = (block: PartialBlockObjectResponse) => {
         </h3>
       );
     case "bulleted_list": {
-      return <ul>{value.children.map((child) => renderBlock(child))}</ul>;
+      return <ul>{value.children.map((child: any) => renderBlock(child))}</ul>;
     }
     case "numbered_list": {
-      return <ol>{value.children.map((child) => renderBlock(child))}</ol>;
+      return <ol>{value.children.map((child: any) => renderBlock(child))}</ol>;
     }
     case "bulleted_list_item":
     case "numbered_list_item":
@@ -111,8 +110,8 @@ const renderBlock = (block: PartialBlockObjectResponse) => {
           <summary>
             <Text text={value.rich_text} />
           </summary>
-          {block.children?.map((child) => (
-            <Fragment key={child.id}>{renderBlock(child)}</Fragment>
+          {block.children?.map((child: any) => (
+            <div key={child.id}>{renderBlock(child)}</div>
           ))}
         </details>
       );
@@ -120,7 +119,7 @@ const renderBlock = (block: PartialBlockObjectResponse) => {
       return (
         <div className={styles.childPage}>
           <strong>{value.title}</strong>
-          {block.children.map((child) => renderBlock(child))}
+          {block.children.map((child: any) => renderBlock(child))}
         </div>
       );
     case "image":
@@ -129,7 +128,14 @@ const renderBlock = (block: PartialBlockObjectResponse) => {
       const caption = value.caption ? value.caption[0]?.plain_text : "";
       return (
         <figure>
-          <img src={src} alt={caption} />
+          <Image
+            src={src}
+            alt={"画像"}
+            width="0"
+            height="0"
+            sizes="100vw"
+            className="w-full h-auto"
+          />
           {caption && <figcaption>{caption}</figcaption>}
         </figure>
       );
@@ -173,12 +179,12 @@ const renderBlock = (block: PartialBlockObjectResponse) => {
       return (
         <table className={styles.table}>
           <tbody>
-            {block.children?.map((child, i) => {
+            {block.children?.map((child: any, i: number) => {
               const RowElement =
                 value.has_column_header && i == 0 ? "th" : "td";
               return (
                 <tr key={child.id}>
-                  {child.table_row?.cells?.map((cell, i) => {
+                  {child.table_row?.cells?.map((cell: any, i: number) => {
                     return (
                       <RowElement key={`${cell.plain_text}-${i}`}>
                         <Text text={cell} />
@@ -195,12 +201,14 @@ const renderBlock = (block: PartialBlockObjectResponse) => {
     case "column_list": {
       return (
         <div className={styles.row}>
-          {block.children.map((block) => renderBlock(block))}
+          {block.children.map((block: any) => renderBlock(block))}
         </div>
       );
     }
     case "column": {
-      return <div>{block.children.map((child) => renderBlock(child))}</div>;
+      return (
+        <div>{block.children.map((child: any) => renderBlock(child))}</div>
+      );
     }
     default:
       return `❌ Unsupported block (${
@@ -208,78 +216,6 @@ const renderBlock = (block: PartialBlockObjectResponse) => {
       })`;
   }
 };
-
-// export default function Post({ page, blocks }) {
-//   if (!page || !blocks) {
-//     return <div />;
-//   }
-//   return (
-//     <div>
-//       <Head>
-//         <title>{page.properties.Name.title[0].plain_text}</title>
-//         <link rel="icon" href="/favicon.ico" />
-//       </Head>
-
-//       <article className={styles.container}>
-//         <h1 className={styles.name}>
-//           <Text text={page.properties.Name.title} />
-//         </h1>
-//         <section>
-// {blocks.map((block) => (
-//   <Fragment key={block.id}>{renderBlock(block)}</Fragment>
-// ))}
-//           <Link href="/" className={styles.back}>
-//             ← Go home
-//           </Link>
-//         </section>
-//       </article>
-//     </div>
-//   );
-// }
-
-// const Post = async ({ params }: { params: { slug: string } }) => {
-//   const post = await getSinglePost(params.slug);
-//   // const page = await getPage(post.metadata.id);
-//   const blocks = await getBlocks(post.metadata.id);
-//   return (
-//     <section className="container lg:px-2 px-5 lg:w-3/5 mx-auto mt-20">
-//       <h2 className="w-full text-2xl font-medium">{post.metadata.title}</h2>
-//       <div className="border-b-2 w-1/3 mt-1 border-sky-900"></div>
-//       <span className="text-gray-500">Posted date at {post.metadata.date}</span>
-//       <br />
-//       {post.metadata.tags.map((tag: string, index: number) => (
-//         <p
-//           key={index}
-//           className="text-white bg-sky-900 rounded-xl font-medium mt-2 px-2 inline-block mr-2"
-//         >
-//           <Link href={`/posts/tag/${tag}/page/1`}>{tag}</Link>
-//         </p>
-//       ))}
-
-//       <div className="mt-10 font-medium">
-//         <article className={styles.container}>
-//           <h1 className={styles.name}>
-//             <Text text={post.metadata.title} />
-//           </h1>
-//           <section>
-//             {blocks.map((block) => (
-//               <Fragment key={block.id}>{renderBlock(block)}</Fragment>
-//             ))}
-//             <Link href="/" className={styles.back}>
-//               ← Go home
-//             </Link>
-//           </section>
-//         </article>
-//       </div>
-
-//       <div className="mt-10 font-medium">
-//         <Link href="/">
-//           <span className="pb-20 block mt-3 text-sky-900">←ホームに戻る</span>
-//         </Link>
-//       </div>
-//     </section>
-//   );
-// };
 
 const Post = async ({ params }: { params: { slug: string } }) => {
   const post = await getSinglePost(params.slug);
@@ -301,8 +237,8 @@ const Post = async ({ params }: { params: { slug: string } }) => {
 
       <div className="mt-10 font-medium">
         {/* <MarkdownField post={post} /> */}
-        {blocks.map((block, index) => (
-          <Fragment key={block.id}>{renderBlock(block)}</Fragment>
+        {blocks.map((block: any) => (
+          <div key={block.id}>{renderBlock(block)}</div>
         ))}
       </div>
 

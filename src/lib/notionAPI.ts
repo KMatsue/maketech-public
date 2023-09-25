@@ -3,6 +3,18 @@ import { Client } from "@notionhq/client";
 import { QueryDatabaseResponse } from "@notionhq/client/build/src/api-endpoints";
 import { NotionToMarkdown } from "notion-to-md";
 
+declare type ElementType<T> = T extends (infer U)[] ? U : never;
+
+declare type MatchType<T, U, V = never> = T extends U ? T : V;
+
+export type BlockObject = MatchType<
+  ElementType<
+    Awaited<ReturnType<Client["blocks"]["children"]["list"]>>["results"]
+  >,
+  {
+    type: unknown;
+  }
+>;
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 });
@@ -80,28 +92,80 @@ export const getSinglePost = async (slug: string) => {
   };
 };
 
-export const getPage = async (pageId: string) => {
-  const response = await notion.pages.retrieve({ page_id: pageId });
-  console.log(response);
-  return response;
-};
+// export const getPage = async (pageId: string) => {
+//   const response = await notion.pages.retrieve({ page_id: pageId });
+//   console.log(response);
+//   return response;
+// };
 
-export const getBlocks = async (blockId: string) => {
-  const blocks = [];
-  let cursor;
-  while (true) {
-    const { results, next_cursor } = await notion.blocks.children.list({
-      start_cursor: cursor,
-      block_id: blockId,
-    });
-    blocks.push(...results);
-    if (!next_cursor) {
-      break;
+export const getBlocks = async (blockId: string): Promise<BlockObject[]> => {
+  blockId = blockId.replaceAll("-", "");
+
+  const { results } = await notion.blocks.children.list({
+    block_id: blockId,
+    page_size: 100,
+  });
+
+  // Fetches all child blocks recursively - be mindful of rate limits if you have large amounts of nested blocks
+  // See https://developers.notion.com/docs/working-with-page-content#reading-nested-blocks
+  const childBlocks: any = results.map(async (block) => {
+    if (block.has_children) {
+      const children = await getBlocks(block.id);
+      return { ...block, children };
     }
-    cursor = next_cursor;
-  }
-  return blocks;
+    return block;
+  });
+
+  return await Promise.all(childBlocks).then((blocks) => {
+    return blocks.reduce((acc, curr) => {
+      if (curr.type === "bulleted_list_item") {
+        if (acc[acc.length - 1]?.type === "bulleted_list") {
+          acc[acc.length - 1][acc[acc.length - 1].type].children?.push(curr);
+        } else {
+          acc.push({
+            id: getRandomInt(10 ** 99, 10 ** 100).toString(),
+            type: "bulleted_list",
+            bulleted_list: { children: [curr] },
+          });
+        }
+      } else if (curr.type === "numbered_list_item") {
+        if (acc[acc.length - 1]?.type === "numbered_list") {
+          acc[acc.length - 1][acc[acc.length - 1].type].children?.push(curr);
+        } else {
+          acc.push({
+            id: getRandomInt(10 ** 99, 10 ** 100).toString(),
+            type: "numbered_list",
+            numbered_list: { children: [curr] },
+          });
+        }
+      } else {
+        acc.push(curr);
+      }
+      return acc;
+    }, []);
+  });
 };
+const getRandomInt = (min: number, max: number) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+// export const getBlocks = async (blockId: string) => {
+//   const blocks = [];
+//   let cursor;
+//   while (true) {
+//     const { results, next_cursor } = await notion.blocks.children.list({
+//       start_cursor: cursor,
+//       block_id: blockId,
+//     });
+//     blocks.push(...results);
+//     if (!next_cursor) {
+//       break;
+//     }
+//     cursor = next_cursor;
+//   }
+//   return blocks;
+// };
 
 /**
  * Topページ用
@@ -129,6 +193,10 @@ export const getPostsByPage = async (page: number) => {
   return allPosts.slice(startIndex, endIndex);
 };
 
+/**
+ * 記事の取得数に応じてページ数を算出し取得する
+ * @returns ページ数
+ */
 export const getNumberOfPages = async () => {
   const allPosts = await getAllPosts();
 
