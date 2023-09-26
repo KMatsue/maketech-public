@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import React, { useState } from "react";
 import { ThemeSwitch } from "@/components/ThemeSwitch";
+import { Bars3Icon } from "@heroicons/react/24/outline";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -47,13 +48,15 @@ const Navbar = () => {
             onClick={() => setOpenMenu(!openMenu)}
             className="flex-initial py-2 text-md  sm:hidden"
           >
-            <Image
+            <Bars3Icon className="w-8 h-8 text-black dark:text-white" />
+
+            {/* <Image
               src="/menu.svg"
               alt="menu"
               className="w-10 h-10"
               width={10}
               height={10}
-            />
+            /> */}
           </button>
           {openMenu ? (
             <div className="flex flex-row absolute z-10 top-0 right-0 min-h-fit min-w-full">
