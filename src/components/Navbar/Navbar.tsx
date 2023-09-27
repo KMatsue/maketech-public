@@ -1,10 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import React, { useState } from "react";
 import { ThemeSwitch } from "@/components/ThemeSwitch";
-import { Bars3Icon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -54,18 +53,18 @@ const Navbar = () => {
             <div className="flex flex-row absolute z-10 top-0 right-0 min-h-fit min-w-full">
               <div className="basis-1/2"></div>
 
-              <div className="basis-1/2 bg-gray-400 dark:bg-gray-600">
-                <ul className=" text-center border-l  ">
-                  <li className="p-2 border-b">
+              <div className="basis-1/2 bg-gray-300 dark:bg-gray-600 pb-10">
+                <ul className="text-center">
+                  <li className="text-right p-2 ">
                     <button
                       onClick={() => setOpenMenu(!openMenu)}
                       className="font-bold"
                     >
-                      close
+                      <XMarkIcon className="w-8 h-8 text-black dark:text-white" />
                     </button>
                   </li>
                   {menuList.map((menu, index) => (
-                    <li key={index} className="p-2 border-b">
+                    <li key={index} className="py-4">
                       <Link
                         href={menu.link}
                         onClick={() => setOpenMenu(!openMenu)}
