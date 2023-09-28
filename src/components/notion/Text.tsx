@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./post.module.css";
+import styles from "@/app/posts/[slug]/post.module.css";
 
 export const Text = ({ text }: any) => {
   if (!text) {
