@@ -13,6 +13,7 @@ import type {
 } from "@notionhq/client/build/src/api-endpoints";
 import Image from "next/image";
 import Link from "next/link";
+import { Quote } from "./Quote";
 
 /* Replace */
 export type NotionDatabaseObjectResponse = DatabaseObjectResponse;
@@ -113,7 +114,8 @@ const renderBlock = (block: any) => {
     case "divider":
       return <hr key={id} />;
     case "quote":
-      return <blockquote key={id}>{value.rich_text[0].plain_text}</blockquote>;
+      return <Quote block={block} />;
+    // <blockquote key={id}>{value.rich_text[0].plain_text}</blockquote>;
     case "code":
       return (
         <pre className={styles.pre}>
