@@ -14,6 +14,7 @@ import type {
 import Image from "next/image";
 import Link from "next/link";
 import { Quote } from "./Quote";
+import Heading1 from "./Heading1";
 
 /* Replace */
 export type NotionDatabaseObjectResponse = DatabaseObjectResponse;
@@ -36,11 +37,7 @@ const renderBlock = (block: any) => {
         </p>
       );
     case "heading_1":
-      return (
-        <h1>
-          <Text text={value.rich_text} />
-        </h1>
-      );
+      return <Heading1 block={block} />;
     case "heading_2":
       return (
         <h2>
