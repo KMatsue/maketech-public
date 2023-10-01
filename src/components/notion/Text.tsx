@@ -1,29 +1,40 @@
-import React from "react";
+import React, { FC } from "react";
 import styles from "@/app/posts/[slug]/post.module.css";
+import type {
+  RichTextItemResponse,
+  TextRichTextItemResponse,
+} from "@notionhq/client/build/src/api-endpoints";
 
-export const Text = ({ text }: any) => {
+type Props = {
+  text: Array<RichTextItemResponse>;
+};
+
+export const Text: FC<Props> = ({ text }) => {
   if (!text) {
     return null;
   }
-  return text.map((value: any) => {
-    const {
-      annotations: { bold, code, color, italic, strikethrough, underline },
-      text,
-    } = value;
-    return (
-      <span
-        className={[
-          bold ? styles.bold : "",
-          code ? styles.code : "",
-          italic ? styles.italic : "",
-          strikethrough ? styles.strikethrough : "",
-          underline ? styles.underline : "",
-        ].join(" ")}
-        style={color !== "default" ? { color } : {}}
-        key={text.content}
-      >
-        {text.link ? <a href={text.link.url}>{text.content}</a> : text.content}
-      </span>
-    );
+  return text.map((value) => {
+    console.log(value);
+    if ("text" in value) {
+      const {
+        annotations: { bold, code, color, italic, strikethrough, underline },
+        text: { content, link },
+      } = value;
+      return (
+        <span
+          className={[
+            bold ? styles.bold : "",
+            code ? styles.code : "",
+            italic ? styles.italic : "",
+            strikethrough ? styles.strikethrough : "",
+            underline ? styles.underline : "",
+          ].join(" ")}
+          style={color !== "default" ? { color } : {}}
+          key={content}
+        >
+          {link ? <a href={link.url}>{content}</a> : content}
+        </span>
+      );
+    }
   });
 };
