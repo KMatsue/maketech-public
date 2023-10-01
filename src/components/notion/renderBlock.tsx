@@ -13,8 +13,8 @@ import type {
 } from "@notionhq/client/build/src/api-endpoints";
 import Image from "next/image";
 import Link from "next/link";
-import { Quote } from "./Quote";
-import Heading1 from "./Heading1";
+import { Quote } from "./Quote/Quote";
+import Heading1 from "./Heading1/Heading1";
 
 /* Replace */
 export type NotionDatabaseObjectResponse = DatabaseObjectResponse;

@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import type { Heading1BlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
-import { Text } from "./Text";
+import { Text } from "../Text";
 
 type Props = {
   block: Heading1BlockObjectResponse;
