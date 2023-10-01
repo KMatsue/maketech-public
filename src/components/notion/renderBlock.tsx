@@ -15,6 +15,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Quote } from "./Quote/Quote";
 import Heading1 from "./Heading1/Heading1";
+import Heading3 from "./Heading3/Heading3";
+import Heading2 from "./Heading2/Heading2";
 
 /* Replace */
 export type NotionDatabaseObjectResponse = DatabaseObjectResponse;
@@ -39,17 +41,10 @@ const renderBlock = (block: any) => {
     case "heading_1":
       return <Heading1 block={block} />;
     case "heading_2":
-      return (
-        <h2>
-          <Text text={value.rich_text} />
-        </h2>
-      );
+      return <Heading2 block={block} />;
     case "heading_3":
-      return (
-        <h3>
-          <Text text={value.rich_text} />
-        </h3>
-      );
+      return <Heading3 block={block} />;
+
     case "bulleted_list": {
       return <ul>{value.children.map((child: any) => renderBlock(child))}</ul>;
     }

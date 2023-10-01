@@ -1,9 +1,6 @@
 import React, { FC } from "react";
 import styles from "@/app/posts/[slug]/post.module.css";
-import type {
-  RichTextItemResponse,
-  TextRichTextItemResponse,
-} from "@notionhq/client/build/src/api-endpoints";
+import type { RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints";
 
 type Props = {
   text: Array<RichTextItemResponse>;
