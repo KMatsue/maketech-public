@@ -1,41 +1,22 @@
 import React from "react";
 import { Text } from "@/components/notion/Text";
 import styles from "@/app/posts/[slug]/post.module.css";
-
-import type {
-  BlockObjectResponse,
-  CommentObjectResponse,
-  CreateCommentParameters,
-  DatabaseObjectResponse,
-  ListCommentsResponse,
-  PageObjectResponse,
-  RichTextItemResponse,
-} from "@notionhq/client/build/src/api-endpoints";
 import Image from "next/image";
 import Link from "next/link";
 import { Quote } from "./Quote/Quote";
 import Heading1 from "./Heading1/Heading1";
 import Heading3 from "./Heading3/Heading3";
 import Heading2 from "./Heading2/Heading2";
-
-/* Replace */
-export type NotionDatabaseObjectResponse = DatabaseObjectResponse;
-export type NotionPageObjectResponse = PageObjectResponse;
-export type NotionBlockObjectResponse = BlockObjectResponse;
-export type NotionListCommentsResponse = ListCommentsResponse;
-export type NotionCommentObjectResponse = CommentObjectResponse;
-export type NotionRichTextItemResponse = RichTextItemResponse;
-export type NotionCreateCommentParameters = CreateCommentParameters; // Request only
+import Code from "./Code/Code";
 
 const renderBlock = (block: any) => {
   const { type, id } = block;
-  const value = block[type];
 
   switch (type) {
     case "paragraph":
       return (
         <p>
-          <Text text={value.rich_text} />
+          <Text text={block[type].rich_text} />
         </p>
       );
     case "heading_1":
@@ -46,25 +27,33 @@ const renderBlock = (block: any) => {
       return <Heading3 block={block} />;
 
     case "bulleted_list": {
-      return <ul>{value.children.map((child: any) => renderBlock(child))}</ul>;
+      return (
+        <ul>{block[type].children.map((child: any) => renderBlock(child))}</ul>
+      );
     }
     case "numbered_list": {
-      return <ol>{value.children.map((child: any) => renderBlock(child))}</ol>;
+      return (
+        <ol>{block[type].children.map((child: any) => renderBlock(child))}</ol>
+      );
     }
     case "bulleted_list_item":
     case "numbered_list_item":
       return (
         <li key={block.id}>
-          <Text text={value.rich_text} />
-          {!!value.children && renderNestedList(block)}
+          <Text text={block[type].rich_text} />
+          {!!block[type].children && renderNestedList(block)}
         </li>
       );
     case "to_do":
       return (
         <div>
           <label htmlFor={id}>
-            <input type="checkbox" id={id} defaultChecked={value.checked} />{" "}
-            <Text text={value.rich_text} />
+            <input
+              type="checkbox"
+              id={id}
+              defaultChecked={block[type].checked}
+            />{" "}
+            <Text text={block[type].rich_text} />
           </label>
         </div>
       );
@@ -72,7 +61,7 @@ const renderBlock = (block: any) => {
       return (
         <details>
           <summary>
-            <Text text={value.rich_text} />
+            <Text text={block[type].rich_text} />
           </summary>
           {block.children?.map((child: any) => (
             <div key={child.id}>{renderBlock(child)}</div>
@@ -82,14 +71,18 @@ const renderBlock = (block: any) => {
     case "child_page":
       return (
         <div className={styles.childPage}>
-          <strong>{value.title}</strong>
+          <strong>{block[type].title}</strong>
           {block.children.map((child: any) => renderBlock(child))}
         </div>
       );
     case "image":
       const src =
-        value.type === "external" ? value.external.url : value.file.url;
-      const caption = value.caption ? value.caption[0]?.plain_text : "";
+        block[type].type === "external"
+          ? block[type].external.url
+          : block[type].file.url;
+      const caption = block[type].caption
+        ? block[type].caption[0]?.plain_text
+        : "";
       return (
         <figure>
           <Image
@@ -109,19 +102,17 @@ const renderBlock = (block: any) => {
       return <Quote block={block} />;
     // <blockquote key={id}>{value.rich_text[0].plain_text}</blockquote>;
     case "code":
-      return (
-        <pre className={styles.pre}>
-          <code className={styles.code_block} key={id}>
-            {value.rich_text[0].plain_text}
-          </code>
-        </pre>
-      );
+      return <Code block={block} />;
     case "file":
       const src_file =
-        value.type === "external" ? value.external.url : value.file.url;
+        block[type].type === "external"
+          ? block[type].external.url
+          : block[type].file.url;
       const splitSourceArray = src_file.split("/");
       const lastElementInArray = splitSourceArray[splitSourceArray.length - 1];
-      const caption_file = value.caption ? value.caption[0]?.plain_text : "";
+      const caption_file = block[type].caption
+        ? block[type].caption[0]?.plain_text
+        : "";
       return (
         <figure>
           <div className={styles.file}>
@@ -133,7 +124,7 @@ const renderBlock = (block: any) => {
         </figure>
       );
     case "bookmark":
-      const href = value.url;
+      const href = block[type].url;
       return (
         <a href={href} target="_brank" className={styles.bookmark}>
           {href}
@@ -145,7 +136,7 @@ const renderBlock = (block: any) => {
           <tbody>
             {block.children?.map((child: any, i: number) => {
               const RowElement =
-                value.has_column_header && i == 0 ? "th" : "td";
+                block[type].has_column_header && i == 0 ? "th" : "td";
               return (
                 <tr key={child.id}>
                   {child.table_row?.cells?.map((cell: any, i: number) => {
@@ -185,13 +176,17 @@ export default renderBlock;
 
 const renderNestedList = (block: any) => {
   const { type } = block;
-  const value = block[type];
-  if (!value) return null;
+  // const value = block[type];
+  if (!block[type]) return null;
 
-  const isNumberedList = value.children[0].type === "numbered_list_item";
+  const isNumberedList = block[type].children[0].type === "numbered_list_item";
 
   if (isNumberedList) {
-    return <ol>{value.children.map((block: any) => renderBlock(block))}</ol>;
+    return (
+      <ol>{block[type].children.map((block: any) => renderBlock(block))}</ol>
+    );
   }
-  return <ul>{value.children.map((block: any) => renderBlock(block))}</ul>;
+  return (
+    <ul>{block[type].children.map((block: any) => renderBlock(block))}</ul>
+  );
 };

@@ -82,7 +82,7 @@ export const getSinglePost = async (slug: string) => {
   // const mdBlocks = await n2m.pageToMarkdown(page.id);
   const mdBlocks = await getBlocks(page.id);
 
-  console.log(`あいう${JSON.stringify(mdBlocks)}`);
+  // console.log(`あいう${JSON.stringify(mdBlocks)}`);
   // const mdString = n2m.toMarkdownString(mdBlocks);
   // console.log(mdString.parent);
 
@@ -90,6 +90,17 @@ export const getSinglePost = async (slug: string) => {
     metadata,
     markdown: mdBlocks,
   };
+};
+
+/**
+ *
+ * @param block
+ * @returns
+ */
+export const blockToMarkdown = async (block: any) => {
+  const mdBlocks = await n2m.blockToMarkdown(block);
+  // const mdString = n2m.toMarkdownString(mdBlocks);
+  return mdBlocks;
 };
 
 /**
