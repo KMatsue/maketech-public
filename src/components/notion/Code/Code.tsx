@@ -1,25 +1,29 @@
+"use client";
+
 import React, { FC } from "react";
 import type { CodeBlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
-import { blockToMarkdown } from "@/lib/notionAPI";
-import MarkdownField from "@/components/MarkdownField";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
+
 type Props = {
   block: CodeBlockObjectResponse;
 };
 
-const Code: FC<Props> = async ({ block }) => {
-  const value = await blockToMarkdown(block);
-  // console.log(`code:${value}`);
-  // console.log(`code:${JSON.stringify(block)}`);
-  return (
-    <MarkdownField mdString={value}></MarkdownField>
+const Code: FC<Props> = ({ block }) => {
+  const text = block.code.rich_text.reduce(
+    (a: string, b) => a + b.plain_text,
+    ""
+  );
 
-    // <pre className={styles.pre}>
-    //   <code className={styles.code_block}>
-    //     {block.code.rich_text[0].plain_text}
-    //   </code>
-    // </pre>
-    // <div>
-    //  </div>
+  return (
+    <SyntaxHighlighter
+      language={block.code.language}
+      style={vscDarkPlus}
+      showLineNumbers
+      showInlineLineNumbers
+    >
+      {text}
+    </SyntaxHighlighter>
   );
 };
 

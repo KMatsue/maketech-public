@@ -93,17 +93,6 @@ export const getSinglePost = async (slug: string) => {
 };
 
 /**
- *
- * @param block
- * @returns
- */
-export const blockToMarkdown = async (block: any) => {
-  const mdBlocks = await n2m.blockToMarkdown(block);
-  // const mdString = n2m.toMarkdownString(mdBlocks);
-  return mdBlocks;
-};
-
-/**
  * 投稿内容(ブロック)を取得する
  * @param blockId
  * @returns
