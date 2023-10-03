@@ -8,17 +8,15 @@ import Heading1 from "./Heading1/Heading1";
 import Heading3 from "./Heading3/Heading3";
 import Heading2 from "./Heading2/Heading2";
 import Code from "./Code/Code";
+import Paragraph from "./Paragraph/Paragraph";
+import Divider from "./Divider/Divider";
 
 const renderBlock = (block: any) => {
   const { type, id } = block;
 
   switch (type) {
     case "paragraph":
-      return (
-        <p>
-          <Text text={block[type].rich_text} />
-        </p>
-      );
+      return <Paragraph block={block} />;
     case "heading_1":
       return <Heading1 block={block} />;
     case "heading_2":
@@ -97,7 +95,7 @@ const renderBlock = (block: any) => {
         </figure>
       );
     case "divider":
-      return <hr key={id} />;
+      return <Divider block={block} />;
     case "quote":
       return <Quote block={block} />;
     // <blockquote key={id}>{value.rich_text[0].plain_text}</blockquote>;
