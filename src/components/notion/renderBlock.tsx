@@ -2,7 +2,6 @@ import React from "react";
 import { Text } from "@/components/notion/Text";
 import styles from "@/app/posts/[slug]/post.module.css";
 import Image from "next/image";
-import Link from "next/link";
 import { Quote } from "./Quote/Quote";
 import Heading1 from "./Heading1/Heading1";
 import Heading3 from "./Heading3/Heading3";
@@ -16,6 +15,7 @@ import type {
   RichTextItemResponse,
 } from "@notionhq/client/build/src/api-endpoints";
 import ToDo from "./ToDo/ToDo";
+import File from "../File/File";
 
 // const renderBlock = (block: BlockObjectResponse) => {
 const RenderBlock = (block: any) => {
@@ -102,25 +102,7 @@ const RenderBlock = (block: any) => {
     case "code":
       return <Code block={block} />;
     case "file":
-      const src_file =
-        block[type].type === "external"
-          ? block[type].external.url
-          : block[type].file.url;
-      const splitSourceArray = src_file.split("/");
-      const lastElementInArray = splitSourceArray[splitSourceArray.length - 1];
-      const caption_file = block[type].caption
-        ? block[type].caption[0]?.plain_text
-        : "";
-      return (
-        <figure>
-          <div className={styles.file}>
-            <Link href={src_file} passHref>
-              {lastElementInArray.split("?")[0]}
-            </Link>
-          </div>
-          {caption_file && <figcaption>{caption_file}</figcaption>}
-        </figure>
-      );
+      return <File block={block} />;
     case "bookmark":
       const href = block[type].url;
       return (
