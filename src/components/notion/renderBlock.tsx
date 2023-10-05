@@ -16,6 +16,7 @@ import type {
 } from "@notionhq/client/build/src/api-endpoints";
 import ToDo from "./ToDo/ToDo";
 import File from "../File/File";
+import Callout from "./Callout/Callout";
 
 // const renderBlock = (block: BlockObjectResponse) => {
 const RenderBlock = (block: any) => {
@@ -53,6 +54,8 @@ const RenderBlock = (block: any) => {
           {!!block[type].children && renderNestedList(block)}
         </li>
       );
+    case "callout":
+      return <Callout block={block} />;
     case "to_do":
       return <ToDo block={block} />;
     case "toggle":
