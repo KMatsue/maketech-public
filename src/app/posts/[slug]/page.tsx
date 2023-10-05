@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getAllPosts, getSinglePost } from "@/lib/notionAPI";
-import renderBlock from "@/components/notion/renderBlock";
+import RenderBlock from "@/components/notion/RenderBlock";
 
 export const generateStaticParams = async () => {
   const allPosts = await getAllPosts();
@@ -14,7 +14,7 @@ export const generateStaticParams = async () => {
 const Post = async ({ params }: { params: { slug: string } }) => {
   const post = await getSinglePost(params.slug);
   const blocks = post.markdown;
-  console.log(blocks);
+  // console.log(`${JSON.stringify(blocks)}`);
 
   return (
     <section className="container lg:px-2 px-5 lg:w-3/5 mx-auto mt-20">
@@ -34,7 +34,7 @@ const Post = async ({ params }: { params: { slug: string } }) => {
       <div className="mt-10 font-medium">
         {/* <MarkdownField post={post} /> */}
         {blocks.map((block: any) => (
-          <div key={block.id}>{renderBlock(block)}</div>
+          <div key={block.id}>{RenderBlock(block)}</div>
         ))}
       </div>
 

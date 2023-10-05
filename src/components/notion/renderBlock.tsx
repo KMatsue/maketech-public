@@ -11,7 +11,14 @@ import Code from "./Code/Code";
 import Paragraph from "./Paragraph/Paragraph";
 import Divider from "./Divider/Divider";
 
-const renderBlock = (block: any) => {
+import type {
+  BlockObjectResponse,
+  RichTextItemResponse,
+} from "@notionhq/client/build/src/api-endpoints";
+import ToDo from "./ToDo/ToDo";
+
+// const renderBlock = (block: BlockObjectResponse) => {
+const RenderBlock = (block: any) => {
   const { type, id } = block;
 
   switch (type) {
@@ -26,12 +33,16 @@ const renderBlock = (block: any) => {
 
     case "bulleted_list": {
       return (
-        <ul>{block[type].children.map((child: any) => renderBlock(child))}</ul>
+        <ul className="list-disc">
+          {block[type].children.map((child: any) => RenderBlock(child))}
+        </ul>
       );
     }
     case "numbered_list": {
       return (
-        <ol>{block[type].children.map((child: any) => renderBlock(child))}</ol>
+        <ol className="list-decimal">
+          {block[type].children.map((child: any) => RenderBlock(child))}
+        </ol>
       );
     }
     case "bulleted_list_item":
@@ -43,34 +54,24 @@ const renderBlock = (block: any) => {
         </li>
       );
     case "to_do":
-      return (
-        <div>
-          <label htmlFor={id}>
-            <input
-              type="checkbox"
-              id={id}
-              defaultChecked={block[type].checked}
-            />{" "}
-            <Text text={block[type].rich_text} />
-          </label>
-        </div>
-      );
+      return <ToDo block={block} />;
     case "toggle":
       return (
         <details>
           <summary>
             <Text text={block[type].rich_text} />
           </summary>
-          {block.children?.map((child: any) => (
-            <div key={child.id}>{renderBlock(child)}</div>
-          ))}
+          {block.has_children &&
+            block.children?.map((child: any) => (
+              <div key={child.id}>{RenderBlock(child)}</div>
+            ))}
         </details>
       );
     case "child_page":
       return (
         <div className={styles.childPage}>
           <strong>{block[type].title}</strong>
-          {block.children.map((child: any) => renderBlock(child))}
+          {block.children.map((child: any) => RenderBlock(child))}
         </div>
       );
     case "image":
@@ -98,7 +99,6 @@ const renderBlock = (block: any) => {
       return <Divider block={block} />;
     case "quote":
       return <Quote block={block} />;
-    // <blockquote key={id}>{value.rich_text[0].plain_text}</blockquote>;
     case "code":
       return <Code block={block} />;
     case "file":
@@ -154,13 +154,13 @@ const renderBlock = (block: any) => {
     case "column_list": {
       return (
         <div className={styles.row}>
-          {block.children.map((block: any) => renderBlock(block))}
+          {block.children.map((block: any) => RenderBlock(block))}
         </div>
       );
     }
     case "column": {
       return (
-        <div>{block.children.map((child: any) => renderBlock(child))}</div>
+        <div>{block.children.map((child: any) => RenderBlock(child))}</div>
       );
     }
     default:
@@ -170,7 +170,7 @@ const renderBlock = (block: any) => {
   }
 };
 
-export default renderBlock;
+export default RenderBlock;
 
 const renderNestedList = (block: any) => {
   const { type } = block;
@@ -181,10 +181,10 @@ const renderNestedList = (block: any) => {
 
   if (isNumberedList) {
     return (
-      <ol>{block[type].children.map((block: any) => renderBlock(block))}</ol>
+      <ol>{block[type].children.map((block: any) => RenderBlock(block))}</ol>
     );
   }
   return (
-    <ul>{block[type].children.map((block: any) => renderBlock(block))}</ul>
+    <ul>{block[type].children.map((block: any) => RenderBlock(block))}</ul>
   );
 };

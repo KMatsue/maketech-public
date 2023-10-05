@@ -10,8 +10,11 @@ export const Text: FC<Props> = ({ text }) => {
   if (!text) {
     return null;
   }
+  if (text.length === 0) {
+    return <span className="block h-6" />;
+  }
   return text.map((value) => {
-    console.log(value);
+    // console.log(value);
     if ("text" in value) {
       const {
         annotations: { bold, code, color, italic, strikethrough, underline },
