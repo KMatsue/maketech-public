@@ -17,10 +17,11 @@ import type {
 import ToDo from "./ToDo/ToDo";
 import File from "../File/File";
 import Callout from "./Callout/Callout";
+import Toggle from "./Toggle/Toggle";
 
-// const renderBlock = (block: BlockObjectResponse) => {
+// const RenderBlock = (block: BlockObjectResponse ) => {
 const RenderBlock = (block: any) => {
-  const { type, id } = block;
+  const { type } = block;
 
   switch (type) {
     case "paragraph":
@@ -51,7 +52,7 @@ const RenderBlock = (block: any) => {
       return (
         <li key={block.id}>
           <Text text={block[type].rich_text} />
-          {!!block[type].children && renderNestedList(block)}
+          {!!block.has_children && renderNestedList(block)}
         </li>
       );
     case "callout":
@@ -59,17 +60,7 @@ const RenderBlock = (block: any) => {
     case "to_do":
       return <ToDo block={block} />;
     case "toggle":
-      return (
-        <details>
-          <summary>
-            <Text text={block[type].rich_text} />
-          </summary>
-          {block.has_children &&
-            block.children?.map((child: any) => (
-              <div key={child.id}>{RenderBlock(child)}</div>
-            ))}
-        </details>
-      );
+      return <Toggle block={block} />;
     case "child_page":
       return (
         <div className={styles.childPage}>
@@ -159,17 +150,21 @@ export default RenderBlock;
 
 const renderNestedList = (block: any) => {
   const { type } = block;
-  // const value = block[type];
+
   if (!block[type]) return null;
 
-  const isNumberedList = block[type].children[0].type === "numbered_list_item";
+  const isNumberedList = block.children[0].type === "numbered_list";
 
   if (isNumberedList) {
     return (
-      <ol>{block[type].children.map((block: any) => RenderBlock(block))}</ol>
+      <ol className="list-decimal ml-6">
+        {block.children.map((block: any) => RenderBlock(block))}
+      </ol>
     );
   }
   return (
-    <ul>{block[type].children.map((block: any) => RenderBlock(block))}</ul>
+    <ul className="list-disc ml-6">
+      {block.children.map((block: any) => RenderBlock(block))}
+    </ul>
   );
 };
