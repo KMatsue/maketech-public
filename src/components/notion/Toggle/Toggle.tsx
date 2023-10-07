@@ -18,7 +18,9 @@ const Toggle: FC<Props> = ({ block }) => {
       </summary>
       {block.has_children &&
         block.children.map((child: any) => (
-          <div key={child.id}>{RenderBlock(child)}</div>
+          <div className="ml-6" key={child.id}>
+            {RenderBlock(child)}
+          </div>
         ))}
     </details>
   );
