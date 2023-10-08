@@ -10,14 +10,14 @@ import Code from "./Code/Code";
 import Paragraph from "./Paragraph/Paragraph";
 import Divider from "./Divider/Divider";
 
-import type {
-  BlockObjectResponse,
-  RichTextItemResponse,
-} from "@notionhq/client/build/src/api-endpoints";
+import type { BlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import ToDo from "./ToDo/ToDo";
-import File from "../File/File";
+import File from "./File/File";
 import Callout from "./Callout/Callout";
 import Toggle from "./Toggle/Toggle";
+import NumberedList from "./NumberedList/NumberedList";
+import BulletedList from "./BulletedList/Bulleted";
+import ListItem from "./ListItem/ListItem";
 
 // const RenderBlock = (block: BlockObjectResponse ) => {
 const RenderBlock = (block: any) => {
@@ -32,29 +32,13 @@ const RenderBlock = (block: any) => {
       return <Heading2 block={block} />;
     case "heading_3":
       return <Heading3 block={block} />;
-
-    case "bulleted_list": {
-      return (
-        <ul className="list-disc">
-          {block[type].children.map((child: any) => RenderBlock(child))}
-        </ul>
-      );
-    }
-    case "numbered_list": {
-      return (
-        <ol className="list-decimal">
-          {block[type].children.map((child: any) => RenderBlock(child))}
-        </ol>
-      );
-    }
+    case "bulleted_list":
+      return <BulletedList block={block} />;
+    case "numbered_list":
+      return <NumberedList block={block} />;
     case "bulleted_list_item":
     case "numbered_list_item":
-      return (
-        <li key={block.id}>
-          <Text text={block[type].rich_text} />
-          {!!block.has_children && renderNestedList(block)}
-        </li>
-      );
+      return <ListItem block={block} />;
     case "callout":
       return <Callout block={block} />;
     case "to_do":
@@ -147,24 +131,3 @@ const RenderBlock = (block: any) => {
 };
 
 export default RenderBlock;
-
-const renderNestedList = (block: any) => {
-  const { type } = block;
-
-  if (!block[type]) return null;
-
-  const isNumberedList = block.children[0].type === "numbered_list";
-
-  if (isNumberedList) {
-    return (
-      <ol className="list-decimal ml-6">
-        {block.children.map((block: any) => RenderBlock(block))}
-      </ol>
-    );
-  }
-  return (
-    <ul className="list-disc ml-6">
-      {block.children.map((block: any) => RenderBlock(block))}
-    </ul>
-  );
-};
