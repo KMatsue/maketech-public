@@ -19,6 +19,7 @@ import NumberedList from "./NumberedList/NumberedList";
 import BulletedList from "./BulletedList/Bulleted";
 import ListItem from "./ListItem/ListItem";
 import Table from "./Table/Tabale";
+import ImageBlock from "./ImageBlock/ImageBlock";
 
 // const RenderBlock = (block: BlockObjectResponse ) => {
 const RenderBlock = (block: any) => {
@@ -46,34 +47,8 @@ const RenderBlock = (block: any) => {
       return <ToDo block={block} />;
     case "toggle":
       return <Toggle block={block} />;
-    case "child_page":
-      return (
-        <div className={styles.childPage}>
-          <strong>{block[type].title}</strong>
-          {block.children.map((child: any) => RenderBlock(child))}
-        </div>
-      );
     case "image":
-      const src =
-        block[type].type === "external"
-          ? block[type].external.url
-          : block[type].file.url;
-      const caption = block[type].caption
-        ? block[type].caption[0]?.plain_text
-        : "";
-      return (
-        <figure>
-          <Image
-            src={src}
-            alt={"画像"}
-            width="0"
-            height="0"
-            sizes="100vw"
-            className="object-contain w-full h-96 bg-black"
-          />
-          {caption && <figcaption>{caption}</figcaption>}
-        </figure>
-      );
+      return <ImageBlock block={block} />;
     case "divider":
       return <Divider block={block} />;
     case "quote":
@@ -103,6 +78,13 @@ const RenderBlock = (block: any) => {
         <div>{block.children.map((child: any) => RenderBlock(child))}</div>
       );
     }
+    case "child_page":
+      return (
+        <div className={styles.childPage}>
+          <strong>{block[type].title}</strong>
+          {block.children.map((child: any) => RenderBlock(child))}
+        </div>
+      );
     default:
       return `❌ Unsupported block (${
         type === "unsupported" ? "unsupported by Notion API" : type
