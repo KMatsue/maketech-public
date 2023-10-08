@@ -1,7 +1,5 @@
 import React from "react";
-import { Text } from "@/components/notion/Text";
 import styles from "@/app/posts/[slug]/post.module.css";
-import Image from "next/image";
 import { Quote } from "./Quote/Quote";
 import Heading1 from "./Heading1/Heading1";
 import Heading3 from "./Heading3/Heading3";
@@ -9,8 +7,6 @@ import Heading2 from "./Heading2/Heading2";
 import Code from "./Code/Code";
 import Paragraph from "./Paragraph/Paragraph";
 import Divider from "./Divider/Divider";
-
-import type { BlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import ToDo from "./ToDo/ToDo";
 import File from "./File/File";
 import Callout from "./Callout/Callout";
@@ -20,6 +16,7 @@ import BulletedList from "./BulletedList/Bulleted";
 import ListItem from "./ListItem/ListItem";
 import Table from "./Table/Tabale";
 import ImageBlock from "./ImageBlock/ImageBlock";
+import Bookmark from "./Bookmark/Bookmark";
 
 // const RenderBlock = (block: BlockObjectResponse ) => {
 const RenderBlock = (block: any) => {
@@ -58,12 +55,7 @@ const RenderBlock = (block: any) => {
     case "file":
       return <File block={block} />;
     case "bookmark":
-      const href = block[type].url;
-      return (
-        <a href={href} target="_brank" className={styles.bookmark}>
-          {href}
-        </a>
-      );
+      <Bookmark block={block} />;
     case "table":
       return <Table block={block} />;
     case "column_list": {
