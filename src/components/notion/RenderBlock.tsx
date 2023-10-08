@@ -18,6 +18,7 @@ import Toggle from "./Toggle/Toggle";
 import NumberedList from "./NumberedList/NumberedList";
 import BulletedList from "./BulletedList/Bulleted";
 import ListItem from "./ListItem/ListItem";
+import Table from "./Table/Tabale";
 
 // const RenderBlock = (block: BlockObjectResponse ) => {
 const RenderBlock = (block: any) => {
@@ -88,29 +89,8 @@ const RenderBlock = (block: any) => {
           {href}
         </a>
       );
-    case "table": {
-      return (
-        <table className={styles.table}>
-          <tbody>
-            {block.children?.map((child: any, i: number) => {
-              const RowElement =
-                block[type].has_column_header && i == 0 ? "th" : "td";
-              return (
-                <tr key={child.id}>
-                  {child.table_row?.cells?.map((cell: any, i: number) => {
-                    return (
-                      <RowElement key={`${cell.plain_text}-${i}`}>
-                        <Text text={cell} />
-                      </RowElement>
-                    );
-                  })}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      );
-    }
+    case "table":
+      return <Table block={block} />;
     case "column_list": {
       return (
         <div className={styles.row}>
