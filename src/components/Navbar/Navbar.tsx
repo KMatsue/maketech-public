@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import React, { useState } from "react";
 import { ThemeSwitch } from "@/components/ThemeSwitch";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -27,7 +27,7 @@ const Navbar = () => {
         </Link>
 
         <div>
-          <ul className="sm:flex hidden flex-initial text-left items-center py-2 text-md ">
+          <ul className="hidden sm:flex flex-initial text-left items-center py-2 text-md ">
             {menuList.map((menu, index) => (
               <li key={index}>
                 <Link
@@ -43,41 +43,38 @@ const Navbar = () => {
               <ThemeSwitch />
             </li>
           </ul>
-          <button
-            onClick={() => setOpenMenu(!openMenu)}
-            className="flex-initial py-2 text-md  sm:hidden"
-          >
-            <Image
-              src="/menu.svg"
-              alt="menu"
-              className="w-10 h-10"
-              width={10}
-              height={10}
-            />
-          </button>
+          {!openMenu ? (
+            <button
+              onClick={() => setOpenMenu(!openMenu)}
+              className="flex-initial py-2 text-md sm:hidden"
+            >
+              <Bars3Icon className="w-8 h-8 text-black dark:text-white" />
+            </button>
+          ) : undefined}
           {openMenu ? (
-            <div className="flex flex-row absolute z-10 top-0 right-0 min-h-fit min-w-full">
-              <div className="basis-1/2"></div>
+            <div className="absolute z-10 top-0 right-0 min-h-fit min-w-full">
+              <div className=""></div>
 
-              <div className="basis-1/2 bg-gray-400 dark:bg-gray-600">
-                <ul className=" text-center border-l  ">
-                  <li className="p-2 border-b">
+              <div className=" bg-black pb-8">
+                <ul className="text-center">
+                  <li className="text-right pt-3 pr-4">
                     <button
                       onClick={() => setOpenMenu(!openMenu)}
-                      className="font-bold"
+                      className="font-bold rounded-md ring-1 ring-white"
                     >
-                      close
+                      <XMarkIcon className="w-8 h-8  text-white" />
                     </button>
                   </li>
                   {menuList.map((menu, index) => (
-                    <li key={index} className="p-2 border-b">
-                      <Link
-                        href={menu.link}
-                        onClick={() => setOpenMenu(!openMenu)}
-                      >
+                    <Link
+                      href={menu.link}
+                      key={index}
+                      onClick={() => setOpenMenu(!openMenu)}
+                    >
+                      <li className="py-4 text-white hover:text-black hover:bg-white  dark:hover:bg-gray-400">
                         {menu.name}
-                      </Link>
-                    </li>
+                      </li>
+                    </Link>
                   ))}
                 </ul>
               </div>

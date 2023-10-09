@@ -6,8 +6,8 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import remarkBreaks from "remark-breaks";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
-const MarkdownField = ({ post }: { post: { markdown: string } }) => {
-  console.log(post);
+const MarkdownField = ({ mdString }: any) => {
+  console.log(mdString);
   return (
     <ReactMarkdown
       remarkPlugins={[remarkBreaks]}
@@ -32,7 +32,7 @@ const MarkdownField = ({ post }: { post: { markdown: string } }) => {
         p: ({ children }) => <p style={{ marginBottom: "1em" }}>{children}</p>,
       }}
     >
-      {post.markdown}
+      {mdString}
     </ReactMarkdown>
   );
 };
