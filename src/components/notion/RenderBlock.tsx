@@ -18,7 +18,6 @@ import Table from "./Table/Tabale";
 import ImageBlock from "./ImageBlock/ImageBlock";
 import Bookmark from "./Bookmark/Bookmark";
 
-// const RenderBlock = (block: BlockObjectResponse ) => {
 const RenderBlock = (block: any) => {
   const { type } = block;
 
@@ -55,7 +54,7 @@ const RenderBlock = (block: any) => {
     case "file":
       return <File block={block} />;
     case "bookmark":
-      <Bookmark block={block} />;
+      return <Bookmark block={block} />;
     case "table":
       return <Table block={block} />;
     case "column_list": {

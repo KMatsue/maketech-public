@@ -1,4 +1,4 @@
-.container {
+/* .container {
   padding: 0 20px;
   max-width: 700px;
   margin: 0 auto;
@@ -35,7 +35,7 @@
 
 .bold {
   font-weight: bold;
-}
+} */
 
 /* .code {
   font-family: monospace;
@@ -44,9 +44,9 @@
   border-radius: 2px;
 } */
 
-.italic {
+/* .italic {
   font-style: italic;
-}
+} */
 
 /* .pre {
   background-color: rgb(242, 242, 242);
@@ -57,14 +57,14 @@
   overflow: auto;
 } */
 
-.code_block {
+/* .code_block {
   padding: 20px;
   font-family: monospace;
   display: flex;
   flex-wrap: wrap;
-}
+} */
 
-.file {
+/* .file {
   padding: 2px 4px;
   text-decoration: none;
 }
@@ -77,9 +77,9 @@
   background: rgba(55, 53, 47, 0.08);
   cursor: pointer;
   border-radius: 2px;
-}
+} */
 
-.italic {
+/* .italic {
   font-style: italic;
 }
 
@@ -89,12 +89,12 @@
 
 .underline {
   text-decoration: underline;
-}
+} */
 
-.bookmark {
+/* .bookmark {
   display: block;
   margin-bottom: 10px;
-}
+} */
 
 .table {
   border: 1px solid currentColor;
