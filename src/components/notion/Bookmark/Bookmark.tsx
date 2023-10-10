@@ -20,7 +20,6 @@ const Bookmark: FC<Props> = ({ block }) => {
     ogImgUrl: "",
     faviconUrl: "",
   };
-  const notOgp = !ogp.title && !ogp.description && !ogp.ogImgUrl;
   // console.log(block.ogp);
   return (
     <a
