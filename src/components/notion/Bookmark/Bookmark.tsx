@@ -7,12 +7,6 @@ type Props = {
 };
 
 const Bookmark: FC<Props> = ({ block }) => {
-  // const href = block.bookmark.url;
-  // return (
-  //   <a href={href} target="_brank" className="block mb-2">
-  //     {href}
-  //   </a>
-  // );
   const ogp = block.ogp ?? {
     pageUrl: block.bookmark.url,
     title: "",
@@ -20,7 +14,7 @@ const Bookmark: FC<Props> = ({ block }) => {
     ogImgUrl: "",
     faviconUrl: "",
   };
-  // console.log(block.ogp);
+
   return (
     <a
       className="my-6 flex min-h-[120px] cursor-pointer justify-between rounded-lg border border-solid border-slate-400 bg-slate-50 hover:bg-slate-100 sp:flex-col"
