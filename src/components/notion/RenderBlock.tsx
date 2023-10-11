@@ -23,40 +23,40 @@ const RenderBlock = (block: any) => {
 
   switch (type) {
     case "paragraph":
-      return <Paragraph block={block} />;
+      return <Paragraph block={block} key={block.id} />;
     case "heading_1":
-      return <Heading1 block={block} />;
+      return <Heading1 block={block} key={block.id} />;
     case "heading_2":
-      return <Heading2 block={block} />;
+      return <Heading2 block={block} key={block.id} />;
     case "heading_3":
-      return <Heading3 block={block} />;
+      return <Heading3 block={block} key={block.id} />;
     case "bulleted_list":
-      return <BulletedList block={block} />;
+      return <BulletedList block={block} key={block.id} />;
     case "numbered_list":
-      return <NumberedList block={block} />;
+      return <NumberedList block={block} key={block.id} />;
     case "bulleted_list_item":
     case "numbered_list_item":
-      return <ListItem block={block} />;
+      return <ListItem block={block} key={block.id} />;
     case "callout":
-      return <Callout block={block} />;
+      return <Callout block={block} key={block.id} />;
     case "to_do":
-      return <ToDo block={block} />;
+      return <ToDo block={block} key={block.id} />;
     case "toggle":
-      return <Toggle block={block} />;
+      return <Toggle block={block} key={block.id} />;
     case "image":
-      return <ImageBlock block={block} />;
+      return <ImageBlock block={block} key={block.id} />;
     case "divider":
-      return <Divider block={block} />;
+      return <Divider block={block} key={block.id} />;
     case "quote":
-      return <Quote block={block} />;
+      return <Quote block={block} key={block.id} />;
     case "code":
-      return <Code block={block} />;
+      return <Code block={block} key={block.id} />;
     case "file":
-      return <File block={block} />;
+      return <File block={block} key={block.id} />;
     case "bookmark":
-      return <Bookmark block={block} />;
+      return <Bookmark block={block} key={block.id} />;
     case "table":
-      return <Table block={block} />;
+      return <Table block={block} key={block.id} />;
     case "column_list": {
       return (
         <div className={styles.row}>

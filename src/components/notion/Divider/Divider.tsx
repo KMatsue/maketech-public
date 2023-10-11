@@ -6,7 +6,7 @@ type Props = {
 };
 
 const Divider: FC<Props> = ({ block }) => {
-  return <hr key={block.id} />;
+  return <hr />;
 };
 
 export default Divider;

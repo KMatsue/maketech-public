@@ -2,6 +2,7 @@ import { NUMBER_OF_POSTS_PER_PAGE } from "@/constants/constants";
 import { Client } from "@notionhq/client";
 import { QueryDatabaseResponse } from "@notionhq/client/build/src/api-endpoints";
 import { NotionToMarkdown } from "notion-to-md";
+import { setOgp } from "./ogp";
 
 declare type ElementType<T> = T extends (infer U)[] ? U : never;
 
@@ -78,17 +79,18 @@ export const getSinglePost = async (slug: string) => {
   });
   const page = response.results[0];
   const metadata = getPageMetaData(page);
-  // console.log(metadata);
-  // const mdBlocks = await n2m.pageToMarkdown(page.id);
+
   const mdBlocks = await getBlocks(page.id);
+
+  // typeがbookmarkのブロックの場合OGP情報を取得しセットする
+  const blocks = await setOgp(mdBlocks);
 
   // console.log(`あいう${JSON.stringify(mdBlocks)}`);
   // const mdString = n2m.toMarkdownString(mdBlocks);
-  // console.log(mdString.parent);
 
   return {
     metadata,
-    markdown: mdBlocks,
+    markdown: blocks,
   };
 };
 
