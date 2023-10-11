@@ -31,10 +31,10 @@ export const getOgp = async (url: string): Promise<OgpData> => {
 
     return {
       pageUrl: url,
-      title: "",
+      title: "OGPデータが取得できません",
       description: "",
       ogImgUrl: "",
-      faviconUrl: "",
+      faviconUrl: `https://www.google.com/s2/favicons?domain=${encodeURI(url)}`,
     };
   }
 };
