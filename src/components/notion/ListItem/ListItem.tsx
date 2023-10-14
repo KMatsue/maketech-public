@@ -41,13 +41,13 @@ const renderNestedList = (block: any) => {
 
   if (isNumberedList) {
     return (
-      <ol className="list-decimal ml-6">
+      <ol className="list-decimal ml-6" key={block.id}>
         {block.children.map((block: any) => RenderBlock(block))}
       </ol>
     );
   }
   return (
-    <ul className="list-disc ml-6">
+    <ul className="list-disc ml-6" key={block.id}>
       {block.children.map((block: any) => RenderBlock(block))}
     </ul>
   );
