@@ -44,7 +44,7 @@ export const getOgp = async (url: string): Promise<OgpData> => {
  * @param blocks
  * @returns
  */
-export const setOgp = async (blocks: BlockObject[]): Promise<any[]> => {
+export const setOgp = async (blocks: BlockObject[]): Promise<BlockObject[]> => {
   const results = await Promise.all(
     blocks.map(async (block) => {
       if (block.type !== "bookmark") return block;

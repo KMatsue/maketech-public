@@ -2,14 +2,7 @@ import { getAllTags, getPostsForTopPage } from "@/lib/notionAPI";
 import SinglePost from "@/components/Post/SinglePost";
 import Link from "next/link";
 import Tag from "@/components/Tags/Tags";
-
-type Post = {
-  title: string;
-  description: string;
-  date: string;
-  tags: string[];
-  slug: string;
-};
+import { Post } from "@/types/post";
 
 const Home = async () => {
   const tenPosts = await getPostsForTopPage(10);
