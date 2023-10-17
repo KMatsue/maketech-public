@@ -51,8 +51,8 @@ const TableOfContents = () => {
   }, []);
 
   return (
-    <div className="p-4 m-2 border-2 is-position-fixed">
-      <h3 className="text-center p-2 mb-1 font-semibold border-b">
+    <div className="p-2 m-2 border-2 is-position-fixed">
+      <h3 className="text-center p-2 mb-1 text-sm lg:text-lg font-semibold border-b ">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -63,23 +63,23 @@ const TableOfContents = () => {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="inline text-teal-400 ai ai-Book"
+          className="inline text-teal-400 ai ai-Book w-5 lg:w-6"
         >
           <path d="M2 6s1.5-2 5-2 5 2 5 2v14s-1.5-1-5-1-5 1-5 1V6z" />
           <path d="M12 6s1.5-2 5-2 5 2 5 2v14s-1.5-1-5-1-5 1-5 1V6z" />
         </svg>
         この記事の目次
       </h3>
-      <div className="toc mt-1 mb-1"></div>
+      <div className="toc mt-1 mb-1 "></div>
       <style jsx global>{`
         .toc {
           border-radius: 0.25rem;
-          padding: 1rem;
+          padding: 0.75rem;
           font-size: 1rem;
         }
 
         .toc-list .toc-list {
-          padding-left: 1rem;
+          padding-left: 0.5rem;
           padding-top: 0.5rem;
         }
 
