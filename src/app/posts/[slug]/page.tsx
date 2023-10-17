@@ -48,7 +48,7 @@ const Post = async ({ params }: { params: { slug: string } }) => {
             </Link>
           </div>
         </div>
-        <div className="md:w-4/12 lg:w-3/12 mt-10">
+        <div className="md:w-4/12 lg:w-3/12 mt-10 max-h-[560px] overflow-y-scroll">
           <TableOfContents />
         </div>
       </div>

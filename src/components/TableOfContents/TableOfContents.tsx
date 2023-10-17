@@ -3,23 +3,55 @@ import React, { useEffect } from "react";
 import tocbot from "tocbot";
 
 const TableOfContents = () => {
+  const addIdsToTitle = () => {
+    const entryContainer = document.querySelector(".post");
+    if (!entryContainer) {
+      return;
+    }
+    const headings = entryContainer.querySelectorAll("h2, h3, h4");
+    [].forEach.call(headings, (heading: HTMLElement) => {
+      const id = heading.textContent ?? "";
+      if (!heading.getAttribute("id")) {
+        heading.setAttribute("id", id);
+      }
+    });
+  };
+
+  const isHeadingsExists = () => {
+    const entryContainer = document.querySelector(".post");
+    if (!entryContainer) {
+      console.log("!entryContainer");
+      return;
+    }
+    const headings = entryContainer.querySelectorAll("h2, h3, h4");
+    if (headings.length === 0) {
+      return false;
+    }
+    return true;
+  };
+
   useEffect(() => {
+    addIdsToTitle();
+    const item = document.querySelector(".toc") as HTMLElement;
+    if (!item) {
+      return;
+    }
+    if (!isHeadingsExists()) {
+      return;
+    }
     tocbot.init({
       // Where to render the table of contents.
       tocSelector: ".toc",
       // Where to grab the headings to build the table of contents.
       contentSelector: ".post",
       // Which headings to grab inside of the contentSelector element.
-      headingSelector: "h2, h3",
-      // For headings inside relative or absolute positioned containers within content.
-      // hasInnerContainers: true,
+      headingSelector: "h2, h3, h4",
     });
     return () => tocbot.destroy();
-    // destroy関数を使用し、不要となったtocbotインスタンスを削除します
   }, []);
 
   return (
-    <div className="p-4 m-2 border-2">
+    <div className="p-4 m-2 border-2 is-position-fixed">
       <h3 className="text-center p-2 mb-1 font-semibold border-b">
         <svg
           xmlns="http://www.w3.org/2000/svg"
