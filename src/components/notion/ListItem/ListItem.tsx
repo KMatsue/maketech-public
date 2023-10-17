@@ -15,7 +15,10 @@ type Props = {
 const ListItem: FC<Props> = ({ block }) => {
   if (block.type == "bulleted_list_item") {
     return (
-      <li key={block.id}>
+      <li
+        className="mb-3 text-lg font-normal text-gray-800 dark:text-gray-400"
+        key={block.id}
+      >
         <Text text={block.bulleted_list_item.rich_text} />
         {!!block.has_children && renderNestedList(block)}
       </li>
