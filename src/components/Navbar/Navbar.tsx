@@ -20,7 +20,7 @@ const Navbar = () => {
     },
   ];
   return (
-    <nav className="container mx-auto lg:px-2 px-4 lg:w-8/12">
+    <nav className="container mx-auto lg:px-2 px-4 lg:w-10/12">
       <div className="flex items-center justify-between border-b border-gray-400 ">
         <Link href="/" className="text-2xl font-medium py-2">
           MaKe Lab 🚀
