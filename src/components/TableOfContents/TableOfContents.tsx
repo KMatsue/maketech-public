@@ -12,7 +12,7 @@ const TableOfContents = () => {
       // Which headings to grab inside of the contentSelector element.
       headingSelector: "h2, h3",
       // For headings inside relative or absolute positioned containers within content.
-      hasInnerContainers: true,
+      // hasInnerContainers: true,
     });
     return () => tocbot.destroy();
     // destroy関数を使用し、不要となったtocbotインスタンスを削除します
