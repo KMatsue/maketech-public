@@ -3,19 +3,9 @@ import { Client } from "@notionhq/client";
 import { QueryDatabaseResponse } from "@notionhq/client/build/src/api-endpoints";
 import { NotionToMarkdown } from "notion-to-md";
 import { setOgp } from "./ogp";
+import { Post } from "@/types/post";
+import { BlockObject } from "@/types/notion";
 
-declare type ElementType<T> = T extends (infer U)[] ? U : never;
-
-declare type MatchType<T, U, V = never> = T extends U ? T : V;
-
-export type BlockObject = MatchType<
-  ElementType<
-    Awaited<ReturnType<Client["blocks"]["children"]["list"]>>["results"]
-  >,
-  {
-    type: unknown;
-  }
->;
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 });
@@ -78,7 +68,7 @@ export const getSinglePost = async (slug: string) => {
     },
   });
   const page = response.results[0];
-  const metadata = getPageMetaData(page);
+  const metadata: Post = getPageMetaData(page);
 
   const mdBlocks = await getBlocks(page.id);
 

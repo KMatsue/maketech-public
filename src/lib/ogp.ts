@@ -3,7 +3,7 @@ import type { BookmarkBlockObjectResponse } from "@notionhq/client/build/src/api
 import type { OgpData } from "@/types/ogpData";
 
 import ogpParser from "ogp-parser";
-import { BlockObject } from "./notionAPI";
+import { BlockObject } from "@/types/notion";
 
 /**
  * OGPを取得する
@@ -44,7 +44,7 @@ export const getOgp = async (url: string): Promise<OgpData> => {
  * @param blocks
  * @returns
  */
-export const setOgp = async (blocks: BlockObject[]): Promise<any[]> => {
+export const setOgp = async (blocks: BlockObject[]): Promise<BlockObject[]> => {
   const results = await Promise.all(
     blocks.map(async (block) => {
       if (block.type !== "bookmark") return block;
