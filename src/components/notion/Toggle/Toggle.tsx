@@ -13,7 +13,7 @@ type Props = {
 const Toggle: FC<Props> = ({ block }) => {
   return (
     <details>
-      <summary>
+      <summary className="my-1 text-md font-normal text-gray-800 dark:text-gray-400">
         <Text text={block.toggle.rich_text} />
       </summary>
       {block.has_children &&

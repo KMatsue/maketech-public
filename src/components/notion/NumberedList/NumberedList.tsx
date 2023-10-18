@@ -12,7 +12,7 @@ type Props = {
 
 const NumberedList: FC<Props> = ({ block }) => {
   return (
-    <ol className="list-decimal">
+    <ol className="list-decimal max-w-lg space-y-1 text-gray-800 list-inside dark:text-gray-400">
       {block.numbered_list.children.map(
         (child: NumberedListItemBlockObjectResponse) => RenderBlock(child)
       )}
