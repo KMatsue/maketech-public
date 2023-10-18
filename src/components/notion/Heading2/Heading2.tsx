@@ -8,7 +8,7 @@ type Props = {
 
 const Heading2: FC<Props> = ({ block }) => {
   return (
-    <h2 className="text-3xl font-extrabold">
+    <h2 className="text-[1.75rem] font-semibold">
       <Text text={block.heading_2.rich_text} />
     </h2>
   );

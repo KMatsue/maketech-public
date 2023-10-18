@@ -3,7 +3,7 @@
 import React, { FC } from "react";
 import type { CodeBlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import { xonokai } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 type Props = {
   block: CodeBlockObjectResponse;
@@ -18,9 +18,10 @@ const Code: FC<Props> = ({ block }) => {
   return (
     <SyntaxHighlighter
       language={block.code.language}
-      style={vscDarkPlus}
+      style={xonokai}
       showLineNumbers
       showInlineLineNumbers
+      className="rounded-md"
     >
       {text}
     </SyntaxHighlighter>
