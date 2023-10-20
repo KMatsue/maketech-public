@@ -17,16 +17,25 @@ type Props = {
 
 const Table: FC<Props> = ({ block }) => {
   return (
-    <table className={styles.table}>
+    <table className="border-collapse border border-slate-400 ...">
+      {/* <table className={styles.table}> */}
       <tbody>
         {block.children?.map((child: any, i: number) => {
           const RowElement =
             block.table.has_column_header && i == 0 ? "th" : "td";
+          const rowElementCSS =
+            RowElement === "th"
+              ? "bg-slate-300 dark:bg-slate-900 "
+              : "bg-slate-50 dark:bg-slate-800";
+
           return (
             <tr key={child.id}>
               {child.table_row?.cells?.map((cell: any, i: number) => {
                 return (
-                  <RowElement key={`${cell.plain_text}-${i}`}>
+                  <RowElement
+                    className={`border ${rowElementCSS} py-1 px-3`}
+                    key={`${cell.plain_text}-${i}`}
+                  >
                     <Text text={cell} />
                   </RowElement>
                 );

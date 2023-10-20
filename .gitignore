@@ -35,3 +35,5 @@ yarn-error.log*
 next-env.d.ts
 a.js
 b.js
+c.js
+memo.txt
