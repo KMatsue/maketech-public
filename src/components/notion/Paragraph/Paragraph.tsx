@@ -8,7 +8,7 @@ type Props = {
 
 const Paragraph: FC<Props> = ({ block }) => {
   return (
-    <p className="mb-4 text-md font-normal text-gray-800 dark:text-gray-400">
+    <p className="mb-4 font-normal text-gray-800 dark:text-slate-100">
       <Text text={block.paragraph.rich_text} />
     </p>
   );

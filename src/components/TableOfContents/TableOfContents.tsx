@@ -51,8 +51,8 @@ const TableOfContents = () => {
   }, []);
 
   return (
-    <div className="p-2 m-2 border-2 is-position-fixed">
-      <h3 className="text-center p-2 mb-1 text-sm lg:text-lg font-semibold border-b ">
+    <div className="p-2 m-2 border-2">
+      <h3 className="text-center p-2 mb-1 text-sm lg:text-lg font-semibold border-b text-slate-800 dark:text-slate-200">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -70,7 +70,7 @@ const TableOfContents = () => {
         </svg>
         この記事の目次
       </h3>
-      <div className="toc mt-1 mb-1 "></div>
+      <div className="toc mt-1 mb-1"></div>
       <style jsx global>{`
         .toc {
           border-radius: 0.25rem;
@@ -91,13 +91,13 @@ const TableOfContents = () => {
           padding-bottom: 0;
         }
 
-        .toc-link {
+        /* .toc-link {
           color: rgba(156, 163, 175, 0.7);
-        }
+        } */
 
         .is-active-link {
-          color: #282828;
-          font-weight: 700;
+          /* color: #282828; */
+          font-weight: 800;
         }
       `}</style>
     </div>

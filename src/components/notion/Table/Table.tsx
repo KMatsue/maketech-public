@@ -33,7 +33,7 @@ const Table: FC<Props> = ({ block }) => {
               {child.table_row?.cells?.map((cell: any, i: number) => {
                 return (
                   <RowElement
-                    className={`border ${rowElementCSS} py-1 px-3`}
+                    className={`border ${rowElementCSS} py-1 px-3 text-slate-800 dark:text-slate-100`}
                     key={`${cell.plain_text}-${i}`}
                   >
                     <Text text={cell} />
