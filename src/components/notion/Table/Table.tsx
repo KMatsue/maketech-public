@@ -25,15 +25,15 @@ const Table: FC<Props> = ({ block }) => {
             block.table.has_column_header && i == 0 ? "th" : "td";
           const rowElementCSS =
             RowElement === "th"
-              ? "bg-slate-300 dark:bg-slate-900 "
-              : "bg-slate-50 dark:bg-slate-800";
+              ? "bg-slate-300 dark:bg-slate-900 py-3 px-3"
+              : "bg-slate-50 dark:bg-slate-800 py-2 px-3";
 
           return (
             <tr key={child.id}>
               {child.table_row?.cells?.map((cell: any, i: number) => {
                 return (
                   <RowElement
-                    className={`border ${rowElementCSS} py-1 px-3 text-slate-800 dark:text-slate-100`}
+                    className={`border dark:border-slate-900 ${rowElementCSS}  text-slate-800 dark:text-slate-100`}
                     key={`${cell.plain_text}-${i}`}
                   >
                     <Text text={cell} />
