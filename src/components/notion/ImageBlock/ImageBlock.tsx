@@ -21,7 +21,7 @@ const ImageBlock: FC<Props> = ({ block }) => {
         width="0"
         height="0"
         sizes="100vw"
-        className="object-contain w-full h-96 bg-black"
+        className="object-contain w-full h-96 "
       />
       {caption && <figcaption>{caption}</figcaption>}
     </figure>

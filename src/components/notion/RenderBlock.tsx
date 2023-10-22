@@ -14,7 +14,7 @@ import Toggle from "./Toggle/Toggle";
 import NumberedList from "./NumberedList/NumberedList";
 import BulletedList from "./BulletedList/Bulleted";
 import ListItem from "./ListItem/ListItem";
-import Table from "./Table/Tabale";
+import Table from "./Table/Table";
 import ImageBlock from "./ImageBlock/ImageBlock";
 import Bookmark from "./Bookmark/Bookmark";
 

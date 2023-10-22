@@ -12,7 +12,7 @@ type Props = {
 
 const BulletedList: FC<Props> = ({ block }) => {
   return (
-    <ul className="list-disc">
+    <ul className="list-disc max-w-lg space-y-1 list-inside text-slate-800 dark:text-slate-100">
       {block.bulleted_list.children.map(
         (child: BulletedListItemBlockObjectResponse) => RenderBlock(child)
       )}

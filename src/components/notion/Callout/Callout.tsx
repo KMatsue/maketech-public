@@ -15,8 +15,8 @@ const Callout: FC<Props> = ({ block }) => {
     return "📣";
   }, [block.callout.icon]);
   return (
-    <div className="flex items-center gap-3 rounded border border-solid border-slate-300 p-3 bg-slate-200">
-      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-200">
+    <div className="flex items-center gap-3 rounded border border-solid border-slate-300 dark:border-slate-700 p-2 bg-slate-200 dark:bg-slate-600">
+      <div className="flex h-8 w-8 items-center justify-center bg-slate-200 dark:bg-slate-600">
         {emoji}
       </div>
       <div className="sp:text-sm">

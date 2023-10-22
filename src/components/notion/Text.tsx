@@ -10,7 +10,7 @@ export const Text: FC<Props> = ({ text }) => {
     return null;
   }
   if (text.length === 0) {
-    return <span className="block h-6" />;
+    return <span className="block h-4" />;
   }
   return text.map((value) => {
     if ("text" in value) {

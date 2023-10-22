@@ -9,7 +9,7 @@ type Props = {
 const ToDo: FC<Props> = ({ block }) => {
   return (
     <div>
-      <label htmlFor={block.id}>
+      <label htmlFor={block.id} className="text-slate-800 dark:text-slate-100">
         <input
           type="checkbox"
           id={block.id}
