@@ -32,7 +32,7 @@ const Post = async ({ params }: { params: { slug: string } }) => {
         </p>
       ))}
       <div className=" md:flex">
-        <div className="md:w-8/12  lg:w-9/12 mt-10 mx-4">
+        <div className="md:w-8/12  lg:w-9/12 mt-10 mr-4">
           <div className="post font-medium">
             {/* <MarkdownField post={post} /> */}
             {blocks.map((block: any) => (
