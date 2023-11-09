@@ -5,7 +5,6 @@ import type {
   TableRowBlockObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints";
 import { Text } from "../Text";
-import styles from "@/app/posts/[slug]/post.module.css";
 
 type NotionTableBlockObjectResponse = TableBlockObjectResponse & {
   children?: TableRowBlockObjectResponse[];
