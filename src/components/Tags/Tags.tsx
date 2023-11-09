@@ -9,7 +9,7 @@ function Tags(props: Props) {
   const { tags } = props;
   console.log(tags);
   return (
-    <div className=" mx-2">
+    <div className="">
       {/* <section className="mb-8 mx-auto bg-orange-200 rounded-md p-5 shadow-2xl hover:shadow-none hover:translate-y-0.5 translate-all duration-300"> */}
       <section className="border border-r rounded-lg border-gray-500 mb-8 mx-auto  p-5 ">
         {/* <div className="font-medium mb-4">タグ検索</div> */}

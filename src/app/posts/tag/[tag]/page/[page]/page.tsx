@@ -6,6 +6,7 @@ import {
 } from "@/lib/notionAPI";
 import SinglePost from "@/components/Post/SinglePost";
 import Pagination from "@/components/Pagination/Pagination";
+import Tags from "@/components/Tags/Tags";
 
 export const generateStaticParams = async () => {
   const allTags = await getAllTags();
@@ -45,6 +46,7 @@ const BlogTagPageList = async ({
     upperCaseCurrentTag,
     parseInt(currentPage)
   );
+  const allTags = await getAllTags();
   const totalPageSizeByTag = await getNumberOfPagesByTag(upperCaseCurrentTag);
   return (
     <div>
@@ -53,24 +55,32 @@ const BlogTagPageList = async ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="container w-full mt-14 lg:w-8/12 mx-auto">
-        <h2 className="border-b-2 border-gray-500 mb-4 mx-4">
-          {`Search tags in ${currentTag}`}
-        </h2>
-        <section className="md:grid grid-cols-2 gap-3">
-          {posts.map((post, index: number) => (
-            <div key={index} className="mx-4">
-              <SinglePost
-                title={post.title}
-                description={post.description}
-                date={post.date}
-                tags={post.tags}
-                slug={post.slug}
-                isPaginationPage={true}
-              />
-            </div>
-          ))}
-        </section>
+      <main className="container w-full mt-14 mx-auto">
+        <div className=" md:flex">
+          <div className="flex-1 md:flex-auto md:w-8/12 md:mr-4 lg:w-9/12">
+            <h2 className="border-b-2 border-gray-500 mb-4">
+              {`Search tags in ${currentTag}`}
+            </h2>
+            <section className="md:grid grid-cols-2 gap-3">
+              {posts.map((post, index: number) => (
+                <div key={index} className="">
+                  <SinglePost
+                    title={post.title}
+                    description={post.description}
+                    date={post.date}
+                    tags={post.tags}
+                    slug={post.slug}
+                    isPaginationPage={true}
+                  />
+                </div>
+              ))}
+            </section>
+          </div>
+          <div className="flex-1 md:flex-auto md:w-4/12 lg:w-3/12">
+            <h2 className="border-b-2 border-gray-500 mb-4">Tags</h2>
+            <Tags tags={allTags} />
+          </div>
+        </div>
         <Pagination numberOfPage={totalPageSizeByTag} tag={currentTag} />
       </main>
     </div>
