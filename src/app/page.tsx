@@ -5,12 +5,12 @@ import Tag from "@/components/Tags/Tags";
 import { Post } from "@/types/post";
 
 const Home = async () => {
-  const tenPosts = await getPostsForTopPage(10);
+  const tenPosts = await getPostsForTopPage(5);
   const allTags = await getAllTags();
 
   return (
     <main className="container mx-auto w-full mt-14 md:flex">
-      <div className="flex-1 md:flex-auto md:w-8/12 md:mr-4 lg:w-9/12">
+      <div className="mx-auto lg:w-9/12">
         <h2 className="border-b-2 border-gray-500 mb-4">Recent Posts</h2>
         {tenPosts.map((post: Post, index: number) => (
           <div key={index} className="">
@@ -33,10 +33,10 @@ const Home = async () => {
           </Link>
         </h4>
       </div>
-      <div className="flex-1 md:flex-auto md:w-4/12 lg:w-3/12">
+      {/* <div className="flex-1 md:flex-auto md:w-4/12 lg:w-3/12">
         <h2 className="border-b-2 border-gray-500 mb-4 ">Tags</h2>
         <Tag tags={allTags} />
-      </div>
+      </div> */}
     </main>
   );
 };

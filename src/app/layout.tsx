@@ -4,7 +4,7 @@ import Footer from "@/components/Footer/Footer";
 import Providers from "@/components/Providers";
 
 export const metadata = {
-  title: { default: "Make Lab Blog", template: "%s | Make Lab Blog" },
+  title: { default: "MaKe Tech", template: "%s | Make Lab Blog" },
 };
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
