@@ -21,7 +21,7 @@ const Code: FC<Props> = ({ block }) => {
       style={xonokai}
       showLineNumbers
       showInlineLineNumbers
-      className="rounded-md"
+      className="rounded-md my-2"
     >
       {text}
     </SyntaxHighlighter>
