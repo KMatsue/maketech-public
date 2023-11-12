@@ -14,10 +14,10 @@ const Navbar = () => {
       name: "Blog",
       link: "/posts/page/1",
     },
-    {
-      name: "Contact",
-      link: "/contact",
-    },
+    // {
+    //   name: "Contact",
+    //   link: "/contact",
+    // },
   ];
   return (
     <nav className="container mx-auto">
