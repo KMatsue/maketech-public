@@ -51,7 +51,7 @@ const TableOfContents = () => {
   }, []);
 
   return (
-    <div className="p-2 m-2 border-2">
+    <div className="p-2 m-2 border-2 rounded-md">
       <h3 className="text-center p-2 mb-1 text-sm lg:text-lg font-semibold border-b text-slate-800 dark:text-slate-200">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +63,7 @@ const TableOfContents = () => {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="inline text-teal-400 ai ai-Book w-5 lg:w-6"
+          className="inline text-gray-400 ai ai-Book w-5 lg:w-6"
         >
           <path d="M2 6s1.5-2 5-2 5 2 5 2v14s-1.5-1-5-1-5 1-5 1V6z" />
           <path d="M12 6s1.5-2 5-2 5 2 5 2v14s-1.5-1-5-1-5 1-5 1V6z" />
@@ -75,11 +75,11 @@ const TableOfContents = () => {
         .toc {
           border-radius: 0.25rem;
           padding: 0.75rem;
-          font-size: 1rem;
+          font-size: 1.1rem;
         }
 
         .toc-list .toc-list {
-          padding-left: 0.5rem;
+          padding-left: 0.75rem;
           padding-top: 0.5rem;
         }
 
