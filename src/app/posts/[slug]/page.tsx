@@ -20,8 +20,10 @@ const Post = async ({ params }: { params: { slug: string } }) => {
   return (
     <section className="container mx-auto mt-20">
       <h1 className="w-full text-2xl font-medium">{post.metadata.title}</h1>
-      <div className="border-b-2 w-1/3 mt-1 border-gray-500"></div>
-      <span className="text-gray-500">Posted date at {post.metadata.date}</span>
+      <div className="border-b-2 w-1/3 mt-1 border-gray-500 dark:border-slate-100"></div>
+      <span className="text-gray-500 dark:text-slate-100">
+        Posted date at {post.metadata.date}
+      </span>
       <br />
       {post.metadata.tags.map((tag: string, index: number) => (
         <p
@@ -41,7 +43,7 @@ const Post = async ({ params }: { params: { slug: string } }) => {
 
           <div className="mt-10 font-medium">
             <Link href="/">
-              <span className="pb-20 block mt-3 text-sky-900">
+              <span className="pb-20 block mt-3 text-sky-900 dark:text-slate-100">
                 ←ホームに戻る
               </span>
             </Link>
