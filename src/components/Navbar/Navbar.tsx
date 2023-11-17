@@ -1,14 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ThemeSwitch } from "@/components/ThemeSwitch";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
+  const [active, setActive] = useState<string>();
+  const pathName: string = usePathname();
 
-  const menuList = [
+  useEffect(() => {
+    setActive(pathName);
+  }, [pathName]);
+
+  const navMenuList = [
     { name: "Home", link: "/" },
     {
       name: "Blog",
@@ -27,15 +34,19 @@ const Navbar = () => {
         </Link>
 
         <div>
-          <ul className="hidden sm:flex flex-initial text-left items-center py-2 text-md ">
-            {menuList.map((menu, index) => (
-              <li key={index}>
-                <Link
-                  href={menu.link}
-                  className="block font-medium px-4 py-2 hover:text-gray-400 hover:underline"
-                >
-                  {menu.name}
-                </Link>
+          <ul className="hidden sm:flex items-center py-4 tracking-wider gap-6">
+            {navMenuList.map((menu, index) => (
+              <li
+                key={index}
+                className="font-medium hover:text-gray-400 cursor-pointer duration-300 group relative"
+              >
+                <Link href={menu.link}>{menu.name}</Link>
+                <span
+                  className={`${
+                    active === menu.link && "scale-100"
+                  } absolute w-full scale-0 group-hover:scale-100 inline-block h-0.5
+                   -bottom-[1px] left-0 bg-black dark:bg-white duration-500`}
+                ></span>
               </li>
             ))}
 
@@ -46,7 +57,7 @@ const Navbar = () => {
           {!openMenu ? (
             <button
               onClick={() => setOpenMenu(!openMenu)}
-              className="flex-initial py-2 text-md sm:hidden"
+              className="flex-initial py-2 sm:hidden"
             >
               <Bars3Icon className="w-8 h-8 text-black dark:text-white" />
             </button>
@@ -65,7 +76,7 @@ const Navbar = () => {
                       <XMarkIcon className="w-8 h-8  text-white" />
                     </button>
                   </li>
-                  {menuList.map((menu, index) => (
+                  {navMenuList.map((menu, index) => (
                     <Link
                       href={menu.link}
                       key={index}
