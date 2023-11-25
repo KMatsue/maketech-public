@@ -3,7 +3,7 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { ThemeSwitch } from "@/components/ThemeSwitch";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
 
 const Navbar = () => {
@@ -34,7 +34,7 @@ const Navbar = () => {
         </Link>
 
         <div>
-          <ul className="hidden sm:flex items-center py-4 tracking-wider gap-6">
+          <ul className="hidden md:flex items-center py-4 tracking-wider gap-6">
             {navMenuList.map((menu, index) => (
               <li
                 key={index}
@@ -54,13 +54,23 @@ const Navbar = () => {
               <ThemeSwitch />
             </li>
           </ul>
+          {/* ハンバーガーメニューボタン */}
           {!openMenu ? (
-            <button
+            <div
+              className="w-7 h-5 group md:hidden flex flex-col justify-between
+            cursor-pointer overflow-hidden"
               onClick={() => setOpenMenu(!openMenu)}
-              className="flex-initial py-2 sm:hidden"
             >
-              <Bars3Icon className="w-8 h-8 text-black dark:text-white" />
-            </button>
+              <span
+                className="w-full h-[3px] bg-slate-900 dark:bg-slate-50 
+            inline-flex -translate-x-1 group-hover:translate-x-0 transition-transform duration-500"
+              ></span>
+              <span
+                className="w-full h-[3px] bg-slate-900 dark:bg-slate-50 
+            inline-flex -translate-x-3 group-hover:translate-x-0 transition-transform duration-500"
+              ></span>
+              <span className="w-full h-[3px] bg-slate-900 dark:bg-slate-50"></span>
+            </div>
           ) : undefined}
           {openMenu ? (
             <div className="absolute z-10 top-0 right-0 min-h-fit min-w-full">
