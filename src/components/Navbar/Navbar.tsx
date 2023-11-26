@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { ThemeSwitch } from "@/components/ThemeSwitch";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -49,7 +50,6 @@ const Navbar = () => {
                 ></span>
               </li>
             ))}
-
             <li>
               <ThemeSwitch />
             </li>
@@ -72,35 +72,50 @@ const Navbar = () => {
               <span className="w-full h-[3px] bg-slate-900 dark:bg-slate-50"></span>
             </div>
           ) : undefined}
-          {openMenu ? (
-            <div className="absolute z-10 top-0 right-0 min-h-fit min-w-full">
-              <div className=""></div>
+          {/* スモールサイズ時のメニュー */}
+          {openMenu && (
+            <div className="w-full h-screen lg:hidden fixed top-0 left-0 bg-white bg-opacity-80 dark:bg-black dark:bg-opacity-80 z-50">
+              <motion.div
+                className="w-[100%] h-min bg-gray-950 px-4 pb-3 relative"
+                initial={{ x: 40, y: -40, opacity: 0 }}
+                animate={{ x: 0, y: 0, opacity: 1 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="text-center">
+                  <span
+                    className="absolute right-3 top-3
+                  rounded-md ring-2 ring-white hover:ring-slate-300
+                text-white hover:text-slate-300
+                  cursor-pointer duration-300"
+                    onClick={() => setOpenMenu(!openMenu)}
+                  >
+                    <XMarkIcon className="w-7 h-7" />
+                  </span>
+                  <p
+                    className="text-center text-2xl font-medium text-white hover:text-slate-300 
+                    mb-4 inline-block cursor-pointer"
+                    onClick={() => setOpenMenu(!openMenu)}
+                  >
+                    <Link href="/">MaKe Lab 🚀</Link>
+                  </p>
+                </div>
 
-              <div className=" bg-black pb-8">
-                <ul className="text-center">
-                  <li className="text-right pt-3 pr-4">
-                    <button
-                      onClick={() => setOpenMenu(!openMenu)}
-                      className="font-bold rounded-md ring-1 ring-white"
-                    >
-                      <XMarkIcon className="w-8 h-8  text-white" />
-                    </button>
-                  </li>
+                <ul className="flex flex-col text-gray-300 gap-3 font-semibold">
+                  {" "}
                   {navMenuList.map((menu, index) => (
-                    <Link
-                      href={menu.link}
-                      key={index}
-                      onClick={() => setOpenMenu(!openMenu)}
-                    >
-                      <li className="py-4 text-white hover:text-black hover:bg-white  dark:hover:bg-gray-400">
-                        {menu.name}
-                      </li>
-                    </Link>
+                    <li key={index} className="hover:text-white">
+                      <Link
+                        href={menu.link}
+                        onClick={() => setOpenMenu(!openMenu)}
+                      >
+                        {menu.name}{" "}
+                      </Link>
+                    </li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
             </div>
-          ) : undefined}
+          )}
         </div>
       </div>
     </nav>
