@@ -9,10 +9,12 @@ export const metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="ja">
-      <body className="dark:bg-black max-w-7xl mx-auto xl:w-full px-2">
+      <body className="bg-neutral-50 dark:bg-neutral-950 max-w-7xl mx-auto xl:w-full px-2">
         <Providers>
           <Navbar />
-          {children}
+          <main className="relative z-10 mb-16 bg-neutral-50 dark:bg-neutral-950">
+            {children}
+          </main>
           <Footer />
         </Providers>
       </body>
