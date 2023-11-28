@@ -41,15 +41,15 @@ const Post = async ({ params }: { params: { slug: string } }) => {
             ))}
           </div>
 
-          <div className="mt-10 font-medium">
+          <div className="mt-60 font-medium">
             <Link href="/">
-              <span className="pb-20 block mt-3 text-sky-900 dark:text-slate-100">
+              <span className="pb-20 block text-sky-900 dark:text-slate-100">
                 ←ホームに戻る
               </span>
             </Link>
           </div>
         </div>
-        <div className="hidden md:block md:w-4/12 lg:w-3/12 mt-10 max-h-[560px] overflow-y-scroll sticky top-[28px]">
+        <div className="hidden md:block md:w-4/12 lg:w-3/12 mt-12 max-h-[80vh] overflow-y-scroll sticky top-[28px] border-2 rounded-md">
           <TableOfContents />
         </div>
       </div>

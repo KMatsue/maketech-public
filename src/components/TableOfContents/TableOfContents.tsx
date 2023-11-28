@@ -51,7 +51,7 @@ const TableOfContents = () => {
   }, []);
 
   return (
-    <div className="p-2 m-2 border-2 rounded-md">
+    <div className="p-2">
       <h3 className="text-center p-2 mb-1 text-sm lg:text-lg font-semibold border-b text-slate-800 dark:text-slate-200">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -75,16 +75,16 @@ const TableOfContents = () => {
         .toc {
           border-radius: 0.25rem;
           padding: 0.75rem;
-          font-size: 1.1rem;
+          font-size: 1rem;
         }
 
         .toc-list .toc-list {
           padding-left: 0.75rem;
-          padding-top: 0.5rem;
+          padding-top: 0.75rem;
         }
 
         .toc-list-item {
-          padding-bottom: 0.5rem;
+          padding-bottom: 0.75rem;
         }
 
         .toc-list-item:last-child {
