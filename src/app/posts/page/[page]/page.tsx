@@ -38,7 +38,7 @@ const BlogPageList = async ({ params }: { params: postParam }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="container mx-auto w-full mt-14 ">
+      <div className="container mx-auto w-full mt-14 ">
         <div className=" md:flex">
           <div className="flex-1 md:flex-auto md:w-8/12 md:mr-4 lg:w-9/12">
             <h2 className="border-b-2 border-gray-500 mb-4 ">All Posts</h2>
@@ -63,8 +63,12 @@ const BlogPageList = async ({ params }: { params: postParam }) => {
             <Tags tags={allTags} />
           </div>
         </div>
-        <Pagination numberOfPage={totalPageSize} tag="" />
-      </main>
+        <Pagination
+          numberOfPage={totalPageSize}
+          currentPage={currentPage}
+          tag=""
+        />
+      </div>
     </div>
   );
 };

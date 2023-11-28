@@ -1,13 +1,15 @@
 import Link from "next/link";
 import React from "react";
+import clsx from "clsx";
 
 interface Props {
   numberOfPage: number;
+  currentPage: string;
   tag: string;
 }
 
 const Pagination = (props: Props) => {
-  const { numberOfPage, tag } = props;
+  const { numberOfPage, currentPage, tag } = props;
   // console.log(tag);
 
   let pages: number[] = [];
@@ -25,7 +27,15 @@ const Pagination = (props: Props) => {
             }
             key={page}
           >
-            <li className="border border-gray-500 rounded-lg w-8 h-8 relative hover:p-4">
+            <li
+              className={clsx(
+                " border-gray-500 rounded-lg w-8 h-8 relative hover:p-4",
+                {
+                  border: Number(currentPage) !== page,
+                  "border-2 font-semibold": Number(currentPage) === page,
+                }
+              )}
+            >
               <span className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 text-gray-500">
                 {page}
               </span>
