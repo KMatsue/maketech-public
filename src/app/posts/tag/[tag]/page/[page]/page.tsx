@@ -81,7 +81,11 @@ const BlogTagPageList = async ({
             <Tags tags={allTags} />
           </div>
         </div>
-        <Pagination numberOfPage={totalPageSizeByTag} tag={currentTag} />
+        <Pagination
+          numberOfPage={totalPageSizeByTag}
+          currentPage={currentPage}
+          tag={currentTag}
+        />
       </main>
     </div>
   );
