@@ -29,14 +29,17 @@ const Pagination = (props: Props) => {
           >
             <li
               className={clsx(
-                " border-gray-500 rounded-lg w-8 h-8 relative hover:p-4",
+                " border-gray-500 dark:border-slate-200 rounded-lg w-8 h-8 relative hover:p-4",
                 {
                   border: Number(currentPage) !== page,
                   "border-2 font-semibold": Number(currentPage) === page,
                 }
               )}
             >
-              <span className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 text-gray-500">
+              <span
+                className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4
+               text-gray-500 dark:text-slate-200"
+              >
                 {page}
               </span>
             </li>

@@ -49,7 +49,7 @@ const Post = async ({ params }: { params: { slug: string } }) => {
             </Link>
           </div>
         </div>
-        <div className="hidden md:block md:w-4/12 lg:w-3/12 mt-12 max-h-[80vh] overflow-y-scroll sticky top-[28px] border-2 rounded-md">
+        <div className="hidden md:block md:w-4/12 lg:w-3/12 mt-12 ml-4 max-h-[80vh] overflow-y-scroll sticky top-[28px] border-2 rounded-md">
           <TableOfContents />
         </div>
       </div>

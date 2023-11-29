@@ -11,7 +11,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="ja">
       <body
-        className={`${inter.className} antialiased bg-neutral-50 dark:bg-neutral-950 max-w-7xl mx-auto xl:w-full px-2`}
+        className={`${inter.className} antialiased bg-neutral-50 dark:bg-neutral-950 max-w-7xl mx-auto xl:w-full px-8`}
       >
         <Providers>
           <Navbar />
