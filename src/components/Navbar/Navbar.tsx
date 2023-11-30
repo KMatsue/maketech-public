@@ -76,7 +76,7 @@ const Navbar = () => {
           {openMenu && (
             <div className="w-full h-screen lg:hidden fixed top-0 left-0 bg-white bg-opacity-80 dark:bg-black dark:bg-opacity-80 z-50">
               <motion.div
-                className="w-[100%] h-min bg-gray-950 px-4 pb-3 relative"
+                className="w-[100%] h-min bg-neutral-950 px-4 pb-3 relative"
                 initial={{ x: 40, y: -40, opacity: 0 }}
                 animate={{ x: 0, y: 0, opacity: 1 }}
                 transition={{ duration: 0.2 }}

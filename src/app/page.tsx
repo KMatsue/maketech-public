@@ -9,7 +9,7 @@ const Home = async () => {
   const allTags = await getAllTags();
 
   return (
-    <main className="container mx-auto w-full mt-14 md:flex">
+    <main className="container mx-auto w-full mt-14 ">
       <div className="mx-auto lg:w-9/12">
         <h2 className="border-b-2 border-gray-500 mb-4">Recent Posts</h2>
         {tenPosts.map((post: Post, index: number) => (
