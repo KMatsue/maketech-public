@@ -147,7 +147,7 @@ const getRandomInt = (min: number, max: number) => {
  * @param pageSize
  * @returns
  */
-export const getPostsForTopPage = async (pageSize: number) => {
+export const getPostsTopPage = async ({ pageSize }: { pageSize: number }) => {
   const allPosts = await getAllPosts();
   const fourPosts = allPosts.slice(0, pageSize);
   // console.log(fourPosts);
