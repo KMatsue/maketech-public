@@ -7,6 +7,7 @@ import {
 import SinglePost from "@/components/Post/SinglePost";
 import Pagination from "@/components/Pagination/Pagination";
 import Tags from "@/components/Tags/Tags";
+import Posts from "@/components/Post/Posts";
 
 export const generateStaticParams = async () => {
   const allTags = await getAllTags();
@@ -62,18 +63,7 @@ const BlogTagPageList = async ({
               {`Search tags in ${currentTag}`}
             </h2>
             <section className="md:grid grid-cols-2 gap-3">
-              {posts.map((post, index: number) => (
-                <div key={index} className="">
-                  <SinglePost
-                    title={post.title}
-                    description={post.description}
-                    date={post.date}
-                    tags={post.tags}
-                    slug={post.slug}
-                    isPaginationPage={true}
-                  />
-                </div>
-              ))}
+              <Posts posts={posts} />
             </section>
           </div>
           <div className="flex-1 md:flex-auto md:w-4/12 lg:w-3/12">

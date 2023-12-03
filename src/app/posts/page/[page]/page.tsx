@@ -1,8 +1,14 @@
 import Head from "next/head";
-import { getAllTags, getNumberOfPages, getPostsByPage } from "@/lib/notionAPI";
+import {
+  getAllTags,
+  getNumberOfPages,
+  getPostsByPage,
+  getPostsTopPage,
+} from "@/lib/notionAPI";
 import SinglePost from "@/components/Post/SinglePost";
 import Pagination from "@/components/Pagination/Pagination";
 import Tags from "@/components/Tags/Tags";
+import Posts from "@/components/Post/Posts";
 
 type PageParam = {
   page: string;
@@ -29,6 +35,7 @@ const BlogPageList = async ({ params }: { params: postParam }) => {
   const postsByPage = await getPostsByPage(
     parseInt(currentPage.toString(), 10)
   );
+  const posts = await getPostsTopPage({ pageSize: 5 });
   const allTags = await getAllTags();
   const totalPageSize = await getNumberOfPages();
   return (
@@ -44,18 +51,7 @@ const BlogPageList = async ({ params }: { params: postParam }) => {
             <h2 className="border-b-2 border-gray-500 mb-4 ">All Posts</h2>
 
             <section className="md:grid grid-cols-2 gap-3 mx-auto ">
-              {postsByPage.map((post, index: number) => (
-                <div key={index} className="">
-                  <SinglePost
-                    title={post.title}
-                    description={post.description}
-                    date={post.date}
-                    tags={post.tags}
-                    slug={post.slug}
-                    isPaginationPage={true}
-                  />
-                </div>
-              ))}
+              <Posts posts={postsByPage} />
             </section>
           </div>
           <div className="flex-1 md:flex-auto md:w-4/12 lg:w-3/12">
