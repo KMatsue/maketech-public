@@ -4,6 +4,8 @@ import Footer from "@/components/Footer/Footer";
 import Providers from "@/components/Providers";
 import { inter } from "@/app/ui/fonts";
 
+export const revalidate = 300;
+
 export const metadata = {
   title: { default: "MaKe Tech", template: "%s | Make Lab Blog" },
 };
