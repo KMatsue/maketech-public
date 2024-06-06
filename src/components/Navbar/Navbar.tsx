@@ -31,7 +31,7 @@ const Navbar = () => {
     <nav className="container mx-auto">
       <div className="flex items-center justify-between border-b border-gray-400 ">
         <Link href="/" className="text-2xl font-medium py-2">
-          MaKe Lab 🚀
+          MaKe TECH 🚀
         </Link>
 
         <div>

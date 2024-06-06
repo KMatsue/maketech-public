@@ -7,9 +7,9 @@ const Footer = () => {
       <p>
         Copyright &copy;
         <Link href="/" className="mx-1 hover:underline">
-          MAKE Lab
+          MaKe TECH
         </Link>{" "}
-        2023
+        2024
       </p>
     </footer>
   );
