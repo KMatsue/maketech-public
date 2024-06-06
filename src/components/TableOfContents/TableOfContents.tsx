@@ -98,6 +98,7 @@ const TableOfContents = () => {
         .is-active-link {
           /* color: #282828; */
           font-weight: 800;
+          overflow-wrap: break-word;
         }
       `}</style>
     </div>

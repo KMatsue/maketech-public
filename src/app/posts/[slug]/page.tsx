@@ -33,14 +33,13 @@ const Post = async ({ params }: { params: { slug: string } }) => {
           <Link href={`/posts/tag/${tag}/page/1`}>{tag}</Link>
         </p>
       ))}
-      <div className=" md:flex">
+      <div className="md:flex">
         <div className="md:w-8/12 lg:w-9/12 mt-10 md:mr-4">
           <div className="post font-medium">
             {blocks.map((block: any) => (
               <div key={block.id}>{RenderBlock(block)}</div>
             ))}
           </div>
-
           <div className="mt-60 font-medium">
             <Link href="/">
               <span className="pb-20 block text-sky-900 dark:text-slate-100">
