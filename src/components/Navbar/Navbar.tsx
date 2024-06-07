@@ -29,7 +29,7 @@ const Navbar = () => {
   ];
   return (
     <nav className="container mx-auto">
-      <div className="flex items-center justify-between border-b border-gray-400 ">
+      <div className="flex items-center justify-between border-b border-gray-400">
         <Link href="/" className="text-2xl font-medium py-2">
           MaKe TECH 🚀
         </Link>
@@ -54,24 +54,30 @@ const Navbar = () => {
               <ThemeSwitch />
             </li>
           </ul>
+
           {/* ハンバーガーメニューボタン */}
-          {!openMenu ? (
-            <div
-              className="w-7 h-5 group md:hidden flex flex-col justify-between
-            cursor-pointer overflow-hidden"
-              onClick={() => setOpenMenu(!openMenu)}
-            >
-              <span
-                className="w-full h-[3px] bg-slate-900 dark:bg-slate-50 
-            inline-flex -translate-x-1 group-hover:translate-x-0 transition-transform duration-500"
-              ></span>
-              <span
-                className="w-full h-[3px] bg-slate-900 dark:bg-slate-50 
-            inline-flex -translate-x-3 group-hover:translate-x-0 transition-transform duration-500"
-              ></span>
-              <span className="w-full h-[3px] bg-slate-900 dark:bg-slate-50"></span>
-            </div>
-          ) : undefined}
+          <div
+            className="w-7 h-5 group md:hidden flex flex-col justify-between
+             cursor-pointer overflow-hidden"
+            onClick={() => setOpenMenu(!openMenu)}
+          >
+            {!openMenu ? (
+              <>
+                <span
+                  className="w-full h-[3px] bg-slate-900 dark:bg-slate-50
+                inline-flex -translate-x-1 group-hover:translate-x-0 transition-transform duration-500"
+                ></span>
+                <span
+                  className="w-full h-[3px] bg-slate-900 dark:bg-slate-50
+                inline-flex -translate-x-3 group-hover:translate-x-0 transition-transform duration-500"
+                ></span>
+                <span className="w-full h-[3px] bg-slate-900 dark:bg-slate-50"></span>
+              </>
+            ) : (
+              <XMarkIcon className="w-7 h-7" />
+            )}
+          </div>
+
           {/* スモールサイズ時のメニュー */}
           {openMenu && (
             <div className="w-full h-screen lg:hidden fixed top-0 left-0 bg-white bg-opacity-80 dark:bg-black dark:bg-opacity-80 z-50">
@@ -84,31 +90,29 @@ const Navbar = () => {
                 <div className="text-center">
                   <span
                     className="absolute right-3 top-3
-                  rounded-md ring-2 ring-white hover:ring-slate-300
-                text-white hover:text-slate-300
-                  cursor-pointer duration-300"
+                     rounded-md ring-2 ring-white hover:ring-slate-300
+                      text-white hover:text-slate-300
+                       cursor-pointer duration-300"
                     onClick={() => setOpenMenu(!openMenu)}
                   >
                     <XMarkIcon className="w-7 h-7" />
                   </span>
                   <p
-                    className="text-center text-2xl font-medium text-white hover:text-slate-300 
-                    mb-4 inline-block cursor-pointer"
-                    onClick={() => setOpenMenu(!openMenu)}
+                    className="text-center text-2xl font-medium text-white hover:text-slate-300
+                   mb-4 inline-block cursor-pointer"
                   >
-                    <Link href="/">MaKe Lab 🚀</Link>
+                    <Link href="/">MaKe TECH 🚀</Link>
                   </p>
                 </div>
 
                 <ul className="flex flex-col text-gray-300 gap-3 font-semibold">
-                  {" "}
                   {navMenuList.map((menu, index) => (
                     <li key={index} className="hover:text-white">
                       <Link
                         href={menu.link}
                         onClick={() => setOpenMenu(!openMenu)}
                       >
-                        {menu.name}{" "}
+                        {menu.name}
                       </Link>
                     </li>
                   ))}
