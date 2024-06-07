@@ -92,7 +92,7 @@ const Navbar = () => {
                   </p>
                 </div>
 
-                <ul className="flex flex-col text-black dark:text-white gap-3 font-semibold">
+                <ul className="flex flex-col text-black dark:text-white gap-4 font-semibold mt-4 mb-6">
                   {navMenuList.map((menu, index) => (
                     <li
                       key={index}
@@ -107,6 +107,15 @@ const Navbar = () => {
                     </li>
                   ))}
                 </ul>
+
+                <div className="border-t border-gray-300 dark:border-gray-700 pt-4 mt-auto">
+                  <div className="flex items-center justify-center">
+                    <p className="text-gray-600 dark:text-gray-300 mr-2">
+                      Switch theme
+                    </p>
+                    <ThemeSwitch />
+                  </div>
+                </div>
               </motion.div>
             </div>
           )}
