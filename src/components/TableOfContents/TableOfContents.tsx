@@ -91,14 +91,15 @@ const TableOfContents = () => {
           padding-bottom: 0;
         }
 
-        /* .toc-link {
-          color: rgba(156, 163, 175, 0.7);
-        } */
+        .toc-link {
+          word-break: break-word; /* 長い単語を途中で折り返す */
+          overflow-wrap: break-word; /* 長い単語を途中で折り返す */
+        }
 
         .is-active-link {
-          /* color: #282828; */
           font-weight: 800;
-          overflow-wrap: break-word;
+          word-break: break-word; /* 長い単語を途中で折り返す */
+          overflow-wrap: break-word; /* 長い単語を途中で折り返す */
         }
       `}</style>
     </div>
