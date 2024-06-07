@@ -8,7 +8,7 @@ const Home = async () => {
   const allTags = await getAllTags();
 
   return (
-    <main className="container mx-auto w-full mt-14 ">
+    <main className="container mx-auto w-full mt-14 px-4 md:px-8 lg:px-16">
       <div className="mx-auto lg:w-9/12">
         {/* ヘッダーセクション */}
         <header className="text-center my-8">
@@ -24,7 +24,7 @@ const Home = async () => {
           <h4>
             <Link
               href="/posts/page/1"
-              className="mb-6  mx-auto px-5 block text-right"
+              className="mb-6 mx-auto px-5 block text-right"
             >
               ....もっと見る
             </Link>
