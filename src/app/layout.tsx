@@ -13,11 +13,11 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="ja">
       <body
-        className={`${inter.className} antialiased max-w-7xl mx-auto xl:w-full px-8`}
+        className={`${inter.className} antialiased flex flex-col min-h-screen`}
       >
         <Providers>
           <Navbar />
-          <main className="relative z-10 mb-16">{children}</main>
+          <main className="flex-grow relative z-10 mb-16">{children}</main>
           <Footer />
         </Providers>
       </body>

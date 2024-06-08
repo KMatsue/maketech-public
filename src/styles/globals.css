@@ -20,5 +20,5 @@ h3 {
 }
 
 p {
-  @apply my-2 text-base md:text-base lg:text-lg;
+  @apply my-2 text-base;
 }
