@@ -11,12 +11,20 @@ export async function POST(req: Request) {
     },
   });
 
+  const formattedMessage = `
+  Name: ${name}
+  Email: ${email}
+    
+  Message:
+  ${message}
+  `;
+
   const mailOptions = {
     from: `"${name}" <${process.env.EMAIL_USER}>`, // 送信者の名前と認証されたメールアドレス
     replyTo: email, // 返信先を実際の送信者に設定
     to: process.env.EMAIL_USER,
     subject: `New message from ${name}`,
-    text: message,
+    text: formattedMessage,
   };
 
   try {
