@@ -9,17 +9,6 @@ const ContactForm = () => {
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    // e.preventDefault();
-    // const res = await fetch("/api/contact", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({ name, email, message }),
-    // });
-    // if (res.ok) {
-    //   setSubmitted(true);
-    // }
     console.log("ハンドルサブミット");
   };
 
@@ -34,7 +23,7 @@ const ContactForm = () => {
           <div>
             <label
               htmlFor="name"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
             >
               お名前
             </label>
@@ -50,7 +39,7 @@ const ContactForm = () => {
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
             >
               メールアドレス
             </label>
@@ -66,7 +55,7 @@ const ContactForm = () => {
           <div>
             <label
               htmlFor="message"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
             >
               メッセージ
             </label>
