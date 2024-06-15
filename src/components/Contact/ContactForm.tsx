@@ -105,7 +105,7 @@ const ContactForm = () => {
             }`}
             disabled={isSending}
           >
-            {!isSending ? (
+            {isSending ? (
               <div className="flex items-center">
                 <svg
                   className="animate-spin h-5 w-5 mr-3 text-white"
