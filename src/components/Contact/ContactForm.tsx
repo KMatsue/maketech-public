@@ -9,6 +9,17 @@ const ContactForm = () => {
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, email, message }),
+    });
+    if (res.ok) {
+      setSubmitted(true);
+    }
     console.log("ハンドルサブミット");
   };
 
