@@ -33,7 +33,7 @@ const ContactForm = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+              className="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm p-2 bg-white dark:bg-gray-700 text-black dark:text-white"
             />
           </div>
           <div>
@@ -49,7 +49,7 @@ const ContactForm = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+              className="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm p-2 bg-white dark:bg-gray-700 text-black dark:text-white"
             />
           </div>
           <div>
@@ -64,12 +64,12 @@ const ContactForm = () => {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               required
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+              className="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm p-2 bg-white dark:bg-gray-700 text-black dark:text-white"
             />
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white p-2 rounded-md"
+            className="w-full bg-gray-800 dark:bg-gray-600 text-white dark:text-white p-2 rounded-md hover:bg-gray-700 dark:hover:bg-gray-500"
           >
             送信
           </button>
