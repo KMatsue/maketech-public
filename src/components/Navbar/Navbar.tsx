@@ -22,6 +22,7 @@ const Navbar = () => {
       name: "Blog",
       link: "/posts/page/1",
     },
+    { name: "Contact", link: "/contact" },
   ];
 
   return (
