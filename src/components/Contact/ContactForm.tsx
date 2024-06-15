@@ -116,9 +116,10 @@ const ContactForm = () => {
                     stroke="currentColor"
                     strokeWidth="4"
                     fill="none"
+                    strokeOpacity="0.25"
                   />
                   <path
-                    d="M4 12a8 8 0 018-8"
+                    d="M2 12a10 10 0 0110-10 10 10 0 0110"
                     stroke="currentColor"
                     strokeWidth="4"
                   />
