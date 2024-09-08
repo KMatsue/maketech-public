@@ -10,6 +10,12 @@ import {
   strengths,
   valuePropositions,
 } from "@/data/aboutPageData";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Me | MaKe",
+  description: "開発者のプロフィールページ",
+};
 
 const AboutPage = () => {
   return (
@@ -18,7 +24,7 @@ const AboutPage = () => {
         <header className="text-center my-8">
           <h1 className="text-4xl font-bold mb-4">About Me</h1>
           <p className="text-lg text-gray-700 dark:text-gray-300">
-            Webアプリからネイティブアプリ開発まで、幅広い経験を持つアプリ開発者です。
+            Web/Mobileアプリ開発者です。
           </p>
         </header>
 
@@ -26,7 +32,6 @@ const AboutPage = () => {
           <h2 className="text-2xl font-semibold mb-4">職務経歴</h2>
           <Timeline events={careerEvents} />
         </section>
-        {/* 必要に応じて、スキルセット、経歴、プロジェクトなどのセクションを追加できます */}
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
             スキルセット
@@ -39,7 +44,7 @@ const AboutPage = () => {
           <Accordion items={projectDetails} />
         </section>
 
-        {/* <section className="mb-12">
+        <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-4">専門分野</h2>
           <ul className="list-disc list-inside">
             {specialties.map((specialty, index) => (
@@ -48,7 +53,7 @@ const AboutPage = () => {
               </li>
             ))}
           </ul>
-        </section> */}
+        </section>
 
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-4">強み</h2>

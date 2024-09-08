@@ -1,12 +1,12 @@
 export const careerEvents = [
   {
     date: "2021年1月 - 現在",
-    title: "アプリケーション受託開発",
+    title: "ITシステム開発企業勤務",
     description: "開発者として様々なプロジェクトに携わる",
   },
   {
     date: "2008年4月 - 2020年3月",
-    title: "総合電気メーカー",
+    title: "総合電気メーカー勤務",
     description: "製造、品質管理、システム試験を担当",
   },
 ];
@@ -22,7 +22,7 @@ export const skills = [
   },
   {
     category: "データベース",
-    items: ["PostgreSQL", "MySQL", "Firebase Realtime Database"],
+    items: ["PostgreSQL", "MySQL", "Firebase Database"],
   },
   {
     category: "クラウド/インフラ",
@@ -32,11 +32,10 @@ export const skills = [
       "Docker",
     ],
   },
-  // {
-  //   category: "その他技術",
-  //   items: ["YOLO", "OpenCV", "RevenueCat", "Google Maps API"],
-  // },
-  // 他のスキルカテゴリーも同様に追加
+  {
+    category: "その他技術",
+    items: ["Git", "GitHub"],
+  },
 ];
 
 export const projectDetails = [
@@ -59,7 +58,7 @@ export const projectDetails = [
   {
     title: "動画解析アプリ開発",
     period: "2024年1月 - 現在",
-    role: "フルスタック開発者、インフラ構築担当",
+    role: "アプリ開発、インフラ構築担当",
     description:
       "動画を解析し、人流や車両の動きを分析するアプリケーション。AWSを活用したスケーラブルなインフラ設計と実装。",
     technologies: {
@@ -127,7 +126,7 @@ export const projectDetails = [
     description: "ディープラーニングを用いた物体検出と画像認識処理の実装。",
     technologies: {
       frontend: [],
-      backend: ["Python", "Pytorch"],
+      backend: ["Python", "PyTorch"],
       other: ["YOLO (物体検出)", "OpenCV"],
     },
     teamSize: "開発者2名",
@@ -158,5 +157,4 @@ export const valuePropositions = [
   "品質とスケーラビリティの両立",
   "複雑なシステムの統合能力",
   "技術と業務のブリッジング",
-  "イノベーションと安定性の調和",
 ];
