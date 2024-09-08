@@ -1,73 +1,15 @@
+import React from "react";
 import Accordion from "@/components/About/Accodion";
 import SkillSet from "@/components/About/SkillSet";
 import Timeline from "@/components/About/Timeline";
-import React from "react";
-
-const careerEvents = [
-  {
-    date: "2021年1月 - 現在",
-    title: "IT受託開発",
-    description: "開発者として様々なプロジェクトに携わる",
-  },
-  {
-    date: "2008年4月 - 2020年3月",
-    title: "総合電気メーカー",
-    description: "製造、品質管理、システム試験を担当",
-  },
-];
-
-const skills = [
-  {
-    category: "プログラミング言語",
-    items: ["Python", "JavaScript/TypeScript", "Dart", "PHP", "HTML/CSS"],
-  },
-  {
-    category: "フレームワーク/ライブラリ",
-    items: ["Flutter", "React.js", "Django", "Flask"],
-  },
-  // 他のスキルカテゴリーも同様に追加
-];
-
-const projectDetails = [
-  {
-    title: "動画解析アプリ開発",
-    content: (
-      <div>
-        <p>
-          <strong>期間:</strong> 2024年1月 - 現在
-        </p>
-        <p>
-          <strong>役割:</strong>{" "}
-          フロントエンド、バックエンド、インフラ構築、動画解析処理実装
-        </p>
-        {/* 他のプロジェクト詳細 */}
-      </div>
-    ),
-  },
-  // 他のプロジェクトも同様に追加
-];
-
-const specialties = [
-  "モバイルアプリ開発 (Flutter)",
-  "Webアプリケーション開発 (フロントエンド・バックエンド)",
-  "クラウドネイティブアプリケーション開発 (AWS, GCP)",
-  // 他の専門分野
-];
-
-const strengths = [
-  "フルスタック開発能力",
-  "クラウドインフラ設計と実装の経験",
-  "ハードウェアとソフトウェアの両方の知識を活かした開発",
-  // 他の強み
-];
-
-const valuePropositions = [
-  "包括的なシステム設計能力",
-  "品質とスケーラビリティの両立",
-  "複雑なシステムの統合能力",
-  "技術と業務のブリッジング",
-  "イノベーションと安定性の調和",
-];
+import {
+  careerEvents,
+  skills,
+  projectDetails,
+  specialties,
+  strengths,
+  valuePropositions,
+} from "@/data/aboutPageData";
 
 const AboutPage = () => {
   return (
@@ -76,7 +18,7 @@ const AboutPage = () => {
         <header className="text-center my-8">
           <h1 className="text-4xl font-bold mb-4">About Me</h1>
           <p className="text-lg text-gray-700 dark:text-gray-300">
-            ハードウェア製造からクラウドネイティブ開発まで、幅広い経験を持つアプリ開発者
+            Webアプリからネイティブアプリ開発まで、幅広い経験を持つアプリ開発者です。
           </p>
         </header>
 
@@ -86,7 +28,9 @@ const AboutPage = () => {
         </section>
         {/* 必要に応じて、スキルセット、経歴、プロジェクトなどのセクションを追加できます */}
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4">スキルセット</h2>
+          <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
+            スキルセット
+          </h2>
           <SkillSet skills={skills} />
         </section>
 
@@ -95,7 +39,7 @@ const AboutPage = () => {
           <Accordion items={projectDetails} />
         </section>
 
-        <section className="mb-12">
+        {/* <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-4">専門分野</h2>
           <ul className="list-disc list-inside">
             {specialties.map((specialty, index) => (
@@ -104,7 +48,7 @@ const AboutPage = () => {
               </li>
             ))}
           </ul>
-        </section>
+        </section> */}
 
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-4">強み</h2>
