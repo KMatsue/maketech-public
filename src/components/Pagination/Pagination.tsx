@@ -10,7 +10,6 @@ interface Props {
 
 const Pagination = (props: Props) => {
   const { numberOfPage, currentPage, tag } = props;
-  // console.log(tag);
 
   let pages: number[] = [];
   for (let i = 1; i <= numberOfPage; i++) {
@@ -29,17 +28,16 @@ const Pagination = (props: Props) => {
           >
             <li
               className={clsx(
-                " border-gray-500 dark:border-slate-200 rounded-lg w-8 h-8 relative hover:p-4",
+                " border-gray-500 dark:border-slate-200 rounded-lg w-8 h-8 relative hover:bg-gray-300 dark:hover:bg-gray-600",
                 {
-                  border: Number(currentPage) !== page,
-                  "border-2 font-semibold": Number(currentPage) === page,
+                  "border-2 font-semibold text-gray-700 dark:text-gray-300":
+                    Number(currentPage) === page,
+                  "text-gray-500 dark:text-gray-400":
+                    Number(currentPage) !== page,
                 }
               )}
             >
-              <span
-                className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4
-               text-gray-500 dark:text-slate-200"
-              >
+              <span className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4">
                 {page}
               </span>
             </li>

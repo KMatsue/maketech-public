@@ -6,7 +6,7 @@ const ContactPage = () => {
       <div className="mx-auto lg:w-9/12">
         {/* ヘッダーセクション */}
         <header className="text-center my-8">
-          <h2 className="text-3xl font-bold mb-4">お問い合わせ</h2>
+          <h1 className="text-4xl font-bold mb-4">Contact</h1>
           <p className="text-lg text-gray-700 dark:text-gray-300">
             ご質問やフィードバックがございましたら、下記のフォームからお問い合わせください。
           </p>

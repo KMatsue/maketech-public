@@ -18,8 +18,10 @@ const ContactForm = () => {
     setIsSending(true);
     setToast(null);
 
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch(`${apiUrl}/api/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -119,9 +121,10 @@ const ContactForm = () => {
                     strokeOpacity="0.25"
                   />
                   <path
-                    d="M2 12a10 10 0 0110-10 10 10 0 0110"
+                    d="M2 12a10 10 0 0110-10 10 10 0 0110 10"
                     stroke="currentColor"
                     strokeWidth="4"
+                    fill="none"
                   />
                 </svg>
                 送信中...

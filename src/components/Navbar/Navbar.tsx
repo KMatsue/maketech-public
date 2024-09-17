@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ThemeSwitch } from "@/components/ThemeSwitch";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
@@ -9,21 +9,21 @@ import { motion } from "framer-motion";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
-  const [active, setActive] = useState<string>();
   const pathName: string = usePathname();
-
-  useEffect(() => {
-    setActive(pathName);
-  }, [pathName]);
 
   const navMenuList = [
     { name: "Home", link: "/" },
-    {
-      name: "Blog",
-      link: "/posts/page/1",
-    },
+    { name: "Blog", link: "/posts/page/1" },
+    { name: "About", link: "/about" },
     { name: "Contact", link: "/contact" },
   ];
+
+  const isActive = (link: string) => {
+    if (link === "/posts/page/1" && pathName.startsWith("/posts/")) {
+      return true;
+    }
+    return link === pathName;
+  };
 
   return (
     <nav className="container mx-auto px-4 md:px-8 lg:px-16">
@@ -37,14 +37,16 @@ const Navbar = () => {
             {navMenuList.map((menu, index) => (
               <li
                 key={index}
-                className="font-medium hover:text-gray-600 dark:hover:text-gray-400 cursor-pointer duration-300 group relative"
+                className={`font-medium hover:text-gray-600 dark:hover:text-gray-400 cursor-pointer duration-300 group relative ${
+                  isActive(menu.link) ? "text-gray-700 dark:text-gray-300" : ""
+                }`}
               >
                 <Link href={menu.link}>{menu.name}</Link>
                 <span
                   className={`${
-                    active === menu.link && "scale-100"
-                  } absolute w-full scale-0 group-hover:scale-100 inline-block h-0.5
-                   -bottom-[1px] left-0 bg-gray-700 dark:bg-gray-400 duration-500`}
+                    isActive(menu.link) ? "scale-100" : "scale-0"
+                  } absolute w-full group-hover:scale-100 inline-block h-0.5
+                   -bottom-[1px] left-0 bg-gray-700 dark:bg-gray-300 duration-500`}
                 ></span>
               </li>
             ))}
@@ -59,12 +61,12 @@ const Navbar = () => {
           >
             {!openMenu ? (
               <>
-                <span className="w-full h-[3px] bg-black dark:bg-gray-200 inline-flex -translate-x-1 group-hover:translate-x-0 transition-transform duration-500"></span>
-                <span className="w-full h-[3px] bg-black dark:bg-gray-200 inline-flex -translate-x-3 group-hover:translate-x-0 transition-transform duration-500"></span>
-                <span className="w-full h-[3px] bg-black dark:bg-gray-200"></span>
+                <span className="w-full h-[3px] bg-black dark:bg-gray-300 inline-flex -translate-x-1 group-hover:translate-x-0 transition-transform duration-500"></span>
+                <span className="w-full h-[3px] bg-black dark:bg-gray-300 inline-flex -translate-x-3 group-hover:translate-x-0 transition-transform duration-500"></span>
+                <span className="w-full h-[3px] bg-black dark:bg-gray-300"></span>
               </>
             ) : (
-              <XMarkIcon className="w-7 h-7" />
+              <XMarkIcon className="w-7 h-7 text-black dark:text-gray-300" />
             )}
           </div>
           {/* スモールサイズ時のメニュー */}
@@ -78,17 +80,17 @@ const Navbar = () => {
               >
                 <div className="text-center relative">
                   <span
-                    className="absolute right-3 top-3 rounded-md ring-2 ring-black dark:ring-gray-200 hover:ring-gray-600 dark:hover:ring-gray-400 cursor-pointer duration-300"
+                    className="absolute right-3 top-3 rounded-md ring-2 ring-black dark:ring-gray-300 hover:ring-gray-600 dark:hover:ring-gray-400 cursor-pointer duration-300"
                     onClick={() => setOpenMenu(!openMenu)}
                   >
-                    <XMarkIcon className="w-7 h-7 text-black dark:text-gray-200" />
+                    <XMarkIcon className="w-7 h-7 text-black dark:text-gray-300" />
                   </span>
-                  <p className="text-center text-2xl font-medium text-black dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 mb-4 inline-block cursor-pointer">
+                  <p className="text-center text-2xl font-medium text-black dark:text-gray-300 hover:text-gray-600 dark:hover:text-gray-400 mb-4 inline-block cursor-pointer">
                     <Link href="/">MaKe TECH 🚀</Link>
                   </p>
                 </div>
 
-                <ul className="flex flex-col text-black dark:text-gray-200 gap-4 font-semibold mt-4 mb-6">
+                <ul className="flex flex-col text-black dark:text-gray-300 gap-4 font-semibold mt-4 mb-6">
                   {navMenuList.map((menu, index) => (
                     <li
                       key={index}
