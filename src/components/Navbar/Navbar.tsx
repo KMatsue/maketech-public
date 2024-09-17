@@ -14,6 +14,7 @@ const Navbar = () => {
   const navMenuList = [
     { name: "Home", link: "/" },
     { name: "Blog", link: "/posts/page/1" },
+    { name: "About", link: "/about" },
     { name: "Contact", link: "/contact" },
   ];
 
