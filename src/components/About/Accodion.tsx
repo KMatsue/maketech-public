@@ -28,16 +28,16 @@ const Accordion: React.FC<{ items: ProjectDetail[] }> = ({ items }) => {
           className="border border-gray-200 dark:border-gray-700 rounded-lg"
         >
           <button
-            className="flex flex-col sm:flex-row justify-between items-start sm:items-center w-full p-4 text-left"
+            className="flex justify-between items-center w-full p-4 text-left"
             onClick={() => setOpenIndex(openIndex === index ? null : index)}
           >
-            <div>
+            <div className="flex-grow pr-4">
               <div className="font-semibold">{item.title}</div>
               <div className="text-sm text-gray-500 dark:text-gray-400">
                 {item.period}
               </div>
             </div>
-            <span className="mt-2 sm:mt-0">
+            <span className="text-xl leading-none flex-shrink-0">
               {openIndex === index ? "−" : "+"}
             </span>
           </button>
