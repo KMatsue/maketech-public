@@ -9,6 +9,7 @@ import {
   specialties,
   strengths,
   valuePropositions,
+  strengthsAndValueProps,
 } from "@/data/aboutPageData";
 import { Metadata } from "next";
 
@@ -56,6 +57,16 @@ const AboutPage = () => {
         </section>
 
         <section className="mb-12">
+          <h2 className="text-2xl font-semibold mb-4">強みと価値提案</h2>
+          {strengthsAndValueProps.map((item, index) => (
+            <div key={index} className="mb-4">
+              <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+              <p>{item.description}</p>
+            </div>
+          ))}
+        </section>
+
+        {/* <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-4">強み</h2>
           <ul className="list-disc list-inside">
             {strengths.map((strength, index) => (
@@ -78,7 +89,7 @@ const AboutPage = () => {
               </li>
             ))}
           </ul>
-        </section>
+        </section> */}
       </div>
     </main>
   );
