@@ -3,11 +3,40 @@ import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import Providers from "@/components/Providers";
 import { inter } from "@/app/ui/fonts";
+import { Metadata } from "next";
 
 export const revalidate = 300;
 
-export const metadata = {
-  title: { default: "MaKe Tech", template: "%s | MaKe Tech Blog" },
+export const metadata: Metadata = {
+  title: {
+    default: "MaKe TECH",
+    template: "%s | MaKe TECH",
+  },
+  description:
+    "Web開発、プログラミング、技術に関する情報を提供するテックブログ",
+  keywords: [
+    "Web開発",
+    "プログラミング",
+    "技術ブログ",
+    "ソフトウェアエンジニアリング",
+  ],
+  authors: [{ name: "MaKe" }],
+  creator: "MaKe",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
+  openGraph: {
+    type: "website",
+    locale: "ja_JP",
+    url: "https://maketech.vercel.app/",
+    siteName: "MaKeTECH",
+  },
+  // twitter: {
+  //   card: "summary_large_image",
+  //   site: "@yourtwitterhandle",
+  //   creator: "@yourtwitterhandle",
+  // },
 };
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (

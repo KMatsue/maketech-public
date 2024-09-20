@@ -2,6 +2,19 @@ import { getAllTags, getPostsTopPage } from "@/lib/notionAPI";
 import Link from "next/link";
 import Tag from "@/components/Tags/Tags";
 import Posts from "@/components/Post/Posts";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "MaKeTECH - Web開発のトレンドと技術情報",
+  description:
+    "Web開発、プログラミング、技術に関する情報を提供するテックブログです。技術的な学びや読書のアウトプット、メモを共有しています。",
+  keywords: [
+    "Web開発",
+    "プログラミング",
+    "技術ブログ",
+    "ソフトウェアエンジニアリング",
+  ],
+};
 
 const Home = async () => {
   const posts = await getPostsTopPage({ pageSize: 5 });

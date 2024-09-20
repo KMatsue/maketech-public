@@ -8,6 +8,20 @@ import SinglePost from "@/components/Post/SinglePost";
 import Pagination from "@/components/Pagination/Pagination";
 import Tags from "@/components/Tags/Tags";
 import Posts from "@/components/Post/Posts";
+import { Metadata } from "next";
+
+export const generateMetadata = async ({
+  params,
+}: {
+  params: { tag: string; page: string };
+}): Promise<Metadata> => {
+  const tag = params.tag;
+  return {
+    title: `${tag}に関する記事`,
+    description: `${tag}に関連するWeb開発、プログラミング、技術情報の記事一覧です。`,
+    keywords: [tag, "Web開発", "プログラミング", "技術情報"],
+  };
+};
 
 export const generateStaticParams = async () => {
   const allTags = await getAllTags();

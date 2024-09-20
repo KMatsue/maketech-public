@@ -1,4 +1,12 @@
 import ContactForm from "@/components/Contact/ContactForm";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "お問い合わせ",
+  description:
+    "MaKeTECHへのお問い合わせページです。ご質問、フィードバック、お仕事のご依頼などはこちらからお願いします。",
+  keywords: ["お問い合わせ", "フィードバック", "Web開発", "プログラミング"],
+};
 
 const ContactPage = () => {
   return (

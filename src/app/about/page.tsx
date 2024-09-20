@@ -16,8 +16,16 @@ import {
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Me",
-  description: "開発者のプロフィールページ",
+  title: "プロフィール",
+  description:
+    "MaKeTECHの著者プロフィールページです。Web開発者としての経歴、スキル、プロジェクト実績などを紹介しています。",
+  keywords: [
+    "プロフィール",
+    "Web開発者",
+    "アプリ開発",
+    "ソフトウェアエンジニア",
+    "経歴",
+  ],
 };
 
 const AboutPage = () => {

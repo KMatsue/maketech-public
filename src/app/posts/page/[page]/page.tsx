@@ -9,6 +9,14 @@ import SinglePost from "@/components/Post/SinglePost";
 import Pagination from "@/components/Pagination/Pagination";
 import Tags from "@/components/Tags/Tags";
 import Posts from "@/components/Post/Posts";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "ブログ記事一覧",
+  description:
+    "MaKe TECH Blogの全記事一覧です。Web開発、プログラミング、技術に関する記事を掲載しています。",
+  keywords: ["ブログ記事", "Web開発", "プログラミング", "技術情報"],
+};
 
 type PageParam = {
   page: string;
