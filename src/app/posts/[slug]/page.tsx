@@ -1,9 +1,19 @@
 import Link from "next/link";
 import { getAllPosts, getSinglePost } from "@/lib/notionAPI";
 import RenderBlock from "@/components/notion/RenderBlock";
-import TableOfContents from "@/components/TableOfContents/TableOfContents";
+// import TableOfContents from "@/components/TableOfContents/TableOfContents";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import TagLink from "@/components/Tags/TagLink";
+import dynamic from "next/dynamic";
+
+// TableOfContentsを動的インポート
+const TableOfContents = dynamic(
+  () => import("@/components/TableOfContents/TableOfContents"),
+  {
+    ssr: false,
+  }
+);
 
 export const generateStaticParams = async () => {
   const allPosts = await getAllPosts();
@@ -44,43 +54,43 @@ const Post = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <section className="container mx-auto mt-20 px-4 md:px-8 lg:px-16">
-      <h1 className="text-2xl font-medium">{post.metadata.title}</h1>
-      <div className="border-b-2 w-1/3 mt-1 border-gray-500 dark:border-slate-100"></div>
-      <span className="text-gray-500 dark:text-slate-100 text-lg mt-2 block">
-        Posted date at {post.metadata.date}
-      </span>
-      <div className="mt-4">
-        {post.metadata.tags.map((tag: string, index: number) => (
-          <span
-            key={index}
-            className="text-white bg-gray-500 rounded-xl font-medium mt-2 px-2 inline-block mr-2"
-          >
-            <Link href={`/posts/tag/${tag}/page/1`}>{tag}</Link>
-          </span>
-        ))}
-      </div>
-      <div className="md:flex mt-10">
-        <div className="md:w-8/12 lg:w-9/12 md:mr-4">
-          <div className="post font-medium">
-            {blocks.map((block: any) => (
-              <div key={block.id}>{RenderBlock(block)}</div>
-            ))}
-          </div>
-          <div className="mt-20 font-medium">
-            <Link href="/">
-              <span className="pb-20 block text-sky-900 dark:text-slate-100">
-                ← ホームに戻る
-              </span>
-            </Link>
-          </div>
-        </div>
-        <div
-          className="hidden md:block md:w-4/12 lg:w-3/12 mt-12 ml-4 h-fit max-h-[80vh]
-          overflow-y-scroll sticky top-[28px] border-2 rounded-md"
+      <article>
+        <h1 className="text-2xl font-medium">{post.metadata.title}</h1>
+        <div className="border-b-2 w-1/3 mt-1 border-gray-500 dark:border-slate-100"></div>
+        <time
+          className="text-gray-500 dark:text-slate-100 text-lg mt-2 block"
+          dateTime={post.metadata.date}
         >
-          <TableOfContents />
+          Posted date at {post.metadata.date}
+        </time>
+        <div className="mt-4 space-x-2">
+          {post.metadata.tags.map((tag: string, index: number) => (
+            <TagLink key={tag} tag={tag} />
+          ))}
         </div>
-      </div>
+        <div className="lg:flex mt-10 gap-8">
+          <div className="lg:w-8/12">
+            <div className="post font-medium">
+              {blocks.map((block: any) => (
+                <div key={block.id}>{RenderBlock(block)}</div>
+              ))}
+            </div>
+            <nav className="mt-20 font-medium">
+              <Link
+                href="/"
+                className="pb-20 block text-sky-900 dark:text-slate-100"
+              >
+                ← ホームに戻る
+              </Link>
+            </nav>
+          </div>
+          <aside className="lg:w-4/12 mt-12 lg:mt-0">
+            <div className="lg:sticky lg:top-8 border-2 rounded-md overflow-hidden max-h-[calc(100vh-4rem)]">
+              <TableOfContents />
+            </div>
+          </aside>
+        </div>
+      </article>
     </section>
   );
 };
