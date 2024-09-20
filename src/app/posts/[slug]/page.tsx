@@ -55,21 +55,30 @@ const Post = async ({ params }: { params: { slug: string } }) => {
   return (
     <section className="container mx-auto mt-20 px-4 md:px-8 lg:px-16">
       <article>
-        <h1 className="text-2xl font-medium">{post.metadata.title}</h1>
-        <div className="border-b-2 w-1/3 mt-1 border-gray-500 dark:border-slate-100"></div>
-        <time
-          className="text-gray-500 dark:text-slate-100 text-lg mt-2 block"
-          dateTime={post.metadata.date}
-        >
-          Posted date at {post.metadata.date}
-        </time>
-        <div className="mt-4 space-x-2">
-          {post.metadata.tags.map((tag: string, index: number) => (
-            <TagLink key={tag} tag={tag} />
-          ))}
-        </div>
+        <header className="mb-8">
+          <h1 className="text-3xl lg:text-4xl font-bold mb-2">
+            {post.metadata.title}
+          </h1>
+          <div className="border-b-2 w-full md:w-1/2 my-4 border-gray-300 dark:border-gray-700"></div>
+          <time
+            className="text-gray-600 dark:text-gray-400 text-sm md:text-base block mb-4"
+            dateTime={post.metadata.date}
+          >
+            Posted on{" "}
+            {new Date(post.metadata.date).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </time>
+          <div className="flex flex-wrap gap-2 mb-6">
+            {post.metadata.tags.map((tag: string) => (
+              <TagLink key={tag} tag={tag} />
+            ))}
+          </div>
+        </header>
         <div className="lg:flex mt-10 gap-8">
-          <div className="lg:w-8/12">
+          <div className="lg:w-9/12">
             <div className="post font-medium">
               {blocks.map((block: any) => (
                 <div key={block.id}>{RenderBlock(block)}</div>
@@ -84,7 +93,7 @@ const Post = async ({ params }: { params: { slug: string } }) => {
               </Link>
             </nav>
           </div>
-          <aside className="lg:w-4/12 mt-12 lg:mt-0">
+          <aside className="lg:w-3/12 mt-12 lg:mt-0">
             <div className="lg:sticky lg:top-8 border-2 rounded-md overflow-hidden max-h-[calc(100vh-4rem)]">
               <TableOfContents />
             </div>
