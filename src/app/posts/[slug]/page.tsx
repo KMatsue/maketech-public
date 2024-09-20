@@ -2,6 +2,8 @@ import Link from "next/link";
 import { getAllPosts, getSinglePost } from "@/lib/notionAPI";
 import RenderBlock from "@/components/notion/RenderBlock";
 import TableOfContents from "@/components/TableOfContents/TableOfContents";
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 export const generateStaticParams = async () => {
   const allPosts = await getAllPosts();
@@ -12,10 +14,33 @@ export const generateStaticParams = async () => {
   return paths;
 };
 
+export const generateMetadata = async ({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> => {
+  const post = await getSinglePost(params.slug);
+  if (!post) return notFound();
+  return {
+    title: post.metadata.title,
+    description:
+      post.metadata.description || `${post.metadata.title}に関する記事です。`,
+    keywords: [...post.metadata.tags, "Web開発", "プログラミング", "技術情報"],
+    openGraph: {
+      title: post.metadata.title,
+      description: post.metadata.description,
+      type: "article",
+      publishedTime: post.metadata.date,
+    },
+  };
+};
+
 const Post = async ({ params }: { params: { slug: string } }) => {
   const post = await getSinglePost(params.slug);
+  if (!post) return notFound();
+  console.log(post.metadata);
   const blocks = post.markdown;
-  console.log(`${JSON.stringify(blocks)}`);
+  // console.log(`${JSON.stringify(blocks)}`);
 
   return (
     <section className="container mx-auto mt-20 px-4 md:px-8 lg:px-16">

@@ -14,8 +14,8 @@ export const getOgp = async (url: string): Promise<OgpData> => {
   try {
     const encodeURL = encodeURI(url);
     const { title, ogp } = await ogpParser(encodeURL);
-    console.log(`title:${title}`);
-    console.log(ogp);
+    // console.log(`title:${title}`);
+    // console.log(ogp);
 
     return {
       pageUrl: encodeURL,
