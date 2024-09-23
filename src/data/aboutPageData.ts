@@ -60,19 +60,19 @@ export const projectDetails = [
     period: "2024年1月 - 現在",
     role: "アプリ開発、インフラ構築担当",
     description:
-      "動画を解析し、人流や車両の動きを分析するアプリケーション。IPカメラを使った動画解析によるリアルタイム解析を実装。",
+      "動画やリアルタイムストリームから人流や車両の動きを分析するアプリケーションの開発。主な機能には、アップロード動画の解析、IPカメラを使用したリアルタイムストリーミング解析、検出された人物の属性分析（性別、年齢範囲）が含まれる。WebSocketを使用したリアルタイムデータ通信、バックグラウンドでの動画解析データ処理、AWSを活用したスケーラブルなインフラ設計を実現。JWT認証やCSRF保護などのセキュリティ機能も実装。",
     technologies: {
       frontend: ["React.js", "TypeScript", "Tailwind CSS"],
       backend: ["Django", "Python"],
-      database: ["PostgreSQL"],
+      database: ["PostgreSQL", "Redis"],
       infrastructure: ["AWS (ECS, VPC, S3, RDS)", "Docker"],
-      other: ["YOLO (物体検出)", "OpenCV"],
+      other: ["YOLO (物体検出)", "OpenCV", "JWT認証"],
     },
     teamSize: "開発者2名",
     achievements: [
-      // "WebSocketを使ったリアルタイム動画解析機能の実装により、利便性を向上",
-      // "AWSを活用したスケーラブルなインフラ設計により、同時接続数を3倍に増加",
-      // "カスタムYOLOモデルの導入により、物体検出の精度を20%改善",
+      "WebSocketを使用したリアルタイム動画解析機能の実装により、ユーザー体験を向上",
+      "AWSのECSとFargateを活用したスケーラブルなインフラ設計により、将来の成長に備えた拡張性を確保",
+      "YOLOv8とAmazon Rekognitionを組み合わせた物体検出と属性分析機能の実現",
     ],
   },
   {
@@ -80,21 +80,41 @@ export const projectDetails = [
     period: "2022年12月 - 2023年12月",
     role: "モバイルアプリ開発(Android/iOS)",
     description:
-      "建設業向けの業務用マッチングアプリケーション。サブスクリプション及び管理者による認証制のアプリ。Flutter を使用して開発。ログイン認証やストレージなどはFirebaseで構築。アプリ内課金の実装など。",
+      "建設業向けの特化型マッチングアプリケーションの開発。発生土の受け入れ先と盛土が必要な現場をマッチングし、建設現場の効率を向上させるツール。主な機能には、条件に合致した現場のポップアップ通知、承認後の詳細情報表示によるセキュリティ確保、サブスクリプションベースの収益モデルが含まれる。Flutter を使用してクロスプラットフォーム開発を行い、Firebase でバックエンドを構築。RevenueCat を活用してアプリ内課金（サブスクリプション）を実装し、ユーザー管理と収益化を効率的に行った。",
     technologies: {
-      frontend: ["Flutter", "Dart"],
-      backend: ["Firebase"],
-      other: ["RevenueCat (アプリ内課金)", "Riverpodを使った状態管理"],
+      frontend: [
+        "Flutter",
+        "Dart",
+        "Riverpod (状態管理)",
+        "go_router (ナビゲーション)",
+      ],
+      backend: [
+        "Firebase (Authentication, Firestore, Cloud Functions, Storage, Messaging, Remote Config)",
+      ],
+      other: [
+        "RevenueCat (アプリ内課金)",
+        "Flutter Hooks",
+        "Freezed (コード生成)",
+        "Intl (多言語化)",
+      ],
     },
     teamSize: "開発者1名、デザイナー1名",
-    achievements: ["アプリの要件定義からリリースまで担当"],
+    achievements: [
+      "Flutterを活用し、単一のコードベースでAndroidとiOSの両プラットフォームに対応",
+      "Firebaseの各種サービスを統合し、認証、データベース、ストレージ、メッセージングを含むバックエンドソリューションを構築",
+      "RevenueCatを連携させ、サブスクリプション管理と収益化を効率的に実装",
+      "Riverpodを用いた状態管理とgo_routerによるナビゲーション設計で、保守性の高いアーキテクチャを実現",
+      "Flutter Hooksとfreezedを活用し、ボイラープレートコードを削減しつつ、型安全性を確保",
+      "多言語対応とプッシュ通知機能の実装により、ユーザー体験を向上",
+      "アプリの要件定義からApp StoreとGoogle Play Storeへのリリースまでを担当",
+    ],
   },
   {
     title: "イベントサイト作成",
     period: "2022年7月  - 2022年12月",
     role: "イベントサイト投稿機能作成",
     description:
-      "投稿機能を作成し、既存のWordPressサイトへ連携。WordPressのデータベースへの投稿処理の実装。",
+      "既存のWordPressサイトに統合する形で、新たなイベント投稿機能を実装。WordPressデータベースとの連携も実装",
     technologies: {
       frontend: ["HTML/CSS", "JavaScript"],
       backend: ["PHP", "WordPress"],
@@ -106,31 +126,61 @@ export const projectDetails = [
     achievements: [],
   },
   {
-    title: "マッチングアプリ開発",
+    title: "CtoC向けマッチングアプリ開発",
     period: "2021年6月 - 2022年6月",
     role: "モバイルアプリ開発(Android/iOS)",
     description:
-      "CtoC向けマッチングアプリケーション。Flutterを使用した開発。Firebase を用いたバックエンド構築。アプリ内課金(消耗型)の実装など。MVVMアーキテクチャで実装。",
+      "位置情報と地図機能を活用したCtoC向けマッチングアプリケーションの開発。MVVMアーキテクチャを採用し、保守性と拡張性の高いコード構造を実現。ユーザー間のイベント作成、検索、申し込み機能や、メッセージング、評価システムなどを実装。Firebaseのサービスを活用してバックエンドを構築し、リアルタイムなデータ同期と通知機能を実現。Google Maps APIを統合し、位置情報ベースの検索と表示機能を実装。多様な認証方法（Email、Google、Apple）をサポートし、アプリ内課金(消耗型)による収益化を実装。招待コードを使った紹介機能、プッシュ通知機能など多様な機能を統合。",
     technologies: {
-      frontend: ["Flutter", "Dart"],
-      backend: ["Firebase"],
-      other: ["Google Maps API", "Providerを使った状態管理"],
+      frontend: [
+        "Flutter",
+        "Dart",
+        "Provider (状態管理)",
+        "MVVM (アーキテクチャパターン)",
+      ],
+      backend: [
+        "Firebase (Authentication, Firestore, Storage,  Messaging, Dynamic Links, In-App Messaging, Remote Config)",
+      ],
+      other: [
+        "Google Maps API",
+        "Geolocator & Geocoding",
+        "In-App Purchase",
+        "Google Sign-In",
+        "Sign In with Apple",
+        "Image Picker & Cropper",
+      ],
     },
     teamSize: "開発者2名、デザイナー1名",
-    achievements: ["アプリの開発からリリースまで担当"],
+    achievements: [
+      "MVVMアーキテクチャを採用し、ビジネスロジックとUIの分離を実現、コードの保守性と再利用性を向上",
+      "Flutterを活用し、単一のコードベースでAndroidとiOSの両プラットフォームに対応したアプリを開発",
+      "Firebaseの各種サービスを統合し、認証、データベース、ストレージ、メッセージングを含むバックエンドを構築",
+      "Google Maps APIと位置情報サービスを統合し、ユーザーの位置に基づいたイベント検索と表示機能を実装",
+      "複数の認証方法（Email、Google、Apple）を実装し、ユーザーの利便性を向上",
+      "In-App Purchaseを使用したアプリ内課金(消耗型)を導入し、収益化を実現",
+      "Firebase Cloud Messagingを活用し、プッシュ通知システムを構築",
+      "画像のアップロードと編集機能を実装し、ユーザープロフィールやイベント情報の視覚的な印象を向上",
+      "多言語対応とローカライゼーションを実装し、アプリの国際化に対応",
+      "アプリの要件定義からApp StoreとGoogle Play Storeへのリリースまでを担当",
+    ],
   },
   {
     title: "画像解析ツール開発",
     period: "2021年1月 - 2021年7月",
     role: "画像解析処理",
-    description: "ディープラーニングを用いた物体検出と画像認識処理の実装。",
+    description:
+      "ディープラーニングを用いた物体検出と画像認識処理の実装。検出対象の画像アノテーション、データ拡張技術を用いた学習データセットの強化、モデルの学習と最適化を担当。",
     technologies: {
       frontend: [],
       backend: ["Python", "PyTorch"],
       other: ["YOLO (物体検出)", "OpenCV"],
     },
     teamSize: "開発者2名",
-    achievements: [],
+    achievements: [
+      "検出対象の画像を自らアノテーションし、学習データセットを作成",
+      "データ拡張技術（画像の回転、色調変更など）を実装し、学習データの多様性と量を向上",
+      "YOLOアルゴリズムを用いた物体検出モデルの学習と推論を実施",
+    ],
   },
 ];
 
