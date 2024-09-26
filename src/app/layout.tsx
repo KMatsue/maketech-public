@@ -37,6 +37,11 @@ export const metadata: Metadata = {
   //   site: "@yourtwitterhandle",
   //   creator: "@yourtwitterhandle",
   // },
+  alternates: {
+    types: {
+      "application/rss+xml": [{ url: "/api/feed", title: "MaKeTECH RSS Feed" }],
+    },
+  },
 };
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
