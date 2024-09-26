@@ -35,7 +35,12 @@
    - 閲覧者とのコミュニケーション手段の提供
 
 5. SEO 最適化
+
    - 各ページに適切なメタデータを設定
+
+6. RSS フィード
+   - 最新の記事更新情報を提供
+   - ユーザーが簡単に購読できる機能
 
 ## 2. 技術スタックと構成
 
@@ -50,6 +55,7 @@
 - Framer Motion 10.16.5
 - next-themes 0.2.1
 - nodemailer 6.9.13
+- feed 4.2.2 (RSS フィード生成用)
 
 ### プロジェクト構造
 
@@ -57,6 +63,8 @@
 src/
 ├── app/
 │   ├── api/
+│   │   └── feed/
+│   │       └── route.ts
 │   ├── contact/
 │   ├── about/
 │   │   └── page.tsx
@@ -91,7 +99,8 @@ src/
 │   └── aboutPageData.ts
 ├── lib/
 │   ├── notionAPI.ts
-│   └── ogp.ts
+│   ├── ogp.ts
+│   └── generateRssFeed.ts
 ├── stories/
 └── styles/
     └── globals.css
@@ -101,7 +110,7 @@ src/
 
 1. `layout.tsx`: サイト全体のレイアウト
 2. `Navbar.tsx`: ナビゲーションバー
-3. `Footer.tsx`: フッター
+3. `Footer.tsx`: フッター（RSS フィードリンクを含む）
 4. `Posts.tsx`: 記事一覧表示
 5. `SinglePost.tsx`: 個別記事表示
 6. `Pagination.tsx`: ページネーション
@@ -121,6 +130,7 @@ src/
 5. About ページ (`/about`)
 6. コンタクトページ (`/contact`)
 7. 404 ページ
+8. RSS フィード (`/api/feed`)
 
 ## 3. 開発環境と設定
 
@@ -169,6 +179,7 @@ src/
 10. 自己紹介・経歴紹介（About ページ）
 11. SEO 最適化（メタデータの設定）
 12. サイトマップの自動生成 (next-sitemap)
+13. RSS フィードの生成と提供 (feed)
 
 ### データフロー
 
@@ -194,22 +205,7 @@ src/
 - 動的なページでは、`generateMetadata`関数を使用して動的にメタデータを生成
 - サイトマップ（sitemap.xml）の自動生成と更新
 - robots.txt ファイルの生成とカスタマイズ
-
-例: ホームページのメタデータ
-
-```typescript
-export const metadata: Metadata = {
-  title: "MaKeTECH - Web開発の最新トレンドと技術情報",
-  description:
-    "Web開発、プログラミング、最新技術トレンドに関する情報を提供するテックブログです。",
-  keywords: [
-    "Web開発",
-    "プログラミング",
-    "技術ブログ",
-    "ソフトウェアエンジニアリング",
-  ],
-};
-```
+- RSS フィードの提供による最新コンテンツの発見性向上
 
 ### サイトマップの実装
 
@@ -219,6 +215,13 @@ export const metadata: Metadata = {
   - 除外する URL の指定
   - robots.txt ファイルの自動生成
 - ビルドプロセスの一部としてサイトマップを生成（`postbuild`スクリプト）
+
+### RSS フィードの実装
+
+- `feed`パッケージを使用して RSS フィードを生成
+- `generateRssFeed.ts`で最新の記事データを取得し、フィードを構築
+- `/api/feed`エンドポイントで RSS フィードを提供
+- `Footer.tsx`に RSS フィードへのリンクを追加
 
 ## 6. 開発プロセスとバージョン管理
 
@@ -285,3 +288,4 @@ export const metadata: Metadata = {
 11. CI/CD パイプラインの強化（自動テストの導入など）
 12. サイトマップの定期的な更新と効果測定
 13. 構造化データ（JSON-LD）の実装によるリッチスニペットの活用
+14. RSS フィードの利用状況分析と最適化
