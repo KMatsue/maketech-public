@@ -8,6 +8,7 @@ import SinglePost from "@/components/Post/SinglePost";
 import Pagination from "@/components/Pagination/Pagination";
 import Tags from "@/components/Tags/Tags";
 import Posts from "@/components/Post/Posts";
+import { normalizeTag } from "@/lib/stringUtils";
 import { Metadata } from "next";
 
 export const generateMetadata = async ({
@@ -15,7 +16,7 @@ export const generateMetadata = async ({
 }: {
   params: { tag: string; page: string };
 }): Promise<Metadata> => {
-  const tag = params.tag;
+  const tag = decodeURIComponent(params.tag);
   return {
     title: `${tag}に関する記事`,
     description: `${tag}に関連するWeb開発、プログラミング、技術情報の記事一覧です。`,
@@ -53,16 +54,21 @@ const BlogTagPageList = async ({
   params: { tag: string; page: string };
 }) => {
   const currentPage = params?.page ? params.page.toString() : "1";
-  const currentTag = params?.tag ? params.tag.toString() : "";
-  const upperCaseCurrentTag =
-    currentTag.charAt(0).toUpperCase() + currentTag.slice(1);
+  const currentTag = params?.tag
+    ? decodeURIComponent(params.tag.toString())
+    : "";
+
+  const displayTag = currentTag.charAt(0).toUpperCase() + currentTag.slice(1);
+
+  // 検索用のタグ（正規化された形式）
+  const normalizedTag = normalizeTag(currentTag);
 
   const posts = await getPostsByTagAndPage(
-    upperCaseCurrentTag,
+    normalizedTag,
     parseInt(currentPage)
   );
   const allTags = await getAllTags();
-  const totalPageSizeByTag = await getNumberOfPagesByTag(upperCaseCurrentTag);
+  const totalPageSizeByTag = await getNumberOfPagesByTag(normalizedTag);
   return (
     <div>
       <Head>
@@ -73,7 +79,7 @@ const BlogTagPageList = async ({
       <main className="container w-full mt-14 mx-auto px-4 md:px-8 lg:px-16">
         <header className="text-center my-8">
           <h1 className="text-4xl font-bold mb-4">
-            {`Search tags in ${upperCaseCurrentTag}`}
+            {`Search tags in ${displayTag}`}
           </h1>
         </header>
         <div className="md:flex">
