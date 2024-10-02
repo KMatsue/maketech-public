@@ -7,8 +7,6 @@ import {
   skills,
   projectDetails,
   specialties,
-  strengths,
-  valuePropositions,
   strengthsAndValueProps,
   hobbiesAndInterests,
   hobbiesSummary,
@@ -43,16 +41,17 @@ const AboutPage = () => {
           <h2 className="text-2xl font-semibold mb-4">職務経歴</h2>
           <Timeline events={careerEvents} />
         </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold mb-4">プロジェクト詳細</h2>
+          <Accordion items={projectDetails} />
+        </section>
+
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
             スキルセット
           </h2>
           <SkillSet skills={skills} />
-        </section>
-
-        <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4">プロジェクト詳細</h2>
-          <Accordion items={projectDetails} />
         </section>
 
         <section className="mb-12">
@@ -99,37 +98,12 @@ const AboutPage = () => {
             </p>
             <a
               href="/contact"
-              className="inline-block bg-gray-800 hover:bg-gray-700 dark:bg-gray-600 dark:hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300"
+              className="border border-gray-800 dark:border-gray-200 text-gray-800 dark:text-gray-200 font-semibold py-2 px-6 rounded-lg transition duration-300 ease-in-out hover:shadow-md hover:bg-gray-800 hover:text-white dark:hover:bg-gray-200 dark:hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50"
             >
               コンタクトページへ
             </a>
           </div>
         </section>
-
-        {/* <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4">強み</h2>
-          <ul className="list-disc list-inside">
-            {strengths.map((strength, index) => (
-              <li key={index} className="mb-2">
-                {strength}
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4">ユニークな価値提案</h2>
-          <p className="mb-4">
-            私の経歴は、ハードウェア製造と品質管理から始まり、現在はクラウドネイティブなソフトウェア開発に至るユニークな道筋を辿っています。この経験により、以下のような価値を提供できます：
-          </p>
-          <ul className="list-disc list-inside">
-            {valuePropositions.map((prop, index) => (
-              <li key={index} className="mb-2">
-                {prop}
-              </li>
-            ))}
-          </ul>
-        </section> */}
       </div>
     </main>
   );

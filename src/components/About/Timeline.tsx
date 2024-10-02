@@ -4,6 +4,7 @@ type TimelineEvent = {
   date: string;
   title: string;
   description: string;
+  details: string[];
 };
 
 const Timeline: React.FC<{ events: TimelineEvent[] }> = ({ events }) => {
@@ -21,6 +22,16 @@ const Timeline: React.FC<{ events: TimelineEvent[] }> = ({ events }) => {
           <p className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
             {event.description}
           </p>
+          <ul className="list-disc list-inside pl-4 space-y-2">
+            {event.details.map((detail, detailIndex) => (
+              <li
+                key={detailIndex}
+                className="text-gray-600 dark:text-gray-300"
+              >
+                {detail}
+              </li>
+            ))}
+          </ul>
         </div>
       ))}
     </div>
