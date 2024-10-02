@@ -98,17 +98,17 @@ const ContactForm = () => {
         <div className="flex items-center justify-between">
           <button
             type="submit"
-            className={`text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${
+            className={`border border-gray-800 dark:border-gray-200 text-gray-800 dark:text-gray-200 font-semibold py-2 px-6 rounded-lg transition duration-300 ease-in-out ${
               isSending
-                ? "bg-gray-500 cursor-not-allowed"
-                : "bg-gray-800 hover:bg-gray-700 dark:bg-gray-600 dark:hover:bg-gray-500"
-            }`}
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:shadow-md hover:bg-gray-800 hover:text-white dark:hover:bg-gray-200 dark:hover:text-gray-800"
+            } focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50`}
             disabled={isSending}
           >
             {isSending ? (
               <div className="flex items-center">
                 <svg
-                  className="animate-spin h-5 w-5 mr-3 text-white"
+                  className="animate-spin h-5 w-5 mr-3 text-current"
                   viewBox="0 0 24 24"
                 >
                   <circle
