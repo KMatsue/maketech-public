@@ -1,3 +1,5 @@
+import { cache } from "react";
+
 import { NUMBER_OF_POSTS_PER_PAGE } from "@/constants/constants";
 import { Client } from "@notionhq/client";
 import { QueryDatabaseResponse } from "@notionhq/client/build/src/api-endpoints";
@@ -223,7 +225,7 @@ export const getNumberOfPagesByTag = async (tagName: string) => {
  * 全投稿で使われているタグの種類を抽出して返す
  * @returns タグの種類を[]で返す
  */
-export const getAllTags = async () => {
+export const getAllTags = cache(async () => {
   const allPosts = await getAllPosts();
 
   const allTagsDuplicationLists = allPosts.flatMap((post) => post.tags);
@@ -232,4 +234,4 @@ export const getAllTags = async () => {
   // console.log(allTagsList);
 
   return allTagsList;
-};
+});
