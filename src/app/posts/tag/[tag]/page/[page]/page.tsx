@@ -79,7 +79,7 @@ const BlogTagPageList = async ({
       <main className="container w-full mt-14 mx-auto px-4 md:px-8 lg:px-16">
         <header className="text-center my-8">
           <h1 className="text-4xl font-bold mb-4">
-            {`Search tags in ${displayTag}`}
+            {`Search tags in "${displayTag}"`}
           </h1>
         </header>
         <div className="md:flex">
