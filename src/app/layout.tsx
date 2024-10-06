@@ -1,9 +1,11 @@
+import { Metadata } from "next";
+// import CookieConsent from "react-cookie-consent";
 import "@/styles/globals.css";
+import { inter } from "@/app/ui/fonts";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import Providers from "@/components/Providers";
-import { inter } from "@/app/ui/fonts";
-import { Metadata } from "next";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 export const revalidate = 300;
 
@@ -19,6 +21,7 @@ export const metadata: Metadata = {
     "プログラミング",
     "技術ブログ",
     "ソフトウェアエンジニアリング",
+    "アプリ開発",
   ],
   authors: [{ name: "MaKe" }],
   creator: "MaKe",
@@ -29,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "ja_JP",
-    url: "https://maketech.vercel.app/",
+    url: "https://www.maketech.net/",
     siteName: "MaKeTECH",
   },
   // twitter: {
@@ -53,6 +56,18 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
           <Navbar />
           <main className="flex-grow relative z-10 mb-16">{children}</main>
           <Footer />
+          <GoogleAnalytics />
+          {/* <CookieConsent
+            location="bottom"
+            buttonText="同意する"
+            declineButtonText="拒否"
+            cookieName="ga-consent"
+            style={{ background: "#2B373B" }}
+            buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
+            expires={150}
+          >
+            このウェブサイトはCookieを使用してユーザー体験を向上させています。
+          </CookieConsent> */}
         </Providers>
       </body>
     </html>
