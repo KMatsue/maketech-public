@@ -1,10 +1,10 @@
-# MaKe TECH Overview
+# MaKeTECH Overview
 
-## アプリケーションの目的と概要
+## 1. プロジェクト概要
 
-このアプリケーションは、個人の技術ブログ兼ポートフォリオサイトとして機能するウェブアプリケーションです。主な目的と機能は以下の通りです：
+### アプリケーションの目的
 
-### 目的
+このアプリケーションは、個人の技術ブログ兼ポートフォリオサイトとして機能するウェブアプリケーションです。主な目的は以下の通りです。
 
 1. 技術的な学習や経験のアウトプット
 2. 個人のスキルセットと経歴の紹介
@@ -31,27 +31,54 @@
    - ページネーションによる効率的な記事ナビゲーション
 
 4. コンタクトフォーム
+
    - 閲覧者とのコミュニケーション手段の提供
 
-このアプリケーションは、Next.js と TypeScript を基盤とし、Notion API を活用することで、効率的な記事管理と柔軟なコンテンツ更新を実現しています。また、モダンなウェブ技術を採用することで、高いパフォーマンスと優れたユーザーエクスペリエンスを提供しています。
+5. SEO 最適化
 
-## プロジェクト構造
+   - 各ページに適切なメタデータを設定
+
+6. RSS フィード
+   - 最新の記事更新情報を提供
+   - ユーザーが簡単に購読できる機能
+
+## 2. 技術スタックと構成
+
+### 技術スタック
+
+- Next.js 13.4.19 (App Router)
+- React 18.2.0
+- TypeScript 5.2.2
+- Tailwind CSS 3.3.3
+- Notion API (@notionhq/client)
+- Storybook 7.4.0
+- Framer Motion 10.16.5
+- next-themes 0.2.1
+- nodemailer 6.9.13
+- feed 4.2.2 (RSS フィード生成用)
+
+### プロジェクト構造
 
 ```
 src/
 ├── app/
 │   ├── api/
+│   │   └── feed/
+│   │       └── route.ts
 │   ├── contact/
 │   ├── about/
 │   │   └── page.tsx
 │   ├── posts/
-│   │   ├── [slug]/
 │   │   ├── page/
 │   │   │   └── [page]/
-│   │   └── tag/
-│   │       └── [tag]/
-│   │           └── page/
-│   │               └── [page]/
+│   │   │       └── page.tsx
+│   │   ├── tag/
+│   │   │   └── [tag]/
+│   │   │       └── page/
+│   │   │           └── [page]/
+│   │   │               └── page.tsx
+│   │   └── [slug]/
+│   │       └── page.tsx
 │   ├── layout.tsx
 │   ├── page.tsx
 │   └── not-found.tsx
@@ -72,29 +99,18 @@ src/
 │   └── aboutPageData.ts
 ├── lib/
 │   ├── notionAPI.ts
-│   └── ogp.ts
+│   ├── ogp.ts
+│   └── generateRssFeed.ts
 ├── stories/
 └── styles/
     └── globals.css
 ```
 
-## 技術スタック
-
-- Next.js 13.4.19 (App Router)
-- React 18.2.0
-- TypeScript 5.2.2
-- Tailwind CSS 3.3.3
-- Notion API (@notionhq/client)
-- Storybook 7.4.0
-- Framer Motion 10.16.5
-- next-themes 0.2.1
-- nodemailer 6.9.13
-
-## 主要コンポーネント
+### 主要コンポーネント
 
 1. `layout.tsx`: サイト全体のレイアウト
 2. `Navbar.tsx`: ナビゲーションバー
-3. `Footer.tsx`: フッター
+3. `Footer.tsx`: フッター（RSS フィードリンクを含む）
 4. `Posts.tsx`: 記事一覧表示
 5. `SinglePost.tsx`: 個別記事表示
 6. `Pagination.tsx`: ページネーション
@@ -105,16 +121,51 @@ src/
 11. `SkillSet.tsx`: スキルセットの表示
 12. `Timeline.tsx`: 職務経歴のタイムライン表示
 
-## ページ構成
+### ページ構成
 
 1. ホームページ (`/`)
-2. ブログ記事一覧 (`/posts/page/[page]`)
-3. 個別記事ページ (`/posts/[slug]`)
-4. タグ別記事一覧 (`/posts/tag/[tag]/page/[page]`)
-5. コンタクトページ (`/contact`)
-6. About ページ (`/about`)
+2. ブログ記事一覧ページ (`/posts/page/[page]`)
+3. タグ別記事一覧ページ (`/posts/tag/[tag]/page/[page]`)
+4. 個別記事ページ (`/posts/[slug]`)
+5. About ページ (`/about`)
+6. コンタクトページ (`/contact`)
+7. 404 ページ
+8. RSS フィード (`/api/feed`)
 
-## 主要機能
+## 3. 開発環境と設定
+
+### 開発環境
+
+- ESLint
+- Storybook
+- PostCSS
+
+### 設定ファイル
+
+#### next.config.js
+
+- `reactStrictMode: true`
+- `experimental.appDir: true`
+- 画像ドメインの許可設定
+
+#### tailwind.config.ts
+
+- ダークモード設定: `darkMode: "class"`
+- カスタムカラー: text, text-dark
+- カスタムブレイクポイント: sp (max-width: 640px)
+
+### スクリプト
+
+- `dev`: 開発サーバー起動
+- `build`: プロダクションビルド
+- `start`: プロダクションサーバー起動
+- `lint`: ESLint によるコード検証
+- `storybook`: Storybook 開発サーバー起動
+- `build-storybook`: Storybook のビルド
+
+## 4. 主要機能とデータフロー
+
+### 主要機能
 
 1. Notion API を使用した記事管理
 2. ページネーション
@@ -126,8 +177,11 @@ src/
 8. シンタックスハイライト (react-syntax-highlighter)
 9. アニメーション (Framer Motion)
 10. 自己紹介・経歴紹介（About ページ）
+11. SEO 最適化（メタデータの設定）
+12. サイトマップの自動生成 (next-sitemap)
+13. RSS フィードの生成と提供 (feed)
 
-## データフロー
+### データフロー
 
 1. `notionAPI.ts`で Notion からデータを取得
 2. 各ページコンポーネントで必要なデータを取得・処理
@@ -135,42 +189,91 @@ src/
 4. コンポーネントでデータをレンダリング
 5. About ページのデータは`aboutPageData.ts`から取得
 
-## パフォーマンス最適化
+## 5. パフォーマンスと SEO 最適化
+
+### パフォーマンス最適化
 
 - 静的生成（SSG）の活用
 - 画像の最適化 (Next.js Image component)
 - コンポーネントの適切な分割
+- サイトマップによる効率的なクローリングとインデックス作成の促進
 
-## 開発環境
+### SEO 最適化
 
-- ESLint
-- Storybook
-- PostCSS
+- `layout.tsx`でサイト全体のデフォルトメタデータを設定
+- 各ページコンポーネントで、ページ固有のメタデータを設定
+- 動的なページでは、`generateMetadata`関数を使用して動的にメタデータを生成
+- サイトマップ（sitemap.xml）の自動生成と更新
+- robots.txt ファイルの生成とカスタマイズ
+- RSS フィードの提供による最新コンテンツの発見性向上
 
-## 設定ファイル
+### サイトマップの実装
 
-### next.config.js
+- `next-sitemap`パッケージを使用して、サイトマップを自動生成
+- `next-sitemap.config.js`で詳細な設定を管理
+  - ページの優先度（priority）と更新頻度（changefreq）のカスタマイズ
+  - 除外する URL の指定
+  - robots.txt ファイルの自動生成
+- ビルドプロセスの一部としてサイトマップを生成（`postbuild`スクリプト）
 
-- `reactStrictMode: true`
-- `experimental.appDir: true`
-- 画像ドメインの許可設定
+### RSS フィードの実装
 
-### tailwind.config.ts
+- `feed`パッケージを使用して RSS フィードを生成
+- `generateRssFeed.ts`で最新の記事データを取得し、フィードを構築
+- `/api/feed`エンドポイントで RSS フィードを提供
+- `Footer.tsx`に RSS フィードへのリンクを追加
 
-- ダークモード設定: `darkMode: "class"`
-- カスタムカラー: text, text-dark
-- カスタムブレイクポイント: sp (max-width: 640px)
+## 6. 開発プロセスとバージョン管理
 
-## スクリプト
+### GitFlow に基づいた開発フロー
 
-- `dev`: 開発サーバー起動
-- `build`: プロダクションビルド
-- `start`: プロダクションサーバー起動
-- `lint`: ESLint によるコード検証
-- `storybook`: Storybook 開発サーバー起動
-- `build-storybook`: Storybook のビルド
+1. 新機能開発やバグ修正のためのブランチを作成（feature/** や fix/**）
+2. 開発完了後、develop ブランチへプルリクエストを作成
+3. コードレビュー後、develop ブランチにマージ
+4. 定期的に develop から main へマージしてリリース
 
-## 今後の改善点
+### ブランチ戦略
+
+- `main`: 本番環境のコード管理
+- `develop`: 開発の主軸、新機能や修正の統合先
+- `feature/**`: 新機能の開発用
+- `fix/**`: バグ修正用
+
+## 7. デプロイとホスティング
+
+- ホスティング: Vercel
+- 継続的デプロイメント: GitHub と Vercel の連携による自動デプロイ
+
+### デプロイプロセス
+
+1. 開発者が GitHub の main ブランチにコードをプッシュまたはマージ
+2. GitHub が Vercel に変更を通知
+3. Vercel が自動的に新しいビルドを開始し、成功したら新バージョンをデプロイ
+4. デプロイされたサイトは自動的に maketech.net ドメインで利用可能になる
+
+## 8. ドメイン管理
+
+### 独自ドメインの導入
+
+- ドメイン名: maketech.net
+- 導入時期: 2024/09/23
+- ドメインレジストリ: Xserver
+- 目的:
+  1. ブランドアイデンティティの確立
+  2. プロフェッショナリズムの向上
+  3. メモリアビリティ（記憶しやすさ）の向上
+  4. SEO の潜在的な改善
+
+### ドメイン管理詳細
+
+- ドメインレジストラ: Xserver
+- DNS レコードの管理:
+  - プライマリ DNS: Xserver の管理画面を通じて設定
+  - セカンダリ DNS: Vercel のダッシュボードを通じて設定（Vercel の名前サーバーを使用）
+- SSL 証明書: Let's Encrypt を使用し、Vercel が自動的に管理・更新
+- リダイレクト: maketech.net から www.maketech.net へのリダイレクトを設定
+
+## 9. 今後の改善計画
 
 1. テストの導入 (Jest, React Testing Library)
 2. エラーハンドリングの強化
@@ -180,6 +283,9 @@ src/
 6. TypeScript の型チェックの強化
 7. Storybook を使用したコンポーネントカタログの充実
 8. About ページのさらなる改善（アニメーション、インタラクティブ要素の追加）
-9. SEO 最適化のためのメタデータ実装
-
-この更新された overview.md には、About ページの追加に関連する変更が反映されています。プロジェクト構造、主要コンポーネント、ページ構成、主要機能などのセクションが更新され、About ページに関連する新しい情報が追加されています。また、今後の改善点にも About ページに関する項目が追加されています。
+9. メタデータの継続的な最適化と更新
+10. ユーザーエンゲージメント機能の追加（コメント機能、ニュースレター登録など）
+11. CI/CD パイプラインの強化（自動テストの導入など）
+12. サイトマップの定期的な更新と効果測定
+13. 構造化データ（JSON-LD）の実装によるリッチスニペットの活用
+14. RSS フィードの利用状況分析と最適化

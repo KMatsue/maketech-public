@@ -1,3 +1,5 @@
+import { cache } from "react";
+
 import { NUMBER_OF_POSTS_PER_PAGE } from "@/constants/constants";
 import { Client } from "@notionhq/client";
 import { QueryDatabaseResponse } from "@notionhq/client/build/src/api-endpoints";
@@ -5,6 +7,7 @@ import { NotionToMarkdown } from "notion-to-md";
 import { setOgp } from "./ogp";
 import { Post } from "@/types/post";
 import { BlockObject } from "@/types/notion";
+import { normalizeTag } from "@/lib/stringUtils";
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
@@ -189,8 +192,9 @@ export const getNumberOfPages = async () => {
  */
 export const getPostsByTagAndPage = async (tagName: string, page: number) => {
   const allPosts = await getAllPosts();
+  const normalizedTagName = normalizeTag(tagName);
   const posts = allPosts.filter((post) =>
-    post.tags.find((tag: string) => tag === tagName)
+    post.tags.some((tag) => normalizeTag(tag) === normalizedTagName)
   );
 
   const startIndex = (page - 1) * NUMBER_OF_POSTS_PER_PAGE;
@@ -206,8 +210,9 @@ export const getPostsByTagAndPage = async (tagName: string, page: number) => {
  */
 export const getNumberOfPagesByTag = async (tagName: string) => {
   const allPosts = await getAllPosts();
+  const normalizedTagName = normalizeTag(tagName);
   const posts = allPosts.filter((post) =>
-    post.tags.find((tag: string) => tag === tagName)
+    post.tags.some((tag) => normalizeTag(tag) === normalizedTagName)
   );
 
   return (
@@ -220,7 +225,7 @@ export const getNumberOfPagesByTag = async (tagName: string) => {
  * 全投稿で使われているタグの種類を抽出して返す
  * @returns タグの種類を[]で返す
  */
-export const getAllTags = async () => {
+export const getAllTags = cache(async () => {
   const allPosts = await getAllPosts();
 
   const allTagsDuplicationLists = allPosts.flatMap((post) => post.tags);
@@ -229,4 +234,4 @@ export const getAllTags = async () => {
   // console.log(allTagsList);
 
   return allTagsList;
-};
+});

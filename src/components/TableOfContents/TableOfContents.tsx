@@ -52,11 +52,11 @@ const TableOfContents = () => {
 
   return (
     <div className="p-2">
-      <h3 className="text-center p-2 mb-1 text-sm lg:text-lg font-semibold border-b text-slate-800 dark:text-slate-200">
+      <h3 className="text-center p-2 mb-1 text-sm font-semibold border-b text-slate-800 dark:text-slate-200">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
+          width="20"
+          height="20"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -74,19 +74,16 @@ const TableOfContents = () => {
       <style jsx global>{`
         .toc {
           border-radius: 0.25rem;
-          padding: 0.75rem;
-          font-size: 1rem;
+          padding: 0.5rem;
+          font-size: 0.875rem;
         }
-
         .toc-list .toc-list {
-          padding-left: 0.75rem;
-          padding-top: 0.75rem;
+          padding-left: 0.5rem;
+          padding-top: 0.5rem;
         }
-
         .toc-list-item {
-          padding-bottom: 0.75rem;
+          padding-bottom: 0.5rem;
         }
-
         .toc-list-item:last-child {
           padding-bottom: 0;
         }
@@ -94,6 +91,8 @@ const TableOfContents = () => {
         .toc-link {
           word-break: break-word; /* 長い単語を途中で折り返す */
           overflow-wrap: break-word; /* 長い単語を途中で折り返す */
+          font-size: 0.875rem;
+          line-height: 1.25rem;
         }
 
         .is-active-link {
