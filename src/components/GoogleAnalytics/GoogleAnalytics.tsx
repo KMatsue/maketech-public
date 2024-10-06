@@ -4,13 +4,14 @@ import Script from "next/script";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { GA_MEASUREMENT_ID, pageview } from "@/lib/gtag";
+import { hasAnalyticsConsent } from "@/lib/analytics";
 
 export default function GoogleAnalytics() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    if (pathname) {
+    if (hasAnalyticsConsent() && pathname) {
       const url = pathname + searchParams.toString();
       // Google Analytics のスクリプトが読み込まれた後に pageview を呼び出す
       if (typeof window.gtag === "function") {
@@ -19,7 +20,7 @@ export default function GoogleAnalytics() {
     }
   }, [pathname, searchParams]);
 
-  if (process.env.NODE_ENV !== "production") {
+  if (process.env.NODE_ENV !== "production" || !hasAnalyticsConsent()) {
     return null;
   }
 

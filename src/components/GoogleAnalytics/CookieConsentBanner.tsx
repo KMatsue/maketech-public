@@ -3,8 +3,14 @@
 import React from "react";
 import CookieConsent from "react-cookie-consent";
 import Link from "next/link";
+import { removeGoogleAnalyticsCookies } from "@/lib/analytics";
 
 const CookieConsentBanner = () => {
+  const handleDecline = () => {
+    // 既存のGA Cookieがある場合のみ削除
+    removeGoogleAnalyticsCookies();
+  };
+
   return (
     <CookieConsent
       location="bottom"
@@ -24,11 +30,9 @@ const CookieConsentBanner = () => {
         backgroundColor: "#6c757d",
         borderRadius: "5px",
       }}
-      expires={150}
+      expires={180}
       enableDeclineButton
-      onDecline={() => {
-        // Google Analyticsを無効化するロジックをここに追加
-      }}
+      onDecline={handleDecline}
     >
       <p>
         当サイトでは、ユーザー体験の向上とサイトの利用状況分析のためにCookieを使用しています。
