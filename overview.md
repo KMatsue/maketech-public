@@ -10,6 +10,7 @@
 2. 個人のスキルセットと経歴の紹介
 3. プロジェクト実績の展示
 4. 技術コミュニティとの交流促進
+5. サイトの利用状況と訪問者の行動分析
 
 ### 主な機能
 
@@ -38,7 +39,18 @@
 
    - 各ページに適切なメタデータを設定
 
-6. RSS フィード
+6. アクセス解析
+
+   - Google Analytics を使用したサイト訪問者の行動分析
+   - ページビューのトラッキング
+   - カスタムイベントの記録機能
+
+7. プライバシー保護
+
+   - プライバシーポリシーページの提供
+   - Cookie 同意バナーの実装
+
+8. RSS フィード
    - 最新の記事更新情報を提供
    - ユーザーが簡単に購読できる機能
 
@@ -79,6 +91,8 @@ src/
 │   │   │               └── page.tsx
 │   │   └── [slug]/
 │   │       └── page.tsx
+│   ├── privacy-policy/
+│   │   └── page.tsx
 │   ├── layout.tsx
 │   ├── page.tsx
 │   └── not-found.tsx
@@ -90,6 +104,9 @@ src/
 │   ├── Contact/
 │   ├── Footer/
 │   ├── Navbar/
+│   ├── GoogleAnalytics/
+│   │   ├── GoogleAnalytics.tsx
+│   │   └── CookieConsentBanner.tsx
 │   ├── Pagination/
 │   ├── Post/
 │   ├── TableOfContents/
@@ -98,6 +115,8 @@ src/
 ├── data/
 │   └── aboutPageData.ts
 ├── lib/
+│   ├── analytics.ts
+│   ├── gtag.ts
 │   ├── notionAPI.ts
 │   ├── ogp.ts
 │   └── generateRssFeed.ts
@@ -120,6 +139,8 @@ src/
 10. `Accordion.tsx`: プロジェクト詳細の折りたたみ表示
 11. `SkillSet.tsx`: スキルセットの表示
 12. `Timeline.tsx`: 職務経歴のタイムライン表示
+13. `GoogleAnalytics.tsx`: Google Analytics の設定と初期化
+14. `CookieConsentBanner.tsx`: Cookie 同意バナー
 
 ### ページ構成
 
@@ -129,8 +150,9 @@ src/
 4. 個別記事ページ (`/posts/[slug]`)
 5. About ページ (`/about`)
 6. コンタクトページ (`/contact`)
-7. 404 ページ
-8. RSS フィード (`/api/feed`)
+7. プライバシーポリシーページ (`/privacy-policy`)
+8. 404 ページ
+9. RSS フィード (`/api/feed`)
 
 ## 3. 開発環境と設定
 
@@ -180,6 +202,11 @@ src/
 11. SEO 最適化（メタデータの設定）
 12. サイトマップの自動生成 (next-sitemap)
 13. RSS フィードの生成と提供 (feed)
+14. Google Analytics によるアクセス解析
+    - ページビューのトラッキング
+    - カスタムイベントの記録
+15. プライバシーポリシーの提供
+16. Cookie 同意バナーの表示と管理
 
 ### データフロー
 
@@ -188,6 +215,8 @@ src/
 3. 取得したデータを Props としてコンポーネントに渡す
 4. コンポーネントでデータをレンダリング
 5. About ページのデータは`aboutPageData.ts`から取得
+6. `gtag.ts`で Google Analytics のイベントを管理
+7. `analytics.ts`で Cookie 同意の確認と Google Analytics Cookie の管理
 
 ## 5. パフォーマンスと SEO 最適化
 
@@ -197,6 +226,7 @@ src/
 - 画像の最適化 (Next.js Image component)
 - コンポーネントの適切な分割
 - サイトマップによる効率的なクローリングとインデックス作成の促進
+- Google Analytics スクリプトの非同期読み込み
 
 ### SEO 最適化
 
@@ -273,7 +303,21 @@ src/
 - SSL 証明書: Let's Encrypt を使用し、Vercel が自動的に管理・更新
 - リダイレクト: maketech.net から www.maketech.net へのリダイレクトを設定
 
-## 9. 今後の改善計画
+## 9. プライバシーとデータ保護
+
+### プライバシーポリシー
+
+- プライバシーポリシーページ (`/privacy-policy`) を実装
+- 個人情報の取り扱い、Cookie の使用、Google Analytics の利用について説明
+- フッターからプライバシーポリシーページへのリンクを提供
+
+### Cookie 同意管理
+
+- `react-cookie-consent`ライブラリを使用して Cookie 同意バナーを実装
+- ユーザーに Cookie の使用について同意を求め、選択を保存
+- Google Analytics の読み込みと実行を Cookie 同意状態に基づいて制御
+
+## 10. 今後の改善計画
 
 1. テストの導入 (Jest, React Testing Library)
 2. エラーハンドリングの強化
@@ -287,5 +331,3 @@ src/
 10. ユーザーエンゲージメント機能の追加（コメント機能、ニュースレター登録など）
 11. CI/CD パイプラインの強化（自動テストの導入など）
 12. サイトマップの定期的な更新と効果測定
-13. 構造化データ（JSON-LD）の実装によるリッチスニペットの活用
-14. RSS フィードの利用状況分析と最適化
