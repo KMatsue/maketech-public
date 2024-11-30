@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import type { RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints";
+import ExternalLinkWrapper from "../common/ExternalLinkWrapper";
 
 type Props = {
   text: Array<RichTextItemResponse>;
@@ -18,21 +19,32 @@ export const Text: FC<Props> = ({ text }) => {
         annotations: { bold, code, color, italic, strikethrough, underline },
         text: { content, link },
       } = value;
+
+      const classNames = [
+        bold ? "font-bold" : "",
+        code
+          ? "bg-slate-200 dark:bg-slate-500 text-red-500 px-1 rounded-sm"
+          : "",
+        italic ? "italic" : "",
+        strikethrough ? "line-through" : "",
+        underline ? "underline" : "",
+      ]
+        .filter(Boolean)
+        .join(" ");
+
       return (
         <span
-          className={[
-            bold ? "font-bold" : "",
-            code
-              ? "bg-slate-200 dark:bg-slate-500 text-red-500 px-1 rounded-sm"
-              : "",
-            italic ? "italic" : "",
-            strikethrough ? "line-through" : "",
-            underline ? "underline" : "",
-          ].join(" ")}
+          className={classNames}
           style={color !== "default" ? { color } : {}}
           key={content}
         >
-          {link ? <a href={link.url}>{content}</a> : content}
+          {link ? (
+            <ExternalLinkWrapper href={link.url} showIcon={!code}>
+              {content}
+            </ExternalLinkWrapper>
+          ) : (
+            content
+          )}
         </span>
       );
     }
