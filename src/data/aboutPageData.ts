@@ -2,22 +2,25 @@ export const careerEvents = [
   {
     date: "2021年1月 - 現在",
     title: "ITシステム開発企業勤務",
-    description: "開発者として様々なプロジェクトに携わる",
+    description: "モバイルアプリからWebシステムまで幅広い開発に従事",
     details: [
       "モバイルアプリケーション開発 (Flutter)",
       "Webアプリケーション開発 (React.js, Django)",
       "クラウドインフラ構築 (AWS, Firebase)",
       "画像・動画解析システム開発",
+      "小規模チームでの要件定義からリリースまでの一貫した開発経験",
     ],
   },
   {
     date: "2008年4月 - 2020年3月",
     title: "総合電気メーカー勤務",
-    description: "製造、品質管理、システム試験を担当",
+    description:
+      "製造部門で12年間、製品の製造・試験に携わり、品質管理の重要性とエンドユーザーを意識した製品づくりを実践",
     details: [
-      "通信機器・電波応用機器の製造、試験、保守",
-      "IT関連業務 (OS設定、ネットワーク構築)",
-      "品質管理プロセスの改善と標準化",
+      "通信機器・電波応用機器の製造、試験、保守を担当",
+      "Linux環境でのサーバー管理、ネットワーク構築などのIT業務も一部担当",
+      "品質管理プロセスの改善と標準化をリード",
+      "グループ員へのOJTや新人教育を担当",
     ],
   },
 ];
@@ -51,16 +54,49 @@ export const skills = [
 
 export const projectDetails = [
   {
+    title: "業務用マッチングアプリ開発（建設業） - 機能追加フェーズ",
+    period: "2024年11月 - 現在",
+    role: "モバイルアプリ開発(Android/iOS)",
+    description:
+      "建設業向けの特化型マッチングアプリケーションの機能追加開発。発生土の受け入れ先と盛土が必要な現場をマッチングし、建設現場の効率を向上させるツール。既存アプリのユーザビリティ向上や新機能追加を担当。",
+    technologies: {
+      frontend: [
+        "Flutter",
+        "Dart",
+        "Riverpod (状態管理)",
+        "go_router (ナビゲーション)",
+      ],
+      backend: [
+        "Firebase (Authentication, Firestore, Cloud Functions, Storage, Messaging, Remote Config)",
+      ],
+      other: [
+        "RevenueCat (アプリ内課金)",
+        "Flutter Hooks",
+        "Freezed (コード生成)",
+        "Intl (多言語化)",
+      ],
+    },
+    teamSize: "開発者1名",
+    achievements: [
+      "ユーザーフィードバックに基づく機能改善と新機能の実装",
+      "アプリのパフォーマンス最適化とユーザビリティの向上",
+      "既存機能の改善と拡張",
+    ],
+  },
+  {
     title: "動画解析アプリ開発",
     period: "2024年1月 - 現在",
-    role: "アプリ開発、インフラ構築担当",
+    role: "アプリ開発, インフラ構築担当, 動画解析処理実装",
     description:
       "動画やリアルタイムストリームから人流や車両の動きを分析するアプリケーションの開発。主な機能には、アップロード動画の解析、IPカメラを使用したリアルタイムストリーミング解析、検出された人物の属性分析（性別、年齢範囲）が含まれる。WebSocketを使用したリアルタイムデータ通信、バックグラウンドでの動画解析データ処理、AWSを活用したスケーラブルなインフラ設計を実現。JWT認証やCSRF保護などのセキュリティ機能も実装。",
     technologies: {
       frontend: ["React.js", "TypeScript", "Tailwind CSS"],
       backend: ["Django", "Python"],
       database: ["PostgreSQL", "Redis"],
-      infrastructure: ["AWS (ECS, VPC, S3, RDS)", "Docker"],
+      infrastructure: [
+        "AWS (ECS, VPC, S3, RDS, CloudFront, CloudFormation)",
+        "Docker",
+      ],
       other: ["YOLO (物体検出)", "OpenCV", "JWT認証"],
     },
     teamSize: "開発者2名",
@@ -71,11 +107,11 @@ export const projectDetails = [
     ],
   },
   {
-    title: "業務用マッチングアプリ開発（建設業）",
+    title: "業務用マッチングアプリ開発（建設業）- 初期開発フェーズ",
     period: "2022年12月 - 2023年12月",
     role: "モバイルアプリ開発(Android/iOS)",
     description:
-      "建設業向けの特化型マッチングアプリケーションの開発。発生土の受け入れ先と盛土が必要な現場をマッチングし、建設現場の効率を向上させるツール。主な機能には、条件に合致した現場のポップアップ通知、承認後の詳細情報表示によるセキュリティ確保、サブスクリプションベースの収益モデルが含まれる。Flutter を使用してクロスプラットフォーム開発を行い、Firebase でバックエンドを構築。RevenueCat を活用してアプリ内課金（サブスクリプション）を実装し、ユーザー管理と収益化を効率的に行った。",
+      "建設業向けの特化型マッチングアプリケーションの開発。発生土の受け入れ先と盛土が必要な現場をマッチングし、建設現場の効率を向上させるツール。主な機能には、条件に合致した現場のポップアップ通知、承認後の詳細情報表示によるセキュリティ確保、サブスクリプションベースの収益モデルが含まれる。Flutter を使用してクロスプラットフォーム開発を行い、Firebase でバックエンドを構築。",
     technologies: {
       frontend: [
         "Flutter",
@@ -184,7 +220,6 @@ export const specialties = [
   "Webアプリケーション開発 (フロントエンド・バックエンド)",
   // "クラウドネイティブアプリケーション開発 (AWS, GCP)",
   "画像・動画解析システム開発",
-  // 他の専門分野
 ];
 
 export const strengths = [
@@ -251,4 +286,5 @@ export const hobbiesAndInterests = [
 ];
 
 export const hobbiesSummary =
-  "これらの趣味を通じて、日々の生活に小さな楽しみや発見を見出しています。体を動かすことと本に触れることのバランスが、私の日々の活力源になっています。";
+  // "これらの趣味を通じて、日々の生活に小さな楽しみや発見を見出しています。体を動かすことと本に触れることのバランスが、私の日々の活力源になっています。";
+  "これらの趣味を通じて、日々の生活に小さな楽しみや発見を見出しています。";

@@ -33,7 +33,8 @@ const AboutPage = () => {
         <header className="text-center my-8">
           <h1 className="text-4xl font-bold mb-4">About Me</h1>
           <p className="text-lg text-gray-700 dark:text-gray-300">
-            Web/Mobileアプリ開発者です。10年以上の製造業(電機メーカー)での経験を活かし、品質と使いやすさにこだわったソフトウェア開発に取り組んでいます。
+            Web/Mobileアプリの開発者。ITを通じて価値あるサービスの提供を目指しています。
+            製造業での業務経験を活かし、使う人の目線に立ったソフトウェア開発に取り組んでいます。
           </p>
         </header>
 
@@ -43,7 +44,7 @@ const AboutPage = () => {
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4">プロジェクト詳細</h2>
+          <h2 className="text-2xl font-semibold mb-4">プロジェクト経歴</h2>
           <Accordion items={projectDetails} />
         </section>
 
