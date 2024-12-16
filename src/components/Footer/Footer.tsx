@@ -36,14 +36,16 @@ const Footer = () => {
               </Link>{" "}
               2023 - {new Date().getFullYear()}
             </p>
-            <Link
+            <a
               href="/api/feed"
               className="text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 transition-colors duration-200"
               title="RSS Feed"
               aria-label="RSS Feed"
+              rel="alternate"
+              type="application/rss+xml"
             >
               <RssIcon className="h-6 w-6 -mt-0.5" />
-            </Link>
+            </a>
           </div>
         </div>
       </div>
