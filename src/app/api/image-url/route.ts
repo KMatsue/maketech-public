@@ -20,9 +20,12 @@ export async function GET(request: Request) {
     }
     return NextResponse.json({ error: "Invalid block type" }, { status: 400 });
   } catch (error) {
-    console.error("Error refreshing image:", error);
+    console.error("Error fetching image URL:", {
+      message: error instanceof Error ? error.message : "Unknown error",
+      blockId,
+    });
     return NextResponse.json(
-      { error: "Failed to refresh image" },
+      { error: "Failed to fetch image URL" },
       { status: 500 }
     );
   }
