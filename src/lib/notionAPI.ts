@@ -146,6 +146,26 @@ const getRandomInt = (min: number, max: number) => {
 };
 
 /**
+ * 指定したブロックIDに対応するNotionのブロックを取得する
+ *
+ * @param blockId
+ * @returns Notionのブロックオブジェクト
+ * @throws Notionのブロック取得に失敗した場合
+ *
+ * @example
+ * const block = await getBlockById("block_id");
+ * if (block.type === "image") {
+ *   // 画像ブロックの処理
+ * }
+ */
+export const getBlockById = async (blockId: string) => {
+  const block = await notion.blocks.retrieve({
+    block_id: blockId,
+  });
+  return block;
+};
+
+/**
  * Topページ用
  * @param pageSize
  * @returns
