@@ -17,10 +17,11 @@ const TableOfContents = dynamic(
 
 export const generateStaticParams = async () => {
   const allPosts = await getAllPosts();
-  const paths = allPosts.map(({ slug }) => {
-    slug;
-  });
-  console.log(`paths:${paths}`);
+  const paths = allPosts.map(({ slug }) => ({
+    slug,
+  }));
+  // console.log(`paths:${paths}`);
+  console.log("paths:", JSON.stringify(paths, null, 2));
   return paths;
 };
 
