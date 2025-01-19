@@ -55,7 +55,7 @@ export const skills = [
 export const projectDetails = [
   {
     title: "業務用マッチングアプリ開発（建設業） - 機能追加フェーズ",
-    period: "2024年11月 - 現在",
+    period: "2024年11月 - 2024年12月",
     role: "モバイルアプリ開発(Android/iOS)",
     description:
       "建設業向けの特化型マッチングアプリケーションの機能追加開発。発生土の受け入れ先と盛土が必要な現場をマッチングし、建設現場の効率を向上させるツール。既存アプリのユーザビリティ向上や新機能追加を担当。",
@@ -64,7 +64,7 @@ export const projectDetails = [
         "Flutter",
         "Dart",
         "Riverpod (状態管理)",
-        "go_router (ナビゲーション)",
+        "GoRouter (ナビゲーション)",
       ],
       backend: [
         "Firebase (Authentication, Firestore, Cloud Functions, Storage, Messaging, Remote Config)",
@@ -117,7 +117,7 @@ export const projectDetails = [
         "Flutter",
         "Dart",
         "Riverpod (状態管理)",
-        "go_router (ナビゲーション)",
+        "GoRouter (ナビゲーション)",
       ],
       backend: [
         "Firebase (Authentication, Firestore, Cloud Functions, Storage, Messaging, Remote Config)",
