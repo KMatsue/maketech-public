@@ -58,7 +58,7 @@ export const projectDetails = [
     period: "2024年11月 - 2024年12月",
     role: "モバイルアプリ開発(Android/iOS)",
     description:
-      "建設業向けの特化型マッチングアプリケーションの機能追加開発。発生土の受け入れ先と盛土が必要な現場をマッチングし、建設現場の効率を向上させるツール。既存アプリのユーザビリティ向上や新機能追加を担当。",
+      "建設業向けの特化型マッチングアプリケーションの機能追加開発。発生土の受け入れ先と盛土が必要な現場をマッチングし、建設現場の効率を向上させるツール。\n 既存アプリのユーザビリティ向上や新機能追加を担当。",
     technologies: {
       frontend: [
         "Flutter",
@@ -67,7 +67,13 @@ export const projectDetails = [
         "GoRouter (ナビゲーション)",
       ],
       backend: [
-        "Firebase (Authentication, Firestore, Cloud Functions, Storage, Messaging, Remote Config)",
+        "Firebase ",
+        "Firebase Authentication",
+        "Cloud Firestore",
+        "Cloud Storage",
+        "Cloud Functions",
+        "Cloud Messaging",
+        "Remote Config",
       ],
       other: [
         "RevenueCat (アプリ内課金)",
@@ -88,21 +94,27 @@ export const projectDetails = [
     period: "2024年1月 - 現在",
     role: "アプリ開発, インフラ構築担当, 動画解析処理実装",
     description:
-      "動画やリアルタイムストリームから人流や車両の動きを分析するアプリケーションの開発。主な機能には、アップロード動画の解析、IPカメラを使用したリアルタイムストリーミング解析、検出された人物の属性分析（性別、年齢範囲）が含まれる。WebSocketを使用したリアルタイムデータ通信、バックグラウンドでの動画解析データ処理、AWSを活用したスケーラブルなインフラ設計を実現。JWT認証やCSRF保護などのセキュリティ機能も実装。",
+      "動画やリアルタイムストリームから人流や車両の動きを分析するアプリケーションの開発。\n主な機能には、アップロード動画の解析、IPカメラを使用したリアルタイムストリーミング解析、検出された人物の属性分析（性別、年齢範囲）が含まれる。",
     technologies: {
       frontend: ["React.js", "TypeScript", "Tailwind CSS"],
       backend: ["Django", "Python"],
       database: ["PostgreSQL", "Redis"],
       infrastructure: [
-        "AWS (ECS, VPC, S3, RDS, CloudFront, CloudFormation)",
+        "Amazon ECS",
+        "Amazon VPC",
+        "Amazon S3",
+        "Amazon RDS",
+        "CloudFront",
+        "CloudFormation",
+        "Fargate",
         "Docker",
       ],
       other: ["YOLO (物体検出)", "OpenCV", "JWT認証"],
     },
     teamSize: "開発者2名",
     achievements: [
-      "WebSocketを使用したリアルタイム動画解析機能の実装により、ユーザー体験を向上",
-      "AWSのECSとFargateを活用したスケーラブルなインフラ設計により、将来の成長に備えた拡張性を確保",
+      "WebSocketを使用したリアルタイム動画解析機能の実装により、\nユーザー体験を向上",
+      "AWSのECSとFargateを活用したスケーラブルなインフラ設計により、\n将来の成長に備えた拡張性を確保",
       "YOLOv8とAmazon Rekognitionを組み合わせた物体検出と属性分析機能の実現",
     ],
   },
@@ -111,7 +123,7 @@ export const projectDetails = [
     period: "2022年12月 - 2023年12月",
     role: "モバイルアプリ開発(Android/iOS)",
     description:
-      "建設業向けの特化型マッチングアプリケーションの開発。発生土の受け入れ先と盛土が必要な現場をマッチングし、建設現場の効率を向上させるツール。主な機能には、条件に合致した現場のポップアップ通知、承認後の詳細情報表示によるセキュリティ確保、サブスクリプションベースの収益モデルが含まれる。Flutter を使用してクロスプラットフォーム開発を行い、Firebase でバックエンドを構築。",
+      "建設業向けの特化型マッチングアプリケーションの開発。建設発生土を処分したい業者と発生土が必要な現場をマッチングし、建設現場の効率を向上させるツール。\nFlutter を使用してクロスプラットフォーム開発を行い、Firebase でバックエンドを構築。",
     technologies: {
       frontend: [
         "Flutter",
@@ -120,7 +132,13 @@ export const projectDetails = [
         "GoRouter (ナビゲーション)",
       ],
       backend: [
-        "Firebase (Authentication, Firestore, Cloud Functions, Storage, Messaging, Remote Config)",
+        "Firebase ",
+        "Firebase Authentication",
+        "Cloud Firestore",
+        "Cloud Storage",
+        "Cloud Functions",
+        "Cloud Messaging",
+        "Remote Config",
       ],
       other: [
         "RevenueCat (アプリ内課金)",
@@ -161,7 +179,7 @@ export const projectDetails = [
     period: "2021年6月 - 2022年6月",
     role: "モバイルアプリ開発(Android/iOS)",
     description:
-      "位置情報と地図機能を活用したCtoC向けマッチングアプリケーションの開発。MVVMアーキテクチャを採用し、保守性と拡張性の高いコード構造を実現。ユーザー間のイベント作成、検索、申し込み機能や、メッセージング、評価システムなどを実装。Firebaseのサービスを活用してバックエンドを構築し、リアルタイムなデータ同期と通知機能を実現。Google Maps APIを統合し、位置情報ベースの検索と表示機能を実装。多様な認証方法（Email、Google、Apple）をサポートし、アプリ内課金(消耗型)による収益化を実装。招待コードを使った紹介機能、プッシュ通知機能など多様な機能を統合。",
+      "位置情報と地図機能を活用したCtoC向けマッチングアプリケーションの開発。ユーザー間のイベント作成、検索、申し込み機能や、メッセージング、評価システムなどを実装。",
     technologies: {
       frontend: [
         "Flutter",
@@ -170,7 +188,15 @@ export const projectDetails = [
         "MVVM (アーキテクチャパターン)",
       ],
       backend: [
-        "Firebase (Authentication, Firestore, Storage,  Messaging, Dynamic Links, In-App Messaging, Remote Config)",
+        "Firebase ",
+        "Firebase Authentication",
+        "Cloud Firestore",
+        "Cloud Storage",
+        "Cloud Functions",
+        "Cloud Messaging",
+        "Dynamic Links",
+        "In-App Messaging",
+        "Remote Config",
       ],
       other: [
         "Google Maps API",
@@ -183,15 +209,13 @@ export const projectDetails = [
     },
     teamSize: "開発者2名、デザイナー1名",
     achievements: [
-      "MVVMアーキテクチャを採用し、ビジネスロジックとUIの分離を実現、コードの保守性と再利用性を向上",
+      "MVVMアーキテクチャを採用し、コードの保守性と再利用性を向上",
       "Flutterを活用し、単一のコードベースでAndroidとiOSの両プラットフォームに対応したアプリを開発",
-      "Firebaseの各種サービスを統合し、認証、データベース、ストレージ、メッセージングを含むバックエンドを構築",
+      "Firebaseの各種サービスを統合し、認証、データベース、ストレージ、プッシュ通知を含むバックエンドを構築",
       "Google Maps APIと位置情報サービスを統合し、ユーザーの位置に基づいたイベント検索と表示機能を実装",
-      "複数の認証方法（Email、Google、Apple）を実装し、ユーザーの利便性を向上",
       "In-App Purchaseを使用したアプリ内課金(消耗型)を導入し、収益化を実現",
-      "Firebase Cloud Messagingを活用し、プッシュ通知システムを構築",
       "画像のアップロードと編集機能を実装し、ユーザープロフィールやイベント情報の視覚的な印象を向上",
-      "多言語対応とローカライゼーションを実装し、アプリの国際化に対応",
+
       "アプリの要件定義からApp StoreとGoogle Play Storeへのリリースまでを担当",
     ],
   },
@@ -258,7 +282,7 @@ export const strengthsAndValueProps = [
   {
     title: "プロジェクト全体を見据えた開発への参画",
     description:
-      "大規模システム開発での製造、試験、品質管理の経験を活かし、プロジェクト全体の成功を目指しています。部分最適化ではなく、全体を俯瞰しながら個々の開発タスクに取り組みます。チームメンバーとの密なコミュニケーションを通じて、常に進捗と品質のバランスを保ち、プロジェクト全体の最適化を目指します。",
+      "大規模システム開発での製造、試験、品質管理の経験を活かし、プロジェクト全体の成功を目指しています。\n部分最適化ではなく、全体を俯瞰しながら個々の開発タスクに取り組みます。チームメンバーとの密なコミュニケーションを通じて、常に進捗と品質のバランスを保ち、プロジェクト全体の最適化を目指します。",
   },
 ];
 
@@ -276,7 +300,8 @@ export const hobbiesAndInterests = [
   {
     title: "ランニング",
     description:
-      "ランニングが日課です。毎日がハイペースというわけではなく、時には歩いたり、ゆっくりジョギングしたりします。風景の移り変わりを感じながら走るのが好きで、その時々の景色を楽しんでいます。",
+      // "ランニングが日課です。毎日がハイペースというわけではなく、時には歩いたり、ゆっくりジョギングしたりします。風景の移り変わりを感じながら走るのが好きで、その時々の景色を楽しんでいます。",
+      "ランニングが日課です。風景の移り変わりを感じながら走るのが好きで、その時々の景色を楽しんでいます。",
   },
   {
     title: "書店巡り",

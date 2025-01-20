@@ -20,6 +20,21 @@ export type ProjectDetail = {
 const Accordion: React.FC<{ items: ProjectDetail[] }> = ({ items }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
+  const renderTechList = (techs: string[]) => {
+    return (
+      <div className="flex flex-wrap gap-2 mt-1 ml-4">
+        {techs.map((tech, index) => (
+          <span
+            key={index}
+            className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded text-sm"
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <div className="space-y-4">
       {items.map((item, index) => (
@@ -42,58 +57,71 @@ const Accordion: React.FC<{ items: ProjectDetail[] }> = ({ items }) => {
             </span>
           </button>
           {openIndex === index && (
-            <div className="p-4 border-t border-gray-200 dark:border-gray-700">
-              {/* <p>
-                <strong>期間:</strong> {item.period}
-              </p> */}
-              <p>
-                <strong>役割:</strong> {item.role}
-              </p>
-              <p>
-                <strong>概要:</strong> {item.description}
-              </p>
-              <p>
-                <strong>チーム規模:</strong> {item.teamSize}
-              </p>
-              <div className="mt-2">
+            <div className="p-4 border-t border-gray-200 dark:border-gray-700 space-y-4">
+              <div>
+                <strong>役割:</strong>{" "}
+                <span className="whitespace-pre-line">{item.role}</span>
+              </div>
+              <div>
+                <strong>概要:</strong>{" "}
+                <span className="whitespace-pre-line">{item.description}</span>
+              </div>
+              <div>
+                <strong>チーム規模:</strong>{" "}
+                <span className="whitespace-pre-line">{item.teamSize}</span>
+              </div>
+              <div className="space-y-3">
                 <strong>技術スタック:</strong>
-                <ul className="list-disc list-inside ml-4">
-                  {item.technologies.frontend &&
-                    item.technologies.frontend.length !== 0 && (
-                      <li>
-                        フロントエンド: {item.technologies.frontend.join(", ")}
-                      </li>
-                    )}
-                  {item.technologies.backend &&
-                    item.technologies.backend.length !== 0 && (
-                      <li>
-                        バックエンド: {item.technologies.backend.join(", ")}
-                      </li>
-                    )}
-                  {item.technologies.database &&
-                    item.technologies.database.length !== 0 && (
-                      <li>
-                        データベース: {item.technologies.database.join(", ")}
-                      </li>
-                    )}
-                  {item.technologies.infrastructure &&
-                    item.technologies.infrastructure.length !== 0 && (
-                      <li>
-                        インフラ: {item.technologies.infrastructure.join(", ")}
-                      </li>
-                    )}
-                  {item.technologies.other &&
-                    item.technologies.other.length !== 0 && (
-                      <li>その他: {item.technologies.other.join(", ")}</li>
-                    )}
-                </ul>
+                {item.technologies.frontend &&
+                  item.technologies.frontend.length !== 0 && (
+                    <div>
+                      <div className="ml-4 text-sm font-medium">
+                        フロントエンド:
+                      </div>
+                      {renderTechList(item.technologies.frontend)}
+                    </div>
+                  )}
+                {item.technologies.backend &&
+                  item.technologies.backend.length !== 0 && (
+                    <div>
+                      <div className="ml-4 text-sm font-medium">
+                        バックエンド:
+                      </div>
+                      {renderTechList(item.technologies.backend)}
+                    </div>
+                  )}
+                {item.technologies.database &&
+                  item.technologies.database.length !== 0 && (
+                    <div>
+                      <div className="ml-4 text-sm font-medium">
+                        データベース:
+                      </div>
+                      {renderTechList(item.technologies.database)}
+                    </div>
+                  )}
+                {item.technologies.infrastructure &&
+                  item.technologies.infrastructure.length !== 0 && (
+                    <div>
+                      <div className="ml-4 text-sm font-medium">インフラ:</div>
+                      {renderTechList(item.technologies.infrastructure)}
+                    </div>
+                  )}
+                {item.technologies.other &&
+                  item.technologies.other.length !== 0 && (
+                    <div>
+                      <div className="ml-4 text-sm font-medium">その他:</div>
+                      {renderTechList(item.technologies.other)}
+                    </div>
+                  )}
               </div>
               {item.achievements && item.achievements.length !== 0 && (
-                <div className="mt-2">
+                <div>
                   <strong>主な成果:</strong>
-                  <ul className="list-disc list-inside ml-4">
+                  <ul className="list-disc ml-6 mt-2 space-y-2">
                     {item.achievements.map((achievement, i) => (
-                      <li key={i}>{achievement}</li>
+                      <li key={i} className="whitespace-pre-line">
+                        {achievement}
+                      </li>
                     ))}
                   </ul>
                 </div>
@@ -105,5 +133,4 @@ const Accordion: React.FC<{ items: ProjectDetail[] }> = ({ items }) => {
     </div>
   );
 };
-
 export default Accordion;
