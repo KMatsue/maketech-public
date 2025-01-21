@@ -4,6 +4,7 @@ import React, { useState } from "react";
 export type ProjectDetail = {
   title: string;
   period: string;
+  summary?: string;
   role: string;
   description: string;
   technologies: {
@@ -35,27 +36,60 @@ const Accordion: React.FC<{ items: ProjectDetail[] }> = ({ items }) => {
     );
   };
 
+  const renderTechPreview = (item: ProjectDetail) => {
+    const allTechs = [
+      ...(item.technologies.frontend || []),
+      ...(item.technologies.backend || []),
+      ...(item.technologies.database || []),
+    ].slice(0, 3);
+
+    return (
+      <div className="flex flex-wrap gap-1 mt-1">
+        {allTechs.map((tech, index) => (
+          <span
+            key={index}
+            className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-700 rounded text-xs"
+          >
+            {tech}
+          </span>
+        ))}
+        {allTechs.length > 0 && (
+          <span className="text-xs text-gray-500">...</span>
+        )}
+      </div>
+    );
+  };
+
   return (
     <div className="space-y-4">
       {items.map((item, index) => (
         <div
           key={index}
-          className="border border-gray-200 dark:border-gray-700 rounded-lg"
+          className="border border-gray-200 dark:border-gray-700 rounded-lg hover:border-gray-300 dark:hover:border-gray-600 transition-colors"
         >
           <button
-            className="flex justify-between items-center w-full p-4 text-left"
+            className="w-full p-4 text-left"
             onClick={() => setOpenIndex(openIndex === index ? null : index)}
           >
-            <div className="flex-grow pr-4">
-              <div className="font-semibold">{item.title}</div>
-              <div className="text-sm text-gray-500 dark:text-gray-400">
-                {item.period}
+            <div className="flex items-center">
+              <div className="flex-grow">
+                <div className="font-semibold text-lg">{item.title}</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                  {item.period}
+                </div>
+                {item.summary && (
+                  <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
+                    {item.summary}
+                  </p>
+                )}
+                {renderTechPreview(item)}
               </div>
+              <span className="text-xl leading-none text-gray-400 ml-4">
+                {openIndex === index ? "−" : "+"}
+              </span>
             </div>
-            <span className="text-xl leading-none flex-shrink-0">
-              {openIndex === index ? "−" : "+"}
-            </span>
           </button>
+
           {openIndex === index && (
             <div className="p-4 border-t border-gray-200 dark:border-gray-700 space-y-4">
               <div>
@@ -133,4 +167,5 @@ const Accordion: React.FC<{ items: ProjectDetail[] }> = ({ items }) => {
     </div>
   );
 };
+
 export default Accordion;
