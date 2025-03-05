@@ -14,6 +14,7 @@ const Navbar = () => {
   const navMenuList = [
     { name: "Home", link: "/" },
     { name: "Blog", link: "/posts/page/1" },
+    // { name: "Tools", link: "/tools" },
     { name: "About", link: "/about" },
     { name: "Contact", link: "/contact" },
   ];
@@ -29,7 +30,13 @@ const Navbar = () => {
     <nav className="container mx-auto px-4 md:px-8 lg:px-16">
       <div className="flex items-center justify-between border-b border-gray-400 dark:border-gray-600 py-4">
         <Link href="/" className="text-2xl font-medium">
-          MaKe TECH 🚀
+          MaKe TECH{" "}
+          <span
+            className="cursor-pointer"
+            onClick={() => (window.location.href = "/tools")}
+          >
+            🚀
+          </span>
         </Link>
 
         <div>
