@@ -70,7 +70,32 @@ const ToolsPage = () => {
                 使ってみる →
               </span>
             </Link>
-
+            <Link
+              href="/tools/json-formatter"
+              className="block p-6 border border-gray-300 dark:border-gray-700 rounded-lg hover:shadow-md transition duration-300"
+            >
+              <h2 className="text-xl font-semibold mb-3">JSONフォーマッター</h2>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                JSONデータの整形、検証、パス抽出、ツリー表示ができるツールです。
+              </p>
+              <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+                使ってみる →
+              </span>
+            </Link>
+            <Link
+              href="/tools/object-formatter"
+              className="block p-6 border border-gray-300 dark:border-gray-700 rounded-lg hover:shadow-md transition duration-300"
+            >
+              <h2 className="text-xl font-semibold mb-3">
+                オブジェクト文字列フォーマッター
+              </h2>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                Dart/Java/Kotlinなどのオブジェクト文字列を見やすく整形して表示します
+              </p>
+              <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+                使ってみる →
+              </span>
+            </Link>
             {/* 他のツールカードを追加 */}
           </div>
         </section>
