@@ -45,6 +45,31 @@ const ToolsPage = () => {
                 使ってみる →
               </span>
             </Link>
+            <Link
+              href="/tools/regex-tester"
+              className="block p-6 border border-gray-300 dark:border-gray-700 rounded-lg hover:shadow-md transition duration-300"
+            >
+              <h2 className="text-xl font-semibold mb-3">正規表現テスター</h2>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                正規表現をリアルタイムでテスト、マッチや置換結果を確認できます。
+              </p>
+              <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+                使ってみる →
+              </span>
+            </Link>
+
+            <Link
+              href="/tools/text-diff"
+              className="block p-6 border border-gray-300 dark:border-gray-700 rounded-lg hover:shadow-md transition duration-300"
+            >
+              <h2 className="text-xl font-semibold mb-3">テキスト差分比較</h2>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                2つのテキストの違いを視覚的に比較、追加/削除/変更を確認できます。
+              </p>
+              <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+                使ってみる →
+              </span>
+            </Link>
 
             {/* 他のツールカードを追加 */}
           </div>

@@ -52,6 +52,7 @@
     "@storybook/nextjs": "^7.4.0",
     "@storybook/react": "^7.4.0",
     "@storybook/testing-library": "^0.2.0",
+    "@types/diff": "^7.0.1",
     "@types/nodemailer": "^6.4.15",
     "@types/react-syntax-highlighter": "^15.5.7",
     "encoding": "^0.1.13",
