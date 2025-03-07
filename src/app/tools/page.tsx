@@ -96,6 +96,20 @@ const ToolsPage = () => {
                 使ってみる →
               </span>
             </Link>
+            <Link
+              href="/tools/qr-generator"
+              className="block p-6 border border-gray-300 dark:border-gray-700 rounded-lg hover:shadow-md transition duration-300"
+            >
+              <h2 className="text-xl font-semibold mb-3">
+                QRコードジェネレーター
+              </h2>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                テキスト、URL、連絡先情報などからQRコードを簡単に生成できます。
+              </p>
+              <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+                使ってみる →
+              </span>
+            </Link>
             {/* 他のツールカードを追加 */}
           </div>
         </section>
