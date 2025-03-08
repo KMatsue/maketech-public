@@ -40,7 +40,7 @@ const Home = async () => {
           <h4>
             <Link
               href="/posts/page/1"
-              className="mb-6 mx-auto px-5 block text-right"
+              className="my-6 mx-auto px-5 block text-right"
             >
               ....もっと見る
             </Link>

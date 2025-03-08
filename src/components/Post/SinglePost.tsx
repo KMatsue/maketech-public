@@ -84,7 +84,7 @@ const SinglePost = (props: Props) => {
   return (
     <article
       ref={cardRef}
-      className="group relative border border-gray-500 rounded-lg p-5 cursor-pointer transition-all duration-300 hover:shadow-lg hover:bg-gray-100 dark:hover:bg-gray-800 flex flex-col md:h-[160px]"
+      className="group relative border border-gray-500 rounded-lg p-5 cursor-pointer transition-all duration-300 hover:shadow-lg hover:bg-gray-100 dark:hover:bg-gray-800 flex flex-col lg:max-h-[180px]"
       onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -97,8 +97,8 @@ const SinglePost = (props: Props) => {
         <span className="sr-only">Read more</span>
       </Link>
 
-      <div className="mb-2 min-h-[1.5rem] md:min-h-[3rem]">
-        <h2 className="text-gray-600 dark:text-white text-xl font-medium line-clamp-1 md:line-clamp-2">
+      <div className="mb-2 min-h-[1.5rem] lg:min-h-[3rem]">
+        <h2 className="text-gray-600 dark:text-white text-xl font-medium line-clamp-1 lg:line-clamp-2">
           {title}
         </h2>
       </div>
@@ -107,7 +107,7 @@ const SinglePost = (props: Props) => {
 
       <div className="mt-auto">
         <div className="text-gray-500 dark:text-gray-400 mb-2">{date}</div>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 overflow-hidden">
           {tags.map((tag, index) => (
             <TagLink key={index} tag={tag} />
           ))}
