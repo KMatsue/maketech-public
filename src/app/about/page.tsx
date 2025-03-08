@@ -66,7 +66,7 @@ const AboutPage = () => {
           </ul>
         </section>
 
-        <section className="mb-12">
+        {/* <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-4">強みと価値提案</h2>
           {strengthsAndValueProps.map((item, index) => (
             <div key={index} className="mb-4">
@@ -74,7 +74,7 @@ const AboutPage = () => {
               <p>{item.description}</p>
             </div>
           ))}
-        </section>
+        </section> */}
 
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-4">趣味・関心事</h2>
