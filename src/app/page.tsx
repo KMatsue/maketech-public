@@ -5,7 +5,7 @@ import Posts from "@/components/Post/Posts";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "MaKeTECH - Web開発のトレンドと技術情報",
+  title: "MaKeTECH",
   description:
     "Web開発、プログラミング、技術に関する情報を提供するテックブログです。技術的な学びや読書のアウトプット、メモを共有しています。",
   keywords: [
@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     "プログラミング",
     "技術ブログ",
     "ソフトウェアエンジニアリング",
+    "作業用ツール",
   ],
 };
 
@@ -33,7 +34,9 @@ const Home = async () => {
         {/* 最近の投稿セクション */}
         <section className="mb-8">
           <h2 className="border-b-2 border-gray-500 mb-4">Recent Posts</h2>
-          <Posts posts={posts} />
+          <div className="space-y-6">
+            <Posts posts={posts} />
+          </div>
           <h4>
             <Link
               href="/posts/page/1"
