@@ -74,7 +74,7 @@ const getPageMetaData = (page: any) => {
     keywords: getKeywords(page.properties.keywords),
     slug: page.properties.slug?.rich_text[0]?.plain_text || "",
     published: page.properties.published?.checkbox || false,
-    updatedAt: page.last_edited_time || "",
+    updatedAt: page.properties.updatedAt?.date?.start || "",
   };
 };
 
@@ -332,6 +332,7 @@ export const getPageByIdentifier = async (identifier: string) => {
   // この部分をブログ記事と同じ処理にする
   // getSinglePost関数内ではこの後にsetOgpが呼ばれている
   const blocks = await setOgp(mdBlocks);
+  console.log(metadata);
 
   return {
     metadata,
