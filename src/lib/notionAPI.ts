@@ -31,11 +31,12 @@ export const getAllPosts = async () => {
   const allPosts = posts.results;
   //   return allPosts;
   return allPosts.map((post) => {
-    return getPageMetaData(post);
+    return getBlogPostMetaData(post);
   });
 };
 
-const getPageMetaData = (post: any) => {
+// ブログ記事用のメタデータ抽出
+const getBlogPostMetaData = (post: any) => {
   const getTags = (tags: { name: string }[]) => {
     const allTags = tags.map((tag) => {
       return tag.name;
@@ -50,6 +51,30 @@ const getPageMetaData = (post: any) => {
     date: post.properties.date.date.start,
     slug: post.properties.slug.rich_text[0].plain_text,
     tags: getTags(post.properties.tags.multi_select),
+  };
+};
+
+// 静的ページ用のメタデータ抽出
+const getPageMetaData = (page: any) => {
+  // キーワードが存在する場合は抽出、ない場合は空配列
+  const getKeywords = (keywords: any) => {
+    if (!keywords || !keywords.multi_select) {
+      return [];
+    }
+
+    return keywords.multi_select.map((keyword: { name: string }) => {
+      return keyword.name;
+    });
+  };
+
+  return {
+    id: page.id,
+    title: page.properties.name.title[0]?.plain_text || "ページタイトル",
+    description: page.properties.description?.rich_text[0]?.plain_text || "",
+    keywords: getKeywords(page.properties.keywords),
+    slug: page.properties.slug?.rich_text[0]?.plain_text || "",
+    published: page.properties.published?.checkbox || false,
+    updatedAt: page.last_edited_time || "",
   };
 };
 
@@ -71,7 +96,7 @@ export const getSinglePost = async (slug: string) => {
     },
   });
   const page = response.results[0];
-  const metadata: Post = getPageMetaData(page);
+  const metadata: Post = getBlogPostMetaData(page);
 
   const mdBlocks = await getBlocks(page.id);
 
@@ -255,3 +280,61 @@ export const getAllTags = cache(async () => {
 
   return allTagsList;
 });
+
+export const getPageByIdentifier2 = async (identifier: string) => {
+  const response: QueryDatabaseResponse = await notion.databases.query({
+    database_id: "1b0062f1a3b48086aa42ef48a35a883a",
+    filter: {
+      property: "slug",
+      rich_text: {
+        // プロパティの型に合わせて"rich_text"を使用
+        equals: identifier,
+      },
+    },
+  });
+
+  if (response.results.length === 0) {
+    return null;
+  }
+
+  const page = response.results[0];
+  const metadata = getPageMetaData(page);
+  const mdBlocks = await getBlocks(page.id);
+  const blocks = await setOgp(mdBlocks);
+
+  return {
+    metadata,
+    blocks,
+  };
+};
+
+export const getPageByIdentifier = async (identifier: string) => {
+  const response = await notion.databases.query({
+    database_id: process.env.NOTION_PAGES_DATABASE_ID || "",
+    filter: {
+      property: "slug",
+      rich_text: {
+        equals: identifier,
+      },
+    },
+  });
+
+  if (response.results.length === 0) {
+    return null;
+  }
+
+  const page = response.results[0];
+  const metadata = getPageMetaData(page);
+
+  // ここが重要: ブログ記事と同じ形式のデータを返す
+  const mdBlocks = await getBlocks(page.id);
+
+  // この部分をブログ記事と同じ処理にする
+  // getSinglePost関数内ではこの後にsetOgpが呼ばれている
+  const blocks = await setOgp(mdBlocks);
+
+  return {
+    metadata,
+    markdown: blocks, // ここをmarkdownに変更（ブログ記事と同じ形式）
+  };
+};
