@@ -43,6 +43,9 @@ const QrGeneratorClient = () => {
     errorCorrectionLevel: "M",
   });
 
+  // ダウンロード用のファイル名
+  const [fileName, setFileName] = useState<string>("");
+
   // 生成されたQRコード
   const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string>("");
   const [generationError, setGenerationError] = useState<string | null>(null);
@@ -81,7 +84,39 @@ const QrGeneratorClient = () => {
       default:
         setContent("QRコードのテキスト");
     }
+
+    // デフォルトのファイル名も設定
+    updateDefaultFileName();
   }, [qrType]);
+
+  // QRタイプに基づいてデフォルトのファイル名を設定
+  const updateDefaultFileName = () => {
+    const date = new Date().toISOString().slice(0, 10);
+    let defaultName = `qrcode-${date}`;
+
+    switch (qrType) {
+      case "url":
+        defaultName = `url-qrcode-${date}`;
+        break;
+      case "email":
+        defaultName = `email-qrcode-${date}`;
+        break;
+      case "tel":
+        defaultName = `tel-qrcode-${date}`;
+        break;
+      case "sms":
+        defaultName = `sms-qrcode-${date}`;
+        break;
+      case "wifi":
+        defaultName = `wifi-qrcode-${date}`;
+        break;
+      case "vcard":
+        defaultName = `contact-qrcode-${date}`;
+        break;
+    }
+
+    setFileName(defaultName);
+  };
 
   // QRコードの内容を構築
   const buildQRContent = (): string => {
@@ -148,6 +183,11 @@ const QrGeneratorClient = () => {
         } else {
           setQrCodeDataUrl(url);
           setGenerationError(null);
+
+          // ファイル名が空の場合はデフォルト名を設定
+          if (!fileName) {
+            updateDefaultFileName();
+          }
         }
       });
     } catch (err) {
@@ -161,11 +201,15 @@ const QrGeneratorClient = () => {
   const downloadQRCode = (format: "png" | "svg") => {
     if (!qrCodeDataUrl && format === "png") return;
 
+    // ファイル名が指定されていない場合はデフォルト名を使用
+    const downloadFileName =
+      fileName.trim() || `qrcode-${new Date().toISOString().slice(0, 10)}`;
+
     if (format === "png") {
       // PNGとしてダウンロード
       const link = document.createElement("a");
       link.href = qrCodeDataUrl;
-      link.download = `qrcode-${new Date().toISOString().slice(0, 10)}.png`;
+      link.download = `${downloadFileName}.png`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -193,7 +237,7 @@ const QrGeneratorClient = () => {
           const url = URL.createObjectURL(blob);
           const link = document.createElement("a");
           link.href = url;
-          link.download = `qrcode-${new Date().toISOString().slice(0, 10)}.svg`;
+          link.download = `${downloadFileName}.svg`;
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
@@ -578,19 +622,38 @@ const QrGeneratorClient = () => {
                 )}
 
                 {qrCodeDataUrl && (
-                  <div className="flex space-x-2 mt-4">
-                    <button
-                      onClick={() => downloadQRCode("png")}
-                      className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white rounded-lg transition duration-200 text-sm"
-                    >
-                      PNG形式でダウンロード
-                    </button>
-                    <button
-                      onClick={() => downloadQRCode("svg")}
-                      className="px-3 py-1 bg-purple-500 hover:bg-purple-600 text-white rounded-lg transition duration-200 text-sm"
-                    >
-                      SVG形式でダウンロード
-                    </button>
+                  <div className="w-full">
+                    <div className="mb-4">
+                      <label
+                        htmlFor="fileName"
+                        className="block font-medium mb-2 text-sm"
+                      >
+                        ファイル名 (拡張子なし)
+                      </label>
+                      <input
+                        type="text"
+                        id="fileName"
+                        value={fileName}
+                        onChange={(e) => setFileName(e.target.value)}
+                        placeholder="保存するファイル名"
+                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100 text-sm mb-4"
+                      />
+                    </div>
+
+                    <div className="flex space-x-2">
+                      <button
+                        onClick={() => downloadQRCode("png")}
+                        className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white rounded-lg transition duration-200 text-sm flex-1"
+                      >
+                        PNG形式でダウンロード
+                      </button>
+                      <button
+                        onClick={() => downloadQRCode("svg")}
+                        className="px-3 py-1 bg-purple-500 hover:bg-purple-600 text-white rounded-lg transition duration-200 text-sm flex-1"
+                      >
+                        SVG形式でダウンロード
+                      </button>
+                    </div>
                   </div>
                 )}
               </div>
@@ -714,61 +777,85 @@ const QrGeneratorClient = () => {
                     <option value="H">高 (30%)</option>
                   </select>
 
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  <p className="text-xs text-gray-500 dark:tUext-gray-400 mt-1">
                     誤り訂正レベルが高いほど、QRコードが損傷しても読み取り可能ですが、データ容量は減少します。
                   </p>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* 使い方 */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
-          <h2 className="text-xl font-semibold mb-4 border-b pb-2">使い方</h2>
-          <ol className="list-decimal list-inside space-y-2 text-gray-700 dark:text-gray-300">
-            <li>
-              生成したいQRコードのタイプを選択します（テキスト、URL、連絡先など）
-            </li>
-            <li>必要な情報を入力フィールドに入力します</li>
-            <li>「QRコードを生成」ボタンをクリックします</li>
-            <li>
-              必要に応じてQRコードの設定（サイズ、色、誤り訂正レベルなど）を調整できます
-            </li>
-            <li>生成されたQRコードはPNGまたはSVG形式でダウンロードできます</li>
-            <li>
-              QRコードはスマートフォンやQRコードリーダーで読み取ることができます
-            </li>
-          </ol>
+          {/* 使い方 */}
+          <div className="mt-8 p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg shadow mb-8">
+            <h2 className="text-xl font-semibold mb-4 border-b pb-2">使い方</h2>
+            <ol className="list-disc pl-5 space-y-1 text-gray-600 dark:text-gray-400">
+              <li>
+                生成したいQRコードのタイプを選択します（テキスト、URL、連絡先など）
+              </li>
+              <li>必要な情報を入力フィールドに入力します</li>
+              <li>「QRコードを生成」ボタンをクリックします</li>
+              <li>
+                必要に応じてQRコードの設定（サイズ、色、誤り訂正レベルなど）を調整できます
+              </li>
+              <li>
+                ダウンロード前に任意のファイル名を入力できます（拡張子は自動的に付加されます）
+              </li>
+              <li>
+                生成されたQRコードはPNGまたはSVG形式でダウンロードできます
+              </li>
+              <li>
+                QRコードはスマートフォンやQRコードリーダーで読み取ることができます
+              </li>
+            </ol>
 
-          <div className="mt-4">
-            <h3 className="font-medium mb-2">QRコードタイプ別の使用例</h3>
-            <ul className="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300">
+            <div className="mt-4">
+              <h3 className="font-medium mb-2">QRコードタイプ別の使用例</h3>
+              <ul className="list-disc pl-5 space-y-1 text-gray-600 dark:text-gray-400">
+                <li>
+                  <strong>テキスト</strong>: メモ、メッセージ、パスワードなど
+                </li>
+                <li>
+                  <strong>URL</strong>:
+                  ウェブサイト、ブログ記事、SNSプロフィールなど
+                </li>
+                <li>
+                  <strong>メールアドレス</strong>:
+                  連絡先のメールアドレス（クリックするとメーラーが起動）
+                </li>
+                <li>
+                  <strong>電話番号</strong>:
+                  電話番号（クリックすると電話アプリが起動）
+                </li>
+                <li>
+                  <strong>SMS</strong>:
+                  SMS送信先の電話番号（クリックするとSMSアプリが起動）
+                </li>
+                <li>
+                  <strong>Wi-Fi</strong>:
+                  Wi-Fiネットワーク情報（読み取ると自動接続）
+                </li>
+                <li>
+                  <strong>連絡先</strong>:
+                  名刺情報（読み取ると連絡先に追加可能）
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-4 text-xs text-gray-500 dark:text-gray-400">
+            <p className="mb-1">注意事項:</p>
+            <ul className="list-disc pl-5 space-y-1">
               <li>
-                <strong>テキスト</strong>: メモ、メッセージ、パスワードなど
+                QRコードの内容によっては、コードが複雑になり読み取りにくくなる場合があります
               </li>
               <li>
-                <strong>URL</strong>:
-                ウェブサイト、ブログ記事、SNSプロフィールなど
+                特に長いテキストや連絡先情報を入れる場合は、誤り訂正レベルを高めに設定することをお勧めします
               </li>
               <li>
-                <strong>メールアドレス</strong>:
-                連絡先のメールアドレス（クリックするとメーラーが起動）
+                生成されたQRコードは印刷する前に、必ず実際のQRコードリーダーでテストすることをお勧めします
               </li>
               <li>
-                <strong>電話番号</strong>:
-                電話番号（クリックすると電話アプリが起動）
-              </li>
-              <li>
-                <strong>SMS</strong>:
-                SMS送信先の電話番号（クリックするとSMSアプリが起動）
-              </li>
-              <li>
-                <strong>Wi-Fi</strong>:
-                Wi-Fiネットワーク情報（読み取ると自動接続）
-              </li>
-              <li>
-                <strong>連絡先</strong>: 名刺情報（読み取ると連絡先に追加可能）
+                本ツールはクライアントサイドで動作し、入力データはサーバーに送信されません
               </li>
             </ul>
           </div>
