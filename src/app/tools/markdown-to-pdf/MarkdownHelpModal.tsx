@@ -182,7 +182,7 @@ const MarkdownHelpModal: React.FC<MarkdownHelpModalProps> = ({
                 <br />
                 function example() {`{`}
                 <br />
-                {'{"..."}'}return "Hello World";
+                {'{"..."}'}return &quot;Hello World&quot;;
                 <br />
                 {`}`}
                 <br />
