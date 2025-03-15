@@ -15,7 +15,7 @@ const Navbar = () => {
     { name: "Home", link: "/" },
     { name: "Blog", link: "/posts/page/1" },
     // { name: "Tools", link: "/tools" },
-    { name: "About", link: "/about" },
+    // { name: "About", link: "/about" },
     { name: "Contact", link: "/contact" },
   ];
 
