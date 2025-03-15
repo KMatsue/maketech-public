@@ -1,7 +1,11 @@
-import { Metadata } from "next";
-import MarkdownToPdfClient from "./MarkdownToPdfClient";
+import dynamic from "next/dynamic";
 
-export const metadata: Metadata = {
+// クライアント側でのみロードするよう設定
+const MarkdownToPdfClient = dynamic(() => import("./MarkdownToPdfClient"), {
+  ssr: false,
+});
+
+export const metadata = {
   title: "マークダウンからPDF変換 | MaKe TECH Tools",
   description:
     "マークダウンテキストをPDFドキュメントに簡単に変換できるツールです。",
