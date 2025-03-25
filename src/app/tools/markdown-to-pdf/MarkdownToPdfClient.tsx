@@ -213,7 +213,7 @@ const convertToPdf = () => {
 
   return (
     <main className="container mx-auto w-full mt-14 px-4 md:px-8">
-      <div className="mx-auto lg:w-10/12">
+      <div className="mx-auto lg:w-11/12">
         <header className="text-center my-8">
           <h1 className="text-4xl font-bold mb-4">
             マークダウンからPDFへの変換
@@ -905,14 +905,7 @@ const FullPreviewComponent = ({
     } finally {
       setIsCalculating(false);
     }
-  }, [
-    previewHtml,
-    pageWidth,
-    pageHeight,
-    margins,
-    fontSize,
-    applyMarkdownStyles,
-  ]);
+  }, [previewHtml, pageWidth, pageHeight, margins, fontSize]);
 
   // ウィンドウサイズ変更時とページサイズ/向き変更時にスケールを再計算
   useEffect(() => {
@@ -922,6 +915,7 @@ const FullPreviewComponent = ({
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orientation, pageSize]);
 
   // 複数ページビューが有効になったらページ分割を実行
@@ -945,7 +939,13 @@ const FullPreviewComponent = ({
       fullPreviewRef.current.innerHTML = previewHtml;
       applyStylesToContent(fullPreviewRef.current);
     }
-  }, [isMultiPageView, previewHtml, fontSize, applyStylesToContent]);
+  }, [
+    isMultiPageView,
+    previewHtml,
+    fontSize,
+    applyStylesToContent,
+    fullPreviewRef,
+  ]);
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-4 mb-6">
