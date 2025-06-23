@@ -39,9 +39,9 @@ const ContactForm: React.FC<ContactFormProps> = ({
     setValue,
   } = useForm<FormInputs>({
     defaultValues: {
-      category: defaultCategory,
-      relatedArticleUrl: defaultArticleUrl,
-      relatedArticleTitle: defaultArticleTitle,
+      category: defaultCategory || ContactCategory.GENERAL,
+      relatedArticleUrl: defaultArticleUrl || "",
+      relatedArticleTitle: defaultArticleTitle || "",
     },
   });
 
@@ -54,13 +54,23 @@ const ContactForm: React.FC<ContactFormProps> = ({
   const selectedCategory = watch("category");
 
   useEffect(() => {
+    // propsが変更されたときにフォームの値を更新
+    if (defaultCategory) {
+      setValue("category", defaultCategory);
+    }
     if (defaultArticleUrl) {
       setValue("relatedArticleUrl", defaultArticleUrl);
     }
     if (defaultArticleTitle) {
       setValue("relatedArticleTitle", defaultArticleTitle);
     }
-  }, [defaultArticleUrl, defaultArticleTitle, setValue]);
+
+    console.log("ContactForm props updated:", {
+      defaultCategory,
+      defaultArticleUrl,
+      defaultArticleTitle,
+    });
+  }, [defaultCategory, defaultArticleUrl, defaultArticleTitle, setValue]);
 
   const onSubmit: SubmitHandler<FormInputs> = async (data) => {
     setIsSending(true);

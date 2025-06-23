@@ -5,6 +5,7 @@ import RenderBlock from "@/components/notion/RenderBlock";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import TagLink from "@/components/Tags/TagLink";
+import ArticleFeedback from "@/components/Post/ArticleFeedback";
 import dynamic from "next/dynamic";
 
 // TableOfContentsを動的インポート
@@ -53,6 +54,11 @@ const Post = async ({ params }: { params: { slug: string } }) => {
   const blocks = post.markdown;
   // console.log(`${JSON.stringify(blocks)}`);
 
+  // 記事のURL生成
+  const articleUrl = `${
+    process.env.SITE_URL || "http://localhost:3000"
+  }/posts/${params.slug}`;
+
   return (
     <section className="container mx-auto mt-20 px-4 md:px-8 lg:px-16">
       <article>
@@ -85,7 +91,14 @@ const Post = async ({ params }: { params: { slug: string } }) => {
                 <div key={block.id}>{RenderBlock(block)}</div>
               ))}
             </div>
-            <nav className="mt-20 font-medium">
+
+            {/* フィードバックセクション */}
+            <ArticleFeedback
+              articleTitle={post.metadata.title}
+              articleUrl={articleUrl}
+            />
+
+            <nav className="mt-12 font-medium">
               <Link
                 href="/"
                 className="pb-20 block text-sky-900 dark:text-slate-100"
