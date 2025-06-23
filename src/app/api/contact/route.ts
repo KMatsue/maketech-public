@@ -4,6 +4,7 @@ import {
   ContactResponse,
 } from "@/types/contact";
 import { sendSlackNotification } from "@/lib/slack";
+import { saveContactToNotion } from "@/lib/notionContact";
 
 // レート制限用のメモリストア
 const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
@@ -65,12 +66,38 @@ export async function POST(req: Request) {
       timestamp: new Date(),
     };
 
-    // Slack通知の送信
-    try {
-      await sendSlackNotification(contactData);
-    } catch (error) {
-      console.error("Slack notification failed:", error);
+    let notionPageId: string | undefined;
+
+    // 並行処理でSlack通知とNotion保存を実行
+    const [slackResult, notionResult] = await Promise.allSettled([
+      sendSlackNotification(contactData),
+      saveContactToNotion(contactData),
+    ]);
+
+    // Slack通知の結果確認
+    if (slackResult.status === "rejected") {
+      console.error("Slack notification failed:", slackResult.reason);
       // Slack通知の失敗は処理を継続
+    }
+
+    // Notion保存の結果確認
+    if (notionResult.status === "fulfilled") {
+      notionPageId = notionResult.value;
+      console.log("Contact saved to Notion with ID:", notionPageId);
+    } else {
+      console.error("Notion save failed:", notionResult.reason);
+      // Notion保存失敗時はSlackに警告通知
+      try {
+        await sendSlackNotification({
+          ...contactData,
+          message: `⚠️ Notion保存に失敗しました\n\n元のメッセージ: ${contactData.message}`,
+        });
+      } catch (slackError) {
+        console.error(
+          "Failed to send Notion failure notification to Slack:",
+          slackError
+        );
+      }
     }
 
     // レート制限カウンターを更新
@@ -80,6 +107,7 @@ export async function POST(req: Request) {
       JSON.stringify({
         success: true,
         message: "お問い合わせを受け付けました",
+        ...(notionPageId && { id: notionPageId }),
       } as ContactResponse),
       {
         status: 200,
