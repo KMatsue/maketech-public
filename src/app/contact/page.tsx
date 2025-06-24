@@ -1,5 +1,6 @@
-import ContactForm from "@/components/Contact/ContactForm";
+import ContactPageClient from "@/components/Contact/ContactPageClient";
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "お問い合わせ",
@@ -22,7 +23,9 @@ const ContactPage = () => {
         {/* フォームセクション */}
         <section className="mb-8">
           <div className="max-w-lg mx-auto">
-            <ContactForm />
+            <Suspense fallback={<div>読み込み中...</div>}>
+              <ContactPageClient />
+            </Suspense>
           </div>
         </section>
       </div>
