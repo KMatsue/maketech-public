@@ -32,7 +32,7 @@ const AboutPage = () => {
       <div className="mx-auto lg:w-9/12">
         <header className="text-center my-8">
           <h1 className="text-4xl font-bold mb-4">About Me</h1>
-          <p className="text-lg text-gray-700 dark:text-gray-300">
+          <p className="text-lg text-muted-foreground">
             Web/Mobileアプリの開発者。ITを通じて価値あるサービスの提供を目指しています。
             製造業での業務経験を活かし、使う人の目線に立ったソフトウェア開発に取り組んでいます。
           </p>
@@ -49,7 +49,7 @@ const AboutPage = () => {
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
+          <h2 className="text-2xl font-semibold mb-4 text-foreground">
             スキルセット
           </h2>
           <SkillSet skills={skills} />
@@ -99,7 +99,7 @@ const AboutPage = () => {
             </p>
             <a
               href="/contact"
-              className="border border-gray-800 dark:border-gray-200 text-gray-800 dark:text-gray-200 font-semibold py-2 px-6 rounded-lg transition duration-300 ease-in-out hover:shadow-md hover:bg-gray-800 hover:text-white dark:hover:bg-gray-200 dark:hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50"
+              className="border border-border-primary text-foreground font-semibold py-2 px-6 rounded-lg transition duration-300 ease-in-out hover:shadow-md hover:bg-primary hover:text-primary-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
             >
               コンタクトページへ
             </a>
