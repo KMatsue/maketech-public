@@ -1,0 +1,300 @@
+/* ===============================================
+   UNIFIED THEME SYSTEM
+   ===============================================
+   
+   拡張可能なテーマシステム
+   - 全テーマで統一されたCSS Variable名
+   - 特殊効果は別セクションで管理
+   - 新しいテーマの追加が容易
+   
+   =============================================== */
+
+/* ===============================================
+   CORE THEME COLORS (All themes must define these)
+   =============================================== */
+
+/* Light Theme (Default) */
+html:not(.dark):not(.terminal-green) {
+  /* Primary & Secondary */
+  --primary: #2563eb !important;
+  --primary-foreground: #ffffff !important;
+  --secondary: #64748b !important;
+  --secondary-foreground: #ffffff !important;
+  
+  /* Background & Foreground */
+  --background: #ffffff !important;
+  --foreground: #0f172a !important;
+  
+  /* UI Elements */
+  --muted: #f1f5f9 !important;
+  --muted-foreground: #64748b !important;
+  --card: #ffffff !important;
+  --card-foreground: #0f172a !important;
+  --border: #e2e8f0 !important;
+  --input: #e2e8f0 !important;
+  --accent: #f1f5f9 !important;
+  --accent-foreground: #0f172a !important;
+  
+  /* Status Colors */
+  --destructive: #ef4444 !important;
+  --destructive-foreground: #ffffff !important;
+  --ring: #2563eb !important;
+  
+  /* Component Specific */
+  --navbar-bg: #ffffff !important;
+  --navbar-text: #374151 !important;
+  --navbar-text-hover: #6b7280 !important;
+  --navbar-border: #d1d5db !important;
+  
+  --footer-bg: #f9fafb !important;
+  --footer-text: #6b7280 !important;
+  --footer-text-hover: #374151 !important;
+  
+  /* Unified Borders */
+  --border-primary: #6b7280 !important;        /* メインの境界線色 */
+  --border-secondary: #e5e7eb !important;      /* サブの境界線色（薄い） */
+  
+  /* Tag Colors */
+  --tag-bg: #6b7280 !important;                /* タグ背景色 */
+  --tag-text: #ffffff !important;              /* タグテキスト色 */
+  --tag-border: #9ca3af !important;            /* タグ境界線色 */
+  --tag-hover-bg: #4b5563 !important;          /* タグホバー背景色 */
+  
+  /* Pagination Colors */
+  --pagination-border: #6b7280 !important;     /* ページネーション境界線 */
+  --pagination-hover-bg: #d1d5db !important;   /* ページネーションホバー背景 */
+  --pagination-active-text: #374151 !important; /* アクティブページテキスト */
+  --pagination-inactive-text: #6b7280 !important; /* 非アクティブページテキスト */
+  
+  /* Card Colors */
+  --card-hover-bg: #f3f4f6 !important;         /* カードホバー背景色 */
+  
+  /* ThemeSwitch Colors */
+  --theme-switch-hover-bg: #e5e7eb !important;  /* テーマスイッチボタンホバー */
+  --theme-switch-dropdown-bg: #ffffff !important; /* ドロップダウン背景 */
+  --theme-switch-dropdown-border: #d1d5db !important; /* ドロップダウン境界線 */
+  --theme-switch-item-hover-bg: #f3f4f6 !important; /* メニュー項目ホバー */
+  --theme-switch-item-text: #374151 !important; /* メニュー項目テキスト */
+  --theme-switch-active-bg: #f3f4f6 !important; /* アクティブ項目背景 */
+  --theme-switch-active-text: #2563eb !important; /* アクティブ項目テキスト */
+}
+
+/* Dark Theme */
+.dark {
+  /* Primary & Secondary */
+  --primary: #3b82f6 !important;
+  --primary-foreground: #ffffff !important;
+  --secondary: #1e293b !important;
+  --secondary-foreground: #f8fafc !important;
+  
+  /* Background & Foreground */
+  --background: #0f172a !important;
+  --foreground: #f8fafc !important;
+  
+  /* UI Elements */
+  --muted: #1e293b !important;
+  --muted-foreground: #94a3b8 !important;
+  --card: #1e293b !important;
+  --card-foreground: #f8fafc !important;
+  --border: #334155 !important;
+  --input: #334155 !important;
+  --accent: #1e293b !important;
+  --accent-foreground: #f8fafc !important;
+  
+  /* Status Colors */
+  --destructive: #7f1d1d !important;
+  --destructive-foreground: #f8fafc !important;
+  --ring: #3b82f6 !important;
+  
+  /* Component Specific */
+  --navbar-bg: #1e293b !important;
+  --navbar-text: #e2e8f0 !important;
+  --navbar-text-hover: #cbd5e1 !important;
+  --navbar-border: #475569 !important;
+  
+  --footer-bg: #1e293b !important;
+  --footer-text: #94a3b8 !important;
+  --footer-text-hover: #e2e8f0 !important;
+  
+  /* Unified Borders */
+  --border-primary: #475569 !important;        /* メインの境界線色 */
+  --border-secondary: #334155 !important;      /* サブの境界線色（薄い） */
+  
+  /* Tag Colors */
+  --tag-bg: #475569 !important;                /* タグ背景色 */
+  --tag-text: #e2e8f0 !important;              /* タグテキスト色 */
+  --tag-border: #64748b !important;            /* タグ境界線色 */
+  --tag-hover-bg: #334155 !important;          /* タグホバー背景色 */
+  
+  /* Pagination Colors */
+  --pagination-border: #e2e8f0 !important;     /* ページネーション境界線 */
+  --pagination-hover-bg: #475569 !important;   /* ページネーションホバー背景 */
+  --pagination-active-text: #e2e8f0 !important; /* アクティブページテキスト */
+  --pagination-inactive-text: #94a3b8 !important; /* 非アクティブページテキスト */
+  
+  /* Card Colors */
+  --card-hover-bg: #334155 !important;         /* カードホバー背景色 */
+  
+  /* ThemeSwitch Colors */
+  --theme-switch-hover-bg: #475569 !important;  /* テーマスイッチボタンホバー */
+  --theme-switch-dropdown-bg: #1e293b !important; /* ドロップダウン背景 */
+  --theme-switch-dropdown-border: #475569 !important; /* ドロップダウン境界線 */
+  --theme-switch-item-hover-bg: #334155 !important; /* メニュー項目ホバー */
+  --theme-switch-item-text: #e2e8f0 !important; /* メニュー項目テキスト */
+  --theme-switch-active-bg: #334155 !important; /* アクティブ項目背景 */
+  --theme-switch-active-text: #3b82f6 !important; /* アクティブ項目テキスト */
+}
+
+/* Terminal Green Theme */
+.terminal-green {
+  /* Primary & Secondary */
+  --primary: #00ff00 !important;
+  --primary-foreground: #000000 !important;
+  --secondary: #66ff66 !important;
+  --secondary-foreground: #000000 !important;
+  
+  /* Background & Foreground */
+  --background: #000000 !important;
+  --foreground: #00ff00 !important;
+  
+  /* UI Elements */
+  --muted: #001100 !important;
+  --muted-foreground: #66ff66 !important;      /* より明るく */
+  --card: #001100 !important;
+  --card-foreground: #00ff00 !important;
+  --border: #00ff00 !important;                /* メイン文字色と同じ明るさ */
+  --input: #00ff00 !important;
+  --accent: #002200 !important;
+  --accent-foreground: #00ff00 !important;
+  
+  /* Status Colors */
+  --destructive: #ff0000 !important;
+  --destructive-foreground: #ffffff !important;
+  --ring: #00ff00 !important;
+  
+  /* Component Specific */
+  --navbar-bg: #001100 !important;
+  --navbar-text: #00ff00 !important;
+  --navbar-text-hover: #ffff00 !important;
+  --navbar-border: #00ff00 !important;         /* より明るく */
+  
+  --footer-bg: #001100 !important;
+  --footer-text: #66ff66 !important;           /* より明るく */
+  --footer-text-hover: #ffff00 !important;
+  
+  /* Unified Borders */
+  --border-primary: #00ff00 !important;        /* メイン文字色と統一 */
+  --border-secondary: #66ff66 !important;      /* セカンダリ文字色と統一 */
+  
+  /* Tag Colors */
+  --tag-bg: #004400 !important;                /* タグ背景色（暗い緑） */
+  --tag-text: #00ff00 !important;              /* タグテキスト色（明るい緑） */
+  --tag-border: #00aa00 !important;            /* タグ境界線色（中間の緑） */
+  --tag-hover-bg: #006600 !important;          /* タグホバー背景色（少し明るい緑） */
+  
+  /* Pagination Colors */
+  --pagination-border: #00ff00 !important;     /* ページネーション境界線（明るい緑） */
+  --pagination-hover-bg: #004400 !important;   /* ページネーションホバー背景（暗い緑） */
+  --pagination-active-text: #00ff00 !important; /* アクティブページテキスト（明るい緑） */
+  --pagination-inactive-text: #66ff66 !important; /* 非アクティブページテキスト（中間の緑） */
+  
+  /* Card Colors */
+  --card-hover-bg: #002200 !important;         /* カードホバー背景色（非常に暗い緑） */
+  
+  /* ThemeSwitch Colors */
+  --theme-switch-hover-bg: #004400 !important;  /* テーマスイッチボタンホバー */
+  --theme-switch-dropdown-bg: #001100 !important; /* ドロップダウン背景 */
+  --theme-switch-dropdown-border: #00aa00 !important; /* ドロップダウン境界線 */
+  --theme-switch-item-hover-bg: #002200 !important; /* メニュー項目ホバー */
+  --theme-switch-item-text: #66ff66 !important; /* メニュー項目テキスト */
+  --theme-switch-active-bg: #004400 !important; /* アクティブ項目背景 */
+  --theme-switch-active-text: #ffff00 !important; /* アクティブ項目テキスト（黄色） */
+}
+
+/* ===============================================
+   SPECIAL EFFECTS (Theme-specific enhancements)
+   =============================================== */
+
+/* Terminal Green Special Effects */
+@keyframes flicker {
+  0%, 98%, 100% { opacity: 1; }
+  99% { opacity: 0.98; }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100vh); }
+  100% { transform: translateY(100vh); }
+}
+
+/* Terminal Green CRT Effects */
+.terminal-green body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(transparent 50%, rgba(0, 255, 0, 0.03) 50%);
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.terminal-green body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 255, 0, 0.01);
+  animation: flicker 0.15s infinite linear;
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* Terminal Green Text Effects */
+.terminal-green h1,
+.terminal-green h2,
+.terminal-green h3,
+.terminal-green h4,
+.terminal-green h5,
+.terminal-green h6,
+.terminal-green .font-bold,
+.terminal-green strong,
+.terminal-green b {
+  text-shadow: 0 0 1px #00FF00;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ===============================================
+   THEME EXTENSION TEMPLATE
+   ===============================================
+   
+   新しいテーマを追加する場合のテンプレート:
+   
+   .your-theme-name {
+     -- 必須: Core Theme Colors --
+     --primary: #yourcolor !important;
+     --background: #yourcolor !important;
+     --foreground: #yourcolor !important;
+     --border-primary: #yourcolor !important;
+     --border-secondary: #yourcolor !important;
+     --tag-bg: #yourcolor !important;
+     --tag-text: #yourcolor !important;
+     --tag-border: #yourcolor !important;
+     --tag-hover-bg: #yourcolor !important;
+     --pagination-border: #yourcolor !important;
+     --pagination-hover-bg: #yourcolor !important;
+     --pagination-active-text: #yourcolor !important;
+     --pagination-inactive-text: #yourcolor !important;
+     --card-hover-bg: #yourcolor !important;
+     ... (上記の全ての変数を定義)
+     
+     -- オプション: Special Effects --
+     (特殊効果が必要な場合のみ追加)
+   }
+   
+   =============================================== */
