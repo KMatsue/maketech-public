@@ -52,7 +52,7 @@ const TableOfContents = () => {
 
   return (
     <div className="p-2">
-      <h3 className="text-center p-2 mb-1 text-sm font-semibold border-b text-slate-800 dark:text-slate-200">
+      <h3 className="text-center p-2 mb-1 text-sm font-semibold border-b border-border-primary text-foreground">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
@@ -63,7 +63,7 @@ const TableOfContents = () => {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="inline text-gray-400 ai ai-Book w-5 lg:w-6"
+          className="inline text-muted-foreground ai ai-Book w-5 lg:w-6"
         >
           <path d="M2 6s1.5-2 5-2 5 2 5 2v14s-1.5-1-5-1-5 1-5 1V6z" />
           <path d="M12 6s1.5-2 5-2 5 2 5 2v14s-1.5-1-5-1-5 1-5 1V6z" />
@@ -76,6 +76,7 @@ const TableOfContents = () => {
           border-radius: 0.25rem;
           padding: 0.5rem;
           font-size: 0.875rem;
+          color: var(--foreground);
         }
         .toc-list .toc-list {
           padding-left: 0.5rem;
@@ -93,12 +94,20 @@ const TableOfContents = () => {
           overflow-wrap: break-word; /* 長い単語を途中で折り返す */
           font-size: 0.875rem;
           line-height: 1.25rem;
+          color: var(--muted-foreground);
+          text-decoration: none;
+          transition: color 0.2s ease;
+        }
+
+        .toc-link:hover {
+          color: var(--primary);
         }
 
         .is-active-link {
           font-weight: 800;
           word-break: break-word; /* 長い単語を途中で折り返す */
           overflow-wrap: break-word; /* 長い単語を途中で折り返す */
+          color: var(--primary) !important;
         }
       `}</style>
     </div>
