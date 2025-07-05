@@ -134,14 +134,14 @@ const ContactForm: React.FC<ContactFormProps> = ({
       <div className="mb-4">
         <label
           htmlFor="category"
-          className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2"
+          className="block text-foreground text-sm font-bold mb-2"
         >
           お問い合わせの種類
         </label>
         <select
           id="category"
           {...register("category", { required: "カテゴリは必須です" })}
-          className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-800 leading-tight focus:outline-none focus:shadow-outline ${
+          className={`shadow appearance-none border border-border-primary rounded w-full py-2 px-3 text-foreground bg-card leading-tight focus:outline-none focus:border-primary ${
             errors.category ? "border-red-500" : ""
           }`}
         >
@@ -162,7 +162,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
       <div className="mb-4">
         <label
           htmlFor="name"
-          className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2"
+          className="block text-foreground text-sm font-bold mb-2"
         >
           名前
         </label>
@@ -170,7 +170,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
           id="name"
           type="text"
           {...register("name", { required: "名前は必須です" })}
-          className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-800 leading-tight focus:outline-none focus:shadow-outline ${
+          className={`shadow appearance-none border border-border-primary rounded w-full py-2 px-3 text-foreground bg-card leading-tight focus:outline-none focus:border-primary ${
             errors.name ? "border-red-500" : ""
           }`}
         />
@@ -183,7 +183,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
       <div className="mb-4">
         <label
           htmlFor="email"
-          className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2"
+          className="block text-foreground text-sm font-bold mb-2"
         >
           メールアドレス
         </label>
@@ -197,7 +197,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
               message: "有効なメールアドレスを入力してください",
             },
           })}
-          className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-800 leading-tight focus:outline-none focus:shadow-outline ${
+          className={`shadow appearance-none border border-border-primary rounded w-full py-2 px-3 text-foreground bg-card leading-tight focus:outline-none focus:border-primary ${
             errors.email ? "border-red-500" : ""
           }`}
         />
@@ -212,7 +212,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
           <div className="mb-4">
             <label
               htmlFor="relatedArticleTitle"
-              className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2"
+              className="block text-foreground text-sm font-bold mb-2"
             >
               関連記事のタイトル
             </label>
@@ -220,7 +220,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
               id="relatedArticleTitle"
               type="text"
               {...register("relatedArticleTitle")}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-800 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border border-border-primary rounded w-full py-2 px-3 text-foreground bg-card leading-tight focus:outline-none focus:border-primary"
               placeholder="記事のタイトル（任意）"
             />
           </div>
@@ -228,7 +228,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
           <div className="mb-4">
             <label
               htmlFor="relatedArticleUrl"
-              className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2"
+              className="block text-foreground text-sm font-bold mb-2"
             >
               関連記事のURL
             </label>
@@ -236,7 +236,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
               id="relatedArticleUrl"
               type="url"
               {...register("relatedArticleUrl")}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-800 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border border-border-primary rounded w-full py-2 px-3 text-foreground bg-card leading-tight focus:outline-none focus:border-primary"
               placeholder="https://example.com/posts/..."
             />
           </div>
@@ -247,7 +247,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
       <div className="mb-6">
         <label
           htmlFor="message"
-          className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2"
+          className="block text-foreground text-sm font-bold mb-2"
         >
           メッセージ
         </label>
@@ -260,7 +260,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
               message: "メッセージは2000文字以内で入力してください",
             },
           })}
-          className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-800 leading-tight focus:outline-none focus:shadow-outline ${
+          className={`shadow appearance-none border border-border-primary rounded w-full py-2 px-3 text-foreground bg-card leading-tight focus:outline-none focus:border-primary ${
             errors.message ? "border-red-500" : ""
           }`}
           rows={5}
@@ -277,11 +277,11 @@ const ContactForm: React.FC<ContactFormProps> = ({
       <div className="flex items-center justify-between">
         <button
           type="submit"
-          className={`border border-gray-800 dark:border-gray-200 text-gray-800 dark:text-gray-200 font-semibold py-2 px-6 rounded-lg transition duration-300 ease-in-out ${
+          className={`border border-border-primary text-foreground font-semibold py-2 px-6 rounded-lg transition duration-300 ease-in-out ${
             isSending
               ? "opacity-50 cursor-not-allowed"
-              : "hover:shadow-md hover:bg-gray-800 hover:text-white dark:hover:bg-gray-200 dark:hover:text-gray-800"
-          } focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50`}
+              : "hover:shadow-md hover:bg-foreground hover:text-background"
+          } focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50`}
           disabled={isSending}
         >
           {isSending ? (
