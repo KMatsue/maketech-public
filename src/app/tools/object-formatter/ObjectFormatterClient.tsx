@@ -287,7 +287,7 @@ const ObjectFormatterClient = () => {
 
     if (data === null) {
       return (
-        <div className="text-gray-600 dark:text-gray-400">{indent}null</div>
+        <div className="text-muted-foreground">{indent}null</div>
       );
     }
 
@@ -305,8 +305,8 @@ const ObjectFormatterClient = () => {
           <div className="pl-4">
             {Object.entries(rest).map(([key, value], index) => (
               <div key={key}>
-                <span className="text-blue-600 dark:text-blue-400">{key}</span>
-                <span className="text-gray-600 dark:text-gray-400"> = </span>
+                <span className="text-primary">{key}</span>
+                <span className="text-muted-foreground"> = </span>
                 {getType(value) === "object" ? (
                   <JsonTreeView data={value} level={level + 1} />
                 ) : getType(value) === "array" ? (
@@ -315,7 +315,7 @@ const ObjectFormatterClient = () => {
                   <ValueView value={value} />
                 )}
                 {index < Object.keys(rest).length - 1 && (
-                  <span className="text-gray-600 dark:text-gray-400">,</span>
+                  <span className="text-muted-foreground">,</span>
                 )}
               </div>
             ))}
@@ -340,15 +340,15 @@ const ObjectFormatterClient = () => {
     // 通常のオブジェクト
     return (
       <div>
-        <div className="text-gray-600 dark:text-gray-400">
+        <div className="text-muted-foreground">
           {indent}
           {"{"}
         </div>
         <div className="pl-4">
           {Object.entries(data).map(([key, value], index) => (
             <div key={key}>
-              <span className="text-blue-600 dark:text-blue-400">{key}</span>
-              <span className="text-gray-600 dark:text-gray-400">: </span>
+              <span className="text-primary">{key}</span>
+              <span className="text-muted-foreground">: </span>
               {getType(value) === "object" ? (
                 <JsonTreeView data={value} level={level + 1} />
               ) : getType(value) === "array" ? (
@@ -357,7 +357,7 @@ const ObjectFormatterClient = () => {
                 <ValueView value={value} />
               )}
               {index < Object.keys(data).length - 1 && (
-                <span className="text-gray-600 dark:text-gray-400">,</span>
+                <span className="text-muted-foreground">,</span>
               )}
             </div>
           ))}
@@ -378,12 +378,12 @@ const ObjectFormatterClient = () => {
     const indent = "  ".repeat(level);
 
     if (data.length === 0) {
-      return <span className="text-gray-600 dark:text-gray-400">[]</span>;
+      return <span className="text-muted-foreground">[]</span>;
     }
 
     return (
       <div>
-        <div className="text-gray-600 dark:text-gray-400">[</div>
+        <div className="text-muted-foreground">[</div>
         <div className="pl-4">
           {data.map((item, index) => (
             <div key={index}>
@@ -393,12 +393,12 @@ const ObjectFormatterClient = () => {
                 <ValueView value={item} />
               )}
               {index < data.length - 1 && (
-                <span className="text-gray-600 dark:text-gray-400">,</span>
+                <span className="text-muted-foreground">,</span>
               )}
             </div>
           ))}
         </div>
-        <div className="text-gray-600 dark:text-gray-400">{indent}]</div>
+        <div className="text-muted-foreground">{indent}]</div>
       </div>
     );
   };
@@ -406,7 +406,7 @@ const ObjectFormatterClient = () => {
   // 値表示コンポーネント
   const ValueView: React.FC<{ value: any }> = ({ value }) => {
     if (value === null) {
-      return <span className="text-gray-600 dark:text-gray-400">null</span>;
+      return <span className="text-muted-foreground">null</span>;
     }
 
     switch (typeof value) {
@@ -418,7 +418,7 @@ const ObjectFormatterClient = () => {
         );
       case "number":
         return (
-          <span className="text-blue-600 dark:text-blue-400">{value}</span>
+          <span className="text-primary">{value}</span>
         );
       case "boolean":
         return (
@@ -438,15 +438,15 @@ const ObjectFormatterClient = () => {
           <h1 className="text-4xl font-bold mb-4">
             オブジェクト文字列フォーマッター
           </h1>
-          <p className="text-lg text-gray-700 dark:text-gray-300">
+          <p className="text-lg text-muted-foreground">
             Dart/Java/Kotlinなどのオブジェクト文字列を整形して見やすく表示します
           </p>
         </header>
 
         <div className="grid grid-cols-1 gap-6 mb-8">
           {/* 入力エリア */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-            <h2 className="text-xl font-semibold mb-4 border-b pb-2">
+          <div className="bg-card rounded-lg shadow p-6">
+            <h2 className="text-xl font-semibold mb-4 border-b border-border-primary pb-2 text-foreground">
               オブジェクト文字列入力
             </h2>
 
@@ -454,7 +454,7 @@ const ObjectFormatterClient = () => {
               <textarea
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
-                className="w-full h-64 p-4 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100 font-mono text-sm"
+                className="w-full h-64 p-4 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground font-mono text-sm"
                 placeholder="ここにオブジェクト文字列を入力またはペーストしてください..."
               ></textarea>
             </div>
@@ -462,19 +462,19 @@ const ObjectFormatterClient = () => {
             <div className="flex flex-wrap gap-4 mb-4">
               <button
                 onClick={formatObject}
-                className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition duration-200"
+                className="px-4 py-2 bg-primary hover:bg-primary/80 text-primary-foreground rounded-lg transition duration-200"
               >
                 フォーマット
               </button>
               <button
                 onClick={setSampleText}
-                className="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition duration-200"
+                className="px-4 py-2 bg-muted text-foreground rounded-lg hover:bg-muted-foreground hover:text-background transition duration-200"
               >
                 サンプルをセット
               </button>
               <button
                 onClick={clearAll}
-                className="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition duration-200"
+                className="px-4 py-2 bg-muted text-foreground rounded-lg hover:bg-muted-foreground hover:text-background transition duration-200"
               >
                 クリア
               </button>
@@ -482,13 +482,13 @@ const ObjectFormatterClient = () => {
           </div>
 
           {/* オプション */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-            <h2 className="text-xl font-semibold mb-4 border-b pb-2">
+          <div className="bg-card rounded-lg shadow p-6">
+            <h2 className="text-xl font-semibold mb-4 border-b border-border-primary pb-2 text-foreground">
               オプション
             </h2>
             <div className="flex flex-wrap gap-4">
               <div className="flex items-center">
-                <label htmlFor="indentSize" className="mr-2">
+                <label htmlFor="indentSize" className="mr-2 text-foreground">
                   インデントサイズ:
                 </label>
                 <select
@@ -503,7 +503,7 @@ const ObjectFormatterClient = () => {
                     }
                   }}
                   disabled={isMinified}
-                  className="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700"
+                  className="px-2 py-1 border border-border-primary rounded-lg bg-input text-foreground"
                 >
                   <option value={2}>2 スペース</option>
                   <option value={4}>4 スペース</option>
@@ -515,15 +515,15 @@ const ObjectFormatterClient = () => {
                 onClick={toggleMinify}
                 className={`px-3 py-1 rounded-lg transition duration-200 ${
                   isMinified
-                    ? "bg-purple-500 text-white hover:bg-purple-600"
-                    : "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600"
+                    ? "bg-primary text-primary-foreground hover:bg-primary/80"
+                    : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
                 }`}
               >
                 {isMinified ? "整形表示" : "圧縮表示"}
               </button>
 
               <div className="flex items-center">
-                <label htmlFor="viewMode" className="mr-2">
+                <label htmlFor="viewMode" className="mr-2 text-foreground">
                   表示モード:
                 </label>
                 <select
@@ -532,7 +532,7 @@ const ObjectFormatterClient = () => {
                   onChange={(e) =>
                     setViewMode(e.target.value as "formatted" | "tree")
                   }
-                  className="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700"
+                  className="px-2 py-1 border border-border-primary rounded-lg bg-input text-foreground"
                 >
                   <option value="formatted">JSON形式</option>
                   <option value="tree">ツリービュー</option>
@@ -543,13 +543,13 @@ const ObjectFormatterClient = () => {
 
           {/* 結果表示 */}
           {(formattedJson || error) && (
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-              <div className="flex justify-between items-center mb-4 border-b pb-2">
+            <div className="bg-card rounded-lg shadow p-6">
+              <div className="flex justify-between items-center mb-4 border-b border-border-primary pb-2 text-foreground">
                 <h2 className="text-xl font-semibold">変換結果</h2>
                 {formattedJson && (
                   <button
                     onClick={copyToClipboard}
-                    className="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition duration-200 text-sm"
+                    className="px-3 py-1 bg-muted text-foreground rounded-lg hover:bg-muted-foreground hover:text-background transition duration-200 text-sm"
                   >
                     {copySuccess ? "コピーしました!" : "コピー"}
                   </button>
@@ -557,19 +557,19 @@ const ObjectFormatterClient = () => {
               </div>
 
               {error ? (
-                <div className="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 p-4 rounded-lg">
+                <div className="bg-destructive/10 text-destructive p-4 rounded-lg">
                   {error}
                 </div>
               ) : (
                 <div>
                   {viewMode === "formatted" && formattedJson && (
-                    <pre className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg overflow-auto max-h-96 text-sm font-mono">
+                    <pre className="bg-code-bg p-4 rounded-lg overflow-auto max-h-96 text-sm font-mono">
                       {formattedJson}
                     </pre>
                   )}
 
                   {viewMode === "tree" && parsedData && (
-                    <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg overflow-auto max-h-96">
+                    <div className="bg-code-bg p-4 rounded-lg overflow-auto max-h-96">
                       <JsonTreeView data={parsedData} />
                     </div>
                   )}
@@ -579,12 +579,12 @@ const ObjectFormatterClient = () => {
           )}
 
           {/* 使い方 */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-            <h2 className="text-xl font-semibold mb-4 border-b pb-2">使い方</h2>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+          <div className="bg-card rounded-lg shadow p-6">
+            <h2 className="text-xl font-semibold mb-4 border-b border-border-primary pb-2 text-foreground">使い方</h2>
+            <ul className="list-disc list-inside space-y-2 text-foreground">
               <li>
                 Java/Kotlinなどのオブジェクト文字列を入力欄に貼り付けます。例：
-                <pre className="bg-gray-100 dark:bg-gray-700 p-2 rounded-lg overflow-auto mt-2 text-xs">
+                <pre className="bg-code-bg p-2 rounded-lg overflow-auto mt-2 text-xs">
                   User {"{"}id=123, name=John Doe, roles=[ADMIN, USER]{"}"}
                 </pre>
               </li>

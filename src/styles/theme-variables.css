@@ -20,57 +20,75 @@ html:not(.dark):not(.terminal-green) {
   --primary-foreground: #ffffff !important;
   --secondary: #64748b !important;
   --secondary-foreground: #ffffff !important;
-  
+
   /* Background & Foreground */
-  --background: #ffffff !important;
-  --foreground: #0f172a !important;
-  
+  --background: #fafafa !important;
+  --foreground: #333333 !important;
+
   /* UI Elements */
   --muted: #f1f5f9 !important;
   --muted-foreground: #64748b !important;
   --card: #ffffff !important;
   --card-foreground: #0f172a !important;
   --border: #e2e8f0 !important;
-  --input: #e2e8f0 !important;
+  --input: #f8fafc !important;
   --accent: #f1f5f9 !important;
   --accent-foreground: #0f172a !important;
-  
+
   /* Status Colors */
   --destructive: #ef4444 !important;
   --destructive-foreground: #ffffff !important;
   --ring: #2563eb !important;
+  --info-bg: #eff6ff !important;
+  --info-text: #333333 !important;
+
+  /* Code/Result Display */
+  --code-bg: #f1f5f9 !important;
+  --file-button-bg: #eff6ff !important;
+  --file-button-text: #1d4ed8 !important;
   
+  /* PDF Margin Display */
+  --pdf-margin-bg: #dbeafe !important;
+  --pdf-margin-text: #1d4ed8 !important;
+  
+  /* Usage Hints */
+  --usage-hints-bg: #eff6ff !important;
+  --usage-hints-text: #4b5563 !important;
+  
+  /* Preview Area */
+  --preview-area-bg: #f1f5f9 !important;
+
   /* Component Specific */
   --navbar-bg: #ffffff !important;
   --navbar-text: #374151 !important;
   --navbar-text-hover: #6b7280 !important;
   --navbar-border: #d1d5db !important;
-  
+
   --footer-bg: #f9fafb !important;
   --footer-text: #6b7280 !important;
   --footer-text-hover: #374151 !important;
-  
+
   /* Unified Borders */
-  --border-primary: #6b7280 !important;        /* メインの境界線色 */
-  --border-secondary: #e5e7eb !important;      /* サブの境界線色（薄い） */
-  
+  --border-primary: #6b7280 !important; /* メインの境界線色 */
+  --border-secondary: #e5e7eb !important; /* サブの境界線色（薄い） */
+
   /* Tag Colors */
-  --tag-bg: #6b7280 !important;                /* タグ背景色 */
-  --tag-text: #ffffff !important;              /* タグテキスト色 */
-  --tag-border: #9ca3af !important;            /* タグ境界線色 */
-  --tag-hover-bg: #4b5563 !important;          /* タグホバー背景色 */
-  
+  --tag-bg: #6b7280 !important; /* タグ背景色 */
+  --tag-text: #ffffff !important; /* タグテキスト色 */
+  --tag-border: #9ca3af !important; /* タグ境界線色 */
+  --tag-hover-bg: #4b5563 !important; /* タグホバー背景色 */
+
   /* Pagination Colors */
-  --pagination-border: #6b7280 !important;     /* ページネーション境界線 */
-  --pagination-hover-bg: #d1d5db !important;   /* ページネーションホバー背景 */
+  --pagination-border: #6b7280 !important; /* ページネーション境界線 */
+  --pagination-hover-bg: #d1d5db !important; /* ページネーションホバー背景 */
   --pagination-active-text: #374151 !important; /* アクティブページテキスト */
   --pagination-inactive-text: #6b7280 !important; /* 非アクティブページテキスト */
-  
+
   /* Card Colors */
-  --card-hover-bg: #f3f4f6 !important;         /* カードホバー背景色 */
-  
+  --card-hover-bg: #f3f4f6 !important; /* カードホバー背景色 */
+
   /* ThemeSwitch Colors */
-  --theme-switch-hover-bg: #e5e7eb !important;  /* テーマスイッチボタンホバー */
+  --theme-switch-hover-bg: #e5e7eb !important; /* テーマスイッチボタンホバー */
   --theme-switch-dropdown-bg: #ffffff !important; /* ドロップダウン背景 */
   --theme-switch-dropdown-border: #d1d5db !important; /* ドロップダウン境界線 */
   --theme-switch-item-hover-bg: #f3f4f6 !important; /* メニュー項目ホバー */
@@ -86,57 +104,75 @@ html:not(.dark):not(.terminal-green) {
   --primary-foreground: #ffffff !important;
   --secondary: #1e293b !important;
   --secondary-foreground: #f8fafc !important;
-  
+
   /* Background & Foreground */
   --background: #0f172a !important;
   --foreground: #f8fafc !important;
-  
+
   /* UI Elements */
   --muted: #1e293b !important;
   --muted-foreground: #94a3b8 !important;
   --card: #1e293b !important;
   --card-foreground: #f8fafc !important;
   --border: #334155 !important;
-  --input: #334155 !important;
+  --input: #374151 !important;
   --accent: #1e293b !important;
   --accent-foreground: #f8fafc !important;
-  
+
   /* Status Colors */
   --destructive: #7f1d1d !important;
   --destructive-foreground: #f8fafc !important;
   --ring: #3b82f6 !important;
+  --info-bg: #1e293b !important;
+  --info-text: #94a3b8 !important;
+
+  /* Code/Result Display */
+  --code-bg: #0f172a !important;
+  --file-button-bg: #3b82f6 !important;
+  --file-button-text: #ffffff !important;
   
+  /* PDF Margin Display */
+  --pdf-margin-bg: rgba(59, 130, 246, 0.3) !important;
+  --pdf-margin-text: #60a5fa !important;
+  
+  /* Usage Hints */
+  --usage-hints-bg: rgba(59, 130, 246, 0.3) !important;
+  --usage-hints-text: #94a3b8 !important;
+  
+  /* Preview Area */
+  --preview-area-bg: #374151 !important;
+
   /* Component Specific */
   --navbar-bg: #1e293b !important;
   --navbar-text: #e2e8f0 !important;
   --navbar-text-hover: #cbd5e1 !important;
   --navbar-border: #475569 !important;
-  
+
   --footer-bg: #1e293b !important;
   --footer-text: #94a3b8 !important;
   --footer-text-hover: #e2e8f0 !important;
-  
+
   /* Unified Borders */
-  --border-primary: #475569 !important;        /* メインの境界線色 */
-  --border-secondary: #334155 !important;      /* サブの境界線色（薄い） */
-  
+  --border-primary: #475569 !important; /* メインの境界線色 */
+  --border-secondary: #334155 !important; /* サブの境界線色（薄い） */
+
   /* Tag Colors */
-  --tag-bg: #475569 !important;                /* タグ背景色 */
-  --tag-text: #e2e8f0 !important;              /* タグテキスト色 */
-  --tag-border: #64748b !important;            /* タグ境界線色 */
-  --tag-hover-bg: #334155 !important;          /* タグホバー背景色 */
-  
+  --tag-bg: #475569 !important; /* タグ背景色 */
+  --tag-text: #e2e8f0 !important; /* タグテキスト色 */
+  --tag-border: #64748b !important; /* タグ境界線色 */
+  --tag-hover-bg: #334155 !important; /* タグホバー背景色 */
+
   /* Pagination Colors */
-  --pagination-border: #e2e8f0 !important;     /* ページネーション境界線 */
-  --pagination-hover-bg: #475569 !important;   /* ページネーションホバー背景 */
+  --pagination-border: #e2e8f0 !important; /* ページネーション境界線 */
+  --pagination-hover-bg: #475569 !important; /* ページネーションホバー背景 */
   --pagination-active-text: #e2e8f0 !important; /* アクティブページテキスト */
   --pagination-inactive-text: #94a3b8 !important; /* 非アクティブページテキスト */
-  
+
   /* Card Colors */
-  --card-hover-bg: #334155 !important;         /* カードホバー背景色 */
-  
+  --card-hover-bg: #334155 !important; /* カードホバー背景色 */
+
   /* ThemeSwitch Colors */
-  --theme-switch-hover-bg: #475569 !important;  /* テーマスイッチボタンホバー */
+  --theme-switch-hover-bg: #475569 !important; /* テーマスイッチボタンホバー */
   --theme-switch-dropdown-bg: #1e293b !important; /* ドロップダウン背景 */
   --theme-switch-dropdown-border: #475569 !important; /* ドロップダウン境界線 */
   --theme-switch-item-hover-bg: #334155 !important; /* メニュー項目ホバー */
@@ -152,57 +188,75 @@ html:not(.dark):not(.terminal-green) {
   --primary-foreground: #000000 !important;
   --secondary: #66ff66 !important;
   --secondary-foreground: #000000 !important;
-  
+
   /* Background & Foreground */
   --background: #000000 !important;
   --foreground: #00ff00 !important;
-  
+
   /* UI Elements */
   --muted: #001100 !important;
-  --muted-foreground: #66ff66 !important;      /* より明るく */
+  --muted-foreground: #66ff66 !important; /* より明るく */
   --card: #001100 !important;
   --card-foreground: #00ff00 !important;
-  --border: #00ff00 !important;                /* メイン文字色と同じ明るさ */
-  --input: #00ff00 !important;
+  --border: #00ff00 !important; /* メイン文字色と同じ明るさ */
+  --input: #004400 !important;
   --accent: #002200 !important;
   --accent-foreground: #00ff00 !important;
-  
+
   /* Status Colors */
   --destructive: #ff0000 !important;
   --destructive-foreground: #ffffff !important;
   --ring: #00ff00 !important;
+  --info-bg: #002200 !important;
+  --info-text: #66ff66 !important;
+
+  /* Code/Result Display */
+  --code-bg: #000000 !important;
+  --file-button-bg: #00ff00 !important;
+  --file-button-text: #000000 !important;
   
+  /* PDF Margin Display */
+  --pdf-margin-bg: rgba(0, 255, 0, 0.2) !important;
+  --pdf-margin-text: #66ff66 !important;
+  
+  /* Usage Hints */
+  --usage-hints-bg: #002200 !important;
+  --usage-hints-text: #66ff66 !important;
+  
+  /* Preview Area */
+  --preview-area-bg: #000000 !important;
+
   /* Component Specific */
   --navbar-bg: #001100 !important;
   --navbar-text: #00ff00 !important;
   --navbar-text-hover: #ffff00 !important;
-  --navbar-border: #00ff00 !important;         /* より明るく */
-  
+  --navbar-border: #00ff00 !important; /* より明るく */
+
   --footer-bg: #001100 !important;
-  --footer-text: #66ff66 !important;           /* より明るく */
+  --footer-text: #66ff66 !important; /* より明るく */
   --footer-text-hover: #ffff00 !important;
-  
+
   /* Unified Borders */
-  --border-primary: #00ff00 !important;        /* メイン文字色と統一 */
-  --border-secondary: #66ff66 !important;      /* セカンダリ文字色と統一 */
-  
+  --border-primary: #00ff00 !important; /* メイン文字色と統一 */
+  --border-secondary: #66ff66 !important; /* セカンダリ文字色と統一 */
+
   /* Tag Colors */
-  --tag-bg: #004400 !important;                /* タグ背景色（暗い緑） */
-  --tag-text: #00ff00 !important;              /* タグテキスト色（明るい緑） */
-  --tag-border: #00aa00 !important;            /* タグ境界線色（中間の緑） */
-  --tag-hover-bg: #006600 !important;          /* タグホバー背景色（少し明るい緑） */
-  
+  --tag-bg: #004400 !important; /* タグ背景色（暗い緑） */
+  --tag-text: #00ff00 !important; /* タグテキスト色（明るい緑） */
+  --tag-border: #00aa00 !important; /* タグ境界線色（中間の緑） */
+  --tag-hover-bg: #006600 !important; /* タグホバー背景色（少し明るい緑） */
+
   /* Pagination Colors */
-  --pagination-border: #00ff00 !important;     /* ページネーション境界線（明るい緑） */
-  --pagination-hover-bg: #004400 !important;   /* ページネーションホバー背景（暗い緑） */
+  --pagination-border: #00ff00 !important; /* ページネーション境界線（明るい緑） */
+  --pagination-hover-bg: #004400 !important; /* ページネーションホバー背景（暗い緑） */
   --pagination-active-text: #00ff00 !important; /* アクティブページテキスト（明るい緑） */
   --pagination-inactive-text: #66ff66 !important; /* 非アクティブページテキスト（中間の緑） */
-  
+
   /* Card Colors */
-  --card-hover-bg: #002200 !important;         /* カードホバー背景色（非常に暗い緑） */
-  
+  --card-hover-bg: #002200 !important; /* カードホバー背景色（非常に暗い緑） */
+
   /* ThemeSwitch Colors */
-  --theme-switch-hover-bg: #004400 !important;  /* テーマスイッチボタンホバー */
+  --theme-switch-hover-bg: #004400 !important; /* テーマスイッチボタンホバー */
   --theme-switch-dropdown-bg: #001100 !important; /* ドロップダウン背景 */
   --theme-switch-dropdown-border: #00aa00 !important; /* ドロップダウン境界線 */
   --theme-switch-item-hover-bg: #002200 !important; /* メニュー項目ホバー */
@@ -212,23 +266,73 @@ html:not(.dark):not(.terminal-green) {
 }
 
 /* ===============================================
+   RANGE SLIDER STYLES
+   =============================================== */
+
+/* Range slider styling for all themes */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+  border: 2px solid var(--card);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input[type="range"]::-moz-range-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+  border: 2px solid var(--card);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+input[type="range"]:focus::-moz-range-thumb {
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+/* ===============================================
    SPECIAL EFFECTS (Theme-specific enhancements)
    =============================================== */
 
 /* Terminal Green Special Effects */
 @keyframes flicker {
-  0%, 98%, 100% { opacity: 1; }
-  99% { opacity: 0.98; }
+  0%,
+  98%,
+  100% {
+    opacity: 1;
+  }
+  99% {
+    opacity: 0.98;
+  }
 }
 
 @keyframes scanline {
-  0% { transform: translateY(-100vh); }
-  100% { transform: translateY(100vh); }
+  0% {
+    transform: translateY(-100vh);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
 }
 
 /* Terminal Green CRT Effects */
 .terminal-green body::before {
-  content: '';
+  content: "";
   position: fixed;
   top: 0;
   left: 0;
@@ -241,7 +345,7 @@ html:not(.dark):not(.terminal-green) {
 }
 
 .terminal-green body::after {
-  content: '';
+  content: "";
   position: fixed;
   top: 0;
   left: 0;
@@ -263,7 +367,7 @@ html:not(.dark):not(.terminal-green) {
 .terminal-green .font-bold,
 .terminal-green strong,
 .terminal-green b {
-  text-shadow: 0 0 1px #00FF00;
+  text-shadow: 0 0 1px #00ff00;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;

@@ -134,7 +134,7 @@ const RegexTesterClient = () => {
       parts.push(
         <span
           key={`m-${i}`}
-          className="bg-yellow-300 dark:bg-yellow-800 px-0.5 rounded"
+          className="bg-yellow-300 dark:bg-yellow-600 px-0.5 rounded"
           title={`Match #${i + 1}`}
         >
           {text.substring(match.index, match.index + match.length)}
@@ -166,20 +166,23 @@ const RegexTesterClient = () => {
       <div className="mx-auto lg:w-9/12">
         <header className="text-center my-8">
           <h1 className="text-4xl font-bold mb-4">正規表現テスター</h1>
-          <p className="text-lg text-gray-700 dark:text-gray-300">
+          <p className="text-lg text-muted-foreground">
             正規表現パターンをテストしてマッチングや置換結果を確認できます
           </p>
         </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {/* 正規表現パターン入力 */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-            <h2 className="text-xl font-semibold mb-4 border-b pb-2">
+          <div className="bg-card rounded-lg shadow p-6">
+            <h2 className="text-xl font-semibold mb-4 border-b border-border-primary pb-2 text-foreground">
               正規表現パターン
             </h2>
 
             <div className="mb-6">
-              <label htmlFor="pattern" className="block font-medium mb-2">
+              <label
+                htmlFor="pattern"
+                className="block font-medium mb-2 text-foreground"
+              >
                 パターン
               </label>
               <div className="relative">
@@ -188,17 +191,19 @@ const RegexTesterClient = () => {
                   id="pattern"
                   value={pattern}
                   onChange={(e) => setPattern(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                  className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                   placeholder="例: \b\w+\b"
                 />
-                <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400">
+                <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
                   /regex/
                 </span>
               </div>
             </div>
 
             <div className="mb-6">
-              <label className="block font-medium mb-2">フラグ</label>
+              <label className="block font-medium mb-2 text-foreground">
+                フラグ
+              </label>
               <div className="flex flex-wrap gap-2">
                 {flagOptions.map((option) => (
                   <button
@@ -206,8 +211,8 @@ const RegexTesterClient = () => {
                     onClick={() => toggleFlag(option.value)}
                     className={`px-3 py-1 rounded-md text-sm flex items-center ${
                       flags.includes(option.value)
-                        ? "bg-blue-500 text-white"
-                        : "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-muted text-foreground"
                     }`}
                     title={option.description}
                   >
@@ -218,20 +223,26 @@ const RegexTesterClient = () => {
             </div>
 
             <div className="mb-6">
-              <label htmlFor="testString" className="block font-medium mb-2">
+              <label
+                htmlFor="testString"
+                className="block font-medium mb-2 text-foreground"
+              >
                 テスト文字列
               </label>
               <textarea
                 id="testString"
                 value={testString}
                 onChange={(e) => setTestString(e.target.value)}
-                className="w-full h-40 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                className="w-full h-40 px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                 placeholder="テスト対象の文字列をここに入力してください"
               ></textarea>
             </div>
 
             <div className="mb-6">
-              <label htmlFor="replacement" className="block font-medium mb-2">
+              <label
+                htmlFor="replacement"
+                className="block font-medium mb-2 text-foreground"
+              >
                 置換文字列 (オプション)
               </label>
               <input
@@ -239,31 +250,36 @@ const RegexTesterClient = () => {
                 id="replacement"
                 value={replacementPattern}
                 onChange={(e) => setReplacementPattern(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                 placeholder="例: $& または $1"
               />
             </div>
           </div>
 
           {/* 結果表示 */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-            <h2 className="text-xl font-semibold mb-4 border-b pb-2">結果</h2>
+          <div className="bg-card rounded-lg shadow p-6">
+            <h2 className="text-xl font-semibold mb-4 border-b border-border-primary pb-2 text-foreground">
+              結果
+            </h2>
 
             {error ? (
-              <div className="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 p-4 rounded-lg mb-4">
+              <div className="bg-destructive/10 text-destructive p-4 rounded-lg mb-4">
                 {error}
               </div>
             ) : (
               <>
                 <div className="mb-4">
-                  <span className="font-medium">マッチ数:</span> {matchCount}
+                  <span className="font-medium text-foreground">マッチ数:</span>{" "}
+                  <span className="text-foreground">{matchCount}</span>
                 </div>
 
                 <div className="mb-6">
-                  <h3 className="font-medium mb-2">マッチング結果:</h3>
-                  <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg overflow-auto max-h-40 whitespace-pre-wrap">
+                  <h3 className="font-medium mb-2 text-foreground">
+                    マッチング結果:
+                  </h3>
+                  <div className="bg-muted p-4 rounded-lg overflow-auto max-h-40 whitespace-pre-wrap">
                     {highlightedText || (
-                      <span className="text-gray-500 dark:text-gray-400">
+                      <span className="text-muted-foreground">
                         テキストとパターンを入力してください
                       </span>
                     )}
@@ -272,15 +288,17 @@ const RegexTesterClient = () => {
 
                 {matches.length > 0 && (
                   <div className="mb-6">
-                    <h3 className="font-medium mb-2">マッチした文字列:</h3>
-                    <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg overflow-auto max-h-40">
+                    <h3 className="font-medium mb-2 text-foreground">
+                      マッチした文字列:
+                    </h3>
+                    <div className="bg-muted p-4 rounded-lg overflow-auto max-h-40">
                       <ul className="list-disc pl-4 space-y-1">
                         {matches.map((match, index) => (
                           <li key={index}>
                             <span className="font-mono">
                               &quot;{match.match}&quot;
                             </span>
-                            <span className="text-sm text-gray-500 dark:text-gray-400 ml-2">
+                            <span className="text-sm text-muted-foreground ml-2">
                               (位置: {match.index})
                             </span>
                           </li>
@@ -292,10 +310,12 @@ const RegexTesterClient = () => {
 
                 {replacementPattern && (
                   <div className="mb-6">
-                    <h3 className="font-medium mb-2">置換結果:</h3>
-                    <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg overflow-auto max-h-40 whitespace-pre-wrap">
+                    <h3 className="font-medium mb-2 text-foreground">
+                      置換結果:
+                    </h3>
+                    <div className="bg-muted p-4 rounded-lg overflow-auto max-h-40 whitespace-pre-wrap">
                       {replacementResult || (
-                        <span className="text-gray-500 dark:text-gray-400">
+                        <span className="text-muted-foreground">
                           置換結果はここに表示されます
                         </span>
                       )}
@@ -307,9 +327,11 @@ const RegexTesterClient = () => {
           </div>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
-          <h2 className="text-xl font-semibold mb-4 border-b pb-2">使い方</h2>
-          <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+        <div className="bg-card rounded-lg shadow p-6 mb-8">
+          <h2 className="text-xl font-semibold mb-4 border-b border-border-primary pb-2 text-foreground">
+            使い方
+          </h2>
+          <ul className="list-disc list-inside space-y-2 text-foreground">
             <li>
               「パターン」欄に正規表現パターンを入力してください（前後の /
               は不要です）
@@ -331,149 +353,108 @@ const RegexTesterClient = () => {
           </ul>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
-          <h2 className="text-xl font-semibold mb-4 border-b pb-2">
+        <div className="bg-card rounded-lg shadow p-6 mb-8">
+          <h2 className="text-xl font-semibold mb-4 border-b border-border-primary pb-2 text-foreground">
             正規表現チートシート
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <h3 className="font-medium mb-2">基本的なパターン</h3>
-              <ul className="text-sm space-y-1">
+              <h3 className="font-medium mb-2 text-foreground">
+                基本的なパターン
+              </h3>
+              <ul className="text-sm space-y-1 text-foreground">
                 <li>
-                  <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded">
-                    \d
-                  </code>{" "}
-                  - 数字 [0-9]
+                  <code className="bg-muted px-1 rounded">\d</code> - 数字 [0-9]
                 </li>
                 <li>
-                  <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded">
-                    \w
-                  </code>{" "}
-                  - 単語文字 [a-zA-Z0-9_]
+                  <code className="bg-muted px-1 rounded">\w</code> - 単語文字
+                  [a-zA-Z0-9_]
                 </li>
                 <li>
-                  <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded">
-                    \s
-                  </code>{" "}
-                  - 空白文字
+                  <code className="bg-muted px-1 rounded">\s</code> - 空白文字
                 </li>
                 <li>
-                  <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded">
-                    .
-                  </code>{" "}
-                  - 任意の1文字（改行以外）
+                  <code className="bg-muted px-1 rounded">.</code> -
+                  任意の1文字（改行以外）
                 </li>
                 <li>
-                  <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded">
-                    [abc]
-                  </code>{" "}
-                  - a、b、またはcのいずれか
+                  <code className="bg-muted px-1 rounded">[abc]</code> -
+                  a、b、またはcのいずれか
                 </li>
                 <li>
-                  <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded">
-                    [^abc]
-                  </code>{" "}
-                  - a、b、c以外の任意の文字
+                  <code className="bg-muted px-1 rounded">[^abc]</code> -
+                  a、b、c以外の任意の文字
                 </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="font-medium mb-2">アンカーと境界</h3>
-              <ul className="text-sm space-y-1">
+              <h3 className="font-medium mb-2 text-foreground">
+                アンカーと境界
+              </h3>
+              <ul className="text-sm space-y-1 text-foreground">
                 <li>
-                  <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded">
-                    ^
-                  </code>{" "}
-                  - 行の先頭
+                  <code className="bg-muted px-1 rounded">^</code> - 行の先頭
                 </li>
                 <li>
-                  <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded">
-                    $
-                  </code>{" "}
-                  - 行の末尾
+                  <code className="bg-muted px-1 rounded">$</code> - 行の末尾
                 </li>
                 <li>
-                  <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded">
-                    \b
-                  </code>{" "}
-                  - 単語境界
+                  <code className="bg-muted px-1 rounded">\b</code> - 単語境界
                 </li>
                 <li>
-                  <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded">
-                    \B
-                  </code>{" "}
-                  - 非単語境界
+                  <code className="bg-muted px-1 rounded">\B</code> - 非単語境界
                 </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="font-medium mb-2">繰り返し</h3>
-              <ul className="text-sm space-y-1">
+              <h3 className="font-medium mb-2 text-foreground">繰り返し</h3>
+              <ul className="text-sm space-y-1 text-foreground">
                 <li>
-                  <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded">
-                    *
-                  </code>{" "}
-                  - 0回以上の繰り返し
+                  <code className="bg-muted px-1 rounded">*</code> -
+                  0回以上の繰り返し
                 </li>
                 <li>
-                  <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded">
-                    +
-                  </code>{" "}
-                  - 1回以上の繰り返し
+                  <code className="bg-muted px-1 rounded">+</code> -
+                  1回以上の繰り返し
                 </li>
                 <li>
-                  <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded">
-                    ?
-                  </code>{" "}
-                  - 0回または1回
+                  <code className="bg-muted px-1 rounded">?</code> -
+                  0回または1回
                 </li>
                 <li>
-                  <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded">
-                    {"{n}"}
-                  </code>{" "}
-                  - ちょうどn回
+                  <code className="bg-muted px-1 rounded">{"{n}"}</code> -
+                  ちょうどn回
                 </li>
                 <li>
-                  <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded">
-                    {"{n,}"}
-                  </code>{" "}
-                  - n回以上
+                  <code className="bg-muted px-1 rounded">{"{n,}"}</code> -
+                  n回以上
                 </li>
                 <li>
-                  <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded">
-                    {"{n,m}"}
-                  </code>{" "}
-                  - n回以上m回以下
+                  <code className="bg-muted px-1 rounded">{"{n,m}"}</code> -
+                  n回以上m回以下
                 </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="font-medium mb-2">グループとOR</h3>
-              <ul className="text-sm space-y-1">
+              <h3 className="font-medium mb-2 text-foreground">グループとOR</h3>
+              <ul className="text-sm space-y-1 text-foreground">
                 <li>
-                  <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded">
-                    (abc)
-                  </code>{" "}
-                  - グループ
+                  <code className="bg-muted px-1 rounded">(abc)</code> -
+                  グループ
                 </li>
                 <li>
-                  <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded">
-                    a|b
-                  </code>{" "}
-                  - aまたはb
+                  <code className="bg-muted px-1 rounded">a|b</code> - aまたはb
                 </li>
                 <li>
-                  <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded">
-                    (?:abc)
-                  </code>{" "}
-                  - 非キャプチャグループ
+                  <code className="bg-muted px-1 rounded">(?:abc)</code> -
+                  非キャプチャグループ
                 </li>
                 <li>
-                  <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded">
+                  <code className="bg-muted px-1 rounded">
                     (?&lt;name&gt;abc)
                   </code>{" "}
                   - 名前付きグループ

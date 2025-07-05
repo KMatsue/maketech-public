@@ -180,7 +180,7 @@ const ResponsiveTesterClient = () => {
           <h1 className="text-4xl font-bold mb-4">
             レスポンシブデザインテスター
           </h1>
-          <p className="text-lg text-gray-700 dark:text-gray-300">
+          <p className="text-lg text-muted-foreground">
             異なるデバイスサイズでWebサイトの表示を同時に確認できます
           </p>
         </header>
@@ -196,20 +196,20 @@ const ResponsiveTesterClient = () => {
                 placeholder="URLを入力 (例: example.com)"
                 value={inputUrl}
                 onChange={(e) => setInputUrl(e.target.value)}
-                className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded dark:bg-gray-700"
+                className="w-full p-2 border border-border-primary rounded bg-input text-foreground"
                 required
               />
             </div>
             <button
               type="submit"
-              className="px-4 py-2 bg-blue-500 text-white rounded flex items-center justify-center"
+              className="px-4 py-2 bg-primary text-primary-foreground rounded flex items-center justify-center"
             >
               テスト
             </button>
             <button
               type="button"
               onClick={reloadFrames}
-              className="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded flex items-center justify-center"
+              className="px-4 py-2 bg-muted text-foreground rounded flex items-center justify-center hover:bg-muted-foreground hover:text-background"
               disabled={!url}
             >
               再読込
@@ -217,7 +217,7 @@ const ResponsiveTesterClient = () => {
             <button
               type="button"
               onClick={toggleOrientation}
-              className="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded"
+              className="px-4 py-2 bg-muted text-foreground rounded hover:bg-muted-foreground hover:text-background"
               disabled={!url}
             >
               {orientation === "portrait" ? "縦向き" : "横向き"}
@@ -225,7 +225,7 @@ const ResponsiveTesterClient = () => {
             <button
               type="button"
               onClick={() => setShowSettings(!showSettings)}
-              className="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded flex items-center justify-center"
+              className="px-4 py-2 bg-muted text-foreground rounded flex items-center justify-center hover:bg-muted-foreground hover:text-background"
             >
               設定
             </button>
@@ -233,8 +233,8 @@ const ResponsiveTesterClient = () => {
         </div>
 
         {showSettings && (
-          <div className="mb-4 p-4 border border-gray-200 dark:border-gray-700 rounded-lg">
-            <h3 className="font-semibold mb-3">デバイス設定</h3>
+          <div className="mb-4 p-4 border border-border-primary rounded-lg bg-card">
+            <h3 className="font-semibold mb-3 text-foreground">デバイス設定</h3>
 
             <div className="mb-4">
               <div className="font-medium mb-2">表示するデバイス</div>
@@ -245,8 +245,8 @@ const ResponsiveTesterClient = () => {
                       onClick={() => toggleDeviceActive(device.id)}
                       className={`px-3 py-1 rounded-lg flex items-center text-sm ${
                         device.active
-                          ? "bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200"
-                          : "bg-gray-100 dark:bg-gray-800 text-gray-500"
+                          ? "bg-primary/10 text-primary"
+                          : "bg-muted text-muted-foreground"
                       }`}
                     >
                       {device.name} ({device.width}x{device.height})
@@ -254,7 +254,7 @@ const ResponsiveTesterClient = () => {
                     {device.custom && (
                       <button
                         onClick={() => removeDevice(device.id)}
-                        className="ml-1 p-1 text-gray-500 hover:text-red-500"
+                        className="ml-1 p-1 text-muted-foreground hover:text-destructive"
                       >
                         ×
                       </button>
@@ -274,7 +274,7 @@ const ResponsiveTesterClient = () => {
                   onChange={(e) =>
                     setNewDevice({ ...newDevice, name: e.target.value })
                   }
-                  className="p-2 border border-gray-300 dark:border-gray-600 rounded dark:bg-gray-700 text-sm w-32"
+                  className="p-2 border border-border-primary rounded bg-input text-foreground text-sm w-32"
                 />
                 <input
                   type="number"
@@ -283,7 +283,7 @@ const ResponsiveTesterClient = () => {
                   onChange={(e) =>
                     setNewDevice({ ...newDevice, width: e.target.value })
                   }
-                  className="p-2 border border-gray-300 dark:border-gray-600 rounded dark:bg-gray-700 text-sm w-24"
+                  className="p-2 border border-border-primary rounded bg-input text-foreground text-sm w-24"
                   min="1"
                 />
                 <input
@@ -293,12 +293,12 @@ const ResponsiveTesterClient = () => {
                   onChange={(e) =>
                     setNewDevice({ ...newDevice, height: e.target.value })
                   }
-                  className="p-2 border border-gray-300 dark:border-gray-600 rounded dark:bg-gray-700 text-sm w-24"
+                  className="p-2 border border-border-primary rounded bg-input text-foreground text-sm w-24"
                   min="1"
                 />
                 <button
                   onClick={addCustomDevice}
-                  className="px-3 py-2 bg-blue-500 text-white rounded text-sm"
+                  className="px-3 py-2 bg-primary text-primary-foreground rounded text-sm"
                   disabled={
                     !newDevice.name || !newDevice.width || !newDevice.height
                   }
@@ -315,20 +315,20 @@ const ResponsiveTesterClient = () => {
               <div className="flex items-center">
                 <button
                   onClick={() => adjustZoom("out")}
-                  className="p-1 bg-gray-200 dark:bg-gray-700 rounded-l"
+                  className="p-1 bg-muted rounded-l"
                   disabled={zoomLevel <= 0.2}
                 >
                   −
                 </button>
-                <div className="w-48 bg-gray-200 dark:bg-gray-700 h-8 relative">
+                <div className="w-48 bg-muted h-8 relative">
                   <div
-                    className="absolute h-full bg-blue-400 dark:bg-blue-600"
+                    className="absolute h-full bg-primary"
                     style={{ width: `${((zoomLevel - 0.2) / 0.8) * 100}%` }}
                   ></div>
                 </div>
                 <button
                   onClick={() => adjustZoom("in")}
-                  className="p-1 bg-gray-200 dark:bg-gray-700 rounded-r"
+                  className="p-1 bg-muted rounded-r"
                   disabled={zoomLevel >= 1.0}
                 >
                   ＋
@@ -336,7 +336,7 @@ const ResponsiveTesterClient = () => {
               </div>
             </div>
 
-            <div className="text-xs text-gray-500 mt-4">
+            <div className="text-xs text-muted-foreground mt-4">
               <p>
                 <strong>縦向き/横向きについて：</strong>
               </p>
@@ -355,13 +355,13 @@ const ResponsiveTesterClient = () => {
         <div className="mb-4 flex justify-between items-center">
           <div>
             {url && (
-              <span className="text-sm text-gray-600 dark:text-gray-400">
+              <span className="text-sm text-muted-foreground">
                 表示中:{" "}
                 <a
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline"
+                  className="text-primary hover:underline"
                 >
                   {url}
                 </a>
@@ -371,19 +371,19 @@ const ResponsiveTesterClient = () => {
           {(mobileTabletDevices.length > 0 || desktopDevices.length > 0) &&
             url && (
               <div className="text-sm">
-                <span className="text-gray-600 dark:text-gray-400 mr-2">
+                <span className="text-muted-foreground mr-2">
                   ズーム: {Math.round(zoomLevel * 100)}%
                 </span>
                 <button
                   onClick={() => adjustZoom("out")}
-                  className="p-1 bg-gray-200 dark:bg-gray-700 rounded mr-1"
+                  className="p-1 bg-muted rounded mr-1"
                   disabled={zoomLevel <= 0.2}
                 >
                   −
                 </button>
                 <button
                   onClick={() => adjustZoom("in")}
-                  className="p-1 bg-gray-200 dark:bg-gray-700 rounded"
+                  className="p-1 bg-muted rounded"
                   disabled={zoomLevel >= 1.0}
                 >
                   ＋
@@ -393,14 +393,14 @@ const ResponsiveTesterClient = () => {
         </div>
 
         {mobileTabletDevices.length === 0 && desktopDevices.length === 0 ? (
-          <div className="text-center p-8 bg-gray-100 dark:bg-gray-800 rounded-lg">
-            <p className="text-gray-500 dark:text-gray-400">
+          <div className="text-center p-8 bg-muted rounded-lg">
+            <p className="text-muted-foreground">
               表示するデバイスが選択されていません。設定から少なくとも1つのデバイスを選択してください。
             </p>
           </div>
         ) : !url ? (
-          <div className="text-center p-8 bg-gray-100 dark:bg-gray-800 rounded-lg">
-            <p className="text-gray-500 dark:text-gray-400">
+          <div className="text-center p-8 bg-muted rounded-lg">
+            <p className="text-muted-foreground">
               URLを入力して「テスト」ボタンをクリックしてください。
             </p>
           </div>
@@ -409,7 +409,7 @@ const ResponsiveTesterClient = () => {
             {/* モバイルとタブレットの行 */}
             {mobileTabletDevices.length > 0 && (
               <div className="mb-8">
-                <h3 className="text-lg font-medium mb-4 border-b pb-2">
+                <h3 className="text-lg font-medium mb-4 border-b border-border-primary pb-2 text-foreground">
                   モバイル / タブレット
                 </h3>
                 <div className="flex flex-wrap justify-center -mx-2">
@@ -431,7 +431,7 @@ const ResponsiveTesterClient = () => {
                           </div>
                         </div>
                         <div
-                          className="mx-auto border border-gray-300 dark:border-gray-700 rounded-lg overflow-hidden bg-white"
+                          className="mx-auto border border-border-primary rounded-lg overflow-hidden bg-white"
                           style={{
                             width: `${dimensions.width * zoomLevel}px`,
                             height: `${dimensions.height * zoomLevel}px`,
@@ -439,7 +439,7 @@ const ResponsiveTesterClient = () => {
                         >
                           {isLoading && (
                             <div className="flex justify-center items-center h-full">
-                              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+                              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
                             </div>
                           )}
                           <iframe
@@ -469,7 +469,7 @@ const ResponsiveTesterClient = () => {
             {/* デスクトップの行 */}
             {desktopDevices.length > 0 && (
               <div>
-                <h3 className="text-lg font-medium mb-4 border-b pb-2">
+                <h3 className="text-lg font-medium mb-4 border-b border-border-primary pb-2 text-foreground">
                   デスクトップ / ラージスクリーン
                 </h3>
                 <div className="flex flex-wrap justify-center -mx-2">
@@ -487,7 +487,7 @@ const ResponsiveTesterClient = () => {
                           </div>
                         </div>
                         <div
-                          className="mx-auto border border-gray-300 dark:border-gray-700 rounded-lg overflow-hidden bg-white"
+                          className="mx-auto border border-border-primary rounded-lg overflow-hidden bg-white"
                           style={{
                             width: `${dimensions.width * zoomLevel}px`,
                             height: `${dimensions.height * zoomLevel}px`,
@@ -496,7 +496,7 @@ const ResponsiveTesterClient = () => {
                         >
                           {isLoading && (
                             <div className="flex justify-center items-center h-full">
-                              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+                              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
                             </div>
                           )}
                           <iframe
@@ -525,9 +525,9 @@ const ResponsiveTesterClient = () => {
           </div>
         )}
 
-        <div className="mt-8 p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
-          <h3 className="font-semibold mb-2">使い方のヒント</h3>
-          <ul className="list-disc pl-5 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+        <div className="mt-8 p-4 bg-info-bg rounded-lg">
+          <h3 className="font-semibold mb-2 text-foreground">使い方のヒント</h3>
+          <ul className="list-disc pl-5 space-y-1 text-sm text-info-text">
             <li>
               確認したいウェブサイトのURLを入力し、「テスト」ボタンをクリックします
             </li>
@@ -549,9 +549,9 @@ const ResponsiveTesterClient = () => {
           </ul>
         </div>
 
-        <div className="mt-4 text-xs text-gray-500 dark:text-gray-400">
+        <div className="mt-4 text-xs text-muted-foreground">
           <p className="mb-1">注意事項:</p>
-          <ul className="list-disc pl-5 space-y-1">
+          <ul className="list-disc pl-5 space-y-1 text-muted-foreground">
             <li>
               一部のウェブサイトでは、セキュリティ上の理由からiframe内での表示が禁止されている場合があります
             </li>

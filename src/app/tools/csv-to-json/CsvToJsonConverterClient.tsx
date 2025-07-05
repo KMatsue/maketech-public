@@ -146,13 +146,13 @@ Emily Johnson,emily@example.com,26,true,2022-04-18`);
       <div className="mx-auto lg:w-9/12">
         <header className="text-center my-8">
           <h1 className="text-4xl font-bold mb-4">CSV to JSON コンバーター</h1>
-          <p className="text-lg text-gray-700 dark:text-gray-300">
+          <p className="text-lg text-muted-foreground">
             CSVデータをJSONに簡単に変換できます
           </p>
         </header>
 
         {/* オプションパネル */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-4 mb-6">
+        <div className="bg-card rounded-lg shadow p-4 mb-6">
           <div className="flex flex-wrap gap-4 items-center">
             <div className="flex items-center">
               <label className="inline-flex items-center cursor-pointer">
@@ -164,7 +164,7 @@ Emily Johnson,emily@example.com,26,true,2022-04-18`);
                     setOptions({ ...options, header: !options.header })
                   }
                 />
-                <span className="ml-2">1行目をヘッダーとして使用</span>
+                <span className="ml-2 text-foreground">1行目をヘッダーとして使用</span>
               </label>
             </div>
             <div className="flex items-center">
@@ -180,7 +180,7 @@ Emily Johnson,emily@example.com,26,true,2022-04-18`);
                     })
                   }
                 />
-                <span className="ml-2">空行をスキップ</span>
+                <span className="ml-2 text-foreground">空行をスキップ</span>
               </label>
             </div>
             <div className="flex items-center">
@@ -196,26 +196,26 @@ Emily Johnson,emily@example.com,26,true,2022-04-18`);
                     })
                   }
                 />
-                <span className="ml-2">型を自動検出</span>
+                <span className="ml-2 text-foreground">型を自動検出</span>
               </label>
             </div>
           </div>
         </div>
 
         {/* 入力セクション */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-6">
+        <div className="bg-card rounded-lg shadow p-6 mb-6">
           <div className="flex justify-between items-center mb-3">
-            <h2 className="text-xl font-semibold">CSVデータを入力</h2>
+            <h2 className="text-xl font-semibold text-foreground">CSVデータを入力</h2>
             <button
               onClick={setSampleData}
-              className="text-sm bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded hover:bg-gray-300 dark:hover:bg-gray-600"
+              className="text-sm bg-muted text-foreground px-3 py-1 rounded hover:bg-muted-foreground hover:text-background"
             >
               サンプルを設定
             </button>
           </div>
           <div className="mb-4">
             <textarea
-              className="w-full h-64 p-4 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100 font-mono"
+              className="w-full h-64 p-4 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground font-mono"
               placeholder="ここにCSVデータを入力または貼り付け..."
               value={csvData}
               onChange={(e) => setCsvData(e.target.value)}
@@ -223,25 +223,24 @@ Emily Johnson,emily@example.com,26,true,2022-04-18`);
             ></textarea>
           </div>
           <div className="mb-4">
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
+            <p className="text-sm text-muted-foreground mb-2">
               または、CSVファイルをアップロード：
             </p>
             <input
               type="file"
               accept=".csv,.txt"
               onChange={handleFileUpload}
-              className="block w-full text-sm text-gray-500 dark:text-gray-400
+              className="block w-full text-sm text-muted-foreground
                 file:mr-4 file:py-2 file:px-4
                 file:rounded file:border-0
                 file:text-sm file:font-semibold
-                file:bg-blue-50 file:text-blue-700
-                dark:file:bg-blue-900 dark:file:text-blue-200
-                hover:file:bg-blue-100 dark:hover:file:bg-blue-800"
+                file:bg-file-button-bg file:text-file-button-text
+                file:cursor-pointer cursor-pointer"
             />
           </div>
           <button
             onClick={handleConvert}
-            className="w-full py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+            className="w-full py-2 px-4 bg-primary text-primary-foreground rounded hover:bg-primary/80 transition-colors"
             disabled={loading}
           >
             {loading ? "コンバート中..." : "JSONに変換"}
@@ -249,19 +248,19 @@ Emily Johnson,emily@example.com,26,true,2022-04-18`);
         </div>
 
         {/* 出力セクション */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-6">
+        <div className="bg-card rounded-lg shadow p-6 mb-6">
           <div className="flex justify-between items-center mb-3">
-            <h2 className="text-xl font-semibold">JSON結果</h2>
+            <h2 className="text-xl font-semibold text-foreground">JSON結果</h2>
             {jsonResult && (
               <div className="relative">
                 <button
                   onClick={copyToClipboard}
-                  className="text-sm bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded hover:bg-green-200 dark:hover:bg-green-800"
+                  className="text-sm bg-primary/10 text-primary px-3 py-1 rounded hover:bg-primary/20"
                 >
                   コピー
                 </button>
                 {showCopySuccess && (
-                  <span className="absolute left-full ml-2 whitespace-nowrap text-sm text-green-600 dark:text-green-400">
+                  <span className="absolute left-full ml-2 whitespace-nowrap text-sm text-primary">
                     コピーしました！
                   </span>
                 )}
@@ -269,29 +268,29 @@ Emily Johnson,emily@example.com,26,true,2022-04-18`);
             )}
           </div>
           <div className="relative">
-            <pre className="w-full h-80 p-4 bg-gray-100 dark:bg-gray-900 rounded-lg overflow-auto font-mono text-sm dark:text-gray-300">
+            <pre className="w-full h-80 p-4 bg-code-bg rounded-lg overflow-auto font-mono text-sm text-foreground">
               {jsonResult || "変換結果がここに表示されます..."}
             </pre>
             {error && (
-              <div className="mt-4 p-4 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 rounded-lg">
+              <div className="mt-4 p-4 bg-destructive/10 text-destructive rounded-lg">
                 {error}
               </div>
             )}
           </div>
         </div>
 
-        <div className="mt-8 p-6 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
-          <h3 className="font-semibold mb-3 text-lg">
+        <div className="mt-8 p-6 bg-info-bg rounded-lg">
+          <h3 className="font-semibold mb-3 text-lg text-foreground">
             CSV to JSON コンバーターについて
           </h3>
-          <p className="mb-4 text-gray-600 dark:text-gray-400">
+          <p className="mb-4 text-info-text">
             このツールは、CSV（カンマ区切り値）データをJSON（JavaScript Object
             Notation）形式に変換します。
             変換はブラウザ上で行われるため、データがサーバーに送信されることはありません。
           </p>
 
-          <h4 className="font-medium mt-4 mb-2">オプションの説明：</h4>
-          <ul className="list-disc pl-5 space-y-1 text-gray-600 dark:text-gray-400">
+          <h4 className="font-medium mt-4 mb-2 text-foreground">オプションの説明：</h4>
+          <ul className="list-disc pl-5 space-y-1 text-info-text">
             <li>
               <strong>1行目をヘッダーとして使用</strong>
               ：CSVの1行目をJSONオブジェクトのキーとして使用します
@@ -305,8 +304,8 @@ Emily Johnson,emily@example.com,26,true,2022-04-18`);
             </li>
           </ul>
 
-          <h4 className="font-medium mt-4 mb-2">使い方：</h4>
-          <ol className="list-decimal pl-5 space-y-1 text-gray-600 dark:text-gray-400">
+          <h4 className="font-medium mt-4 mb-2 text-foreground">使い方：</h4>
+          <ol className="list-decimal pl-5 space-y-1 text-info-text">
             <li>
               CSVデータをテキストエリアに入力するか、CSVファイルをアップロードします
             </li>
@@ -315,10 +314,10 @@ Emily Johnson,emily@example.com,26,true,2022-04-18`);
             <li>結果のJSONをコピーして使用します</li>
           </ol>
 
-          <h4 className="font-medium mt-4 mb-2">
+          <h4 className="font-medium mt-4 mb-2 text-foreground">
             対応している主なCSVフォーマット：
           </h4>
-          <ul className="list-disc pl-5 space-y-1 text-gray-600 dark:text-gray-400">
+          <ul className="list-disc pl-5 space-y-1 text-info-text">
             <li>カンマ区切りの標準的なCSV</li>
             <li>ダブルクォーテーションで囲まれたテキスト</li>
             <li>マルチラインテキスト（クォーテーション内の改行）</li>

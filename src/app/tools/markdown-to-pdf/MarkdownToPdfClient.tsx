@@ -218,21 +218,21 @@ const convertToPdf = () => {
           <h1 className="text-4xl font-bold mb-4">
             マークダウンからPDFへの変換
           </h1>
-          <p className="text-lg text-gray-700 dark:text-gray-300">
+          <p className="text-lg text-muted-foreground">
             マークダウンテキストを入力してPDFに変換できます
           </p>
         </header>
 
         {/*　タブ　*/}
         <div className="mb-8">
-          <div className="border-b border-gray-200 dark:border-gray-700 mb-4">
+          <div className="border-b border-border-primary mb-4">
             <ul className="flex flex-wrap -mb-px text-sm font-medium text-center">
               <li className="mr-2">
                 <button
                   className={`inline-block p-4 rounded-t-lg ${
                     !isFullPreviewOpen
-                      ? "text-blue-600 border-b-2 border-blue-600 dark:text-blue-500 dark:border-blue-500"
-                      : "hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                      ? "text-primary border-b-2 border-primary"
+                      : "hover:text-muted-foreground hover:border-border-secondary"
                   }`}
                   onClick={() => setIsFullPreviewOpen(false)}
                 >
@@ -243,8 +243,8 @@ const convertToPdf = () => {
                 <button
                   className={`inline-block p-4 rounded-t-lg ${
                     isFullPreviewOpen
-                      ? "text-blue-600 border-b-2 border-blue-600 dark:text-blue-500 dark:border-blue-500"
-                      : "hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                      ? "text-primary border-b-2 border-primary"
+                      : "hover:text-muted-foreground hover:border-border-secondary"
                   }`}
                   onClick={openFullPreview}
                 >
@@ -272,20 +272,20 @@ const convertToPdf = () => {
             /* 入力エリアと設定エリア */
             <div className="flex flex-col space-y-6">
               {/* 入力エリア */}
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-                <h2 className="text-xl font-semibold mb-4 border-b pb-2">
+              <div className="bg-card rounded-lg shadow p-6">
+                <h2 className="text-xl font-semibold mb-4 border-b border-border-primary pb-2 text-foreground">
                   マークダウン入力
                 </h2>
 
                 <div className="mb-4">
                   <div className="flex justify-between mb-2 items-center">
                     <div className="flex items-center">
-                      <label htmlFor="markdown" className="block font-medium">
+                      <label htmlFor="markdown" className="block font-medium text-foreground">
                         マークダウン入力
                       </label>
                       <button
                         onClick={() => setIsHelpModalOpen(true)}
-                        className="ml-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:outline-none"
+                        className="ml-2 text-muted-foreground hover:text-foreground focus:outline-none"
                         aria-label="マークダウンヘルプを表示"
                         title="マークダウンヘルプを表示"
                       >
@@ -310,7 +310,7 @@ const convertToPdf = () => {
                     />
                     <button
                       onClick={setExampleMarkdown}
-                      className="text-sm text-blue-500 hover:text-blue-700"
+                      className="text-sm text-primary hover:text-primary/80"
                     >
                       サンプルを挿入
                     </button>
@@ -319,39 +319,39 @@ const convertToPdf = () => {
                     id="markdown"
                     value={markdown}
                     onChange={(e) => setMarkdown(e.target.value)}
-                    className="w-full h-96 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100 font-mono"
+                    className="w-full h-96 px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground font-mono"
                     placeholder="# マークダウンを入力してください"
                   ></textarea>
                 </div>
 
                 <div className="mb-4">
-                  <label className="block font-medium mb-2">
+                  <label className="block font-medium mb-2 text-foreground">
                     マークダウンファイルをアップロード
                   </label>
                   <input
                     type="file"
                     accept=".md,.markdown,.txt"
                     onChange={handleFileUpload}
-                    className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 dark:file:bg-blue-900 dark:file:text-blue-200"
+                    className="block w-full text-sm text-muted-foreground file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-file-button-bg file:text-file-button-text file:cursor-pointer cursor-pointer"
                   />
                 </div>
               </div>
               {/* PDF設定エリア */}
 
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-                <h2 className="text-xl font-semibold mb-4 border-b pb-2">
+              <div className="bg-card rounded-lg shadow p-6">
+                <h2 className="text-xl font-semibold mb-4 border-b border-border-primary pb-2 text-foreground">
                   PDF設定
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* 左側: 基本設定と余白設定 */}
                   <div>
-                    <h3 className="font-medium mb-3">基本設定</h3>
+                    <h3 className="font-medium mb-3 text-foreground">基本設定</h3>
 
                     <div className="mb-4">
                       <label
                         htmlFor="fileName"
-                        className="block font-medium mb-2"
+                        className="block font-medium mb-2 text-foreground"
                       >
                         ファイル名 (拡張子なし)
                       </label>
@@ -360,7 +360,7 @@ const convertToPdf = () => {
                         id="fileName"
                         value={fileName}
                         onChange={(e) => setFileName(e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                        className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                         placeholder="document"
                       />
                     </div>
@@ -369,7 +369,7 @@ const convertToPdf = () => {
                       <div>
                         <label
                           htmlFor="pageSize"
-                          className="block font-medium mb-2"
+                          className="block font-medium mb-2 text-foreground"
                         >
                           ページサイズ
                         </label>
@@ -377,7 +377,7 @@ const convertToPdf = () => {
                           id="pageSize"
                           value={pageSize}
                           onChange={(e) => setPageSize(e.target.value)}
-                          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                          className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                         >
                           <option value="A4">A4</option>
                           <option value="A3">A3</option>
@@ -390,7 +390,7 @@ const convertToPdf = () => {
                       <div>
                         <label
                           htmlFor="orientation"
-                          className="block font-medium mb-2"
+                          className="block font-medium mb-2 text-foreground"
                         >
                           向き
                         </label>
@@ -402,7 +402,7 @@ const convertToPdf = () => {
                               e.target.value as "portrait" | "landscape"
                             )
                           }
-                          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                          className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                         >
                           <option value="portrait">縦向き</option>
                           <option value="landscape">横向き</option>
@@ -410,12 +410,12 @@ const convertToPdf = () => {
                       </div>
                     </div>
 
-                    <h3 className="font-medium mb-3">余白設定 (mm)</h3>
+                    <h3 className="font-medium mb-3 text-foreground">余白設定 (mm)</h3>
                     <div className="grid grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-4">
                       <div>
                         <label
                           htmlFor="marginTop"
-                          className="block text-sm mb-1"
+                          className="block text-sm mb-1 text-foreground"
                         >
                           上: {margins.top}mm
                         </label>
@@ -431,13 +431,13 @@ const convertToPdf = () => {
                               top: Number(e.target.value),
                             })
                           }
-                          className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+                          className="w-full h-2 bg-input rounded-lg appearance-none cursor-pointer"
                         />
                       </div>
                       <div>
                         <label
                           htmlFor="marginRight"
-                          className="block text-sm mb-1"
+                          className="block text-sm mb-1 text-foreground"
                         >
                           右: {margins.right}mm
                         </label>
@@ -453,13 +453,13 @@ const convertToPdf = () => {
                               right: Number(e.target.value),
                             })
                           }
-                          className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+                          className="w-full h-2 bg-input rounded-lg appearance-none cursor-pointer"
                         />
                       </div>
                       <div>
                         <label
                           htmlFor="marginBottom"
-                          className="block text-sm mb-1"
+                          className="block text-sm mb-1 text-foreground"
                         >
                           下: {margins.bottom}mm
                         </label>
@@ -475,13 +475,13 @@ const convertToPdf = () => {
                               bottom: Number(e.target.value),
                             })
                           }
-                          className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+                          className="w-full h-2 bg-input rounded-lg appearance-none cursor-pointer"
                         />
                       </div>
                       <div>
                         <label
                           htmlFor="marginLeft"
-                          className="block text-sm mb-1"
+                          className="block text-sm mb-1 text-foreground"
                         >
                           左: {margins.left}mm
                         </label>
@@ -497,7 +497,7 @@ const convertToPdf = () => {
                               left: Number(e.target.value),
                             })
                           }
-                          className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+                          className="w-full h-2 bg-input rounded-lg appearance-none cursor-pointer"
                         />
                       </div>
                     </div>
@@ -505,10 +505,10 @@ const convertToPdf = () => {
 
                   {/* 右側: ページプレビュー */}
                   <div className="flex flex-col h-full">
-                    <div className="relative bg-gray-100 dark:bg-gray-700 rounded-lg p-4 flex-grow flex items-center justify-center">
+                    <div className="relative bg-preview-area-bg rounded-lg p-4 flex-grow flex items-center justify-center">
                       {/* ページを表す長方形 - 現在の向きに基づく正確な縦横比 */}
                       <div
-                        className="relative bg-white dark:bg-gray-800 shadow-md mx-auto"
+                        className="relative bg-card shadow-md mx-auto"
                         style={{
                           width: orientation === "portrait" ? "60%" : "75%",
                           height: orientation === "portrait" ? "85%" : "70%",
@@ -528,7 +528,7 @@ const convertToPdf = () => {
                       >
                         {/* 上部マージン */}
                         <div
-                          className="absolute top-0 left-0 right-0 bg-blue-100 dark:bg-blue-900/30"
+                          className="absolute top-0 left-0 right-0 bg-pdf-margin-bg"
                           style={{
                             height: `${
                               (margins.top * 100) /
@@ -536,14 +536,14 @@ const convertToPdf = () => {
                             }%`,
                           }}
                         >
-                          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 dark:text-blue-400">
+                          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-xs text-pdf-margin-text">
                             {margins.top}mm
                           </div>
                         </div>
 
                         {/* 右マージン */}
                         <div
-                          className="absolute top-0 right-0 bottom-0 bg-blue-100 dark:bg-blue-900/30"
+                          className="absolute top-0 right-0 bottom-0 bg-pdf-margin-bg"
                           style={{
                             width: `${
                               (margins.right * 100) /
@@ -551,14 +551,14 @@ const convertToPdf = () => {
                             }%`,
                           }}
                         >
-                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xs text-blue-600 dark:text-blue-400">
+                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xs text-pdf-margin-text">
                             {margins.right}mm
                           </div>
                         </div>
 
                         {/* 下部マージン */}
                         <div
-                          className="absolute bottom-0 left-0 right-0 bg-blue-100 dark:bg-blue-900/30"
+                          className="absolute bottom-0 left-0 right-0 bg-pdf-margin-bg"
                           style={{
                             height: `${
                               (margins.bottom * 100) /
@@ -566,14 +566,14 @@ const convertToPdf = () => {
                             }%`,
                           }}
                         >
-                          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 dark:text-blue-400">
+                          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 text-xs text-pdf-margin-text">
                             {margins.bottom}mm
                           </div>
                         </div>
 
                         {/* 左マージン */}
                         <div
-                          className="absolute top-0 left-0 bottom-0 bg-blue-100 dark:bg-blue-900/30"
+                          className="absolute top-0 left-0 bottom-0 bg-pdf-margin-bg"
                           style={{
                             width: `${
                               (margins.left * 100) /
@@ -581,19 +581,19 @@ const convertToPdf = () => {
                             }%`,
                           }}
                         >
-                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xs text-blue-600 dark:text-blue-400">
+                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xs text-pdf-margin-text">
                             {margins.left}mm
                           </div>
                         </div>
 
                         {/* コンテンツエリア */}
-                        <div className="text-xs text-gray-500 dark:text-gray-400">
+                        <div className="text-xs text-muted-foreground">
                           コンテンツ
                         </div>
                       </div>
 
                       {/* ページサイズと向きの表示 */}
-                      <div className="absolute bottom-2 right-2 text-xs text-gray-500 dark:text-gray-400">
+                      <div className="absolute bottom-2 right-2 text-xs text-muted-foreground">
                         {pageSize}{" "}
                         {orientation === "portrait" ? "縦向き" : "横向き"}
                       </div>
@@ -627,7 +627,7 @@ const convertToPdf = () => {
                 <div className="grid grid-cols-2 gap-4 mt-8">
                   <button
                     onClick={openFullPreview}
-                    className="w-full px-4 py-2 text-sm sm:text-base bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 rounded-lg transition duration-200"
+                    className="w-full px-4 py-2 text-sm sm:text-base bg-input text-foreground hover:bg-muted-foreground hover:text-background rounded-lg transition duration-200"
                     disabled={!previewHtml}
                   >
                     プレビューを表示
@@ -635,7 +635,7 @@ const convertToPdf = () => {
                   <button
                     onClick={convertToPdf}
                     disabled={!markdown || isGenerating}
-                    className={`w-full px-4 py-2 text-sm sm:text-base bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition duration-200 ${
+                    className={`w-full px-4 py-2 text-sm sm:text-base bg-primary hover:bg-primary/80 text-primary-foreground rounded-lg transition duration-200 ${
                       !markdown || isGenerating
                         ? "opacity-50 cursor-not-allowed"
                         : ""
@@ -652,9 +652,9 @@ const convertToPdf = () => {
         </div>
 
         {/* 使い方 - 水色背景部分 */}
-        <div className="mt-8 p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg  mb-8">
-          <h3 className="font-semibold mb-2">使い方のヒント</h3>
-          <ul className="list-disc pl-5 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+        <div className="mt-8 p-4 bg-usage-hints-bg rounded-lg mb-8">
+          <h3 className="font-semibold mb-2 text-usage-hints-text">使い方のヒント</h3>
+          <ul className="list-disc pl-5 space-y-1 text-sm text-usage-hints-text">
             <li>
               マークダウンテキストを入力するか、マークダウンファイル(.md)をアップロードします
             </li>
@@ -673,8 +673,8 @@ const convertToPdf = () => {
           </ul>
         </div>
         {/* 注意事項 */}
-        <div className="mt-4 text-xs text-gray-500 dark:text-gray-400">
-          <p className="mb-1">注意事項:</p>
+        <div className="mt-4 text-xs text-muted-foreground">
+          <p className="mb-1 text-foreground">注意事項:</p>
           <ul className="list-disc pl-5 space-y-1">
             <li>
               このツールはクライアントサイドで動作し、入力データはサーバーに送信されません
@@ -948,11 +948,11 @@ const FullPreviewComponent = ({
   ]);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-4 mb-6">
+    <div className="bg-card rounded-lg shadow p-4 mb-6">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold">PDF プレビュー</h2>
+        <h2 className="text-xl font-semibold text-foreground">PDF プレビュー</h2>
         <div className="flex items-center space-x-4">
-          <div className="text-sm text-gray-500">
+          <div className="text-sm text-muted-foreground">
             {pageSize.toUpperCase()} /{" "}
             {orientation === "portrait" ? "縦向き" : "横向き"}({pageWidth}mm ×{" "}
             {pageHeight}mm)
@@ -961,14 +961,14 @@ const FullPreviewComponent = ({
           <div className="flex items-center space-x-2">
             <button
               onClick={() => setScale((prev) => Math.max(prev - 0.1, 0.3))}
-              className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded text-sm"
+              className="px-2 py-1 bg-muted rounded text-sm text-foreground"
             >
               −
             </button>
-            <span className="text-sm">{Math.round(scale * 100)}%</span>
+            <span className="text-sm text-foreground">{Math.round(scale * 100)}%</span>
             <button
               onClick={() => setScale((prev) => Math.min(prev + 0.1, 1.5))}
-              className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded text-sm"
+              className="px-2 py-1 bg-muted rounded text-sm text-foreground"
             >
               +
             </button>
@@ -978,8 +978,8 @@ const FullPreviewComponent = ({
             onClick={() => setIsMultiPageView(!isMultiPageView)}
             className={`px-3 py-1 text-sm rounded ${
               isMultiPageView
-                ? "bg-blue-500 text-white"
-                : "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+                ? "bg-primary text-primary-foreground"
+                : "bg-muted text-foreground"
             }`}
           >
             {isMultiPageView ? "単一ページ表示" : "複数ページ表示"}
@@ -988,22 +988,22 @@ const FullPreviewComponent = ({
       </div>
 
       {/* スクロール可能なコンテナ */}
-      <div className="overflow-auto bg-gray-100 dark:bg-gray-900 p-4 rounded-lg flex flex-col items-center">
+      <div className="overflow-auto bg-muted p-4 rounded-lg flex flex-col items-center">
         {isMultiPageView ? (
           // 複数ページビュー
           <div className="space-y-8">
             {isCalculating || pages.length === 0 ? (
               <div className="flex items-center justify-center p-8">
                 <div className="text-center">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-2"></div>
-                  <p className="text-gray-500">ページを計算中...</p>
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-2"></div>
+                  <p className="text-muted-foreground">ページを計算中...</p>
                 </div>
               </div>
             ) : (
               pages.map((pageHtml, index) => (
                 <div key={index} className="relative">
                   {/* ページ番号表示 */}
-                  <div className="absolute -top-4 right-0 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded text-xs">
+                  <div className="absolute -top-4 right-0 bg-secondary text-secondary-foreground px-2 py-1 rounded text-xs">
                     ページ {index + 1} / {pages.length}
                   </div>
 
@@ -1194,14 +1194,14 @@ const FullPreviewComponent = ({
       <div className="flex justify-between mt-4">
         <button
           onClick={() => setIsFullPreviewOpen(false)}
-          className="px-4 py-2 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 rounded-lg"
+          className="px-4 py-2 bg-muted text-foreground hover:bg-muted-foreground hover:text-background rounded-lg"
         >
           編集に戻る
         </button>
         <button
           onClick={convertToPdf}
           disabled={!previewHtml || isGenerating}
-          className={`px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg ${
+          className={`px-4 py-2 bg-primary hover:bg-primary/80 text-primary-foreground rounded-lg ${
             !previewHtml || isGenerating ? "opacity-50 cursor-not-allowed" : ""
           }`}
         >

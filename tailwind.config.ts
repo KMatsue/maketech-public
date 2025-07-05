@@ -42,6 +42,26 @@ const config: Config = {
         
         ring: 'var(--ring)',
         
+        // Info colors
+        'info-bg': 'var(--info-bg)',
+        'info-text': 'var(--info-text)',
+        
+        // Code/Result Display colors
+        'code-bg': 'var(--code-bg)',
+        'file-button-bg': 'var(--file-button-bg)',
+        'file-button-text': 'var(--file-button-text)',
+        
+        // PDF Margin Display colors
+        'pdf-margin-bg': 'var(--pdf-margin-bg)',
+        'pdf-margin-text': 'var(--pdf-margin-text)',
+        
+        // Usage Hints colors
+        'usage-hints-bg': 'var(--usage-hints-bg)',
+        'usage-hints-text': 'var(--usage-hints-text)',
+        
+        // Preview Area colors
+        'preview-area-bg': 'var(--preview-area-bg)',
+        
         // Component specific colors
         'navbar-bg': 'var(--navbar-bg)',
         'navbar-text': 'var(--navbar-text)',
