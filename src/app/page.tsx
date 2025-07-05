@@ -27,13 +27,13 @@ const Home = async () => {
         {/* ヘッダーセクション */}
         <header className="text-center my-8">
           <h1 className="text-4xl font-bold mb-4">MaKe TECH Blog</h1>
-          <p className="text-lg text-gray-700 dark:text-gray-300">
+          <p className="text-lg text-muted-foreground">
             技術的な勉強や読書のアウトプットやメモがわりに運用するブログです。
           </p>
         </header>
         {/* 最近の投稿セクション */}
         <section className="mb-8">
-          <h2 className="border-b-2 border-gray-500 mb-4">Recent Posts</h2>
+          <h2 className="border-b-2 border-border-primary mb-4">Recent Posts</h2>
           <div className="space-y-6">
             <Posts posts={posts} />
           </div>
@@ -50,7 +50,7 @@ const Home = async () => {
       {/* タグセクション */}
       {/* <section className="mt-10">
         <div className="flex-1 md:flex-auto md:w-4/12 lg:w-3/12">
-          <h2 className="border-b-2 border-gray-500 mb-4 ">Tags</h2>
+          <h2 className="border-b-2 border-border-primary mb-4 ">Tags</h2>
           <Tag tags={allTags} />
         </div>{" "}
       </section> */}

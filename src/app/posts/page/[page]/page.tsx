@@ -59,13 +59,13 @@ const BlogPageList = async ({ params }: { params: postParam }) => {
         </header>
         <div className="md:flex">
           <div className="md:w-8/12 lg:w-9/12">
-            <h2 className="border-b-2 border-gray-500 mb-4">All Posts</h2>
+            <h2 className="border-b-2 border-border-primary mb-4">All Posts</h2>
             <section className="grid gap-6 lg:grid-cols-2">
               <Posts posts={postsByPage} />
             </section>
           </div>
           <div className="md:w-4/12 lg:w-3/12 mt-8 md:mt-0 md:ml-8">
-            <h2 className="border-b-2 border-gray-500 mb-4">Tags</h2>
+            <h2 className="border-b-2 border-border-primary mb-4">Tags</h2>
             <Tags tags={allTags} />
           </div>
         </div>
