@@ -16,8 +16,8 @@ const Tags: React.FC<Props> = ({ tags }) => {
           {tags.map((tag: string, index: number) => (
             <Link href={`/posts/tag/${tag}/page/1`} key={index}>
               <span
-                className="border border-tag-border bg-tag-bg text-tag-text cursor-pointer px-2 py-0.5 font-medium rounded-xl inline-block
-               transition-colors duration-300 ease-in-out hover:bg-tag-hover-bg"
+                className="border border-tag-border text-foreground cursor-pointer px-2 py-0.5 font-medium rounded-xl inline-block
+               transition-colors duration-300 ease-in-out hover:bg-tag-hover-bg hover:text-tag-text"
               >
                 {tag}
               </span>

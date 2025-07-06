@@ -100,14 +100,14 @@ const TableOfContents = () => {
         }
 
         .toc-link:hover {
-          color: var(--primary);
+          color: var(--foreground);
         }
 
         .is-active-link {
           font-weight: 800;
           word-break: break-word; /* 長い単語を途中で折り返す */
           overflow-wrap: break-word; /* 長い単語を途中で折り返す */
-          color: var(--primary) !important;
+          color: var(--foreground) !important;
         }
       `}</style>
     </div>
