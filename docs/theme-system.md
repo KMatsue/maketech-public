@@ -21,7 +21,7 @@ src/
 
 ### 1. Light Theme（デフォルト）
 
-- **適用条件**: `html:not(.dark):not(.terminal-green)`
+- **適用条件**: `html:not(.dark):not(.terminal-green):not(.sunset-orange)`
 - **背景**: 白系（#ffffff）
 - **テキスト**: 暗いグレー系（#0f172a）
 - **用途**: 通常の読書・作業用
@@ -33,7 +33,16 @@ src/
 - **テキスト**: 明るいグレー系（#f8fafc）
 - **用途**: 夜間の作業・目に優しい表示
 
-### 3. Terminal Green Theme
+### 3. Sunset Orange Theme
+
+- **適用条件**: `<html class="sunset-orange">`
+- **背景**: 暖色系ダーク（#1f1611）
+- **テキスト**: 白系（#ffffff）
+- **プライマリ色**: 明るいオレンジ（#f97316）
+- **特殊効果**: 炎のグロウエフェクト、ラジアルグラデーション
+- **用途**: 夕焼けのような温かみのある作業環境
+
+### 4. Terminal Green Theme
 
 - **適用条件**: `<html class="terminal-green">`
 - **背景**: 純黒（#000000）
@@ -63,6 +72,8 @@ src/
 ### ⚙️ インタラクティブ要素
 
 - **ThemeSwitch**: ボタンホバー、ドロップダウン背景、メニュー項目
+- **フォーム要素**: テキスト入力、セレクト、テキストエリア、レンジスライダー
+- **ツール関連**: PDF プレビュー、マージン表示、使い方ヒント
 
 ## CSS Variables 一覧
 

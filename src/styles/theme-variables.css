@@ -14,7 +14,7 @@
    =============================================== */
 
 /* Light Theme (Default) */
-html:not(.dark):not(.terminal-green) {
+html:not(.dark):not(.terminal-green):not(.sunset-orange) {
   /* Primary & Secondary */
   --primary: #2563eb !important;
   --primary-foreground: #ffffff !important;
@@ -46,15 +46,15 @@ html:not(.dark):not(.terminal-green) {
   --code-bg: #f1f5f9 !important;
   --file-button-bg: #eff6ff !important;
   --file-button-text: #1d4ed8 !important;
-  
+
   /* PDF Margin Display */
   --pdf-margin-bg: #dbeafe !important;
   --pdf-margin-text: #1d4ed8 !important;
-  
+
   /* Usage Hints */
   --usage-hints-bg: #eff6ff !important;
   --usage-hints-text: #4b5563 !important;
-  
+
   /* Preview Area */
   --preview-area-bg: #f1f5f9 !important;
 
@@ -98,6 +98,7 @@ html:not(.dark):not(.terminal-green) {
 }
 
 /* Dark Theme */
+html.dark,
 .dark {
   /* Primary & Secondary */
   --primary: #3b82f6 !important;
@@ -130,15 +131,15 @@ html:not(.dark):not(.terminal-green) {
   --code-bg: #0f172a !important;
   --file-button-bg: #3b82f6 !important;
   --file-button-text: #ffffff !important;
-  
+
   /* PDF Margin Display */
   --pdf-margin-bg: rgba(59, 130, 246, 0.3) !important;
   --pdf-margin-text: #60a5fa !important;
-  
+
   /* Usage Hints */
   --usage-hints-bg: rgba(59, 130, 246, 0.3) !important;
   --usage-hints-text: #94a3b8 !important;
-  
+
   /* Preview Area */
   --preview-area-bg: #374151 !important;
 
@@ -181,7 +182,93 @@ html:not(.dark):not(.terminal-green) {
   --theme-switch-active-text: #3b82f6 !important; /* アクティブ項目テキスト */
 }
 
+/* Sunset Orange Theme */
+html.sunset-orange,
+.sunset-orange {
+  /* Background & Foreground */
+  --background: #1f1611 !important;
+  --foreground: #ffffff !important;
+
+  /* Primary & Secondary */
+  --primary: #f97316 !important;
+  --primary-foreground: #ffffff !important;
+  --secondary: #ea580c !important;
+  --secondary-foreground: #ffffff !important;
+
+  /* UI Elements */
+  --muted: #3d2f26 !important;
+  --muted-foreground: #e5e5e5 !important;
+  --card: #2d2318 !important;
+  --card-foreground: #ffffff !important;
+  --border: #ea580c !important;
+  --input: #4e2d1b !important;
+  --accent: #3e1a0d !important;
+  --accent-foreground: #fed7aa !important;
+
+  /* Status Colors */
+  --destructive: #dc2626 !important;
+  --destructive-foreground: #ffffff !important;
+  --ring: #f97316 !important;
+  --info-bg: #4e2d1b !important;
+  --info-text: #fdba74 !important;
+
+  /* Code/Result Display */
+  --code-bg: #1a0f0a !important;
+  --file-button-bg: #f97316 !important;
+  --file-button-text: #ffffff !important;
+
+  /* PDF Margin Display */
+  --pdf-margin-bg: rgba(249, 115, 22, 0.2) !important;
+  --pdf-margin-text: #fdba74 !important;
+
+  /* Usage Hints */
+  --usage-hints-bg: #3e1a0d !important;
+  --usage-hints-text: #fdba74 !important;
+
+  /* Preview Area */
+  --preview-area-bg: #4e2d1b !important;
+
+  /* Component Specific */
+  --navbar-bg: #1f1611 !important;
+  --navbar-text: #ffffff !important;
+  --navbar-text-hover: #f97316 !important;
+  --navbar-border: #f97316 !important;
+
+  --footer-bg: #1f1611 !important;
+  --footer-text: #e5e5e5 !important;
+  --footer-text-hover: #ffffff !important;
+
+  /* Unified Borders */
+  --border-primary: #ea580c !important;
+  --border-secondary: #fdba74 !important;
+
+  /* Tag Colors */
+  --tag-bg: #f97316 !important;
+  --tag-text: #ffffff !important;
+  --tag-border: #ea580c !important;
+  --tag-hover-bg: #ea580c !important;
+
+  /* Pagination Colors */
+  --pagination-border: #ea580c !important;
+  --pagination-hover-bg: #4e2d1b !important;
+  --pagination-active-text: #fed7aa !important;
+  --pagination-inactive-text: #fdba74 !important;
+
+  /* Card Colors */
+  --card-hover-bg: #3e1a0d !important;
+
+  /* ThemeSwitch Colors */
+  --theme-switch-hover-bg: #4e2d1b !important;
+  --theme-switch-dropdown-bg: #2e1b13 !important;
+  --theme-switch-dropdown-border: #ea580c !important;
+  --theme-switch-item-hover-bg: #3e1a0d !important;
+  --theme-switch-item-text: #fed7aa !important;
+  --theme-switch-active-bg: #4e2d1b !important;
+  --theme-switch-active-text: #fbbf24 !important;
+}
+
 /* Terminal Green Theme */
+html.terminal-green,
 .terminal-green {
   /* Primary & Secondary */
   --primary: #00ff00 !important;
@@ -214,15 +301,15 @@ html:not(.dark):not(.terminal-green) {
   --code-bg: #000000 !important;
   --file-button-bg: #00ff00 !important;
   --file-button-text: #000000 !important;
-  
+
   /* PDF Margin Display */
   --pdf-margin-bg: rgba(0, 255, 0, 0.2) !important;
   --pdf-margin-text: #66ff66 !important;
-  
+
   /* Usage Hints */
   --usage-hints-bg: #002200 !important;
   --usage-hints-text: #66ff66 !important;
-  
+
   /* Preview Area */
   --preview-area-bg: #000000 !important;
 
@@ -309,6 +396,49 @@ input[type="range"]:focus::-moz-range-thumb {
    SPECIAL EFFECTS (Theme-specific enhancements)
    =============================================== */
 
+/* Sunset Orange Special Effects */
+@keyframes fireGlow {
+  0%,
+  100% {
+    text-shadow: 0 0 2px #f97316, 0 0 4px #ea580c;
+  }
+  50% {
+    text-shadow: 0 0 4px #f97316, 0 0 8px #ea580c, 0 0 12px #dc2626;
+  }
+}
+
+/* Sunset Orange Text Effects */
+.sunset-orange h1,
+.sunset-orange h2,
+.sunset-orange h3,
+.sunset-orange h4,
+.sunset-orange h5,
+.sunset-orange h6,
+.sunset-orange .font-bold,
+.sunset-orange strong,
+.sunset-orange b {
+  animation: fireGlow 3s ease-in-out infinite;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.sunset-orange body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(249, 115, 22, 0.02) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 1000;
+}
+
 /* Terminal Green Special Effects */
 @keyframes flicker {
   0%,
@@ -379,26 +509,113 @@ input[type="range"]:focus::-moz-range-thumb {
    
    新しいテーマを追加する場合のテンプレート:
    
+   html.your-theme-name,
    .your-theme-name {
-     -- 必須: Core Theme Colors --
+     Primary & Secondary
      --primary: #yourcolor !important;
+     --primary-foreground: #yourcolor !important;
+     --secondary: #yourcolor !important;
+     --secondary-foreground: #yourcolor !important;
+   
+     Background & Foreground
      --background: #yourcolor !important;
      --foreground: #yourcolor !important;
+   
+     UI Elements
+     --muted: #yourcolor !important;
+     --muted-foreground: #yourcolor !important;
+     --card: #yourcolor !important;
+     --card-foreground: #yourcolor !important;
+     --border: #yourcolor !important;
+     --input: #yourcolor !important;
+     --accent: #yourcolor !important;
+     --accent-foreground: #yourcolor !important;
+   
+     Status Colors
+     --destructive: #yourcolor !important;
+     --destructive-foreground: #yourcolor !important;
+     --ring: #yourcolor !important;
+     --info-bg: #yourcolor !important;
+     --info-text: #yourcolor !important;
+   
+     Code/Result Display
+     --code-bg: #yourcolor !important;
+     --file-button-bg: #yourcolor !important;
+     --file-button-text: #yourcolor !important;
+   
+     PDF Margin Display
+     --pdf-margin-bg: #yourcolor !important;
+     --pdf-margin-text: #yourcolor !important;
+   
+     Usage Hints
+     --usage-hints-bg: #yourcolor !important;
+     --usage-hints-text: #yourcolor !important;
+   
+     Preview Area
+     --preview-area-bg: #yourcolor !important;
+   
+     Component Specific
+     --navbar-bg: #yourcolor !important;
+     --navbar-text: #yourcolor !important;
+     --navbar-text-hover: #yourcolor !important;
+     --navbar-border: #yourcolor !important;
+   
+     --footer-bg: #yourcolor !important;
+     --footer-text: #yourcolor !important;
+     --footer-text-hover: #yourcolor !important;
+   
+     Unified Borders
      --border-primary: #yourcolor !important;
      --border-secondary: #yourcolor !important;
+   
+     Tag Colors
      --tag-bg: #yourcolor !important;
      --tag-text: #yourcolor !important;
      --tag-border: #yourcolor !important;
      --tag-hover-bg: #yourcolor !important;
+   
+     Pagination Colors
      --pagination-border: #yourcolor !important;
      --pagination-hover-bg: #yourcolor !important;
      --pagination-active-text: #yourcolor !important;
      --pagination-inactive-text: #yourcolor !important;
+   
+     Card Colors
      --card-hover-bg: #yourcolor !important;
-     ... (上記の全ての変数を定義)
-     
-     -- オプション: Special Effects --
-     (特殊効果が必要な場合のみ追加)
+   
+     ThemeSwitch Colors
+     --theme-switch-hover-bg: #yourcolor !important;
+     --theme-switch-dropdown-bg: #yourcolor !important;
+     --theme-switch-dropdown-border: #yourcolor !important;
+     --theme-switch-item-hover-bg: #yourcolor !important;
+     --theme-switch-item-text: #yourcolor !important;
+     --theme-switch-active-bg: #yourcolor !important;
+     --theme-switch-active-text: #yourcolor !important;
+   }
+   
+   オプション: Special Effects
+   .your-theme-name body::before {
+     content: "";
+     position: fixed;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     background: your special background effect;
+     pointer-events: none;
+     z-index: 1000;
+   }
+   
+   .your-theme-name h1,
+   .your-theme-name h2,
+   .your-theme-name h3,
+   .your-theme-name h4,
+   .your-theme-name h5,
+   .your-theme-name h6,
+   .your-theme-name .font-bold,
+   .your-theme-name strong,
+   .your-theme-name b {
+     your special text effects
    }
    
    =============================================== */

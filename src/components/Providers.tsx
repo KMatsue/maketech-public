@@ -5,8 +5,8 @@ import { ThemeProvider } from "next-themes";
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
-    <ThemeProvider 
-      attribute="class" 
+    <ThemeProvider
+      attribute="class"
       defaultTheme="light"
       enableSystem={false}
       storageKey="maketech-theme"

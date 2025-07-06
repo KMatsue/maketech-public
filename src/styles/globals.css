@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import './theme-variables.css';
+@import "./theme-variables.css";
 
 body {
   @apply antialiased;
