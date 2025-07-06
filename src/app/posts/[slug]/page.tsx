@@ -101,7 +101,7 @@ const Post = async ({ params }: { params: { slug: string } }) => {
             <nav className="mt-12 font-medium">
               <Link
                 href="/"
-                className="mb-20 inline-block text-primary hover:underline"
+                className="mb-20 inline-block text-foreground hover:underline hover:text-muted-foreground"
               >
                 ← ホームに戻る
               </Link>

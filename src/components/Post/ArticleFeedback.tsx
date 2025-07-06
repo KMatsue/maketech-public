@@ -23,12 +23,12 @@ const ArticleFeedback: React.FC<ArticleFeedbackProps> = ({
   };
 
   return (
-    <section className="mt-16 mb-8 p-6 border-2 border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800/50">
+    <section className="mt-16 mb-8 p-6 border-2 border-border-secondary rounded-lg bg-muted">
       <div className="text-center">
-        <h3 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-200">
+        <h3 className="text-lg font-semibold mb-4 text-foreground">
           この記事についてご質問・ご指摘はありませんか？
         </h3>
-        <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">
+        <p className="text-sm text-muted-foreground mb-6">
           技術記事は日々進歩する分野のため、フィードバックを積極的に収集しています。
           <br />
           お気軽にご質問や改善点をお聞かせください。
@@ -37,7 +37,7 @@ const ArticleFeedback: React.FC<ArticleFeedbackProps> = ({
         <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
           <Link
             href={createContactUrl(ContactCategory.ARTICLE_FEEDBACK)}
-            className="inline-flex items-center px-4 py-2 border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white rounded-md transition-colors duration-200 text-sm font-medium"
+            className="inline-flex items-center px-4 py-2 border border-primary text-primary hover:bg-primary hover:text-primary-foreground rounded-md transition-colors duration-200 text-sm font-medium"
           >
             <svg
               className="w-4 h-4 mr-2"
@@ -57,7 +57,7 @@ const ArticleFeedback: React.FC<ArticleFeedbackProps> = ({
 
           <Link
             href={createContactUrl(ContactCategory.ARTICLE_CORRECTION)}
-            className="inline-flex items-center px-4 py-2 border border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white rounded-md transition-colors duration-200 text-sm font-medium"
+            className="inline-flex items-center px-4 py-2 border border-destructive text-destructive hover:bg-destructive hover:text-destructive-foreground rounded-md transition-colors duration-200 text-sm font-medium"
           >
             <svg
               className="w-4 h-4 mr-2"
@@ -79,7 +79,7 @@ const ArticleFeedback: React.FC<ArticleFeedbackProps> = ({
         <div className="mt-4">
           <Link
             href="/contact"
-            className="text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 underline"
+            className="text-xs text-muted-foreground hover:text-foreground underline"
           >
             その他のお問い合わせはこちら
           </Link>
