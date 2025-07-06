@@ -23,7 +23,7 @@ export const Text: FC<Props> = ({ text }) => {
       const classNames = [
         bold ? "font-bold" : "",
         code
-          ? "bg-slate-200 dark:bg-slate-500 text-red-500 px-1 rounded-sm"
+          ? "bg-muted text-destructive px-1 rounded-sm"
           : "",
         italic ? "italic" : "",
         strikethrough ? "line-through" : "",

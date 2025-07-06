@@ -9,24 +9,24 @@ type TimelineEvent = {
 
 const Timeline: React.FC<{ events: TimelineEvent[] }> = ({ events }) => {
   return (
-    <div className="relative border-l border-gray-200 dark:border-gray-700">
+    <div className="relative border-l border-border-primary">
       {events.map((event, index) => (
         <div key={index} className="mb-10 ml-4">
-          <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
-          <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
+          <div className="absolute w-3 h-3 bg-muted rounded-full mt-1.5 -left-1.5 border border-background"></div>
+          <time className="mb-1 text-sm font-normal leading-none text-muted-foreground">
             {event.date}
           </time>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+          <h3 className="text-lg font-semibold text-foreground">
             {event.title}
           </h3>
-          <p className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
+          <p className="mb-4 text-base font-normal text-muted-foreground">
             {event.description}
           </p>
           <ul className="list-disc list-inside pl-4 space-y-2">
             {event.details.map((detail, detailIndex) => (
               <li
                 key={detailIndex}
-                className="text-gray-600 dark:text-gray-300"
+                className="text-foreground"
               >
                 {detail}
               </li>

@@ -134,15 +134,15 @@ const TextDiffClient = () => {
       <div className="mx-auto lg:w-9/12">
         <header className="text-center my-8">
           <h1 className="text-4xl font-bold mb-4">テキスト差分比較（Diff）</h1>
-          <p className="text-lg text-gray-700 dark:text-gray-300">
+          <p className="text-lg text-muted-foreground">
             2つのテキストの違いを視覚的に比較・確認できます
           </p>
         </header>
 
         {/* 入力エリア */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-            <h2 className="text-xl font-semibold mb-4 border-b pb-2">
+          <div className="bg-card rounded-lg shadow p-6">
+            <h2 className="text-xl font-semibold mb-4 border-b border-border-primary pb-2 text-foreground">
               元のテキスト
             </h2>
             <textarea
@@ -151,13 +151,13 @@ const TextDiffClient = () => {
                 setOldText(e.target.value);
                 adjustTextareaHeight(e);
               }}
-              className="w-full min-h-40 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100 font-mono"
+              className="w-full min-h-40 px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground font-mono"
               placeholder="元のテキストをここに入力"
             ></textarea>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-            <h2 className="text-xl font-semibold mb-4 border-b pb-2">
+          <div className="bg-card rounded-lg shadow p-6">
+            <h2 className="text-xl font-semibold mb-4 border-b border-border-primary pb-2 text-foreground">
               新しいテキスト
             </h2>
             <textarea
@@ -166,14 +166,14 @@ const TextDiffClient = () => {
                 setNewText(e.target.value);
                 adjustTextareaHeight(e);
               }}
-              className="w-full min-h-40 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100 font-mono"
+              className="w-full min-h-40 px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground font-mono"
               placeholder="新しいテキストをここに入力"
             ></textarea>
           </div>
         </div>
 
         {/* オプションとボタン */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
+        <div className="bg-card rounded-lg shadow p-6 mb-8">
           <div className="flex flex-wrap gap-4 justify-between items-center">
             <div className="flex flex-wrap gap-4">
               <div className="flex items-center">
@@ -184,7 +184,7 @@ const TextDiffClient = () => {
                   onChange={(e) => setIgnoreCase(e.target.checked)}
                   className="mr-2"
                 />
-                <label htmlFor="ignoreCase">大文字/小文字を無視</label>
+                <label htmlFor="ignoreCase" className="text-foreground">大文字/小文字を無視</label>
               </div>
 
               <div className="flex items-center">
@@ -195,7 +195,7 @@ const TextDiffClient = () => {
                   onChange={(e) => setIgnoreWhitespace(e.target.checked)}
                   className="mr-2"
                 />
-                <label htmlFor="ignoreWhitespace">空白を無視</label>
+                <label htmlFor="ignoreWhitespace" className="text-foreground">空白を無視</label>
               </div>
 
               <div className="flex items-center">
@@ -206,7 +206,7 @@ const TextDiffClient = () => {
                   onChange={(e) => setShowLineNumbers(e.target.checked)}
                   className="mr-2"
                 />
-                <label htmlFor="showLineNumbers">行番号を表示</label>
+                <label htmlFor="showLineNumbers" className="text-foreground">行番号を表示</label>
               </div>
             </div>
 
@@ -216,7 +216,7 @@ const TextDiffClient = () => {
                 onChange={(e) =>
                   setViewMode(e.target.value as "split" | "unified")
                 }
-                className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700"
+                className="px-3 py-2 border border-border-primary rounded-lg bg-input text-foreground"
               >
                 <option value="unified">統合表示</option>
                 <option value="split">分割表示</option>
@@ -224,7 +224,7 @@ const TextDiffClient = () => {
 
               <button
                 onClick={setExampleTexts}
-                className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition duration-200"
+                className="px-4 py-2 bg-primary hover:bg-primary/80 text-primary-foreground rounded-lg transition duration-200"
               >
                 サンプルをセット
               </button>
@@ -234,8 +234,8 @@ const TextDiffClient = () => {
 
         {/* 差分統計 */}
         {diffResult.length > 0 && (
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
-            <h2 className="text-xl font-semibold mb-4 border-b pb-2">
+          <div className="bg-card rounded-lg shadow p-6 mb-8">
+            <h2 className="text-xl font-semibold mb-4 border-b border-border-primary pb-2 text-foreground">
               差分統計
             </h2>
             <div className="flex flex-wrap gap-6 justify-center text-center">
@@ -267,7 +267,7 @@ const TextDiffClient = () => {
                 <span className="text-3xl font-bold block">
                   {diffResult.filter((line) => line.type === "normal").length}
                 </span>
-                <span className="text-gray-600 dark:text-gray-400">
+                <span className="text-muted-foreground">
                   変更なしの行
                 </span>
               </div>
@@ -277,8 +277,8 @@ const TextDiffClient = () => {
 
         {/* 差分結果表示 - 統合表示 */}
         {diffResult.length > 0 && viewMode === "unified" && (
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8 overflow-x-auto">
-            <h2 className="text-xl font-semibold mb-4 border-b pb-2">
+          <div className="bg-card rounded-lg shadow p-6 mb-8 overflow-x-auto">
+            <h2 className="text-xl font-semibold mb-4 border-b border-border-primary pb-2 text-foreground">
               差分結果（統合表示）
             </h2>
             <table className="w-full border-collapse font-mono text-sm">
@@ -289,24 +289,24 @@ const TextDiffClient = () => {
                     className={`
                       ${
                         line.type === "added"
-                          ? "bg-green-100 dark:bg-green-900"
+                          ? "bg-green-100 dark:bg-green-900/50"
                           : ""
                       } 
                       ${
                         line.type === "removed"
-                          ? "bg-red-100 dark:bg-red-900"
+                          ? "bg-red-100 dark:bg-red-900/50"
                           : ""
                       }
                     `}
                   >
                     {showLineNumbers && (
                       <>
-                        <td className="text-right pr-2 text-gray-500 dark:text-gray-400 w-12 select-none border-r">
+                        <td className="text-right pr-2 text-muted-foreground w-12 select-none border-r">
                           {line.lineNumber.old !== null
                             ? line.lineNumber.old
                             : ""}
                         </td>
-                        <td className="text-right pr-2 text-gray-500 dark:text-gray-400 w-12 select-none border-r">
+                        <td className="text-right pr-2 text-muted-foreground w-12 select-none border-r">
                           {line.lineNumber.new !== null
                             ? line.lineNumber.new
                             : ""}
@@ -332,8 +332,8 @@ const TextDiffClient = () => {
 
         {/* 差分結果表示 - 分割表示 */}
         {diffResult.length > 0 && viewMode === "split" && (
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8 overflow-x-auto">
-            <h2 className="text-xl font-semibold mb-4 border-b pb-2">
+          <div className="bg-card rounded-lg shadow p-6 mb-8 overflow-x-auto">
+            <h2 className="text-xl font-semibold mb-4 border-b border-border-primary pb-2 text-foreground">
               差分結果（分割表示）
             </h2>
             <div className="grid grid-cols-2 gap-4">
@@ -348,12 +348,12 @@ const TextDiffClient = () => {
                             key={index}
                             className={
                               line.type === "removed"
-                                ? "bg-red-100 dark:bg-red-900"
+                                ? "bg-red-100 dark:bg-red-900/50"
                                 : ""
                             }
                           >
                             {showLineNumbers && (
-                              <td className="text-right pr-2 text-gray-500 dark:text-gray-400 w-12 select-none border-r">
+                              <td className="text-right pr-2 text-muted-foreground w-12 select-none border-r">
                                 {line.lineNumber.old}
                               </td>
                             )}
@@ -378,12 +378,12 @@ const TextDiffClient = () => {
                             key={index}
                             className={
                               line.type === "added"
-                                ? "bg-green-100 dark:bg-green-900"
+                                ? "bg-green-100 dark:bg-green-900/50"
                                 : ""
                             }
                           >
                             {showLineNumbers && (
-                              <td className="text-right pr-2 text-gray-500 dark:text-gray-400 w-12 select-none border-r">
+                              <td className="text-right pr-2 text-muted-foreground w-12 select-none border-r">
                                 {line.lineNumber.new}
                               </td>
                             )}
@@ -401,9 +401,9 @@ const TextDiffClient = () => {
         )}
 
         {/* 使い方 */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
-          <h2 className="text-xl font-semibold mb-4 border-b pb-2">使い方</h2>
-          <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+        <div className="bg-card rounded-lg shadow p-6 mb-8">
+          <h2 className="text-xl font-semibold mb-4 border-b border-border-primary pb-2 text-foreground">使い方</h2>
+          <ul className="list-disc list-inside space-y-2 text-foreground">
             <li>
               左側のテキストエリアに元のテキスト、右側に新しいテキストを入力またはコピー＆ペーストしてください
             </li>

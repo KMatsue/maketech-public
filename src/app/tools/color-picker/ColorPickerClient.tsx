@@ -247,15 +247,15 @@ const ColorPickerClient = () => {
           <h1 className="text-4xl font-bold mb-4">
             カラーピッカー＆コード変換
           </h1>
-          <p className="text-lg text-gray-700 dark:text-gray-300">
+          <p className="text-lg text-muted-foreground">
             色を選択・調整して、様々な形式のカラーコードを取得できます
           </p>
         </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {/* カラー選択部分 */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-            <h2 className="text-xl font-semibold mb-4 border-b pb-2">
+          <div className="bg-card rounded-lg shadow p-6">
+            <h2 className="text-xl font-semibold mb-4 border-b border-border-primary pb-2 text-foreground">
               色を選択
             </h2>
             {/* 基本色パレット */}
@@ -265,7 +265,7 @@ const ColorPickerClient = () => {
                 {basicColors.map((basicColor, index) => (
                   <button
                     key={index}
-                    className="w-8 h-8 rounded-md border border-gray-300 dark:border-gray-600 hover:scale-110 transition-transform"
+                    className="w-8 h-8 rounded-md border border-border-primary hover:scale-110 transition-transform"
                     style={{ backgroundColor: basicColor.hex }}
                     onClick={() => {
                       const rgb = hexToRgb(basicColor.hex);
@@ -286,7 +286,7 @@ const ColorPickerClient = () => {
                   カラーピッカー
                 </label>
                 <div
-                  className="w-8 h-8 rounded border border-gray-300"
+                  className="w-8 h-8 rounded border border-border-primary"
                   style={{ backgroundColor: color.hex }}
                 ></div>
               </div>
@@ -309,11 +309,11 @@ const ColorPickerClient = () => {
                   id="hexInput"
                   value={color.hex}
                   onChange={handleHexChange}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                  className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                 />
                 <button
                   onClick={() => copyToClipboard(color.hex, "hex")}
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
                 >
                   {copied === "hex" ? "✓" : "コピー"}
                 </button>
@@ -334,7 +334,7 @@ const ColorPickerClient = () => {
                   onChange={(e) =>
                     handleRgbChange("r", parseInt(e.target.value) || 0)
                   }
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                  className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                 />
               </div>
               <div>
@@ -350,7 +350,7 @@ const ColorPickerClient = () => {
                   onChange={(e) =>
                     handleRgbChange("g", parseInt(e.target.value) || 0)
                   }
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                  className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                 />
               </div>
               <div>
@@ -366,7 +366,7 @@ const ColorPickerClient = () => {
                   onChange={(e) =>
                     handleRgbChange("b", parseInt(e.target.value) || 0)
                   }
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                  className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                 />
               </div>
             </div>
@@ -381,7 +381,7 @@ const ColorPickerClient = () => {
                   id="rgbValue"
                   value={`rgb(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b})`}
                   readOnly
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                  className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                 />
                 <button
                   onClick={() =>
@@ -390,7 +390,7 @@ const ColorPickerClient = () => {
                       "rgb"
                     )
                   }
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
                 >
                   {copied === "rgb" ? "✓" : "コピー"}
                 </button>
@@ -411,7 +411,7 @@ const ColorPickerClient = () => {
                   onChange={(e) =>
                     handleHslChange("h", parseInt(e.target.value) || 0)
                   }
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                  className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                 />
               </div>
               <div>
@@ -427,7 +427,7 @@ const ColorPickerClient = () => {
                   onChange={(e) =>
                     handleHslChange("s", parseInt(e.target.value) || 0)
                   }
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                  className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                 />
               </div>
               <div>
@@ -443,7 +443,7 @@ const ColorPickerClient = () => {
                   onChange={(e) =>
                     handleHslChange("l", parseInt(e.target.value) || 0)
                   }
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                  className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                 />
               </div>
             </div>
@@ -458,7 +458,7 @@ const ColorPickerClient = () => {
                   id="hslValue"
                   value={`hsl(${color.hsl.h}, ${color.hsl.s}%, ${color.hsl.l}%)`}
                   readOnly
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                  className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                 />
                 <button
                   onClick={() =>
@@ -467,7 +467,7 @@ const ColorPickerClient = () => {
                       "hsl"
                     )
                   }
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
                 >
                   {copied === "hsl" ? "✓" : "コピー"}
                 </button>
@@ -476,14 +476,14 @@ const ColorPickerClient = () => {
           </div>
 
           {/* プレビューと調整部分 */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-            <h2 className="text-xl font-semibold mb-4 border-b pb-2">
+          <div className="bg-card rounded-lg shadow p-6">
+            <h2 className="text-xl font-semibold mb-4 border-b border-border-primary pb-2 text-foreground">
               プレビュー
             </h2>
 
             <div className="mb-6">
               <div
-                className="w-full h-32 rounded-lg border border-gray-300 dark:border-gray-600 mb-4"
+                className="w-full h-32 rounded-lg border border-border-primary mb-4"
                 style={{ backgroundColor: color.hex }}
               ></div>
               <div className="text-center font-medium">{color.hex}</div>
@@ -524,7 +524,7 @@ const ColorPickerClient = () => {
                 />
               </div>
               <div
-                className="w-full h-16 rounded-lg border border-gray-300 dark:border-gray-600 mb-2"
+                className="w-full h-16 rounded-lg border border-border-primary mb-2"
                 style={{ backgroundColor: getAdjustedColor() }}
               ></div>
               <div className="text-center text-sm mb-4">
@@ -538,7 +538,7 @@ const ColorPickerClient = () => {
                   setColor({ hex: adjustedColor, rgb, hsl });
                   addToHistory(adjustedColor);
                 }}
-                className="w-full py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition duration-200"
+                className="w-full py-2 bg-primary hover:bg-primary/80 text-primary-foreground rounded-lg transition duration-200"
               >
                 この色を採用
               </button>
@@ -549,7 +549,7 @@ const ColorPickerClient = () => {
               <div className="flex space-x-2 mb-4">
                 <div className="flex-1">
                   <div
-                    className="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-600 mb-1"
+                    className="w-full h-12 rounded-lg border border-border-primary mb-1"
                     style={{
                       backgroundColor: getComplementaryColor(color.hex),
                     }}
@@ -562,7 +562,7 @@ const ColorPickerClient = () => {
                 {getAnalogousColors(color.hex).map((analogColor, index) => (
                   <div className="flex-1" key={index}>
                     <div
-                      className="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-600 mb-1 cursor-pointer"
+                      className="w-full h-12 rounded-lg border border-border-primary mb-1 cursor-pointer"
                       style={{ backgroundColor: analogColor }}
                       onClick={() => selectFromHistory(analogColor)}
                     ></div>
@@ -581,7 +581,7 @@ const ColorPickerClient = () => {
                   {colorHistory.map((hex, index) => (
                     <div
                       key={index}
-                      className="w-8 h-8 rounded-md border border-gray-300 dark:border-gray-600 cursor-pointer"
+                      className="w-8 h-8 rounded-md border border-border-primary cursor-pointer"
                       style={{ backgroundColor: hex }}
                       onClick={() => selectFromHistory(hex)}
                       title={hex}
@@ -593,9 +593,11 @@ const ColorPickerClient = () => {
           </div>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
-          <h2 className="text-xl font-semibold mb-4 border-b pb-2">使い方</h2>
-          <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+        <div className="bg-card rounded-lg shadow p-6 mb-8">
+          <h2 className="text-xl font-semibold mb-4 border-b border-border-primary pb-2 text-foreground">
+            使い方
+          </h2>
+          <ul className="list-disc list-inside space-y-2 text-foreground">
             <li>
               カラーピッカーで色を選択するか、HEX/RGB/HSL値を直接入力してください
             </li>

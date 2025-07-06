@@ -301,20 +301,20 @@ const JsonFormatterClient = () => {
               className="cursor-pointer inline-flex items-center"
               onClick={toggleCollapse}
             >
-              <span className="mr-1 text-gray-500 dark:text-gray-400 select-none">
+              <span className="mr-1 text-muted-foreground select-none">
                 {isCollapsed ? "▶" : "▼"}
               </span>
               <span
-                className="font-mono text-purple-600 dark:text-purple-400 cursor-pointer hover:underline"
+                className="font-mono text-primary cursor-pointer hover:underline"
                 onClick={clickPath}
               >
                 {path === "$" ? "root" : path.split(".").pop()}
               </span>
-              <span className="ml-1 text-gray-500 dark:text-gray-400 text-sm">
+              <span className="ml-1 text-muted-foreground text-sm">
                 {isArray ? "Array" : "Object"}
                 {!isEmpty && ` (${Object.keys(data).length})`}
               </span>
-              <span className="ml-1 text-gray-500 dark:text-gray-400">
+              <span className="ml-1 text-muted-foreground">
                 {isCollapsed
                   ? isArray
                     ? "[...]"
@@ -349,7 +349,7 @@ const JsonFormatterClient = () => {
                     ) : (
                       <div className="flex">
                         <span
-                          className="font-mono text-blue-600 dark:text-blue-400 cursor-pointer hover:underline"
+                          className="font-mono text-primary cursor-pointer hover:underline"
                           onClick={() => onPathClick(formattedPath)}
                         >
                           {isArray ? `[${key}]` : key}
@@ -357,7 +357,7 @@ const JsonFormatterClient = () => {
                         <span className="mx-2">:</span>
                         <JsonValue value={value} type={getType(value)} />
                         {!isLastItem && (
-                          <span className="text-gray-600 dark:text-gray-400">
+                          <span className="text-muted-foreground">
                             ,
                           </span>
                         )}
@@ -370,7 +370,7 @@ const JsonFormatterClient = () => {
           )}
 
           {!isCollapsed && (
-            <span className="text-gray-500 dark:text-gray-400">
+            <span className="text-muted-foreground">
               {isArray ? "]" : "}"}
             </span>
           )}
@@ -381,14 +381,14 @@ const JsonFormatterClient = () => {
     return (
       <div>
         <span
-          className="font-mono text-blue-600 dark:text-blue-400 cursor-pointer hover:underline"
+          className="font-mono text-primary cursor-pointer hover:underline"
           onClick={clickPath}
         >
           {path === "$" ? "root" : path.split(".").pop()}
         </span>
         <span className="mx-2">:</span>
         <JsonValue value={data} type={type} />
-        {!isLast && <span className="text-gray-600 dark:text-gray-400">,</span>}
+        {!isLast && <span className="text-muted-foreground">,</span>}
       </div>
     );
   };
@@ -400,23 +400,13 @@ const JsonFormatterClient = () => {
   }) => {
     switch (type) {
       case "string":
-        return (
-          <span className="text-green-600 dark:text-green-400">
-            &quot;{value}&quot;
-          </span>
-        );
+        return <span className="text-green-600 dark:text-green-400">&quot;{value}&quot;</span>;
       case "number":
-        return (
-          <span className="text-blue-600 dark:text-blue-400">{value}</span>
-        );
+        return <span className="text-primary">{value}</span>;
       case "boolean":
-        return (
-          <span className="text-purple-600 dark:text-purple-400">
-            {value.toString()}
-          </span>
-        );
+        return <span className="text-purple-600 dark:text-purple-400">{value.toString()}</span>;
       case "null":
-        return <span className="text-gray-600 dark:text-gray-400">null</span>;
+        return <span className="text-muted-foreground">null</span>;
       default:
         return <span>{String(value)}</span>;
     }
@@ -429,15 +419,15 @@ const JsonFormatterClient = () => {
           <h1 className="text-4xl font-bold mb-4">
             JSONフォーマッター/バリデーター
           </h1>
-          <p className="text-lg text-gray-700 dark:text-gray-300">
+          <p className="text-lg text-muted-foreground">
             JSONデータを整形、検証、編集できるツールです
           </p>
         </header>
 
         <div className="grid grid-cols-1 gap-6 mb-8">
           {/* 入力エリア */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-            <h2 className="text-xl font-semibold mb-4 border-b pb-2">
+          <div className="bg-card rounded-lg shadow p-6">
+            <h2 className="text-xl font-semibold mb-4 border-b border-border-primary pb-2 text-foreground">
               JSONテキスト入力
             </h2>
 
@@ -445,7 +435,7 @@ const JsonFormatterClient = () => {
               <textarea
                 value={inputJson}
                 onChange={(e) => setInputJson(e.target.value)}
-                className="w-full h-64 p-4 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100 font-mono text-sm"
+                className="w-full h-64 p-4 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground font-mono text-sm"
                 placeholder="ここにJSONテキストを入力またはペーストしてください..."
               ></textarea>
             </div>
@@ -453,19 +443,19 @@ const JsonFormatterClient = () => {
             <div className="flex flex-wrap gap-4 mb-4">
               <button
                 onClick={formatJson}
-                className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition duration-200"
+                className="px-4 py-2 bg-primary hover:bg-primary/80 text-primary-foreground rounded-lg transition duration-200"
               >
                 フォーマット/検証
               </button>
               <button
                 onClick={setSampleJson}
-                className="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition duration-200"
+                className="px-4 py-2 bg-muted text-foreground rounded-lg hover:bg-muted-foreground hover:text-background transition duration-200"
               >
                 サンプルJSONをセット
               </button>
               <button
                 onClick={clearAll}
-                className="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition duration-200"
+                className="px-4 py-2 bg-muted text-foreground rounded-lg hover:bg-muted-foreground hover:text-background transition duration-200"
               >
                 クリア
               </button>
@@ -473,7 +463,7 @@ const JsonFormatterClient = () => {
           </div>
 
           {/* オプションと統計 */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <div className="bg-card rounded-lg shadow p-6">
             <div className="flex flex-wrap gap-6 justify-between">
               <div>
                 <h3 className="font-medium mb-2">オプション</h3>
@@ -487,7 +477,7 @@ const JsonFormatterClient = () => {
                       value={indentSize}
                       onChange={(e) => setIndentSize(Number(e.target.value))}
                       disabled={isMinified}
-                      className="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700"
+                      className="px-2 py-1 border border-border-primary rounded-lg bg-input text-foreground"
                     >
                       <option value={2}>2 スペース</option>
                       <option value={4}>4 スペース</option>
@@ -499,8 +489,8 @@ const JsonFormatterClient = () => {
                     onClick={toggleMinify}
                     className={`px-3 py-1 rounded-lg transition duration-200 ${
                       isMinified
-                        ? "bg-purple-500 text-white hover:bg-purple-600"
-                        : "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600"
+                        ? "bg-primary text-primary-foreground hover:bg-primary/80"
+                        : "bg-muted text-foreground hover:bg-muted-foreground hover:text-background"
                     }`}
                   >
                     {isMinified ? "整形表示" : "圧縮表示"}
@@ -518,7 +508,7 @@ const JsonFormatterClient = () => {
                           e.target.value as "formatted" | "raw" | "tree"
                         )
                       }
-                      className="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700"
+                      className="px-2 py-1 border border-border-primary rounded-lg bg-input text-foreground"
                     >
                       <option value="formatted">フォーマット済み</option>
                       <option value="tree">ツリービュー</option>
@@ -556,8 +546,8 @@ const JsonFormatterClient = () => {
 
           {/* JSONパス */}
           {parsedData && (
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-              <h2 className="text-xl font-semibold mb-4 border-b pb-2">
+            <div className="bg-card rounded-lg shadow p-6">
+              <h2 className="text-xl font-semibold mb-4 border-b border-border-primary pb-2 text-foreground">
                 JSONパス
               </h2>
 
@@ -567,18 +557,18 @@ const JsonFormatterClient = () => {
                     type="text"
                     value={jsonPath}
                     onChange={(e) => setJsonPath(e.target.value)}
-                    className="flex-grow px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-l-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100 font-mono"
+                    className="flex-grow px-4 py-2 border border-border-primary rounded-l-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground font-mono"
                     placeholder="例: $.category[0] または $.specifications.dimensions"
                   />
                   <button
                     onClick={evaluateJsonPath}
-                    className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-r-lg transition duration-200"
+                    className="px-4 py-2 bg-primary hover:bg-primary/80 text-primary-foreground rounded-r-lg transition duration-200"
                   >
                     評価
                   </button>
                 </div>
 
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-muted-foreground">
                   シンプルなJSONパス構文をサポート: `$.property.child` または
                   `$.array[0]`。ツリービューのノードをクリックして自動入力することもできます。
                 </p>
@@ -586,8 +576,10 @@ const JsonFormatterClient = () => {
 
               {pathResult !== null && (
                 <div className="mt-4">
-                  <h3 className="font-medium mb-2">パス評価結果:</h3>
-                  <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg overflow-auto max-h-40 font-mono">
+                  <h3 className="font-medium mb-2 text-foreground">
+                    パス評価結果:
+                  </h3>
+                  <div className="bg-code-bg p-4 rounded-lg overflow-auto max-h-40 font-mono text-foreground">
                     {typeof pathResult === "object"
                       ? JSON.stringify(pathResult, null, 2)
                       : String(pathResult)}
@@ -599,13 +591,13 @@ const JsonFormatterClient = () => {
 
           {/* フォーマット結果 */}
           {(formattedJson || error) && (
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+            <div className="bg-card rounded-lg shadow p-6">
               <div className="flex justify-between items-center mb-4 border-b pb-2">
-                <h2 className="text-xl font-semibold">結果</h2>
+                <h2 className="text-xl font-semibold text-foreground">結果</h2>
                 {formattedJson && (
                   <button
                     onClick={copyToClipboard}
-                    className="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition duration-200 text-sm"
+                    className="px-3 py-1 bg-muted text-foreground rounded-lg hover:bg-muted-foreground hover:text-background transition duration-200 text-sm"
                   >
                     {copySuccess ? "コピーしました!" : "コピー"}
                   </button>
@@ -613,25 +605,25 @@ const JsonFormatterClient = () => {
               </div>
 
               {error ? (
-                <div className="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 p-4 rounded-lg">
+                <div className="bg-destructive/10 text-destructive p-4 rounded-lg">
                   {error}
                 </div>
               ) : (
                 <div>
                   {viewMode === "formatted" && formattedJson && (
-                    <pre className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg overflow-auto max-h-96 text-sm font-mono">
+                    <pre className="bg-code-bg p-4 rounded-lg overflow-auto max-h-96 text-sm font-mono text-foreground">
                       {formattedJson}
                     </pre>
                   )}
 
                   {viewMode === "raw" && formattedJson && (
-                    <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg overflow-auto max-h-96 font-mono text-xs break-all">
+                    <div className="bg-code-bg p-4 rounded-lg overflow-auto max-h-96 font-mono text-xs break-all text-foreground">
                       {formattedJson}
                     </div>
                   )}
 
                   {viewMode === "tree" && parsedData && (
-                    <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg overflow-auto max-h-96">
+                    <div className="bg-code-bg p-4 rounded-lg overflow-auto max-h-96">
                       <JsonTreeView
                         data={parsedData}
                         onPathClick={handlePathClick}
@@ -644,9 +636,11 @@ const JsonFormatterClient = () => {
           )}
 
           {/* 使い方 */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-            <h2 className="text-xl font-semibold mb-4 border-b pb-2">使い方</h2>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+          <div className="bg-card rounded-lg shadow p-6">
+            <h2 className="text-xl font-semibold mb-4 border-b border-border-primary pb-2 text-foreground">
+              使い方
+            </h2>
+            <ul className="list-disc list-inside space-y-2 text-foreground">
               <li>
                 JSONテキストを入力欄に貼り付けるか入力し、「フォーマット/検証」ボタンをクリックします
               </li>
@@ -655,7 +649,7 @@ const JsonFormatterClient = () => {
               </li>
               <li>
                 「表示モード」で以下の表示形式を選択できます:
-                <ul className="list-disc list-inside ml-4 mt-1">
+                <ul className="list-disc list-inside ml-4 mt-1 text-foreground">
                   <li>フォーマット済み: 読みやすく整形されたJSON</li>
                   <li>
                     ツリービュー:

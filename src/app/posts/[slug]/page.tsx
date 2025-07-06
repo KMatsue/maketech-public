@@ -66,9 +66,9 @@ const Post = async ({ params }: { params: { slug: string } }) => {
           <h1 className="text-3xl lg:text-4xl font-bold mb-2">
             {post.metadata.title}
           </h1>
-          <div className="border-b-2 w-full md:w-1/2 my-4 border-gray-300 dark:border-gray-700"></div>
+          <div className="border-b-2 w-full md:w-1/2 my-4 border-border-primary"></div>
           <time
-            className="text-gray-600 dark:text-gray-400 text-sm md:text-base block mb-4"
+            className="text-muted-foreground text-sm md:text-base block mb-4"
             dateTime={post.metadata.date}
           >
             Posted on{" "}
@@ -101,14 +101,14 @@ const Post = async ({ params }: { params: { slug: string } }) => {
             <nav className="mt-12 font-medium">
               <Link
                 href="/"
-                className="pb-20 block text-sky-900 dark:text-slate-100"
+                className="mb-20 inline-block text-foreground hover:underline hover:text-muted-foreground"
               >
                 ← ホームに戻る
               </Link>
             </nav>
           </div>
           <aside className="lg:w-3/12 mt-12 lg:mt-0">
-            <div className="lg:sticky lg:top-8 border-2 rounded-md overflow-hidden max-h-[calc(100vh-4rem)]">
+            <div className="lg:sticky lg:top-8 border-2 border-border-primary rounded-md overflow-hidden max-h-[calc(100vh-4rem)]">
               <TableOfContents />
             </div>
           </aside>

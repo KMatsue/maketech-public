@@ -74,18 +74,18 @@ const CharCounterClient = () => {
       <div className="mx-auto lg:w-9/12">
         <header className="text-center my-8">
           <h1 className="text-4xl font-bold mb-4">文字数カウンター</h1>
-          <p className="text-lg text-gray-700 dark:text-gray-300">
+          <p className="text-lg text-muted-foreground">
             テキストの文字数、単語数、行数を瞬時にカウントします
           </p>
         </header>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
+        <div className="bg-card rounded-lg shadow p-6 mb-8">
           <div className="flex flex-col md:flex-row md:gap-6">
             <div className="w-full mb-6 md:mb-0">
               <div className="mb-4">
                 <textarea
                   ref={textareaRef}
-                  className="w-full h-64 p-4 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                  className="w-full h-64 p-4 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                   placeholder="ここにテキストを入力または貼り付けてください..."
                   value={text}
                   onChange={(e) => setText(e.target.value)}
@@ -94,11 +94,11 @@ const CharCounterClient = () => {
               <div className="flex justify-between">
                 <button
                   onClick={handleClear}
-                  className="px-4 py-2 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-200 rounded hover:bg-gray-300 dark:hover:bg-gray-500 transition duration-200"
+                  className="px-4 py-2 bg-muted text-foreground rounded hover:bg-muted-foreground hover:text-background transition duration-200"
                 >
                   クリア
                 </button>
-                <div className="text-sm text-gray-500 dark:text-gray-400 flex items-center">
+                <div className="text-sm text-muted-foreground flex items-center">
                   {text.length > 0 && (
                     <span>最終更新: {new Date().toLocaleTimeString()}</span>
                   )}
@@ -108,61 +108,65 @@ const CharCounterClient = () => {
           </div>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h2 className="text-xl font-semibold mb-4 border-b pb-2">
+        <div className="bg-card rounded-lg shadow p-6">
+          <h2 className="text-xl font-semibold mb-4 border-b border-border-primary pb-2 text-foreground">
             カウント結果
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg text-center">
-              <h3 className="font-medium text-gray-500 dark:text-gray-400">
-                文字数
-              </h3>
-              <p className="text-2xl font-bold">{stats.chars}</p>
+            <div className="bg-muted p-4 rounded-lg text-center">
+              <h3 className="font-medium text-muted-foreground">文字数</h3>
+              <p className="text-2xl font-bold text-foreground">
+                {stats.chars}
+              </p>
             </div>
-            <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg text-center">
-              <h3 className="font-medium text-gray-500 dark:text-gray-400">
+            <div className="bg-muted p-4 rounded-lg text-center">
+              <h3 className="font-medium text-muted-foreground">
                 文字数 (空白除く)
               </h3>
-              <p className="text-2xl font-bold">{stats.charsNoSpace}</p>
+              <p className="text-2xl font-bold text-foreground">
+                {stats.charsNoSpace}
+              </p>
             </div>
-            <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg text-center">
-              <h3 className="font-medium text-gray-500 dark:text-gray-400">
-                全角文字数
-              </h3>
-              <p className="text-2xl font-bold">{stats.fullWidthChars}</p>
+            <div className="bg-muted p-4 rounded-lg text-center">
+              <h3 className="font-medium text-muted-foreground">全角文字数</h3>
+              <p className="text-2xl font-bold text-foreground">
+                {stats.fullWidthChars}
+              </p>
             </div>
-            <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg text-center">
-              <h3 className="font-medium text-gray-500 dark:text-gray-400">
-                半角文字数
-              </h3>
-              <p className="text-2xl font-bold">{stats.halfWidthChars}</p>
+            <div className="bg-muted p-4 rounded-lg text-center">
+              <h3 className="font-medium text-muted-foreground">半角文字数</h3>
+              <p className="text-2xl font-bold text-foreground">
+                {stats.halfWidthChars}
+              </p>
             </div>
-            <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg text-center">
-              <h3 className="font-medium text-gray-500 dark:text-gray-400">
+            <div className="bg-muted p-4 rounded-lg text-center">
+              <h3 className="font-medium text-muted-foreground">
                 文字数 (全角=2文字)
               </h3>
-              <p className="text-2xl font-bold">{stats.fullWidthAs2Chars}</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400">
+              <p className="text-2xl font-bold text-foreground">
+                {stats.fullWidthAs2Chars}
+              </p>
+              <p className="text-xs text-muted-foreground">
                 全角を2文字としてカウント
               </p>
             </div>
-            <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg text-center">
-              <h3 className="font-medium text-gray-500 dark:text-gray-400">
-                単語数
-              </h3>
-              <p className="text-2xl font-bold">{stats.words}</p>
+            <div className="bg-muted p-4 rounded-lg text-center">
+              <h3 className="font-medium text-muted-foreground">単語数</h3>
+              <p className="text-2xl font-bold text-foreground">
+                {stats.words}
+              </p>
             </div>
-            <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg text-center">
-              <h3 className="font-medium text-gray-500 dark:text-gray-400">
-                行数
-              </h3>
-              <p className="text-2xl font-bold">{stats.lines}</p>
+            <div className="bg-muted p-4 rounded-lg text-center">
+              <h3 className="font-medium text-muted-foreground">行数</h3>
+              <p className="text-2xl font-bold text-foreground">
+                {stats.lines}
+              </p>
             </div>
-            <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg text-center">
-              <h3 className="font-medium text-gray-500 dark:text-gray-400">
-                段落数
-              </h3>
-              <p className="text-2xl font-bold">{stats.paragraphs}</p>
+            <div className="bg-muted p-4 rounded-lg text-center">
+              <h3 className="font-medium text-muted-foreground">段落数</h3>
+              <p className="text-2xl font-bold text-foreground">
+                {stats.paragraphs}
+              </p>
             </div>
           </div>
         </div>

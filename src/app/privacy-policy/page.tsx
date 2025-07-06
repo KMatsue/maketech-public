@@ -64,7 +64,7 @@ export default async function PrivacyPolicy() {
         <header className="text-center my-8">
           <h1 className="text-4xl font-bold mb-4">{title}</h1>
           {formattedDate && (
-            <p className="text-sm text-gray-500 dark:text-gray-400">
+            <p className="text-sm text-muted-foreground">
               最終更新: {formattedDate}
             </p>
           )}
@@ -77,10 +77,10 @@ export default async function PrivacyPolicy() {
         </div>
 
         {/* ホームへ戻るリンク */}
-        <div className="mt-12 pt-4 border-t border-gray-200 dark:border-gray-700">
+        <div className="mt-12 pt-4 border-t border-border-primary">
           <Link
             href="/"
-            className="text-blue-600 dark:text-blue-400 hover:underline inline-block py-2"
+            className="text-primary hover:underline inline-block py-2"
           >
             ← ホームに戻る
           </Link>

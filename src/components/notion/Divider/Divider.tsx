@@ -6,7 +6,7 @@ type Props = {
 };
 
 const Divider: FC<Props> = ({ block }) => {
-  return <hr className="my-3 w-full border-gray-400" />;
+  return <hr className="my-3 w-full border-border-primary" />;
 };
 
 export default Divider;
