@@ -1,38 +1,65 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# MaKeTECH
 
-## Getting Started
+技術ブログ & ポートフォリオサイト - [maketech.net](https://maketech.net)
 
-First, run the development server:
+## 概要
+
+Notion API を使用した技術ブログサイトです。4 つのテーマを切り替え可能な統一テーマシステムと、開発に便利なユーティリティツールを内蔵しています。
+
+## 特徴
+
+🌓 **統一テーマシステム** - Light / Dark / Terminal Green / Sunset Orange  
+📝 **Notion CMS** - 記事管理とコンテンツ配信  
+🛠️ **開発ツール** - 文字数カウンター、JSON フォーマッター等  
+📱 **レスポンシブ** - マルチデバイス対応  
+🔍 **SEO 最適化** - サイトマップ、メタデータ、RSS 対応
+
+## 技術スタック
+
+- Next.js 13 (App Router) + TypeScript
+- Tailwind CSS + next-themes
+- Notion API + Vercel
+
+## クイックスタート
 
 ```bash
+git clone https://github.com/yourusername/maketech.git
+cd maketech
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+環境変数の設定については [プロジェクト概要](./overview.md) を参照してください。
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## プロジェクト構成
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## プロジェクト構造
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```
+src/
+├── app/                    # Next.js App Router
+│   ├── api/               # API Routes
+│   ├── about/             # About Page
+│   ├── contact/           # Contact Page
+│   ├── posts/             # Blog Posts
+│   ├── privacy-policy/    # Privacy Policy
+│   └── tools/             # Utility Tools
+├── components/            # React Components
+│   ├── About/             # About関連コンポーネント
+│   ├── Contact/           # Contact関連コンポーネント
+│   ├── Post/              # 記事関連コンポーネント
+│   ├── Tags/              # タグ関連コンポーネント
+│   ├── TableOfContents/   # 目次コンポーネント
+│   └── notion/            # Notionコンポーネント
+├── lib/                   # ユーティリティ関数
+├── styles/                # スタイル定義
+│   ├── globals.css        # グローバルスタイル
+│   └── theme-variables.css # テーマ変数定義
+└── data/                  # 静的データ
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 詳細なドキュメント
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [プロジェクト概要](./overview.md) - 詳細な技術仕様と機能説明
+- [ツール機能](./docs/tools.md) - 実装されたユーティリティツールの仕様
+- [統一テーマシステム](./docs/theme-system.md) - テーマシステムの詳細仕様

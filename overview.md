@@ -28,7 +28,7 @@
 3. ユーザーエクスペリエンス向上機能
 
    - レスポンシブデザインによるマルチデバイス対応
-   - ダークモード対応
+   - 統一テーマシステム（Light、Dark、Terminal Green、Sunset Orange）
    - ページネーションによる効率的な記事ナビゲーション
 
 4. コンタクトフォーム
@@ -65,7 +65,7 @@
 - Notion API (@notionhq/client)
 - Storybook 7.4.0
 - Framer Motion 10.16.5
-- next-themes 0.2.1
+- next-themes 0.2.1（統一テーマシステム）
 - nodemailer 6.9.13
 - feed 4.2.2 (RSS フィード生成用)
 
@@ -172,8 +172,9 @@ src/
 
 #### tailwind.config.ts
 
-- ダークモード設定: `darkMode: "class"`
-- カスタムカラー: text, text-dark
+- 統一テーマシステム設定: `darkMode: "class"`
+- CSS Variables による動的カラー管理
+- テーマ別コンポーネント色の統一管理
 - カスタムブレイクポイント: sp (max-width: 640px)
 
 ### スクリプト
@@ -192,7 +193,7 @@ src/
 1. Notion API を使用した記事管理
 2. ページネーション
 3. タグによる記事フィルタリング
-4. ダークモード対応 (next-themes)
+4. 統一テーマシステム対応 (Light、Dark、Terminal Green、Sunset Orange)
 5. レスポンシブデザイン
 6. コンタクトフォーム (nodemailer)
 7. 記事内目次生成 (tocbot)

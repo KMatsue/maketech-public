@@ -28,11 +28,11 @@ const Pagination = (props: Props) => {
           >
             <li
               className={clsx(
-                " border-gray-500 dark:border-slate-200 rounded-lg w-8 h-8 relative hover:bg-gray-300 dark:hover:bg-gray-600",
+                "border-pagination-border rounded-lg w-8 h-8 relative hover:bg-pagination-hover-bg transition-colors duration-200",
                 {
-                  "border-2 font-semibold text-gray-700 dark:text-gray-300":
+                  "border-2 font-semibold text-pagination-active-text":
                     Number(currentPage) === page,
-                  "text-gray-500 dark:text-gray-400":
+                  "text-pagination-inactive-text":
                     Number(currentPage) !== page,
                 }
               )}

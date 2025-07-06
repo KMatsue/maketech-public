@@ -13,7 +13,7 @@ const ToolsPage = () => {
       <div className="mx-auto lg:w-9/12">
         <header className="text-center my-8">
           <h1 className="text-4xl font-bold mb-4">作業用ツール集</h1>
-          <p className="text-lg text-gray-700 dark:text-gray-300">
+          <p className="text-lg text-muted-foreground">
             日常の作業をサポートする便利なツール集です
           </p>
         </header>
@@ -22,133 +22,133 @@ const ToolsPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Link
               href="/tools/char-counter"
-              className="block p-6 border border-gray-300 dark:border-gray-700 rounded-lg hover:shadow-md transition duration-300"
+              className="block p-6 border border-border-primary rounded-lg hover:shadow-md hover:border-border-secondary transition duration-300"
             >
               <h2 className="text-xl font-semibold mb-3">文字数カウンター</h2>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
+              <p className="text-muted-foreground mb-4">
                 テキストの文字数、単語数、行数を瞬時にカウントします。
               </p>
-              <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+              <span className="text-sm font-medium text-muted-foreground">
                 使ってみる →
               </span>
             </Link>
 
             <Link
               href="/tools/color-picker"
-              className="block p-6 border border-gray-300 dark:border-gray-700 rounded-lg hover:shadow-md transition duration-300"
+              className="block p-6 border border-border-primary rounded-lg hover:shadow-md hover:border-border-secondary transition duration-300"
             >
               <h2 className="text-xl font-semibold mb-3">カラーピッカー</h2>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
+              <p className="text-muted-foreground mb-4">
                 HEX、RGB、HSLなど様々な形式のカラーコードを選択・変換できるツールです。
               </p>
-              <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+              <span className="text-sm font-medium text-muted-foreground">
                 使ってみる →
               </span>
             </Link>
             <Link
               href="/tools/regex-tester"
-              className="block p-6 border border-gray-300 dark:border-gray-700 rounded-lg hover:shadow-md transition duration-300"
+              className="block p-6 border border-border-primary rounded-lg hover:shadow-md hover:border-border-secondary transition duration-300"
             >
               <h2 className="text-xl font-semibold mb-3">正規表現テスター</h2>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
+              <p className="text-muted-foreground mb-4">
                 正規表現をリアルタイムでテスト、マッチや置換結果を確認できます。
               </p>
-              <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+              <span className="text-sm font-medium text-muted-foreground">
                 使ってみる →
               </span>
             </Link>
 
             <Link
               href="/tools/text-diff"
-              className="block p-6 border border-gray-300 dark:border-gray-700 rounded-lg hover:shadow-md transition duration-300"
+              className="block p-6 border border-border-primary rounded-lg hover:shadow-md hover:border-border-secondary transition duration-300"
             >
               <h2 className="text-xl font-semibold mb-3">テキスト差分比較</h2>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
+              <p className="text-muted-foreground mb-4">
                 2つのテキストの違いを視覚的に比較、追加/削除/変更を確認できます。
               </p>
-              <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+              <span className="text-sm font-medium text-muted-foreground">
                 使ってみる →
               </span>
             </Link>
             <Link
               href="/tools/json-formatter"
-              className="block p-6 border border-gray-300 dark:border-gray-700 rounded-lg hover:shadow-md transition duration-300"
+              className="block p-6 border border-border-primary rounded-lg hover:shadow-md hover:border-border-secondary transition duration-300"
             >
               <h2 className="text-xl font-semibold mb-3">JSONフォーマッター</h2>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
+              <p className="text-muted-foreground mb-4">
                 JSONデータの整形、検証、パス抽出、ツリー表示ができるツールです。
               </p>
-              <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+              <span className="text-sm font-medium text-muted-foreground">
                 使ってみる →
               </span>
             </Link>
             <Link
               href="/tools/object-formatter"
-              className="block p-6 border border-gray-300 dark:border-gray-700 rounded-lg hover:shadow-md transition duration-300"
+              className="block p-6 border border-border-primary rounded-lg hover:shadow-md hover:border-border-secondary transition duration-300"
             >
               <h2 className="text-xl font-semibold mb-3">
                 オブジェクト文字列フォーマッター
               </h2>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
+              <p className="text-muted-foreground mb-4">
                 Dart/Java/Kotlinなどのオブジェクト文字列を見やすく整形して表示します
               </p>
-              <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+              <span className="text-sm font-medium text-muted-foreground">
                 使ってみる →
               </span>
             </Link>
             <Link
               href="/tools/qr-generator"
-              className="block p-6 border border-gray-300 dark:border-gray-700 rounded-lg hover:shadow-md transition duration-300"
+              className="block p-6 border border-border-primary rounded-lg hover:shadow-md hover:border-border-secondary transition duration-300"
             >
               <h2 className="text-xl font-semibold mb-3">
                 QRコードジェネレーター
               </h2>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
+              <p className="text-muted-foreground mb-4">
                 テキスト、URL、連絡先情報などからQRコードを簡単に生成できます。
               </p>
-              <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+              <span className="text-sm font-medium text-muted-foreground">
                 使ってみる →
               </span>
             </Link>
             <Link
               href="/tools/responsive-tester"
-              className="block p-6 border border-gray-300 dark:border-gray-700 rounded-lg hover:shadow-md transition duration-300"
+              className="block p-6 border border-border-primary rounded-lg hover:shadow-md hover:border-border-secondary transition duration-300"
             >
               <h2 className="text-xl font-semibold mb-3">
                 レスポンシブデザインテスター
               </h2>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
+              <p className="text-muted-foreground mb-4">
                 異なるデバイスサイズでWebサイトの表示を同時に確認できるツールです。
               </p>
-              <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+              <span className="text-sm font-medium text-muted-foreground">
                 使ってみる →
               </span>
             </Link>
             <Link
               href="/tools/csv-to-json"
-              className="block p-6 border border-gray-300 dark:border-gray-700 rounded-lg hover:shadow-md transition duration-300"
+              className="block p-6 border border-border-primary rounded-lg hover:shadow-md hover:border-border-secondary transition duration-300"
             >
               <h2 className="text-xl font-semibold mb-3">
                 CSV to JSON コンバーター
               </h2>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
+              <p className="text-muted-foreground mb-4">
                 CSVデータを簡単にJSONに変換できます。ファイルアップロードやオプション設定にも対応。
               </p>
-              <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+              <span className="text-sm font-medium text-muted-foreground">
                 使ってみる →
               </span>
             </Link>
             <Link
               href="/tools/markdown-to-pdf"
-              className="block p-6 border border-gray-300 dark:border-gray-700 rounded-lg hover:shadow-md transition duration-300"
+              className="block p-6 border border-border-primary rounded-lg hover:shadow-md hover:border-border-secondary transition duration-300"
             >
               <h2 className="text-xl font-semibold mb-3">
                 マークダウンからPDF変換
               </h2>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
+              <p className="text-muted-foreground mb-4">
                 マークダウンテキストをPDFドキュメントに簡単に変換できるツールです。
               </p>
-              <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+              <span className="text-sm font-medium text-muted-foreground">
                 使ってみる →
               </span>
             </Link>

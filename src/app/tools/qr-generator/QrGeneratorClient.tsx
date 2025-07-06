@@ -257,7 +257,7 @@ const QrGeneratorClient = () => {
       <div className="mx-auto lg:w-10/12">
         <header className="text-center my-8">
           <h1 className="text-4xl font-bold mb-4">QRコードジェネレーター</h1>
-          <p className="text-lg text-gray-700 dark:text-gray-300">
+          <p className="text-lg text-muted-foreground">
             テキスト、URL、連絡先情報などからQRコードを簡単に生成できます
           </p>
         </header>
@@ -267,20 +267,20 @@ const QrGeneratorClient = () => {
           {/* 入力フォームと生成結果を上下に配置 */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* 入力エリア - 左側 2/3 */}
-            <div className="lg:col-span-2 bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-              <h2 className="text-xl font-semibold mb-4 border-b pb-2">
+            <div className="lg:col-span-2 bg-card rounded-lg shadow p-6">
+              <h2 className="text-xl font-semibold mb-4 border-b border-border-primary pb-2 text-foreground">
                 QRコード情報
               </h2>
 
               <div className="mb-4">
-                <label htmlFor="qrType" className="block font-medium mb-2">
+                <label htmlFor="qrType" className="block font-medium mb-2 text-foreground text-foreground">
                   タイプ
                 </label>
                 <select
                   id="qrType"
                   value={qrType}
                   onChange={(e) => setQrType(e.target.value as QRTypeOption)}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                  className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                 >
                   <option value="text">テキスト</option>
                   <option value="url">URL</option>
@@ -296,14 +296,14 @@ const QrGeneratorClient = () => {
               <div className="overflow-y-auto max-h-96 pr-2">
                 {qrType === "text" && (
                   <div className="mb-4">
-                    <label htmlFor="content" className="block font-medium mb-2">
+                    <label htmlFor="content" className="block font-medium mb-2 text-foreground">
                       テキスト
                     </label>
                     <textarea
                       id="content"
                       value={content}
                       onChange={(e) => setContent(e.target.value)}
-                      className="w-full h-32 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                      className="w-full h-32 px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                       placeholder="QRコードに埋め込むテキストを入力"
                     ></textarea>
                   </div>
@@ -311,7 +311,7 @@ const QrGeneratorClient = () => {
 
                 {qrType === "url" && (
                   <div className="mb-4">
-                    <label htmlFor="url" className="block font-medium mb-2">
+                    <label htmlFor="url" className="block font-medium mb-2 text-foreground">
                       URL
                     </label>
                     <input
@@ -319,7 +319,7 @@ const QrGeneratorClient = () => {
                       id="url"
                       value={content}
                       onChange={(e) => setContent(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                      className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                       placeholder="https://example.com"
                     />
                   </div>
@@ -327,7 +327,7 @@ const QrGeneratorClient = () => {
 
                 {qrType === "email" && (
                   <div className="mb-4">
-                    <label htmlFor="email" className="block font-medium mb-2">
+                    <label htmlFor="email" className="block font-medium mb-2 text-foreground">
                       メールアドレス
                     </label>
                     <input
@@ -335,7 +335,7 @@ const QrGeneratorClient = () => {
                       id="email"
                       value={content}
                       onChange={(e) => setContent(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                      className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                       placeholder="example@example.com"
                     />
                   </div>
@@ -343,7 +343,7 @@ const QrGeneratorClient = () => {
 
                 {qrType === "tel" && (
                   <div className="mb-4">
-                    <label htmlFor="tel" className="block font-medium mb-2">
+                    <label htmlFor="tel" className="block font-medium mb-2 text-foreground">
                       電話番号
                     </label>
                     <input
@@ -351,7 +351,7 @@ const QrGeneratorClient = () => {
                       id="tel"
                       value={content}
                       onChange={(e) => setContent(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                      className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                       placeholder="+81901234567"
                     />
                   </div>
@@ -359,7 +359,7 @@ const QrGeneratorClient = () => {
 
                 {qrType === "sms" && (
                   <div className="mb-4">
-                    <label htmlFor="sms" className="block font-medium mb-2">
+                    <label htmlFor="sms" className="block font-medium mb-2 text-foreground">
                       SMS送信先
                     </label>
                     <input
@@ -367,7 +367,7 @@ const QrGeneratorClient = () => {
                       id="sms"
                       value={content}
                       onChange={(e) => setContent(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                      className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                       placeholder="+81901234567"
                     />
                   </div>
@@ -376,7 +376,7 @@ const QrGeneratorClient = () => {
                 {qrType === "wifi" && (
                   <>
                     <div className="mb-4">
-                      <label htmlFor="ssid" className="block font-medium mb-2">
+                      <label htmlFor="ssid" className="block font-medium mb-2 text-foreground">
                         ネットワーク名 (SSID)
                       </label>
                       <input
@@ -384,7 +384,7 @@ const QrGeneratorClient = () => {
                         id="ssid"
                         value={ssid}
                         onChange={(e) => setSsid(e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                        className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                         placeholder="WiFiネットワーク名"
                       />
                     </div>
@@ -392,7 +392,7 @@ const QrGeneratorClient = () => {
                     <div className="mb-4">
                       <label
                         htmlFor="password"
-                        className="block font-medium mb-2"
+                        className="block font-medium mb-2 text-foreground"
                       >
                         パスワード
                       </label>
@@ -401,7 +401,7 @@ const QrGeneratorClient = () => {
                         id="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                        className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                         placeholder="WiFiパスワード"
                       />
                     </div>
@@ -409,7 +409,7 @@ const QrGeneratorClient = () => {
                     <div className="mb-4">
                       <label
                         htmlFor="encryption"
-                        className="block font-medium mb-2"
+                        className="block font-medium mb-2 text-foreground"
                       >
                         暗号化タイプ
                       </label>
@@ -417,7 +417,7 @@ const QrGeneratorClient = () => {
                         id="encryption"
                         value={encryption}
                         onChange={(e) => setEncryption(e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                        className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                       >
                         <option value="WPA">WPA/WPA2</option>
                         <option value="WEP">WEP</option>
@@ -444,7 +444,7 @@ const QrGeneratorClient = () => {
                       <div>
                         <label
                           htmlFor="lastName"
-                          className="block font-medium mb-2"
+                          className="block font-medium mb-2 text-foreground"
                         >
                           姓
                         </label>
@@ -453,7 +453,7 @@ const QrGeneratorClient = () => {
                           id="lastName"
                           value={lastName}
                           onChange={(e) => setLastName(e.target.value)}
-                          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                          className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                           placeholder="山田"
                         />
                       </div>
@@ -461,7 +461,7 @@ const QrGeneratorClient = () => {
                       <div>
                         <label
                           htmlFor="firstName"
-                          className="block font-medium mb-2"
+                          className="block font-medium mb-2 text-foreground"
                         >
                           名
                         </label>
@@ -470,7 +470,7 @@ const QrGeneratorClient = () => {
                           id="firstName"
                           value={firstName}
                           onChange={(e) => setFirstName(e.target.value)}
-                          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                          className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                           placeholder="太郎"
                         />
                       </div>
@@ -479,7 +479,7 @@ const QrGeneratorClient = () => {
                     <div className="mb-4">
                       <label
                         htmlFor="company"
-                        className="block font-medium mb-2"
+                        className="block font-medium mb-2 text-foreground"
                       >
                         会社名
                       </label>
@@ -488,13 +488,13 @@ const QrGeneratorClient = () => {
                         id="company"
                         value={company}
                         onChange={(e) => setCompany(e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                        className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                         placeholder="サンプル株式会社"
                       />
                     </div>
 
                     <div className="mb-4">
-                      <label htmlFor="title" className="block font-medium mb-2">
+                      <label htmlFor="title" className="block font-medium mb-2 text-foreground">
                         役職
                       </label>
                       <input
@@ -502,7 +502,7 @@ const QrGeneratorClient = () => {
                         id="title"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                        className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                         placeholder="部長"
                       />
                     </div>
@@ -510,7 +510,7 @@ const QrGeneratorClient = () => {
                     <div className="mb-4">
                       <label
                         htmlFor="contactEmail"
-                        className="block font-medium mb-2"
+                        className="block font-medium mb-2 text-foreground"
                       >
                         メールアドレス
                       </label>
@@ -519,7 +519,7 @@ const QrGeneratorClient = () => {
                         id="contactEmail"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                        className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                         placeholder="taro.yamada@example.com"
                       />
                     </div>
@@ -527,7 +527,7 @@ const QrGeneratorClient = () => {
                     <div className="mb-4">
                       <label
                         htmlFor="contactPhone"
-                        className="block font-medium mb-2"
+                        className="block font-medium mb-2 text-foreground"
                       >
                         電話番号
                       </label>
@@ -536,7 +536,7 @@ const QrGeneratorClient = () => {
                         id="contactPhone"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                        className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                         placeholder="+81901234567"
                       />
                     </div>
@@ -544,7 +544,7 @@ const QrGeneratorClient = () => {
                     <div className="mb-4">
                       <label
                         htmlFor="website"
-                        className="block font-medium mb-2"
+                        className="block font-medium mb-2 text-foreground"
                       >
                         ウェブサイト
                       </label>
@@ -553,7 +553,7 @@ const QrGeneratorClient = () => {
                         id="website"
                         value={website}
                         onChange={(e) => setWebsite(e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                        className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                         placeholder="https://example.com"
                       />
                     </div>
@@ -561,7 +561,7 @@ const QrGeneratorClient = () => {
                     <div className="mb-4">
                       <label
                         htmlFor="address"
-                        className="block font-medium mb-2"
+                        className="block font-medium mb-2 text-foreground"
                       >
                         住所
                       </label>
@@ -570,7 +570,7 @@ const QrGeneratorClient = () => {
                         id="address"
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
+                        className="w-full px-4 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground"
                         placeholder="東京都千代田区1-1-1"
                       />
                     </div>
@@ -580,15 +580,15 @@ const QrGeneratorClient = () => {
 
               <button
                 onClick={generateQRCode}
-                className="mt-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition duration-200"
+                className="mt-4 px-4 py-2 bg-primary hover:bg-primary/80 text-primary-foreground rounded-lg transition duration-200"
               >
                 QRコードを生成
               </button>
             </div>
 
             {/* QRコード表示エリア - 右側 1/3 */}
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-              <h2 className="text-xl font-semibold mb-4 border-b pb-2">
+            <div className="bg-card rounded-lg shadow p-6">
+              <h2 className="text-xl font-semibold mb-4 border-b border-border-primary pb-2 text-foreground">
                 QRコード
               </h2>
 
@@ -603,18 +603,18 @@ const QrGeneratorClient = () => {
                   </div>
                 ) : (
                   <div
-                    className="mb-4 p-4 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center"
+                    className="mb-4 p-4 bg-muted rounded-lg flex items-center justify-center"
                     style={{
                       width: `${settings.size}px`,
                       height: `${settings.size}px`,
                     }}
                   >
                     {generationError ? (
-                      <p className="text-red-500 dark:text-red-400 text-center">
+                      <p className="text-destructive text-center">
                         {generationError}
                       </p>
                     ) : (
-                      <p className="text-gray-500 dark:text-gray-400 text-center">
+                      <p className="text-muted-foreground text-center">
                         QRコードが表示されます
                       </p>
                     )}
@@ -626,7 +626,7 @@ const QrGeneratorClient = () => {
                     <div className="mb-4">
                       <label
                         htmlFor="fileName"
-                        className="block font-medium mb-2 text-sm"
+                        className="block font-medium mb-2 text-foreground text-sm"
                       >
                         ファイル名 (拡張子なし)
                       </label>
@@ -636,20 +636,20 @@ const QrGeneratorClient = () => {
                         value={fileName}
                         onChange={(e) => setFileName(e.target.value)}
                         placeholder="保存するファイル名"
-                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100 text-sm mb-4"
+                        className="w-full px-3 py-2 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground text-sm mb-4"
                       />
                     </div>
 
                     <div className="flex space-x-2">
                       <button
                         onClick={() => downloadQRCode("png")}
-                        className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white rounded-lg transition duration-200 text-sm flex-1"
+                        className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white dark:bg-green-600 dark:hover:bg-green-700 rounded-lg transition duration-200 text-sm flex-1"
                       >
                         PNG形式でダウンロード
                       </button>
                       <button
                         onClick={() => downloadQRCode("svg")}
-                        className="px-3 py-1 bg-purple-500 hover:bg-purple-600 text-white rounded-lg transition duration-200 text-sm flex-1"
+                        className="px-3 py-1 bg-purple-500 hover:bg-purple-600 text-white dark:bg-purple-600 dark:hover:bg-purple-700 rounded-lg transition duration-200 text-sm flex-1"
                       >
                         SVG形式でダウンロード
                       </button>
@@ -661,7 +661,7 @@ const QrGeneratorClient = () => {
           </div>
 
           {/* 設定エリア - 下部に配置 */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <div className="bg-card rounded-lg shadow p-6">
             <h2 className="text-xl font-semibold mb-4 border-b pb-2">
               QRコード設定
             </h2>
@@ -681,7 +681,7 @@ const QrGeneratorClient = () => {
                   onChange={(e) =>
                     handleSettingChange("size", Number(e.target.value))
                   }
-                  className="w-full"
+                  className="w-full h-2 bg-input rounded-lg appearance-none cursor-pointer"
                 />
               </div>
 
@@ -698,7 +698,7 @@ const QrGeneratorClient = () => {
                   onChange={(e) =>
                     handleSettingChange("margin", Number(e.target.value))
                   }
-                  className="w-full"
+                  className="w-full h-2 bg-input rounded-lg appearance-none cursor-pointer"
                 />
               </div>
 
@@ -722,7 +722,7 @@ const QrGeneratorClient = () => {
                     onChange={(e) =>
                       handleSettingChange("color", e.target.value)
                     }
-                    className="w-full px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100 text-sm"
+                    className="w-full px-2 py-1 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground text-sm"
                   />
                 </div>
               </div>
@@ -747,7 +747,7 @@ const QrGeneratorClient = () => {
                     onChange={(e) =>
                       handleSettingChange("backgroundColor", e.target.value)
                     }
-                    className="w-full px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100 text-sm"
+                    className="w-full px-2 py-1 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground text-sm"
                   />
                 </div>
               </div>
@@ -769,7 +769,7 @@ const QrGeneratorClient = () => {
                         e.target.value
                       )
                     }
-                    className="w-full px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100 text-sm"
+                    className="w-full px-2 py-1 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-input text-foreground text-sm"
                   >
                     <option value="L">低 (7%)</option>
                     <option value="M">中 (15%)</option>
@@ -777,7 +777,7 @@ const QrGeneratorClient = () => {
                     <option value="H">高 (30%)</option>
                   </select>
 
-                  <p className="text-xs text-gray-500 dark:tUext-gray-400 mt-1">
+                  <p className="text-xs text-muted-foreground mt-1">
                     誤り訂正レベルが高いほど、QRコードが損傷しても読み取り可能ですが、データ容量は減少します。
                   </p>
                 </div>
@@ -786,9 +786,9 @@ const QrGeneratorClient = () => {
           </div>
 
           {/* 使い方 */}
-          <div className="mt-8 p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg shadow mb-8">
-            <h2 className="text-xl font-semibold mb-4 border-b pb-2">使い方</h2>
-            <ol className="list-disc pl-5 space-y-1 text-gray-600 dark:text-gray-400">
+          <div className="mt-8 p-4 bg-info-bg rounded-lg shadow mb-8">
+            <h2 className="text-xl font-semibold mb-4 border-b border-border-primary pb-2 text-foreground">使い方</h2>
+            <ol className="list-disc pl-5 space-y-1 text-info-text">
               <li>
                 生成したいQRコードのタイプを選択します（テキスト、URL、連絡先など）
               </li>
@@ -810,7 +810,7 @@ const QrGeneratorClient = () => {
 
             <div className="mt-4">
               <h3 className="font-medium mb-2">QRコードタイプ別の使用例</h3>
-              <ul className="list-disc pl-5 space-y-1 text-gray-600 dark:text-gray-400">
+              <ul className="list-disc pl-5 space-y-1 text-info-text">
                 <li>
                   <strong>テキスト</strong>: メモ、メッセージ、パスワードなど
                 </li>
@@ -842,9 +842,9 @@ const QrGeneratorClient = () => {
             </div>
           </div>
 
-          <div className="mt-4 text-xs text-gray-500 dark:text-gray-400">
+          <div className="mt-4 text-xs text-muted-foreground">
             <p className="mb-1">注意事項:</p>
-            <ul className="list-disc pl-5 space-y-1">
+            <ul className="list-disc pl-5 space-y-1 text-muted-foreground">
               <li>
                 QRコードの内容によっては、コードが複雑になり読み取りにくくなる場合があります
               </li>

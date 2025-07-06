@@ -27,7 +27,7 @@ const Accordion: React.FC<{ items: ProjectDetail[] }> = ({ items }) => {
         {techs.map((tech, index) => (
           <span
             key={index}
-            className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded text-sm"
+            className="px-2 py-1 bg-muted rounded text-sm"
           >
             {tech}
           </span>
@@ -48,13 +48,13 @@ const Accordion: React.FC<{ items: ProjectDetail[] }> = ({ items }) => {
         {allTechs.map((tech, index) => (
           <span
             key={index}
-            className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-700 rounded text-xs"
+            className="px-1.5 py-0.5 bg-muted rounded text-xs"
           >
             {tech}
           </span>
         ))}
         {allTechs.length > 0 && (
-          <span className="text-xs text-gray-500">...</span>
+          <span className="text-xs text-muted-foreground">...</span>
         )}
       </div>
     );
@@ -65,7 +65,7 @@ const Accordion: React.FC<{ items: ProjectDetail[] }> = ({ items }) => {
       {items.map((item, index) => (
         <div
           key={index}
-          className="border border-gray-200 dark:border-gray-700 rounded-lg hover:border-gray-300 dark:hover:border-gray-600 transition-colors"
+          className="border border-border-primary rounded-lg hover:border-border-secondary transition-colors"
         >
           <button
             className="w-full p-4 text-left"
@@ -74,24 +74,24 @@ const Accordion: React.FC<{ items: ProjectDetail[] }> = ({ items }) => {
             <div className="flex items-center">
               <div className="flex-grow">
                 <div className="font-semibold text-lg">{item.title}</div>
-                <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                <div className="text-sm text-muted-foreground mt-1">
                   {item.period}
                 </div>
                 {item.summary && (
-                  <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
+                  <p className="text-sm text-foreground mt-2">
                     {item.summary}
                   </p>
                 )}
                 {renderTechPreview(item)}
               </div>
-              <span className="text-xl leading-none text-gray-400 ml-4">
+              <span className="text-xl leading-none text-muted-foreground ml-4">
                 {openIndex === index ? "−" : "+"}
               </span>
             </div>
           </button>
 
           {openIndex === index && (
-            <div className="p-4 border-t border-gray-200 dark:border-gray-700 space-y-4">
+            <div className="p-4 border-t border-border-primary space-y-4">
               <div>
                 <strong>役割:</strong>{" "}
                 <span className="whitespace-pre-line">{item.role}</span>
