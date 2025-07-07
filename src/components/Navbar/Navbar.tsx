@@ -1,14 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ThemeSwitch } from "@/components/ThemeSwitch";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import { XMarkIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
+import { SearchModal } from "@/components/Search";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const pathName: string = usePathname();
 
   const navMenuList = [
@@ -25,6 +27,19 @@ const Navbar = () => {
     }
     return link === pathName;
   };
+
+  // グローバルキーボードショートカット
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if ((event.ctrlKey || event.metaKey) && event.key === "k") {
+        event.preventDefault();
+        setIsSearchOpen(true);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   return (
     <nav className="container mx-auto px-4 md:px-8 lg:px-16">
@@ -57,6 +72,21 @@ const Navbar = () => {
                 ></span>
               </li>
             ))}
+            <li>
+              <button
+                onClick={() => setIsSearchOpen(true)}
+                className="
+                  p-2 rounded-lg
+                  text-navbar-text hover:text-navbar-text-hover
+                  hover:bg-navbar-bg/50
+                  transition-colors duration-300
+                "
+                aria-label="検索"
+                title="検索 (Ctrl+K)"
+              >
+                <MagnifyingGlassIcon className="h-5 w-5" />
+              </button>
+            </li>
             <li>
               <ThemeSwitch />
             </li>
@@ -99,10 +129,7 @@ const Navbar = () => {
 
                 <ul className="flex flex-col text-navbar-text gap-4 font-semibold mt-4 mb-6">
                   {navMenuList.map((menu, index) => (
-                    <li
-                      key={index}
-                      className="hover:text-navbar-text-hover"
-                    >
+                    <li key={index} className="hover:text-navbar-text-hover">
                       <Link
                         href={menu.link}
                         onClick={() => setOpenMenu(!openMenu)}
@@ -111,13 +138,27 @@ const Navbar = () => {
                       </Link>
                     </li>
                   ))}
+                  <li>
+                    <button
+                      onClick={() => {
+                        setIsSearchOpen(true);
+                        setOpenMenu(false);
+                      }}
+                      className="
+                        flex items-center gap-2
+                        text-navbar-text hover:text-navbar-text-hover
+                        transition-colors duration-300
+                      "
+                    >
+                      <MagnifyingGlassIcon className="h-5 w-5" />
+                      検索
+                    </button>
+                  </li>
                 </ul>
 
                 <div className="border-t border-navbar-border pt-4 mt-auto">
                   <div className="flex items-center justify-center">
-                    <p className="text-muted-foreground mr-2">
-                      Switch theme
-                    </p>
+                    <p className="text-muted-foreground mr-2">Switch theme</p>
                     <ThemeSwitch />
                   </div>
                 </div>
@@ -126,6 +167,12 @@ const Navbar = () => {
           )}
         </div>
       </div>
+
+      {/* 検索モーダル */}
+      <SearchModal
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
+      />
     </nav>
   );
 };
