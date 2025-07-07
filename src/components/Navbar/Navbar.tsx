@@ -28,6 +28,19 @@ const Navbar = () => {
     return link === pathName;
   };
 
+  // グローバルキーボードショートカット
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if ((event.ctrlKey || event.metaKey) && event.key === "k") {
+        event.preventDefault();
+        setIsSearchOpen(true);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   return (
     <nav className="container mx-auto px-4 md:px-8 lg:px-16">
       <div className="flex items-center justify-between border-b border-navbar-border py-4">
