@@ -41,14 +41,14 @@ export const skills = [
   {
     category: "クラウド/インフラ",
     items: [
-      "AWS (ECS, VPC, S3, RDS)",
+      "AWS (ECS, VPC, S3, RDS, Amplify)",
       "Google Cloud Platform (Firebase)",
       "Docker",
     ],
   },
   {
     category: "その他技術",
-    items: ["Git", "GitHub"],
+    items: ["Git", "GitHub", "Slack"],
   },
 ];
 
@@ -92,7 +92,7 @@ export const projectDetails = [
   },
   {
     title: "動画解析アプリ開発",
-    period: "2024年1月 - 現在",
+    period: "2024年1月 - 2025年5月",
     summary: "リアルタイムストリーミングを活用した人流分析システム",
     role: "アプリ開発, インフラ構築担当, 動画解析処理実装",
     description:
@@ -115,8 +115,8 @@ export const projectDetails = [
     },
     teamSize: "開発者2名",
     achievements: [
-      "WebSocketを使用したリアルタイム動画解析機能の実装により、\nユーザー体験を向上",
-      "AWSのECSとFargateを活用したスケーラブルなインフラ設計により、\n将来の成長に備えた拡張性を確保",
+      "WebSocketを使用したリアルタイム動画解析機能の実装",
+      "AWSのECSとFargateを活用したスケーラブルなインフラ設計",
       "YOLOv8とAmazon Rekognitionを組み合わせた物体検出と属性分析機能の実現",
     ],
   },
@@ -152,13 +152,11 @@ export const projectDetails = [
     },
     teamSize: "開発者1名、デザイナー1名",
     achievements: [
-      "Flutterを活用し、単一のコードベースでAndroidとiOSの両プラットフォームに対応",
-      "Firebaseの各種サービスを統合し、認証、データベース、ストレージ、メッセージングを含むバックエンドソリューションを構築",
-      "RevenueCatを連携させ、サブスクリプション管理と収益化を効率的に実装",
-      "Riverpodを用いた状態管理とgo_routerによるナビゲーション設計で、保守性の高いアーキテクチャを実現",
-      "Flutter Hooksとfreezedを活用し、ボイラープレートコードを削減しつつ、型安全性を確保",
-      "多言語対応とプッシュ通知機能の実装により、ユーザー体験を向上",
-      "アプリの要件定義からApp StoreとGoogle Play Storeへのリリースまでを担当",
+      "Flutterによるクロスプラットフォーム開発",
+      "Firebaseを活用したバックエンド構築",
+      "RevenueCatによるサブスクリプション機能実装",
+      "Riverpodによる状態管理アーキテクチャ設計",
+      "要件定義からストアリリースまでの一貫した開発",
     ],
   },
   {
@@ -176,7 +174,7 @@ export const projectDetails = [
       other: [],
     },
     teamSize: "開発者1名",
-    achievements: [],
+    achievements: ["既存のWordPressで作られたサービスへのデータ連携"],
   },
   {
     title: "CtoC向けマッチングアプリ開発",
@@ -214,14 +212,12 @@ export const projectDetails = [
     },
     teamSize: "開発者2名、デザイナー1名",
     achievements: [
-      "MVVMアーキテクチャを採用し、コードの保守性と再利用性を向上",
-      "Flutterを活用し、単一のコードベースでAndroidとiOSの両プラットフォームに対応したアプリを開発",
-      "Firebaseの各種サービスを統合し、認証、データベース、ストレージ、プッシュ通知を含むバックエンドを構築",
-      "Google Maps APIと位置情報サービスを統合し、ユーザーの位置に基づいたイベント検索と表示機能を実装",
-      "In-App Purchaseを使用したアプリ内課金(消耗型)を導入し、収益化を実現",
-      "画像のアップロードと編集機能を実装し、ユーザープロフィールやイベント情報の視覚的な印象を向上",
-
-      "アプリの要件定義からApp StoreとGoogle Play Storeへのリリースまでを担当",
+      "MVVMアーキテクチャによる保守性の高いコード設計",
+      "Flutterによるクロスプラットフォーム開発",
+      "Firebaseを活用したバックエンド構築",
+      "Google Maps APIを活用した位置情報機能実装",
+      "In-App Purchaseによるアプリ内課金機能実装",
+      "要件定義からストアリリースまでの一貫した開発",
     ],
   },
   {
@@ -238,9 +234,9 @@ export const projectDetails = [
     },
     teamSize: "開発者2名",
     achievements: [
-      "検出対象の画像を自らアノテーションし、学習データセットを作成",
-      "データ拡張技術（画像の回転、色調変更など）を実装し、学習データの多様性と量を向上",
-      "YOLOアルゴリズムを用いた物体検出モデルの学習と推論を実施",
+      "画像アノテーションによる学習データセット作成",
+      "データ拡張技術による学習データの品質向上",
+      "YOLOアルゴリズムを用いた物体検出モデルの学習・推論実装",
     ],
   },
 ];
@@ -248,18 +244,14 @@ export const projectDetails = [
 export const specialties = [
   "モバイルアプリ開発 (Flutter)",
   "Webアプリケーション開発 (フロントエンド・バックエンド)",
-  // "クラウドネイティブアプリケーション開発 (AWS, GCP)",
   "画像・動画解析システム開発",
 ];
 
 export const strengths = [
-  "フルスタック開発能力",
   "クラウドインフラ設計と実装の経験",
   "ハードウェアとソフトウェアの両方の知識を活かした開発",
   "新技術の迅速な習得と実践的な適用",
   "プロジェクト全体を俯瞰した効率的な開発管理",
-
-  // 他の強み
 ];
 
 export const valuePropositions = [
@@ -293,20 +285,9 @@ export const strengthsAndValueProps = [
 ];
 
 export const hobbiesAndInterests = [
-  // {
-  //   title: "ランニング",
-  //   description:
-  //     "ランニングが日課です。毎日がハイペースというわけではなく、時には歩いたり、ゆっくりジョギングしたりします。早朝や夕方に走ることで、心身ともにリフレッシュでき、一日の良いスタートや締めくくりになっています。風景の移り変わりを感じながら走るのが好きで、その時々の景色を楽しんでいます。",
-  // },
-  // {
-  //   title: "書店巡り",
-  //   description:
-  //     "休日には書店を巡るのが楽しみです。技術書コーナーをのぞいてみたり、普段あまり関わりのない分野の本棚を見て回ったりするのが好きです。大型の書店だと全ての棚を徘徊してしまい、つい長居してしまうこともあります。新しい本の匂いや、本に囲まれた空間が心地よく感じます。",
-  // },
   {
     title: "ランニング",
     description:
-      // "ランニングが日課です。毎日がハイペースというわけではなく、時には歩いたり、ゆっくりジョギングしたりします。風景の移り変わりを感じながら走るのが好きで、その時々の景色を楽しんでいます。",
       "ランニングが日課です。風景の移り変わりを感じながら走るのが好きで、その時々の景色を楽しんでいます。",
   },
   {
@@ -317,5 +298,4 @@ export const hobbiesAndInterests = [
 ];
 
 export const hobbiesSummary =
-  // "これらの趣味を通じて、日々の生活に小さな楽しみや発見を見出しています。体を動かすことと本に触れることのバランスが、私の日々の活力源になっています。";
   "これらの趣味を通じて、日々の生活に小さな楽しみや発見を見出しています。";
