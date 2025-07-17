@@ -40,27 +40,47 @@ export const careerEvents = [
 export const skills = [
   {
     category: "プログラミング言語",
-    items: ["Python", "JavaScript/TypeScript", "Dart", "PHP", "HTML/CSS"],
+    items: [
+      { name: "Dart", experience: "4 ~ 5年" },
+      { name: "Python", experience: "4 ~ 5年" },
+      { name: "JavaScript/TypeScript", experience: "3年" },
+      { name: "HTML/CSS", experience: "2年" },
+      { name: "PHP", experience: "1年" },
+    ],
   },
   {
     category: "フレームワーク/ライブラリ",
-    items: ["Flutter", "React.js", "Django", "Flask"],
+    items: [
+      { name: "Flutter", experience: "5年" },
+      { name: "React.js", experience: "3年" },
+      { name: "Django", experience: "3年" },
+      { name: "Flask", experience: "1年" },
+    ],
   },
   {
     category: "データベース",
-    items: ["PostgreSQL", "MySQL", "Firebase Database"],
+    items: [
+      { name: "PostgreSQL", experience: "業務利用" },
+      { name: "MySQL", experience: "複数プロジェクト" },
+      { name: "Firebase Database", experience: "複数プロジェクト" },
+    ],
   },
   {
     category: "クラウド/インフラ",
     items: [
-      "AWS (ECS, VPC, S3, RDS, Amplify)",
-      "Google Cloud Platform (Firebase)",
-      "Docker",
+      { name: "AWS (ECS, VPC, S3, RDS, Amplify)", experience: "本格運用" },
+      { name: "GCP (Firebase)", experience: "複数プロジェクト" },
+      { name: "Docker", experience: "業務利用" },
     ],
   },
   {
-    category: "その他技術",
-    items: ["Git", "GitHub", "Slack"],
+    category: "その他ツール",
+    items: [
+      { name: "Git", experience: "日常・業務利用" },
+      { name: "GitHub", experience: "日常・業務利用" },
+      { name: "Slack", experience: "日常・業務利用" },
+      { name: "Notion", experience: "日常・業務利用" },
+    ],
   },
 ];
 

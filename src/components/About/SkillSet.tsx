@@ -1,8 +1,13 @@
 import React from "react";
 
+type SkillItem = {
+  name: string;
+  experience: string;
+};
+
 type Skill = {
   category: string;
-  items: string[];
+  items: SkillItem[];
 };
 
 const SkillSet: React.FC<{ skills: Skill[] }> = ({ skills }) => {
@@ -16,7 +21,8 @@ const SkillSet: React.FC<{ skills: Skill[] }> = ({ skills }) => {
           <ul className="list-disc list-inside grid grid-cols-1 md:grid-cols-2 gap-2">
             {skill.items.map((item, itemIndex) => (
               <li key={itemIndex} className="text-foreground">
-                {item}
+                <span className="font-medium">{item.name}</span>
+                <span className="text-muted-foreground ml-2">({item.experience})</span>
               </li>
             ))}
           </ul>
