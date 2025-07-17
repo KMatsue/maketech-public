@@ -1,6 +1,18 @@
 export const careerEvents = [
   {
-    date: "2021年1月 - 現在",
+    date: "2025年6月 - 現在",
+    title: "フリーランス アプリケーション開発者",
+    description:
+      "独立してフリーランスとして活動開始。前職からの継続案件を含む多様なプロジェクトに従事",
+    details: [
+      "推し活アプリ開発（継続案件）でのフロントエンド開発",
+      "Flutter, Riverpod を用いたモバイルアプリ開発",
+      "AWS Amplify, DynamoDB, Lambda を活用したバックエンド連携",
+      "チャット機能、オンボーディング機能、通知機能の実装・改善",
+    ],
+  },
+  {
+    date: "2021年1月 - 2025年5月",
     title: "ITシステム開発企業勤務",
     description: "モバイルアプリからWebシステムまで幅広い開発に従事",
     details: [
@@ -54,6 +66,77 @@ export const skills = [
 
 export const projectDetails = [
   {
+    title: "推し活アプリ開発（フリーランス継続案件）",
+    period: "2025年6月 - 現在",
+    summary: "前職からの継続案件を個人契約に移行し、フリーランスとして開発継続",
+    role: "フロントエンド開発",
+    description:
+      "推し活をテーマとしたモバイルアプリケーションの機能拡張・改善を担当。\n前職での開発経験を活かし、フリーランスとして個人契約で継続開発中。",
+    technologies: {
+      frontend: ["Flutter", "Dart", "Riverpod (状態管理)"],
+      backend: ["AWS Amplify", "DynamoDB", "Lambda"],
+      other: [],
+    },
+    teamSize: "エンジニア4名（デザイナー、ベンダー含め10名以上）",
+    achievements: [
+      "チャット機能の拡張実装",
+      "オンボーディング機能の新規実装",
+      "通知機能の改善と最適化",
+      "AWS Amplify を用いたバックエンド連携の実装",
+      "フリーランスとしての独立と継続契約の獲得",
+    ],
+  },
+  {
+    title: "推し活アプリ開発（会社員時代）",
+    period: "2025年1月 - 5月",
+    summary: "既存アプリの解析と機能改善",
+    role: "フロントエンド開発",
+    description:
+      "推し活をテーマとしたモバイルアプリケーションの機能改善・拡張を担当。\n既存コードベースの解析から始まり、チャット機能やSNS連携機能の実装を行った。",
+    technologies: {
+      frontend: ["Flutter", "Dart", "Riverpod (状態管理)"],
+      backend: [],
+      other: [],
+    },
+    teamSize: "開発者3名",
+    achievements: [
+      "既存アプリの機能解析とロジック解析を完了",
+      "チャット機能の改善実装",
+      "SNS連携機能の新規実装",
+      "※2025年6月より個人契約として継続",
+    ],
+  },
+  {
+    title: "動画解析アプリ開発",
+    period: "2024年1月 - 2025年5月",
+    summary: "リアルタイムストリーミングを活用した人流分析システム",
+    role: "アプリ開発, インフラ構築担当, 動画解析処理実装",
+    description:
+      "動画やリアルタイムストリームから人流や車両の動きを分析するアプリケーションの開発。\n主な機能には、アップロード動画の解析、IPカメラを使用したリアルタイムストリーミング解析、検出された人物の属性分析（性別、年齢範囲）が含まれる。",
+    technologies: {
+      frontend: ["React.js", "TypeScript", "Tailwind CSS"],
+      backend: ["Django", "Python"],
+      database: ["PostgreSQL", "Redis"],
+      infrastructure: [
+        "Amazon ECS",
+        "Amazon VPC",
+        "Amazon S3",
+        "Amazon RDS",
+        "CloudFront",
+        "CloudFormation",
+        "Fargate",
+        "Docker",
+      ],
+      other: ["YOLO (物体検出)", "OpenCV", "JWT認証"],
+    },
+    teamSize: "開発者2名",
+    achievements: [
+      "WebSocketを使用したリアルタイム動画解析機能の実装",
+      "AWSのECSとFargateを活用したスケーラブルなインフラ設計",
+      "YOLOv8とAmazon Rekognitionを組み合わせた物体検出と属性分析機能の実現",
+    ],
+  },
+  {
     title: "業務用マッチングアプリ開発（建設業） - 機能追加フェーズ",
     period: "2024年11月 - 2024年12月",
     summary: "建設発生土マッチングアプリの機能拡張とUX改善",
@@ -88,36 +171,6 @@ export const projectDetails = [
       "ユーザーフィードバックに基づく機能改善と新機能の実装",
       "アプリのパフォーマンス最適化とユーザビリティの向上",
       "既存機能の改善と拡張",
-    ],
-  },
-  {
-    title: "動画解析アプリ開発",
-    period: "2024年1月 - 2025年5月",
-    summary: "リアルタイムストリーミングを活用した人流分析システム",
-    role: "アプリ開発, インフラ構築担当, 動画解析処理実装",
-    description:
-      "動画やリアルタイムストリームから人流や車両の動きを分析するアプリケーションの開発。\n主な機能には、アップロード動画の解析、IPカメラを使用したリアルタイムストリーミング解析、検出された人物の属性分析（性別、年齢範囲）が含まれる。",
-    technologies: {
-      frontend: ["React.js", "TypeScript", "Tailwind CSS"],
-      backend: ["Django", "Python"],
-      database: ["PostgreSQL", "Redis"],
-      infrastructure: [
-        "Amazon ECS",
-        "Amazon VPC",
-        "Amazon S3",
-        "Amazon RDS",
-        "CloudFront",
-        "CloudFormation",
-        "Fargate",
-        "Docker",
-      ],
-      other: ["YOLO (物体検出)", "OpenCV", "JWT認証"],
-    },
-    teamSize: "開発者2名",
-    achievements: [
-      "WebSocketを使用したリアルタイム動画解析機能の実装",
-      "AWSのECSとFargateを活用したスケーラブルなインフラ設計",
-      "YOLOv8とAmazon Rekognitionを組み合わせた物体検出と属性分析機能の実現",
     ],
   },
   {
