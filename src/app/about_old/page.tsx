@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   ],
 };
 
-const AboutPage = () => {
+const AboutOldPage = () => {
   return (
     <main className="container mx-auto w-full mt-14 px-4 md:px-8 lg:px-16">
       <div className="mx-auto lg:w-9/12">
@@ -110,4 +110,4 @@ const AboutPage = () => {
   );
 };
 
-export default AboutPage;
+export default AboutOldPage;

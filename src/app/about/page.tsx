@@ -15,7 +15,7 @@ import {
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "プロフィール（Notion版）",
+  title: "プロフィール",
   description:
     "MaKeTECHの著者プロフィールページです。Web開発者としての経歴、スキル、プロジェクト実績などを紹介しています。",
   keywords: [
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   ],
 };
 
-const About2Page = async () => {
+const AboutPage = async () => {
   // Notion APIから全データを並列取得
   const [
     careerEvents,
@@ -49,7 +49,7 @@ const About2Page = async () => {
     <main className="container mx-auto w-full mt-14 px-4 md:px-8 lg:px-16">
       <div className="mx-auto lg:w-9/12">
         <header className="text-center my-8">
-          <h1 className="text-4xl font-bold mb-4">About Me (Notion版)</h1>
+          <h1 className="text-4xl font-bold mb-4">About Me</h1>
           <p className="text-lg text-muted-foreground">
             Web/Mobileアプリの開発者。ITを通じて価値あるサービスの提供を目指しています。
             製造業での業務経験を活かし、使う人の目線に立ったソフトウェア開発に取り組んでいます。
@@ -108,4 +108,4 @@ const About2Page = async () => {
   );
 };
 
-export default About2Page;
+export default AboutPage;
