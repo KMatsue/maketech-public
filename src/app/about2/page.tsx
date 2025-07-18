@@ -1,6 +1,7 @@
 import React from "react";
 import Timeline from "@/components/About/Timeline";
-import { getCareersFromNotion } from "@/lib/notionAbout";
+import Accordion from "@/components/About/Accodion";
+import { getCareersFromNotion, getProjectsFromNotion } from "@/lib/notionAbout";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -19,6 +20,9 @@ export const metadata: Metadata = {
 const About2Page = async () => {
   // Notion APIから職務経歴データを取得
   const careerEvents = await getCareersFromNotion();
+  
+  // Notion APIからプロジェクト経歴データを取得
+  const projectDetails = await getProjectsFromNotion();
 
   return (
     <main className="container mx-auto w-full mt-14 px-4 md:px-8 lg:px-16">
@@ -34,6 +38,11 @@ const About2Page = async () => {
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-4">職務経歴</h2>
           <Timeline events={careerEvents} />
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold mb-4">プロジェクト経歴</h2>
+          <Accordion items={projectDetails} />
         </section>
 
         <section className="mt-12">
