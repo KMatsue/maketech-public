@@ -12,7 +12,7 @@ const Timeline: React.FC<{ events: TimelineEvent[] }> = ({ events }) => {
     <div className="relative border-l border-border-primary">
       {events.map((event, index) => (
         <div key={index} className="mb-10 ml-4">
-          <div className="absolute w-3 h-3 bg-muted rounded-full mt-1.5 -left-1.5 border border-background"></div>
+          <div className="absolute w-3 h-3 bg-foreground rounded-full mt-1.5 -left-1.5 border-2 border-background"></div>
           <time className="mb-1 text-sm font-normal leading-none text-muted-foreground">
             {event.date}
           </time>
@@ -24,10 +24,7 @@ const Timeline: React.FC<{ events: TimelineEvent[] }> = ({ events }) => {
           </p>
           <ul className="list-disc list-inside pl-4 space-y-2">
             {event.details.map((detail, detailIndex) => (
-              <li
-                key={detailIndex}
-                className="text-foreground"
-              >
+              <li key={detailIndex} className="text-foreground">
                 {detail}
               </li>
             ))}
