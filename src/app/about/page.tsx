@@ -14,6 +14,9 @@ import {
 } from "@/lib/notionAbout";
 import { Metadata } from "next";
 
+// Notionデータの更新を反映するため10分ごとに再検証
+export const revalidate = 600;
+
 export const metadata: Metadata = {
   title: "プロフィール",
   description:
