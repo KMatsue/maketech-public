@@ -1,21 +1,17 @@
 import React from "react";
-import Timeline from "@/components/About/Timeline";
 import Accordion from "@/components/About/Accodion";
 import SkillSet from "@/components/About/SkillSet";
-import Specialties from "@/components/About/Specialties";
-import Hobbies from "@/components/About/Hobbies";
+import Timeline from "@/components/About/Timeline";
 import {
-  getCareersFromNotion,
-  getProjectsFromNotion,
-  getSkillsFromNotion,
-  getSpecialtiesFromNotion,
-  getHobbiesFromNotion,
-  getHobbiesSummaryFromNotion,
-} from "@/lib/notionAbout";
+  careerEvents,
+  skills,
+  projectDetails,
+  specialties,
+  strengthsAndValueProps,
+  hobbiesAndInterests,
+  hobbiesSummary,
+} from "@/data/aboutPageData";
 import { Metadata } from "next";
-
-// Notionデータの更新を反映するため10分ごとに再検証
-export const revalidate = 600;
 
 export const metadata: Metadata = {
   title: "プロフィール",
@@ -30,24 +26,7 @@ export const metadata: Metadata = {
   ],
 };
 
-const AboutPage = async () => {
-  // Notion APIから全データを並列取得
-  const [
-    careerEvents,
-    projectDetails,
-    skills,
-    specialties,
-    hobbies,
-    hobbiesSummary,
-  ] = await Promise.all([
-    getCareersFromNotion(),
-    getProjectsFromNotion(),
-    getSkillsFromNotion(),
-    getSpecialtiesFromNotion(),
-    getHobbiesFromNotion(),
-    getHobbiesSummaryFromNotion(),
-  ]);
-
+const AboutOldPage = () => {
   return (
     <main className="container mx-auto w-full mt-14 px-4 md:px-8 lg:px-16">
       <div className="mx-auto lg:w-9/12">
@@ -77,17 +56,37 @@ const AboutPage = async () => {
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4 text-foreground">
-            専門分野
-          </h2>
-          <Specialties specialties={specialties} />
+          <h2 className="text-2xl font-semibold mb-4">専門分野</h2>
+          <ul className="list-disc list-inside">
+            {specialties.map((specialty, index) => (
+              <li key={index} className="mb-2">
+                {specialty}
+              </li>
+            ))}
+          </ul>
         </section>
 
+        {/* <section className="mb-12">
+          <h2 className="text-2xl font-semibold mb-4">強みと価値提案</h2>
+          {strengthsAndValueProps.map((item, index) => (
+            <div key={index} className="mb-4">
+              <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+              <p>{item.description}</p>
+            </div>
+          ))}
+        </section> */}
+
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4 text-foreground">
-            趣味・関心事
-          </h2>
-          <Hobbies hobbies={hobbies} summary={hobbiesSummary} />
+          <h2 className="text-2xl font-semibold mb-4">趣味・関心事</h2>
+          <div className="space-y-4">
+            {hobbiesAndInterests.map((hobby, index) => (
+              <div key={index}>
+                <h3 className="text-xl font-semibold mb-2">{hobby.title}</h3>
+                <p>{hobby.description}</p>
+              </div>
+            ))}
+            <p className="mt-2">{hobbiesSummary}</p>
+          </div>
         </section>
 
         <section className="mt-12">
@@ -111,4 +110,4 @@ const AboutPage = async () => {
   );
 };
 
-export default AboutPage;
+export default AboutOldPage;
