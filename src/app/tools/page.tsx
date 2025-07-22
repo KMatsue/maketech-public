@@ -152,6 +152,20 @@ const ToolsPage = () => {
                 使ってみる →
               </span>
             </Link>
+            <Link
+              href="/tools/unix-converter"
+              className="block p-6 border border-border-primary rounded-lg hover:shadow-md hover:border-border-secondary transition duration-300"
+            >
+              <h2 className="text-xl font-semibold mb-3">
+                UNIXタイムスタンプ変換ツール
+              </h2>
+              <p className="text-muted-foreground mb-4">
+                UNIXタイムスタンプと人間が読める日時を相互変換。複数フォーマット、タイムゾーン対応。
+              </p>
+              <span className="text-sm font-medium text-muted-foreground">
+                使ってみる →
+              </span>
+            </Link>
             {/* 他のツールカードを追加 */}
           </div>
         </section>
