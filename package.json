@@ -12,6 +12,8 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@ffmpeg/ffmpeg": "^0.12.15",
+    "@ffmpeg/util": "^0.12.2",
     "@heroicons/react": "^2.0.18",
     "@notionhq/client": "^2.2.13",
     "@tailwindcss/aspect-ratio": "^0.4.2",

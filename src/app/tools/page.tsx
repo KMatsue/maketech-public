@@ -166,6 +166,20 @@ const ToolsPage = () => {
                 使ってみる →
               </span>
             </Link>
+            <Link
+              href="/tools/video-to-gif"
+              className="block p-6 border border-border-primary rounded-lg hover:shadow-md hover:border-border-secondary transition duration-300"
+            >
+              <h2 className="text-xl font-semibold mb-3">
+                動画→GIF変換ツール
+              </h2>
+              <p className="text-muted-foreground mb-4">
+                動画ファイル（MP4、MOV、WebM）を高品質なGIFアニメーションに変換。ブログやプレゼンテーション用に最適化。
+              </p>
+              <span className="text-sm font-medium text-muted-foreground">
+                使ってみる →
+              </span>
+            </Link>
             {/* 他のツールカードを追加 */}
           </div>
         </section>
