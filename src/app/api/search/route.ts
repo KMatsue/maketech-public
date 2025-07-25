@@ -83,6 +83,22 @@ const TOOLS_DATA = [
     slug: "/tools/text-diff",
     type: "tool" as const,
   },
+  {
+    id: "unix-converter",
+    title: "UNIXタイムスタンプ変換ツール",
+    description: "UNIXタイムスタンプと人間が読める日時を相互変換。複数フォーマット、タイムゾーン対応。",
+    keywords: ["UNIX", "タイムスタンプ", "時間", "変換", "タイムゾーン"],
+    slug: "/tools/unix-converter",
+    type: "tool" as const,
+  },
+  {
+    id: "video-to-gif",
+    title: "動画→GIF変換ツール",
+    description: "動画ファイル（MP4、MOV、WebM）を高品質なGIFアニメーションに変換。ffmpeg.wasmによるブラウザ内処理。",
+    keywords: ["動画", "GIF", "変換", "MP4", "MOV", "WebM", "ffmpeg", "wasm", "アニメーション"],
+    slug: "/tools/video-to-gif",
+    type: "tool" as const,
+  },
 ];
 
 // 検索結果の型定義
