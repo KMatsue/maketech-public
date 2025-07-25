@@ -45,8 +45,6 @@ NEXT_PUBLIC_GA_ID=your_google_analytics_id
 
 詳細な設定方法は [プロジェクト概要](./overview.md) を参照してください。
 
-## プロジェクト構成
-
 ## プロジェクト構造
 
 ```
