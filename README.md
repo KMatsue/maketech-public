@@ -11,7 +11,7 @@ Notion API を使用した技術ブログサイトです。サイト内検索機
 🌓 **統一テーマシステム** - Light / Dark / Terminal Green / Sunset Orange  
 📝 **Notion CMS** - 記事管理とコンテンツ配信  
 🔍 **サイト内検索** - リアルタイム検索、キーボードショートカット (`Ctrl+K`)  
-🛠️ **開発ツール** - 文字数カウンター、JSON フォーマッター等  
+🛠️ **開発ツール集** - 12種類のユーティリティツール（動画→GIF変換、JSON フォーマッター等）  
 📱 **レスポンシブ** - マルチデバイス対応  
 🎯 **SEO 最適化** - サイトマップ、メタデータ、RSS 対応
 
@@ -20,17 +20,30 @@ Notion API を使用した技術ブログサイトです。サイト内検索機
 - Next.js 13 (App Router) + TypeScript
 - Tailwind CSS + next-themes
 - Notion API + Vercel
+- ffmpeg.wasm (WebAssembly動画処理)
 
 ## クイックスタート
 
 ```bash
-git clone https://github.com/yourusername/maketech.git
+git clone https://github.com/[YOUR_USERNAME]/maketech.git
 cd maketech
 npm install
 npm run dev
 ```
 
-環境変数の設定については [プロジェクト概要](./overview.md) を参照してください。
+## 環境変数設定
+
+プロジェクトを動作させるには以下の環境変数が必要です：
+
+```bash
+# .env.local を作成して以下を設定
+NOTION_TOKEN=your_notion_integration_token
+NOTION_DATABASE_ID=your_notion_database_id
+SITE_URL=https://maketech.net
+NEXT_PUBLIC_GA_ID=your_google_analytics_id
+```
+
+詳細な設定方法は [プロジェクト概要](./overview.md) を参照してください。
 
 ## プロジェクト構成
 
